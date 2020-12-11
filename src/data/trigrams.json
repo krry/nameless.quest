@@ -1,0 +1,67 @@
+[
+  {
+    "trigram": "☷",
+    "name": {
+      "en": "earth",
+      "zh": "坤",
+      "pn": "kūn"
+    }
+
+  },
+  {
+    "trigram": "☳",
+    "name": {
+      "en": "thunder",
+      "zh": "震",
+      "pn": "zhèn"
+    }
+  },
+  {
+    "trigram": "☵",
+    "name": {
+      "en": "water",
+      "zh": "坎",
+      "pn": "kǎn"
+    }
+  },
+  {
+    "trigram": "☱",
+    "name": {
+      "en": "lake",
+      "zh": "兌",
+      "pn": "duì"
+    }
+  },
+  {
+    "trigram": "☶",
+    "name": {
+      "en": "mountain",
+      "zh": "艮",
+      "pn": "gèn"
+    }
+  },
+  {
+    "trigram": "☲",
+    "name": {
+      "en": "fire",
+      "zh": "離",
+      "pn": "lí"
+    }
+  },
+  {
+    "trigram": "☴",
+    "name": {
+      "en": "wind",
+      "zh": "巽",
+      "pn": "xùn"
+    }
+  },
+  {
+    "trigram": "☰",
+    "name": {
+      "en": "heaven",
+      "zh": "乾",
+      "pn": "qián"
+    }
+  }
+]
