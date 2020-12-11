@@ -1,28 +1,43 @@
-<template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<template lang="pug">
+#app
+  grid
+  modal
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Grid from './components/Grid'
+import Modal from './components/Modal'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    grid: Grid,
+    modal: Modal,
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="sass">
+body
+  margin: 0
+  padding: 0
+  color: hsla(28, 50%, 20%, 1)
+
+#app
+  font-family: Garamond, system-ui, serif
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  display: flex
+  flex-flow: column nowrap
+  justify-content: center
+  align-items: center
+
+@media (orientation: portrait)
+  #app
+    flex-direction: column
+
+@media (orientation: landscape)
+  #app
+    flex-direction: row
+
 </style>
