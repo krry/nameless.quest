@@ -1,17 +1,19 @@
 <template lang="pug">
 main.grids.fixedfull
   transition-group(
-    name="scoot-list"
+    name="scoot"
     tag="section"
     class="hexagrid lower fixedfull"
   )
     framing(
       v-for="hexagram in sortedHexagrams"
-      v-bind:key="hexagram.octal"
+      :key="hexagram.octal"
       :node="hexagram"
+      enter-active-class="scoot-enter-active"
+      leave-active-class="scoot-leave-active"
     )
   transition-group(
-    name="scoot-list"
+    name="scoot"
     tag="section"
     class="hexagrid upper fixedfull"
   )
@@ -19,9 +21,10 @@ main.grids.fixedfull
       v-for="hexagram in sortedHexagrams"
       :key="hexagram.kingwen"
       :node="hexagram"
+      enter-active-class="scoot-enter-active"
+      leave-active-class="scoot-leave-active"
     )
 </template>
-
 <script>
 import Meaning from './Meaning'
 import Framing from './Framing'
@@ -58,10 +61,11 @@ export default {
 }
 </script>
 <style lang="sass">
-.on-top
-  position: fixed
-  font-size: 5em
-  z-index: 10
+.scoot-enter-active
+  transition: all 444ms
+.scoot-leave-active
+  opacity: 0
+  transition: all 444ms
 .fixedfull
   position: fixed
   width: 100%

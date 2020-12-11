@@ -2,8 +2,8 @@
 .bagua(
   v-if="shown"
   transition="fade"
-  enter-active-class="fade-active-enter"
-  leave-active-class="fade-active-leave"
+  enter-active-class="fade-enter-active"
+  leave-active-class="fade-leave-active"
   v-on:click="shown = !shown"
   )
   gua(:gua="above")
@@ -46,6 +46,6 @@ export default {
 .fade-leave-to
   opacity: 0
 
-.fade-active-enter,
-.fade-active-leave
+.fade-enter-active,
+.fade-leave-active
   transition: opacity 444ms  </style>
