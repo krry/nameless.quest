@@ -1,7 +1,7 @@
 <template lang="pug">
 main.grids.fixedfull
   transition-group(
-    name="scoot"
+    name="fade"
     tag="section"
     class="hexagrid lower fixedfull"
   )
@@ -9,8 +9,6 @@ main.grids.fixedfull
       v-for="hexagram in sortedHexagrams"
       :key="hexagram.octal"
       :node="hexagram"
-      enter-active-class="scoot-enter-active"
-      leave-active-class="scoot-leave-active"
     )
   transition-group(
     name="scoot"
@@ -21,15 +19,16 @@ main.grids.fixedfull
       v-for="hexagram in sortedHexagrams"
       :key="hexagram.kingwen"
       :node="hexagram"
-      enter-active-class="scoot-enter-active"
-      leave-active-class="scoot-leave-active"
     )
 </template>
 <script>
+import sanity from "../sanity";
 import Meaning from './Meaning'
 import Framing from './Framing'
 import HexaData from '../data/hexagrams.json'
 import { EventBus } from '../event-bus'
+
+const query = `*[_type == "hexagram"]`
 
 export default {
   name: 'Grid',
@@ -44,6 +43,19 @@ export default {
   methods: {
     onReorder: function (wenny) {
       this.wenny = wenny
+    },
+    fetchData() {
+      this.error = this.post = null;
+      this.loading = true;
+      sanity.fetch(query).then(
+        hexagrams => {
+          this.loading = false;
+          this.hexagrams = hexagrams;
+        },
+        error => {
+          this.error = error;
+        }
+      );
     }
   },
   mounted: function () {
@@ -57,15 +69,11 @@ export default {
         return a[order] - b[order]
       })
     }
-  }
+  },
 }
 </script>
 <style lang="sass">
-.scoot-enter-active
-  transition: all 444ms
-.scoot-leave-active
-  opacity: 0
-  transition: all 444ms
+
 .fixedfull
   position: fixed
   width: 100%
@@ -74,11 +82,14 @@ export default {
   right: 0
   bottom: 0
   left: 0
+
 .hexagrid
   display: grid
   font-size: calc(9px + 0.3vw)
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+
 .upper
   z-index: 3
+
 .lower
   z-index: 2  </style>

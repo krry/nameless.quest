@@ -3,9 +3,7 @@
   popper(
     :trigger="trigger"
     :options={placement: 'auto-auto'}
-    transition="fade"
-    enter-active-class="fade-enter-active"
-    leave-active-class="fade-leave-active"
+    transition="flipX"
     )
     .more.popper( @click.stop="textShown=!textShown" )
       .names
@@ -119,14 +117,6 @@ $flair: hsla(28, 20%, 20%, 0.9)
 .mandarin
   cursor: pointer
 
-.fade-enter-active,
-.fade-leave-active
-  transition: opacity 500ms
-
-.fade-enter,
-.fade-leave-to
-  opacity: 0
-  
 h3
   margin-top: 0
 

@@ -1,9 +1,7 @@
 <template lang="pug">
 .bagua(
   v-if="shown"
-  transition="fade"
-  enter-active-class="fade-enter-active"
-  leave-active-class="fade-leave-active"
+  transition="bounceLeft"
   v-on:click="shown = !shown"
   )
   gua(:gua="above")

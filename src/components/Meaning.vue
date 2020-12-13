@@ -37,6 +37,6 @@ export default {
   display: flex
   flex-direction: column
   justify-content: center
-  transition: 777ms
+  transition: 555ms
 .lines
   font-size: 2em</style>

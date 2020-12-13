@@ -9,11 +9,11 @@ import Grid from './components/Grid'
 import Modal from './components/Modal'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     grid: Grid,
     modal: Modal,
-  }
+  },
 }
 </script>
 
