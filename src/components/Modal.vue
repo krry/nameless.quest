@@ -3,10 +3,11 @@
  dialog
 </template>
 
-<script>
+<script lang="ts">
 // TODO: introduce the app with a dialog
+import { defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
   name: 'Modal',
   components: { },
   props: {},
@@ -15,9 +16,9 @@ export default {
   } },
   methods: { },
   computed: { }
-}
+})
 </script>
-<style lang="sass">
+<style scoped lang="sass">
 .modal
   z-index: 5
   display: flex

@@ -7,17 +7,20 @@
     span.pnyn-name  {{ $options.trigrams[gua].name.pn }}
     .eng-name {{ $options.trigrams[gua].name.en }}
 </template>
-<script>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
 import trigramData from '../data/trigrams.json'
-export default {
+export default defineComponent({
   name: 'Gua',
   props: {
     gua: Number
   },
   trigrams: trigramData,
-}
+})
 </script>
-<style lang="sass">
+
+<style scoped lang="sass">
 .gua
   display: flex
   flex: 1

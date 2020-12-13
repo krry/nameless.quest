@@ -20,11 +20,12 @@
   )
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import Bagua from './Bagua'
 import { EventBus } from '../event-bus'
 
-export default {
+export default defineComponent({
   name: 'Hexagram',
   components: {
     bagua: Bagua,
@@ -44,9 +45,10 @@ export default {
     const switchWenny = wenny => { this.wenny = wenny }
     EventBus.$on('reorder', switchWenny)
   }
-}
+})
 </script>
-<style lang="sass">
+
+<style scoped lang="sass">
 $pad: 0.25vw
 .lines
   position: absolute

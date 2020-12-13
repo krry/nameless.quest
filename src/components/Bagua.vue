@@ -8,9 +8,11 @@
   gua(:gua="below")
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import Gua from './Gua'
-export default {
+
+export default defineComponent({
   name: 'Bagua',
   components: {
     gua: Gua
@@ -20,10 +22,10 @@ export default {
     below: Number,
     shown: Boolean
   },
-}
+})
 </script>
 
-<style lang="sass">
+<style scoped lang="sass">
 .bagua
   position: absolute
   height: 100%

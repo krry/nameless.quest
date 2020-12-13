@@ -38,13 +38,14 @@
       h4 {{ english }}
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import Hanzi from './Hanzi'
 import Gua from './Gua'
 import Popper from 'vue-popperjs'
 import { EventBus } from '../event-bus'
 
-export default {
+export default defineComponent({
   name: 'Interps',
   components: {
     hanzi: Hanzi,
@@ -84,11 +85,12 @@ export default {
     const switchWenny = wenny => { this.wenny = wenny }
     EventBus.$on("reorder", switchWenny)
   }
-}
+})
 </script>
 
-<style lang="sass">
+<style scoped lang="sass">
 $flair: hsla(28, 20%, 20%, 0.9)
+
 .more
   position: absolute
   z-index: 4

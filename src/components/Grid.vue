@@ -21,7 +21,9 @@ main.grids.fixedfull
       :node="hexagram"
     )
 </template>
-<script>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
 import sanity from "../sanity";
 import Meaning from './Meaning'
 import Framing from './Framing'
@@ -30,7 +32,7 @@ import { EventBus } from '../event-bus'
 
 const query = `*[_type == "hexagram"]`
 
-export default {
+export default defineComponent({
   name: 'Grid',
   components: {
     framing: Framing,
@@ -70,10 +72,10 @@ export default {
       })
     }
   },
-}
+})
 </script>
-<style lang="sass">
 
+<style scoped lang="sass">
 .fixedfull
   position: fixed
   width: 100%

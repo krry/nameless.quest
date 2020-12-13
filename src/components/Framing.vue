@@ -9,10 +9,11 @@ article.framing-node
   )
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import Hexagram from './Hexagram'
 
-export default {
+export default defineComponent({
   name: 'Framing',
   components: {
     hexagram: Hexagram,
@@ -20,10 +21,10 @@ export default {
   props: {
     node: Object,
   },
-}
+})
 </script>
 
-<style lang="sass">
+<style scoped lang="sass">
 .framing-node
   position: relative
   padding: 1em

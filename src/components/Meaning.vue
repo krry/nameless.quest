@@ -14,10 +14,11 @@ article.meaning-node
   )
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import Interps from './Interps'
 
-export default {
+export default defineComponent({
   name: 'Meaning',
   components: {
     interps: Interps,
@@ -25,10 +26,10 @@ export default {
   props: {
     node: Object,
   },
-}
+})
 </script>
 
-<style lang="sass">
+<style scoped lang="sass">
 .meaning-node
   padding: 1em
   border: 1px solid transparent
