@@ -4,17 +4,18 @@
   modal
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import Grid from './components/Grid'
 import Modal from './components/Modal'
 
-export default {
+export default defineComponent({
   name: 'App',
   components: {
     grid: Grid,
     modal: Modal,
   },
-}
+})
 </script>
 
 <style lang="sass">
