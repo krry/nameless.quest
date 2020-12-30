@@ -1,11 +1,14 @@
 $pad: 0.25vw;
+$pads: 0.5vw;
 $sans: system-ui, sans-serif;
-$flair: hsla(28, 20%, 20%, 0.9);
-$paper: hsla(208, 10%, 97%, 0.95);
+$flair: hsla(28, 60%, 10%, 0.9);
+$paper: hsla(208, 10%, 97%, 1);
 $shade: hsla(28, 10%, 10%, 0.3);
 $edge: hsla(28, 50%, 20%, 0.2);
 $wood: hsla(28, 50%, 20%, 1);
-$book: garamond, serif;
+$book: garamond, serif, system-ui;
+$red: hsl(7, 50%, 30%);
+$blaze: hsl(27, 92%, 37%);
 
 /* Under the sea pantone colors */
 $sea-pink: #de98ab;
@@ -21,4 +24,4 @@ $blue-depths: #273055;
 @custom-media --md (width >= 786px);
 @custom-media --lg (width >= 992px);
 @custom-media --xl (width >= 1200px);
-@custom-media --sideways (orientation: landscape);
+@custom-media --sideways (orientation: landscape) and (height <= 576px);

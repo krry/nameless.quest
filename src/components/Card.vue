@@ -1,5 +1,5 @@
 <template lang="pug">
-.card
+.card(:class="`quadrant-${quadrant}`")
   names(
     :names="hex.names"
     :kingwen="hex.kingwen"
@@ -8,18 +8,14 @@
   hr.divider
   cross(
     :texty="texty"
-    :trigrams="hex.trigrams"
-    :hexagram="hex.hexagram"
-    :judgment="hex.judgment"
-    :binary="hex.binary"
-    :images="hex.images"
-    :lines="hex.lines"
+    :hex="hex"
   )
+  .close.tr(@click.stop="closeCard") ⓧ
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { defaultHexagram as def } from "../schema";
+import { defHex } from "../schema";
 import Names from "./Names.vue";
 import Cross from "./Cross.vue";
 
@@ -36,9 +32,14 @@ export default defineComponent({
     },
     hex: {
       type: Object,
-      default: def,
+      default: defHex,
     },
     texty: Boolean,
+  },
+  methods: {
+    closeCard() {
+      this.$bus.emit("close_cards");
+    },
   },
 });
 </script>
@@ -46,37 +47,62 @@ export default defineComponent({
 <style lang="postcss">
 @import "../assets/styles/variables";
 
+.close {
+  font-size: 1rem;
+  opacity: 0.5;
+  position: absolute;
+  cursor: pointer;
+}
+
+.close.tr {
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.close:hover,
+.close:focus {
+  opacity: 1;
+  color: $red;
+}
+
 .card {
-  z-index: 4;
-  position: fixed;
-  top: 10%;
-  left: 5%;
-  right: 5%;
-  max-width: 90vw;
-  max-height: 90vh;
-  min-width: min(48ch, 320px);
-  min-height: min(48ch, 320px);
-  overflow-y: auto;
-  overflow-x: hidden;
-  font-size: 16px;
-  font-family: $book;
+  align-items: center;
+  background: $paper;
+  border-color: $flair;
+  border-radius: 0.5em;
+  border: 2px solid transparent;
+  box-shadow: 0 0 0.6em 0.2em $shade;
+  color: $flair;
   display: flex;
   flex-flow: column;
+  font-family: $book;
+  font-size: 16px;
   justify-content: center;
-  align-items: center;
-  text-align: left;
+  left: 5%;
+  min-height: 16em;
+  height: auto;
+  max-height: 90vh;
+  min-width: 16em;
+  width: 48ch;
+  max-width: 90vw;
+  overflow-x: hidden;
+  overflow-y: hidden;
   padding: 2rem;
-  background: $paper;
-  border: 2px solid transparent;
-  border-color: $flair;
-  color: $flair;
-  border-radius: 1vw;
-  transition: 500ms;
+  position: fixed;
+  right: 5%;
+  text-align: left;
+  top: 10%;
+  z-index: 4;
 }
 
 @media (--sideways) {
   .card {
-    left: 10%;
+    left: 40%;
+    right: 5%;
+    top: 5%;
+    bottom: 5%;
+    justify-content: flex-start;
+    overflow-y: auto;
   }
 }
 
@@ -87,7 +113,6 @@ export default defineComponent({
     top: calc(100% + 1.25rem);
     left: 50%;
     transform: translate3d(-50%, 0, 0);
-    box-shadow: 0 0 0.6em 0.2em $shade;
   }
 }
 

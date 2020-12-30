@@ -1,24 +1,28 @@
 <template lang="pug">
-.gram
+.gram(v-if="changing === content.position")
   span {{ content.position + ". " }}
-  span {{ content.meaning }}
+  pre {{ content.meaning }}
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { defaultHexagram as def, Gram } from "../schema";
+import { defHex, Gram, defRoll } from "../schema";
 export default defineComponent({
   name: "Gram",
   props: {
     content: {
       type: Object as PropType<Gram>,
-      default: def.lines[0],
+      default: defHex.lines[0],
+    },
+    changing: {
+      type: Array,
+      default: defRoll.changing,
+      validator: (values: number[]) => {
+        return values.every((val) => {
+          return [1, 2, 3, 4, 5, 6].indexOf(val) != -1;
+        });
+      },
     },
   },
 });
 </script>
-
-<style scoped lang="postcss">
-.gram {
-}
-</style>

@@ -3,7 +3,7 @@
   .col
     .trigram {{ $options.trigrams[gua].trigram }}
   .col
-    span.mand-name {{ $options.trigrams[gua].name.zh }}
+    span.mand-name {{ $options.trigrams[gua].name.zh + " "}}
     span.pnyn-name  {{ $options.trigrams[gua].name.pn }}
     .eng-name {{ $options.trigrams[gua].name.en }}
 </template>
@@ -22,31 +22,36 @@ export default defineComponent({
     turned: Boolean,
   },
   trigrams: trigramData,
-  mounted() {
-    if (this.turned) {
+  watch: {
+    turned: "turnTrigram",
+  },
+  methods: {
+    turnTrigram() {
       setTimeout(() => {
-        this.$el.classList.add("turned");
-      }, 444);
-    }
+        this.$el.classList.toggle("turned");
+      }, 555);
+    },
   },
 });
 </script>
 
 <style scoped lang="postcss">
+@import "../assets/styles/variables";
+
 .gua {
-  display: flex;
-  justify-content: space-evenly;
-  flex-direction: column;
-  flex: 1;
   align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .trigram {
   font-size: 3em;
+  transition: transform 444ms ease-in-out;
 }
 
 .turned .trigram {
-  transition: transform 444ms ease-in-out;
   transform: rotateZ(-90deg);
 }
 </style>

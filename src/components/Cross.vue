@@ -2,37 +2,57 @@
 .cross(:class="{horiz: !texty}")
   transition-group(name="swap-fade")
     .glyphs.bottom-feeder(
-      v-if="!texty"
-      :key="trigrams.above")
-      gua(:gua="trigrams.above" :turned="!texty")
+      v-show="!texty"
+      :key="hex.trigramPair.above"
+    )
+      gua(
+        :gua="hex.trigramPair.above"
+        :turned="!texty"
+      )
     .text.left-feeder(
-      v-if="texty"
-      :key="judgment.slice(10)"
-      @click.stop="moar = !moar")
-      .judgment {{ judgment }}
-    .hexandbin.stack(:key="hexagram")
-      .hexagram(:class="{turned: !texty}") {{ hexagram }}
-      .binary(v-if="!texty") {{ binary.slice(2) }}
+      v-show="texty"
+      :key="hex.judgment.slice(10)"
+      @click.stop="moar = !moar"
+    )
+      pre.judgment {{ hex.judgment }}
+    .hexandbin.stack(
+      :key="hex.hexagram"
+    )
+      .hexagram(
+        :class="{turned: !texty}"
+      ) {{ hex.hexagram }}
+      .binary(
+        v-show="!texty"
+      ) {{ hex.binary.slice(2) }}
     .text.right-feeder(
-      v-if="texty && !moar"
-      :key="images.slice(10)"
-      @click.stop="moar = !moar")
-      .images {{ images }}
+      v-show="texty && !moar"
+      :key="hex.images.slice(10)"
+      @click.stop="moar = !moar"
+    )
+      pre.images {{ hex.images }}
     .lines.text.right-feeder(
-      v-if="texty && moar"
+      v-show="texty && moar"
+      v-for="(gram, index) in hex.lines"
       :key="gram.meaning.slice(10)"
-      v-for="(gram, index) in lines"
-      @click.stop="moar = !moar")
-      gram(:content="gram")
+      @click.stop="moar = !moar"
+    )
+      gram(
+        :content="gram"
+        :changing="roll.changing"
+      )
     .glyphs.bottom-feeder(
-      v-if="!texty"
-      :key="trigrams.below")
-      gua(:gua="trigrams.below" :turned="!texty")
+      v-show="!texty"
+      :key="hex.trigramPair.below"
+    )
+      gua(
+        :gua="hex.trigramPair.below"
+        :turned="!texty"
+      )
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { defaultHexagram as def } from "../schema";
+import { defineComponent, PropType } from "vue";
+import { Roll, defRoll, Hexagram, defHex } from "../schema";
 import Gua from "./Gua.vue";
 import Gram from "./Gram.vue";
 
@@ -43,30 +63,14 @@ export default defineComponent({
     gram: Gram,
   },
   props: {
+    hex: {
+      type: Object as PropType<Hexagram>,
+      default: defHex,
+    },
     texty: Boolean,
-    binary: {
-      type: String,
-      default: def.binary,
-    },
-    judgment: {
-      type: String,
-      default: def.judgment,
-    },
-    images: {
-      type: String,
-      default: def.images,
-    },
-    trigrams: {
-      type: Object,
-      default: def.trigramPair,
-    },
-    hexagram: {
-      type: String,
-      default: def.hexagram,
-    },
-    lines: {
-      type: Array,
-      default: def.lines,
+    roll: {
+      type: Object as PropType<Roll>,
+      default: defRoll,
     },
   },
   data() {
@@ -90,10 +94,17 @@ export default defineComponent({
 </script>
 
 <style scoped lang="postcss">
+@import "../assets/styles/variables";
+
+.cross {
+  padding-bottom: 2rem;
+}
+
 .cross.horiz {
   display: flex;
   flex-direction: row;
   align-items: baseline;
+  min-width: 16em;
 }
 
 .stack {
@@ -123,7 +134,7 @@ export default defineComponent({
 
 .hexagram:hover,
 .hexagram:focus {
-  color: hsl(27, 92%, 37%);
+  color: $blaze;
 }
 
 .hexagram.turned {
@@ -145,10 +156,6 @@ export default defineComponent({
 .swap-fade-leave-to {
   position: absolute;
   opacity: 0;
-}
-
-.swap-fade-enter-from,
-.swap-fade-leave-to {
   transform: translateX(-20em);
 }
 

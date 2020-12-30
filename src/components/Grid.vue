@@ -1,23 +1,13 @@
 <template lang="pug">
-main.grids.fixedfull
+main.grid
   transition-group(
-    name="fade"
+    name="slide"
     tag="section"
-    class="hexagrid lower fixedfull"
-  )
-    framing(
-      v-for="(hexagram, index) in sortedHexagrams"
-      :key="index"
-      :hex="hexagram"
-    )
-  transition-group(
-    name="fade"
-    tag="section"
-    class="hexagrid upper fixedfull"
+    class="hexagrid"
   )
     meaning(
-      v-for="(hexagram, index) in sortedHexagrams"
-      :key="index"
+      v-for="hexagram in sortedHexagrams"
+      :key="hexagram.binary"
       :hex="hexagram"
     )
 </template>
@@ -26,7 +16,6 @@ main.grids.fixedfull
 import { defineComponent } from "vue";
 import HexaData from "../data/hexagrams.json";
 import Meaning from "./Meaning.vue";
-import Framing from "./Framing.vue";
 import { Hexagram } from "../schema";
 
 // const query = `*[_type == "hexagram"]`;
@@ -35,7 +24,6 @@ type Hexagrams = Hexagram[];
 export default defineComponent({
   name: "Grid",
   components: {
-    framing: Framing,
     meaning: Meaning,
   },
   data() {
@@ -58,18 +46,9 @@ export default defineComponent({
       this.wenny = wenny;
     });
   },
-  beforeUpdate() {
-    this.hexaRefs = [];
-  },
-  updated() {
-    console.log("ref updated", this.hexaRefs);
-  },
   methods: {
     onReorder: function (wenny: boolean) {
       this.wenny = wenny;
-    },
-    setHexaRefs: function (el: never) {
-      this.hexaRefs.push(el);
     },
     // fetchData() {
     //   this.error = this.post = null;
@@ -89,27 +68,26 @@ export default defineComponent({
 </script>
 
 <style scoped lang="postcss">
-.fixedfull {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+@import "../assets/styles/variables";
+
+.grid {
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+
+  @media (--lg) {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
 }
 
 .hexagrid {
   display: grid;
-  font-size: calc(9px + 0.3vw);
+  font-size: clamp(9px, 9px + 0.5vw, 24px);
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-}
-
-.upper {
-  z-index: 3;
-}
-
-.lower {
-  z-index: 2;
+  min-height: 100vh;
 }
 </style>

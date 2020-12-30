@@ -52,4 +52,9 @@ body {
 @media (orientation: landscape) #app {
   flex-direction: row;
 }
+
+pre {
+  white-space: break-spaces;
+  font-family: inherit;
+}
 </style>

@@ -1,28 +1,29 @@
 <template lang="pug">
 .counting
   .hexagram(
-    @click="baguaShown=!baguaShown"
-  ) {{ hexagram }}
-  .binary(hidden) {{ binary }}
-  .order(@click="reorderTiles")
+    @click="baguad=!baguad"
+  ) {{ hex.hexagram }}
+  .binary(hidden) {{ hex.binary }}
+  .order(@click.stop="reorderTiles")
     .octal(
       v-if="!wenny"
-      :title="`Octal No. ${octal}`"
-    ) {{ octal }}
+      :title="`Octal No. ${hex.octal}`"
+    ) {{ hex.octal }}
     .kingwen(
       v-if="wenny"
-      :title="`King Wen No. ${kingwen}`"
-    ) {{ kingwen }}
+      :title="`King Wen No. ${hex.kingwen}`"
+    ) {{ hex.kingwen }}
   bagua(
-    :shown="baguaShown"
-    :above="trigrams.above"
-    :below="trigrams.below"
+    v-show="baguad"
+    @click="baguad = !baguad"
+    :above="hex.trigramPair.above"
+    :below="hex.trigramPair.below"
   )
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { defaultHexagram as def } from "../schema";
+import { defineComponent, PropType } from "vue";
+import { defHex, Hexagram } from "../schema";
 import Bagua from "./Bagua.vue";
 
 export default defineComponent({
@@ -31,31 +32,15 @@ export default defineComponent({
     bagua: Bagua,
   },
   props: {
-    hexagram: {
-      type: String,
-      default: def.hexagram,
-    },
-    binary: {
-      type: String,
-      default: def.binary,
-    },
-    trigrams: {
-      type: Object,
-      default: def.trigramPair,
-    },
-    kingwen: {
-      type: Number,
-      default: def.kingwen,
-    },
-    octal: {
-      type: String,
-      default: def.octal,
+    hex: {
+      type: Object as PropType<Hexagram>,
+      default: defHex,
     },
   },
   data() {
     return {
       wenny: false,
-      baguaShown: false,
+      baguad: false,
     };
   },
   mounted() {
@@ -65,7 +50,9 @@ export default defineComponent({
   },
   methods: {
     reorderTiles() {
-      this.$bus.emit("reorder_tiles", this.wenny);
+      const wenny = !this.wenny;
+
+      this.$bus.emit("reorder_tiles", wenny);
     },
   },
 });
@@ -84,13 +71,15 @@ export default defineComponent({
 }
 
 .hexagram:hover,
-.hexagram:focus {
-  color: hsl(27, 92%, 37%);
+.hexagram:focus,
+.hexagram:active {
+  color: $blaze;
 }
 
 .order {
   position: absolute;
   top: $pad;
   right: $pad;
+  cursor: pointer;
 }
 </style>

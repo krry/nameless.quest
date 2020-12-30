@@ -2,21 +2,21 @@
 .change
   transition(name="deal" mode="out-in")
     card(
-      v-show="detailsShown"
+      v-show="cardShown"
       @click.stop="texty=!texty"
       :quadrant="quadrant"
       :texty="texty"
       :hex="hex"
     )
   tile(
-    @click="showDetails"
+    @click="showCard"
     :names="hex.names"
   )
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { defaultHexagram, Hexagram } from "../schema";
+import { defHex, Hexagram } from "../schema";
 import Card from "./Card.vue";
 import Tile from "./Tile.vue";
 
@@ -29,56 +29,34 @@ export default defineComponent({
   props: {
     hex: {
       type: Object as PropType<Hexagram>,
-      default: defaultHexagram,
+      default: defHex,
     },
   },
   data() {
     return {
-      detailsShown: false,
+      cardShown: false,
       texty: true,
+      quadrant: 1,
     };
   },
-  computed: {
-    quadrant(): number {
-      const position = 1;
-
-      // find the center of the viewport
-      // const vertCenterOfViewport = document.body.offsetHeight / 2;
-      // const horizCenterOfViewport = document.body.offsetWidth / 2;
-      // console.log("viewport center x y", horizCenterOfViewport, vertCenterOfViewport);
-      // find the center of this card
-      // const vertCenterOfChange =
-      //   (this.$refs.getBoundingClientRect().top -
-      //     this.$refs.getBoundingClientRect().bottom) /
-      //   2;
-      // const horizCenterOfChange = this.el.offsetWidth;
-
-      // console.log("change center x y", horizCenterOfViewport, vertCenterOfViewport);
-
-      /*
-      start by positioning the card centered under the tile
-      if the edge of the box is within 16px of an edge of the viewport,
-      move
-      */
-      // const detailsOffsetWidth = this.$el.offsetWidth;
-      // const detailsOffsetHeight = this.$el.offsetHeight;
-      // const tilePosition = window.offsetHeight - this.$el.scrollTop
-      return position;
-    },
-  },
   mounted() {
-    this.$bus.on("close_details", () => {
-      this.detailsShown = false;
+    this.$bus.on("close_cards", () => {
+      this.cardShown = false;
     });
   },
   methods: {
-    showDetails() {
-      const open = this.detailsShown;
-      this.closeDetails();
-      this.detailsShown = !open;
+    showCard() {
+      const open = this.cardShown;
+      this.closeCard();
+      this.quadrant = this.determineQuadrant();
+      this.cardShown = !open;
     },
-    closeDetails() {
-      this.$bus.emit("close_details");
+    closeCard() {
+      this.$bus.emit("close_cards");
+    },
+    determineQuadrant() {
+      console.log("this.$el.offsetHeight", this.$el.offsetHeight);
+      return 2;
     },
   },
 });
@@ -86,8 +64,6 @@ export default defineComponent({
 
 <style scoped lang="postcss">
 @import "../assets/styles/variables";
-
-$position: translate3d(-50%, 0, 0);
 
 .change {
   position: relative;
@@ -125,7 +101,7 @@ $position: translate3d(-50%, 0, 0);
 }
 
 .deal-enter-active {
-  animation: deal-in 555ms ease-in;
+  animation: deal-in 555ms ease-out;
 }
 
 .deal-leave-active {
@@ -135,24 +111,50 @@ $position: translate3d(-50%, 0, 0);
 @keyframes deal-in {
   0% {
     opacity: 0;
-    transform: translate3d(225%, 225%, 0);
+    transform: translateY(200%);
   }
 
   100% {
     opacity: 1;
-    transform: $position;
+    transform: translateY(0);
   }
 }
 
 @keyframes deal-out {
   0% {
     opacity: 1;
-    transform: $position;
+    transform: translateY(0);
   }
 
   100% {
     opacity: 0;
-    transform: translate3d(225%, 225%, 0);
+    transform: translateY(-200%);
+  }
+}
+
+@media (--md) {
+  @keyframes deal-in {
+    0% {
+      opacity: 0;
+      transform: translate3d(-50%, 200%, 0);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @keyframes deal-out {
+    0% {
+      opacity: 1;
+      transform: translate3d(-50%, 0, 0);
+    }
+
+    100% {
+      opacity: 0;
+      transform: translate3d(-50%, -200%, 0);
+    }
   }
 }
 </style>

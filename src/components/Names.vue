@@ -9,7 +9,7 @@
       @click.stop="showPinyin = !showPinyin"
       )
     transition(name="slide-fade")
-      .pinyin(v-if="showPinyin") {{ names.pinyin }}  
+      .pinyin(v-show="showPinyin") {{ names.pinyin }}  
   h3 {{ names.english }}
   .orders(@click.stop="reorderTiles")
     .kingwen(v-if="wenny") King Wen Sequence \#{{ kingwen }}
@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { defaultHexagram as def, Hexaname } from "../schema";
+import { defHex, Hexaname } from "../schema";
 import Hanzi from "./Hanzi.vue";
 
 export default defineComponent({
@@ -29,15 +29,15 @@ export default defineComponent({
   props: {
     names: {
       type: Object as PropType<Hexaname>,
-      default: def.names,
+      default: defHex.names,
     },
     kingwen: {
       type: Number,
-      default: def.kingwen,
+      default: defHex.kingwen,
     },
     octal: {
       type: String,
-      default: def.octal,
+      default: defHex.octal,
     },
   },
   data() {
@@ -84,7 +84,7 @@ export default defineComponent({
 
 .glyphs:hover,
 .glyphs:focus {
-  color: hsl(27, 92%, 37%);
+  color: $blaze;
 }
 
 .pinyin {
@@ -95,6 +95,7 @@ export default defineComponent({
 .names {
   display: flex;
   font-family: $book;
+  flex-direction: column;
   justify-content: center;
   text-align: center;
   flex: 1;
@@ -102,13 +103,13 @@ export default defineComponent({
 
 @media (--md) {
   .names {
-    flex-direction: column;
     justify-content: flex-end;
   }
 }
 
 h3 {
   margin-top: 0;
+  margin-bottom: 0.5em;
 }
 
 .orders {
@@ -118,7 +119,7 @@ h3 {
 
 .orders:hover,
 .orders:focus {
-  color: hsl(27, 92%, 37%);
+  color: $blaze;
 }
 
 .slide-fade-enter-active {

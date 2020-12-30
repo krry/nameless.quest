@@ -12,18 +12,18 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { defaultHexagram as def, Hexaname } from "../schema";
+import { defHex, Hexaname } from "../schema";
 import Hanzi from "./Hanzi.vue";
 
 export default defineComponent({
-  name: "Card",
+  name: "Tile",
   components: {
     hanzi: Hanzi,
   },
   props: {
     names: {
       type: Object as PropType<Hexaname>,
-      default: def.names,
+      default: defHex.names,
     },
   },
   computed: {
@@ -48,7 +48,7 @@ export default defineComponent({
 
 .mandarin:hover,
 .mandarin:focus {
-  color: hsl(27, 92%, 37%);
+  color: $blaze;
 }
 
 h4 {
