@@ -1,25 +1,37 @@
 <template lang="pug">
 .modal.fixedfull(v-if="modalOpen")
  dialog
+  nav
+    router-link (to="/") Home
+    router-link (to="/about") About
 </template>
 
-<script>
+<script lang="ts">
 // TODO: introduce the app with a dialog
+import { defineComponent } from "vue";
+import { RouterLink } from "vue-router";
 
-export default {
-  name: 'Modal',
-  components: { },
+export default defineComponent({
+  name: "Modal",
+  components: {
+    "router-link": RouterLink,
+  },
   props: {},
-  data () { return {
-    modalOpen: false
-  } },
-  methods: { },
-  computed: { }
-}
+  data() {
+    return {
+      modalOpen: false,
+    };
+  },
+  computed: {},
+  methods: {},
+});
 </script>
-<style lang="sass">
-.modal
-  z-index: 5
-  display: flex
-  justify-content: center
-  align-items: center  </style>
+
+<style scoped lang="postcss">
+.modal {
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
