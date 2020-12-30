@@ -1,4 +1,17 @@
-import { createApp } from 'vue';
+import {createApp} from 'vue'
 import App from './App.vue'
+import mitt from 'mitt'
+// import router from './router'
 
-createApp(App).mount('#app')
+const $bus = mitt()
+const app = createApp(App)
+
+declare module '@vue/runtime-core' {
+  export interface ComponentCustomProperties {
+    $bus: typeof $bus
+  }
+}
+
+app.config.globalProperties.$bus = $bus
+// app.use(router).mount('#app')
+app.mount('#app')

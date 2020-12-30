@@ -3,7 +3,7 @@
     "binary": "0b111111",
     "hexagram": "䷀",
     "kingwen": 1,
-    "name": {
+    "names": {
       "chinese": "乾",
       "pinyin": "qián",
       "english": "The Creative (Heaven)"
@@ -13,7 +13,7 @@
       "above": 7,
       "below": 7
     },
-    "judgement": "The Creative works sublime success,\nFurthering through perseverance.\n",
+    "judgment": "The Creative works sublime success,\nFurthering through perseverance.\n",
     "images": "The movement of heaven is full of power.\nThus the superior man makes himself strong and untiring.\n",
     "lines": [
       {
@@ -46,7 +46,7 @@
     "binary": "0b000000",
     "hexagram": "䷁",
     "kingwen": 2,
-    "name": {
+    "names": {
       "chinese": "坤",
       "pinyin": "kūn",
       "english": "The Receptive (Earth)"
@@ -56,12 +56,12 @@
       "above": 0,
       "below": 0
     },
-    "judgement": "The Receptive brings about sublime success,\nFurthering through the perseverance of a mare.\nIf the superior man undertakes something and tries to lead,\nHe goes astray;\nBut if he follows, he finds guidance.\nIt is favorable to find friends in the west and south,\nTo forego friends in the east and north.\nQuiet perseverance brings good fortune.\n",
+    "judgment": "The Receptive brings about sublime success,\nFurthering through the perseverance of a mare.\nIf the superior man undertakes something and tries to lead,\nHe goes astray;\nBut if he follows, he finds guidance.\nIt is favorable to find friends in the west and south,\nTo forego friends in the east and north.\nQuiet perseverance brings good fortune.\n",
     "images": "The earth's condition is receptive devotion.\nThus the superior man who has breadth of character\nCarries the outer world.\n",
     "lines": [
       {
         "position": 1,
-        "meaning": "When there is hoarfrost underfoot,\nSolid ice is not far off.\n"
+        "meaning": "When there is hoarfrost underfoot,\nsolid ice is not far off.\n"
       },
       {
         "position": 2,
@@ -89,7 +89,7 @@
     "binary": "0b010001",
     "hexagram": "䷂",
     "kingwen": 3,
-    "name": {
+    "names": {
       "chinese": "屯",
       "pinyin": "zhūn",
       "english": "Difficulty at the Beginning"
@@ -99,7 +99,7 @@
       "above": 2,
       "below": 1
     },
-    "judgement": "Difficulty at the Beginning works supreme success,\nFurthering through perseverance.\nNothing should be undertaken.\nIt furthers one to appoint helpers.\n",
+    "judgment": "Difficulty at the Beginning works supreme success,\nFurthering through perseverance.\nNothing should be undertaken.\nIt furthers one to appoint helpers.\n",
     "images": "Clouds and thunder:\nThe image of Difficulty at the Beginning.\nThus the superior man\nBrings order out of confusion.\n",
     "lines": [
       {
@@ -132,7 +132,7 @@
     "binary": "0b100010",
     "hexagram": "䷃",
     "kingwen": 4,
-    "name": {
+    "names": {
       "chinese": "蒙",
       "pinyin": "méng",
       "english": "Youthful Folly"
@@ -142,7 +142,7 @@
       "above": 4,
       "below": 2
     },
-    "judgement": "Youthful Folly has success.\nIt is not I who seek the young fool;\nThe young fool seeks me.\nAt the first oracle I inform him.\nIf he asks two or three times, it is importunity.\nIf he importunes, I give him no information.\nPerseverance furthers.\n",
+    "judgment": "Youthful Folly has success.\nIt is not I who seek the young fool;\nThe young fool seeks me.\nAt the first oracle I inform him.\nIf he asks two or three times, it is importunity.\nIf he importunes, I give him no information.\nPerseverance furthers.\n",
     "images": "A spring wells up at the foot of the mountain:\nThe image of Youth.\nThus the superior man fosters his character\nBy thoroughness in all that he does.\n",
     "lines": [
       {
@@ -175,7 +175,7 @@
     "binary": "0b010111",
     "hexagram": "䷄",
     "kingwen": 5,
-    "name": {
+    "names": {
       "chinese": "需",
       "pinyin": "xū",
       "english": "Waiting"
@@ -185,7 +185,7 @@
       "above": 2,
       "below": 7
     },
-    "judgement": "If you are sincere,\nyou have light and success.\nPerseverance brings good fortune.\nIt furthers one to cross the great water.\n",
+    "judgment": "If you are sincere,\nyou have light and success.\nPerseverance brings good fortune.\nIt furthers one to cross the great water.\n",
     "images": "Clouds rise up to heaven:\nThe image of Waiting.\nThus the superior man eats and drinks,\nIs joyous and of good cheer.\n",
     "lines": [
       {
@@ -218,7 +218,7 @@
     "binary": "0b111010",
     "hexagram": "䷅",
     "kingwen": 6,
-    "name": {
+    "names": {
       "chinese": "訟",
       "pinyin": "sòng",
       "english": "Conflict"
@@ -228,7 +228,7 @@
       "above": 7,
       "below": 2
     },
-    "judgement": "Conflict. You are sincere\nAnd are being obstructed.\nA cautious halt halfway brings good fortune.\nGoing through to the end brings misfortune.\nIt furthers one to see the great man.\nIt does not further one to cross the great water.\n",
+    "judgment": "Conflict. You are sincere\nAnd are being obstructed.\nA cautious halt halfway brings good fortune.\nGoing through to the end brings misfortune.\nIt furthers one to see the great man.\nIt does not further one to cross the great water.\n",
     "images": "Heaven and water go their opposite ways:\nThe image of Conflict.\nThus in all his transactions the superior man\nCarefully considers the beginning.\n",
     "lines": [
       {
@@ -261,7 +261,7 @@
     "binary": "0b000010",
     "hexagram": "䷆",
     "kingwen": 7,
-    "name": {
+    "names": {
       "chinese": "師",
       "pinyin": "shī",
       "english": "The Army"
@@ -271,7 +271,7 @@
       "above": 0,
       "below": 2
     },
-    "judgement": "The Army. The army needs perseverance\nAnd a strong man.\nGood fortune without blame.\n",
+    "judgment": "The Army. The army needs perseverance\nAnd a strong man.\nGood fortune without blame.\n",
     "images": "In the middle of the earth is water:\nThe image of the Army.\nThus the superior man increases his masses\nBy generosity toward the people.\n",
     "lines": [
       {
@@ -304,7 +304,7 @@
     "binary": "0b010000",
     "hexagram": "䷇",
     "kingwen": 8,
-    "name": {
+    "names": {
       "chinese": "比",
       "pinyin": "bǐ",
       "english": "Holding Together"
@@ -314,7 +314,7 @@
       "above": 2,
       "below": 0
     },
-    "judgement": "Holding Together, Union, brings good fortune.\nInquire of the oracle once again\nWhether you possess sublimity, constancy, and perseverance;\nThen there is no blame.\nThose who are uncertain gradually join.\nWhoever comes too late\nMeets with misfortune.\n",
+    "judgment": "Holding Together, Union, brings good fortune.\nInquire of the oracle once again\nWhether you possess sublimity, constancy, and perseverance;\nThen there is no blame.\nThose who are uncertain gradually join.\nWhoever comes too late\nMeets with misfortune.\n",
     "images": "On the earth is water:\nThe image of Holding Together.\nThus the kings of antiquity\nBestowed the different states as fiefs\nAnd cultivated friendly relations\nWith the feudal lords.\n",
     "lines": [
       {
@@ -347,7 +347,7 @@
     "binary": "0b110111",
     "hexagram": "䷈",
     "kingwen": 9,
-    "name": {
+    "names": {
       "chinese": "小畜",
       "pinyin": "xiǎo chù",
       "english": "Small Taming"
@@ -357,7 +357,7 @@
       "above": 6,
       "below": 7
     },
-    "judgement": "The Taming Power of the Small\nHas success.\nDense clouds, no rain from our western region.\n",
+    "judgment": "The Taming Power of the Small\nHas success.\nDense clouds, no rain from our western region.\n",
     "images": "The wind drives across heaven:\nThe image of the Taming Power of the Small.\nThus the superior man\nRefines the outward aspect of his nature.\n",
     "lines": [
       {
@@ -390,7 +390,7 @@
     "binary": "0b111011",
     "hexagram": "䷉",
     "kingwen": 10,
-    "name": {
+    "names": {
       "chinese": "履",
       "pinyin": "lǚ",
       "english": "Treading"
@@ -400,7 +400,7 @@
       "above": 7,
       "below": 3
     },
-    "judgement": "Treading, Conduct. Treading upon the tail of the tiger.\nIt does not bite the man. Success.\n",
+    "judgment": "Treading, Conduct. Treading upon the tail of the tiger.\nIt does not bite the man. Success.\n",
     "images": "Heaven above, the lake below:\nThe image of Treading.\nThus the superior man discriminates between high and low,\nAnd thereby fortifies the thinking of the people.\n",
     "lines": [
       {
@@ -433,7 +433,7 @@
     "binary": "0b000111",
     "hexagram": "䷊",
     "kingwen": 11,
-    "name": {
+    "names": {
       "chinese": "泰",
       "pinyin": "tài",
       "english": "Peace"
@@ -443,7 +443,7 @@
       "above": 0,
       "below": 7
     },
-    "judgement": "Peace. The small departs,\nThe great approaches.\nGood fortune. Success.\n",
+    "judgment": "Peace. The small departs,\nThe great approaches.\nGood fortune. Success.\n",
     "images": "Heaven and earth unite: the image of Peace.\nThus the ruler\nDivides and completes the course of heaven and earth;\nHe furthers and regulates the gifts of heaven and earth,\nAnd so aids the people.\n",
     "lines": [
       {
@@ -476,7 +476,7 @@
     "binary": "0b111000",
     "hexagram": "䷋",
     "kingwen": 12,
-    "name": {
+    "names": {
       "chinese": "否",
       "pinyin": "pǐ",
       "english": "Standstill"
@@ -486,7 +486,7 @@
       "above": 7,
       "below": 0
     },
-    "judgement": "Standstill, Stagnation. Evil people do not further\nThe perseverance of the superior man.\nThe great departs; the small approaches.\n",
+    "judgment": "Standstill, Stagnation. Evil people do not further\nThe perseverance of the superior man.\nThe great departs; the small approaches.\n",
     "images": "Heaven and earth do not unite:\nThe image of Standstill.\nThus the superior man falls back upon his inner worth\nIn order to escape the difficulties.\nHe does not permit himself to be honored with revenue.\n",
     "lines": [
       {
@@ -519,7 +519,7 @@
     "binary": "0b111101",
     "hexagram": "䷌",
     "kingwen": 13,
-    "name": {
+    "names": {
       "chinese": "同人",
       "pinyin": "tóng rén",
       "english": "Fellowship"
@@ -529,7 +529,7 @@
       "above": 7,
       "below": 5
     },
-    "judgement": "Fellowship with Men in the open.\nSuccess.\nIt furthers one to cross the great water.\nThe perseverance of the superior man furthers.\n",
+    "judgment": "Fellowship with Men in the open.\nSuccess.\nIt furthers one to cross the great water.\nThe perseverance of the superior man furthers.\n",
     "images": "Heaven together with fire:\nThe image of Fellowship with Men.\nThus the superior man organizes the clans\nAnd makes distinctions between things.\n",
     "lines": [
       {
@@ -562,7 +562,7 @@
     "binary": "0b101111",
     "hexagram": "䷍",
     "kingwen": 14,
-    "name": {
+    "names": {
       "chinese": "大有",
       "pinyin": "dà yǒu",
       "english": "Great Possession"
@@ -572,7 +572,7 @@
       "above": 5,
       "below": 7
     },
-    "judgement": "Possession in Great Measure.\nSupreme success.\n",
+    "judgment": "Possession in Great Measure.\nSupreme success.\n",
     "images": "Fire in heaven above:\nThe image of Possession in Great Measure.\nThus the superior man curbs evil and furthers good,\nAnd thereby obeys the benevolent will of heaven.\n",
     "lines": [
       {
@@ -605,7 +605,7 @@
     "binary": "0b000100",
     "hexagram": "䷎",
     "kingwen": 15,
-    "name": {
+    "names": {
       "chinese": "謙",
       "pinyin": "qiān",
       "english": "Modesty"
@@ -615,7 +615,7 @@
       "above": 0,
       "below": 4
     },
-    "judgement": "Modesty creates success.\nThe superior man carries things through.\n",
+    "judgment": "Modesty creates success.\nThe superior man carries things through.\n",
     "images": "Within the earth, a mountain:\nThe image of Modesty.\nThus the superior man reduces that which is too much,\nAnd augments that which is too little.\nHe weighs things and makes them equal.\n",
     "lines": [
       {
@@ -648,7 +648,7 @@
     "binary": "0b001000",
     "hexagram": "䷏",
     "kingwen": 16,
-    "name": {
+    "names": {
       "chinese": "豫",
       "pinyin": "yù",
       "english": "Enthusiasm"
@@ -658,7 +658,7 @@
       "above": 1,
       "below": 0
     },
-    "judgement": "Enthusiasm. It furthers one to install helpers\nAnd to set armies marching.\n",
+    "judgment": "Enthusiasm. It furthers one to install helpers\nAnd to set armies marching.\n",
     "images": "Thunder comes resounding out of the earth:\nThe image of Enthusiasm.\nThus the ancient kings made music\nIn order to honor merit,\nAnd offered it with splendor\nTo the Supreme Deity,\nInviting their ancestors to be present.\n",
     "lines": [
       {
@@ -691,7 +691,7 @@
     "binary": "0b011001",
     "hexagram": "䷐",
     "kingwen": 17,
-    "name": {
+    "names": {
       "chinese": "隨",
       "pinyin": "suí",
       "english": "Following"
@@ -701,7 +701,7 @@
       "above": 3,
       "below": 1
     },
-    "judgement": "Following has supreme success.\nPerseverance furthers. No blame.\n",
+    "judgment": "Following has supreme success.\nPerseverance furthers. No blame.\n",
     "images": "Thunder in the middle of the lake:\nThe image of Following.\nThus the superior man at nightfall\nGoes indoors for rest and recuperation.\n",
     "lines": [
       {
@@ -734,7 +734,7 @@
     "binary": "0b100110",
     "hexagram": "䷑",
     "kingwen": 18,
-    "name": {
+    "names": {
       "chinese": "蠱",
       "pinyin": "gŭ",
       "english": "Work on the Decayed"
@@ -744,7 +744,7 @@
       "above": 4,
       "below": 6
     },
-    "judgement": "Work on What Has Been Spoiled\nHas supreme success.\nIt furthers one to cross the great water.\nBefore the starting point, three days.\nAfter the starting point, three days.\n",
+    "judgment": "Work on What Has Been Spoiled\nHas supreme success.\nIt furthers one to cross the great water.\nBefore the starting point, three days.\nAfter the starting point, three days.\n",
     "images": "The wind blows low on the mountain:\nThe image of Decay.\nThus the superior man stirs up the people\nAnd strengthens their spirit.\n",
     "lines": [
       {
@@ -777,7 +777,7 @@
     "binary": "0b000011",
     "hexagram": "䷒",
     "kingwen": 19,
-    "name": {
+    "names": {
       "chinese": "臨",
       "pinyin": "lín",
       "english": "Approach"
@@ -787,7 +787,7 @@
       "above": 0,
       "below": 3
     },
-    "judgement": "Approach has supreme success.\nPerseverance furthers.\nWhen the eighth month comes,\nThere will be misfortune.\n",
+    "judgment": "Approach has supreme success.\nPerseverance furthers.\nWhen the eighth month comes,\nThere will be misfortune.\n",
     "images": "The earth above the lake:\nThe image of Approach.\nThus the superior man is inexhaustible\nIn his will to teach,\nAnd without limits\nIn his tolerance and protection of the people.\n",
     "lines": [
       {
@@ -820,7 +820,7 @@
     "binary": "0b110000",
     "hexagram": "䷓",
     "kingwen": 20,
-    "name": {
+    "names": {
       "chinese": "觀",
       "pinyin": "guān",
       "english": "Contemplation"
@@ -830,7 +830,7 @@
       "above": 6,
       "below": 0
     },
-    "judgement": "Contemplation, View. The ablution has been made,\nBut not yet the offering.\nFull of trust they look up to him.\n",
+    "judgment": "Contemplation, View. The ablution has been made,\nBut not yet the offering.\nFull of trust they look up to him.\n",
     "images": "The wind blows over the earth:\nThe image of Contemplation.\nThus the kings of old visited the regions of the world,\nContemplated the people,\nAnd gave them instruction.\n",
     "lines": [
       {
@@ -863,7 +863,7 @@
     "binary": "0b101001",
     "hexagram": "䷔",
     "kingwen": 21,
-    "name": {
+    "names": {
       "chinese": "噬嗑",
       "pinyin": "shì kè",
       "english": "Biting Through"
@@ -873,7 +873,7 @@
       "above": 5,
       "below": 1
     },
-    "judgement": "Biting Through has success.\nIt is favorable to let justice be administered.\n",
+    "judgment": "Biting Through has success.\nIt is favorable to let justice be administered.\n",
     "images": "Thunder and lightning:\nThe image of Biting Through.\nThus the kings of former times made firm the laws\nThrough clearly defined penalties.\n",
     "lines": [
       {
@@ -906,7 +906,7 @@
     "binary": "0b100101",
     "hexagram": "䷕",
     "kingwen": 22,
-    "name": {
+    "names": {
       "chinese": "賁",
       "pinyin": "bì",
       "english": "Grace"
@@ -916,7 +916,7 @@
       "above": 4,
       "below": 5
     },
-    "judgement": "Grace has success.\nIn small matters\nIt is favorable to undertake something.\n",
+    "judgment": "Grace has success.\nIn small matters\nIt is favorable to undertake something.\n",
     "images": "Fire at the foot of the mountain:\nThe image of Grace.\nThus does the superior man proceed\nWhen clearing up current affairs.\nBut he dare not decide controversial issues in this way.\n",
     "lines": [
       {
@@ -949,7 +949,7 @@
     "binary": "0b100000",
     "hexagram": "䷖",
     "kingwen": 23,
-    "name": {
+    "names": {
       "chinese": "剝",
       "pinyin": "bō",
       "english": "Splitting Apart"
@@ -959,7 +959,7 @@
       "above": 4,
       "below": 0
     },
-    "judgement": "Splitting Apart. It does not further one\nTo go anywhere.\n",
+    "judgment": "Splitting Apart. It does not further one\nTo go anywhere.\n",
     "images": "The mountain rests on the earth:\nThe image of Splitting Apart.\nThus those above can ensure their position\nOnly by giving generously to those below.\n",
     "lines": [
       {
@@ -992,7 +992,7 @@
     "binary": "0b000001",
     "hexagram": "䷗",
     "kingwen": 24,
-    "name": {
+    "names": {
       "chinese": "復",
       "pinyin": "fù",
       "english": "Return"
@@ -1002,7 +1002,7 @@
       "above": 0,
       "below": 1
     },
-    "judgement": "Return, The Turning Point. Success.\nGoing out and coming in without error.\nFriends come without blame.\nTo and fro goes the way.\nOn the seventh day comes return.\nIt furthers one to have somewhere to go.\n",
+    "judgment": "Return, The Turning Point. Success.\nGoing out and coming in without error.\nFriends come without blame.\nTo and fro goes the way.\nOn the seventh day comes return.\nIt furthers one to have somewhere to go.\n",
     "images": "Thunder within the earth:\nThe image of the Turning Point.\nThus the kings of antiquity closed the passes\nAt the time of solstice.\nMerchants and strangers did not go about,\nAnd the ruler\nDid not travel through the provinces.\n",
     "lines": [
       {
@@ -1035,7 +1035,7 @@
     "binary": "0b111001",
     "hexagram": "䷘",
     "kingwen": 25,
-    "name": {
+    "names": {
       "chinese": "無妄",
       "pinyin": "wú wàng",
       "english": "Innocence"
@@ -1045,7 +1045,7 @@
       "above": 7,
       "below": 1
     },
-    "judgement": "Innocence, The Unexpected. Supreme success.\nPerseverance furthers.\nIf someone is not as he should be,\nHe has misfortune,\nAnd it does not further him\nTo undertake anything.\n",
+    "judgment": "Innocence, The Unexpected. Supreme success.\nPerseverance furthers.\nIf someone is not as he should be,\nHe has misfortune,\nAnd it does not further him\nTo undertake anything.\n",
     "images": "Under heaven thunder rolls:\nAll things attain the natural state of innocence.\nThus the kings of old,\nRich in virtue, and in harmony with the time,\nFostered and nourished all beings.\n",
     "lines": [
       {
@@ -1078,7 +1078,7 @@
     "binary": "0b100111",
     "hexagram": "䷙",
     "kingwen": 26,
-    "name": {
+    "names": {
       "chinese": "大畜",
       "pinyin": "dà chù",
       "english": "Great Taming"
@@ -1088,7 +1088,7 @@
       "above": 4,
       "below": 7
     },
-    "judgement": "The Taming Power of the Great.\nPerseverance furthers.\nNot eating at home brings good fortune.\nIt furthers one to cross the great water.\n",
+    "judgment": "The Taming Power of the Great.\nPerseverance furthers.\nNot eating at home brings good fortune.\nIt furthers one to cross the great water.\n",
     "images": "Heaven within the mountain:\nThe image of the Taming Power of the Great.\nThus the superior man acquaints himself with many sayings of antiquity\nAnd many deeds of the past,\nIn order to strengthen his character thereby.\n",
     "lines": [
       {
@@ -1121,7 +1121,7 @@
     "binary": "0b100001",
     "hexagram": "䷚",
     "kingwen": 27,
-    "name": {
+    "names": {
       "chinese": "頤",
       "pinyin": "yí",
       "english": "The Corners of the Mouth"
@@ -1131,7 +1131,7 @@
       "above": 4,
       "below": 1
     },
-    "judgement": "The Corners of the Mouth, Providing Nourishment.\nPerseverance brings good fortune.\nPay heed to the providing of nourishment\nAnd to what a man seeks\nTo fill his own mouth with.\n",
+    "judgment": "The Corners of the Mouth, Providing Nourishment.\nPerseverance brings good fortune.\nPay heed to the providing of nourishment\nAnd to what a man seeks\nTo fill his own mouth with.\n",
     "images": "At the foot of the mountain, thunder:\nThe image of Providing Nourishment.\nThus the superior man is careful of his words\nAnd temperate in eating and drinking.\n",
     "lines": [
       {
@@ -1164,7 +1164,7 @@
     "binary": "0b011110",
     "hexagram": "䷛",
     "kingwen": 28,
-    "name": {
+    "names": {
       "chinese": "大過",
       "pinyin": "dà guò",
       "english": "Great Preponderance"
@@ -1174,7 +1174,7 @@
       "above": 3,
       "below": 6
     },
-    "judgement": "Preponderance of the Great.\nThe ridgepole sags to the breaking point.\nIt furthers one to have somewhere to go.\nSuccess.\n",
+    "judgment": "Preponderance of the Great.\nThe ridgepole sags to the breaking point.\nIt furthers one to have somewhere to go.\nSuccess.\n",
     "images": "The lake rises above the trees:\nThe image of Preponderance of the Great.\nThus the superior man, when he stands alone,\nIs unconcerned,\nAnd if he has to renounce the world,\nHe is undaunted.\n",
     "lines": [
       {
@@ -1207,7 +1207,7 @@
     "binary": "0b010010",
     "hexagram": "䷜",
     "kingwen": 29,
-    "name": {
+    "names": {
       "chinese": "坎",
       "pinyin": "kǎn",
       "english": "The Abysmal (Water)"
@@ -1217,7 +1217,7 @@
       "above": 2,
       "below": 2
     },
-    "judgement": "The Abysmal repeated.\nIf you are sincere, you have success in your heart,\nAnd whatever you do succeeds.\n",
+    "judgment": "The Abysmal repeated.\nIf you are sincere, you have success in your heart,\nAnd whatever you do succeeds.\n",
     "images": "Water flows on uninterruptedly and reaches its goal:\nThe image of the Abysmal repeated.\nThus the superior man walks in lasting virtue\nAnd carries on the business of teaching.\n",
     "lines": [
       {
@@ -1250,7 +1250,7 @@
     "binary": "0b101101",
     "hexagram": "䷝",
     "kingwen": 30,
-    "name": {
+    "names": {
       "chinese": "離",
       "pinyin": "lí",
       "english": "The Clinging (Fire)"
@@ -1260,7 +1260,7 @@
       "above": 5,
       "below": 5
     },
-    "judgement": "The Clinging. Perseverance furthers.\nIt brings success.\nCare of the cow brings good fortune.\n",
+    "judgment": "The Clinging. Perseverance furthers.\nIt brings success.\nCare of the cow brings good fortune.\n",
     "images": "That which is bright rises twice:\nThe image of Fire.\nThus the great man, by perpetuating this brightness,\nIllumines the four quarters of the world.\n",
     "lines": [
       {
@@ -1293,7 +1293,7 @@
     "binary": "0b011100",
     "hexagram": "䷞",
     "kingwen": 31,
-    "name": {
+    "names": {
       "chinese": "咸",
       "pinyin": "xián",
       "english": "Influence"
@@ -1303,7 +1303,7 @@
       "above": 3,
       "below": 4
     },
-    "judgement": "Influence, Wooing. Success.\nPerseverance furthers.\nTo take a maiden to wife brings good fortune.\n",
+    "judgment": "Influence, Wooing. Success.\nPerseverance furthers.\nTo take a maiden to wife brings good fortune.\n",
     "images": "A lake on the mountain:\nThe image of Influence.\nThus the superior man encourages people to approach him\nBy his readiness to receive them.\n",
     "lines": [
       {
@@ -1336,7 +1336,7 @@
     "binary": "0b001110",
     "hexagram": "䷟",
     "kingwen": 32,
-    "name": {
+    "names": {
       "chinese": "恆",
       "pinyin": "héng",
       "english": "Duration"
@@ -1346,7 +1346,7 @@
       "above": 1,
       "below": 6
     },
-    "judgement": "Duration. Success. No blame.\nPerseverance furthers.\nIt furthers one to have somewhere to go.\n",
+    "judgment": "Duration. Success. No blame.\nPerseverance furthers.\nIt furthers one to have somewhere to go.\n",
     "images": "Thunder and wind: the image of Duration.\nThus the superior man stands firm\nAnd does not change his direction.\n",
     "lines": [
       {
@@ -1379,7 +1379,7 @@
     "binary": "0b111100",
     "hexagram": "䷠",
     "kingwen": 33,
-    "name": {
+    "names": {
       "chinese": "遯",
       "pinyin": "dùn",
       "english": "Retreat"
@@ -1389,7 +1389,7 @@
       "above": 7,
       "below": 4
     },
-    "judgement": "Retreat. Success.\nIn what is small, perseverance furthers.\n",
+    "judgment": "Retreat. Success.\nIn what is small, perseverance furthers.\n",
     "images": "Mountain under heaven: the image of Retreat.\nThus the superior man keeps the inferior man at a distance,\nNot angrily but with reserve.\n",
     "lines": [
       {
@@ -1422,7 +1422,7 @@
     "binary": "0b001111",
     "hexagram": "䷡",
     "kingwen": 34,
-    "name": {
+    "names": {
       "chinese": "大壯",
       "pinyin": "dà zhuàng",
       "english": "Great Power"
@@ -1432,7 +1432,7 @@
       "above": 1,
       "below": 7
     },
-    "judgement": "The Power of the Great. Perseverance furthers.\n",
+    "judgment": "The Power of the Great. Perseverance furthers.\n",
     "images": "Thunder in heaven above:\nThe image of the Power of the Great.\nThus the superior man does not tread upon paths\nThat do not accord with established order.\n",
     "lines": [
       {
@@ -1465,7 +1465,7 @@
     "binary": "0b101000",
     "hexagram": "䷢",
     "kingwen": 35,
-    "name": {
+    "names": {
       "chinese": "晉",
       "pinyin": "jìn",
       "english": "Progress"
@@ -1475,7 +1475,7 @@
       "above": 5,
       "below": 0
     },
-    "judgement": "Progress. The powerful prince\nIs honored with horses in large numbers.\nIn a single day he is granted audience three times.\n",
+    "judgment": "Progress. The powerful prince\nIs honored with horses in large numbers.\nIn a single day he is granted audience three times.\n",
     "images": "The sun rises over the earth:\nThe image of Progress.\nThus the superior man himself\nBrightens his bright virtue.\n",
     "lines": [
       {
@@ -1508,7 +1508,7 @@
     "binary": "0b000101",
     "hexagram": "䷣",
     "kingwen": 36,
-    "name": {
+    "names": {
       "chinese": "明夷",
       "pinyin": "míng yí",
       "english": "Darkening of the Light"
@@ -1518,7 +1518,7 @@
       "above": 0,
       "below": 5
     },
-    "judgement": "Darkening of the Light. In adversity\nIt furthers one to be persevering.\n",
+    "judgment": "Darkening of the Light. In adversity\nIt furthers one to be persevering.\n",
     "images": "The light has sunk into the earth:\nThe image of Darkening of the Light.\nThus does the superior man live with the great mass:\nHe veils his light, yet still shines.\n",
     "lines": [
       {
@@ -1551,7 +1551,7 @@
     "binary": "0b110101",
     "hexagram": "䷤",
     "kingwen": 37,
-    "name": {
+    "names": {
       "chinese": "家人",
       "pinyin": "jiā rén",
       "english": "The Family"
@@ -1561,7 +1561,7 @@
       "above": 6,
       "below": 5
     },
-    "judgement": "The Family, the Clan. The perseverance of the woman furthers.\n",
+    "judgment": "The Family, the Clan. The perseverance of the woman furthers.\n",
     "images": "Wind comes forth from fire:\nThe image of the Family.\nThus the superior man has substance in his words\nAnd duration in his way of life.\n",
     "lines": [
       {
@@ -1594,7 +1594,7 @@
     "binary": "0b101011",
     "hexagram": "䷥",
     "kingwen": 38,
-    "name": {
+    "names": {
       "chinese": "睽",
       "pinyin": "kuí",
       "english": "Opposition"
@@ -1604,7 +1604,7 @@
       "above": 5,
       "below": 3
     },
-    "judgement": "Opposition. In small matters, good fortune.\n",
+    "judgment": "Opposition. In small matters, good fortune.\n",
     "images": "Above, fire; below, the lake:\nThe image of Opposition.\nThus amid all fellowship\nThe superior man retains his individuality.\n",
     "lines": [
       {
@@ -1637,7 +1637,7 @@
     "binary": "0b010100",
     "hexagram": "䷦",
     "kingwen": 39,
-    "name": {
+    "names": {
       "chinese": "蹇",
       "pinyin": "jiǎn",
       "english": "Obstruction"
@@ -1647,7 +1647,7 @@
       "above": 2,
       "below": 4
     },
-    "judgement": "Obstruction. The southwest furthers.\nThe northeast does not further.\nIt furthers one to see the great man.\nPerseverance brings good fortune.\n",
+    "judgment": "Obstruction. The southwest furthers.\nThe northeast does not further.\nIt furthers one to see the great man.\nPerseverance brings good fortune.\n",
     "images": "Water on the mountain:\nThe image of Obstruction.\nThus the superior man turns his attention to himself\nAnd molds his character.\n",
     "lines": [
       {
@@ -1680,7 +1680,7 @@
     "binary": "0b001010",
     "hexagram": "䷧",
     "kingwen": 40,
-    "name": {
+    "names": {
       "chinese": "解",
       "pinyin": "xiè",
       "english": "Deliverance"
@@ -1690,7 +1690,7 @@
       "above": 1,
       "below": 2
     },
-    "judgement": "Deliverance. The southwest furthers.\nIf there is no longer anything where one has to go,\nReturn brings good fortune.\nIf there is still something where one has to go,\nHastening brings good fortune.\n",
+    "judgment": "Deliverance. The southwest furthers.\nIf there is no longer anything where one has to go,\nReturn brings good fortune.\nIf there is still something where one has to go,\nHastening brings good fortune.\n",
     "images": "Thunder and rain set in:\nThe image of Deliverance.\nThus the superior man pardons mistakes\nAnd forgives misdeeds.\n",
     "lines": [
       {
@@ -1723,7 +1723,7 @@
     "binary": "0b100011",
     "hexagram": "䷨",
     "kingwen": 41,
-    "name": {
+    "names": {
       "chinese": "損",
       "pinyin": "sǔn",
       "english": "Decrease"
@@ -1733,7 +1733,7 @@
       "above": 4,
       "below": 3
     },
-    "judgement": "Decrease combined with sincerity\nBrings about supreme good fortune\nWithout blame.\nOne may be persevering in this.\nIt furthers one to undertake something.\nHow is this to be carried out?\nOne may use two small bowls for the sacrifice.\n",
+    "judgment": "Decrease combined with sincerity\nBrings about supreme good fortune\nWithout blame.\nOne may be persevering in this.\nIt furthers one to undertake something.\nHow is this to be carried out?\nOne may use two small bowls for the sacrifice.\n",
     "images": "At the foot of the mountain, the lake:\nThe image of Decrease.\nThus the superior man controls his anger\nAnd restrains his instincts.\n",
     "lines": [
       {
@@ -1766,7 +1766,7 @@
     "binary": "0b110001",
     "hexagram": "䷩",
     "kingwen": 42,
-    "name": {
+    "names": {
       "chinese": "益",
       "pinyin": "yì",
       "english": "Increase"
@@ -1776,7 +1776,7 @@
       "above": 6,
       "below": 1
     },
-    "judgement": "Increase. It furthers one\nTo undertake something.\nIt furthers one to cross the great water.\n",
+    "judgment": "Increase. It furthers one\nTo undertake something.\nIt furthers one to cross the great water.\n",
     "images": "Wind and thunder: the image of Increase.\nThus the superior man:\nIf he sees good, he imitates it;\nIf he has faults, he rids himself of them.\n",
     "lines": [
       {
@@ -1809,7 +1809,7 @@
     "binary": "0b011111",
     "hexagram": "䷪",
     "kingwen": 43,
-    "name": {
+    "names": {
       "chinese": "夬",
       "pinyin": "guài",
       "english": "Breakthrough"
@@ -1819,7 +1819,7 @@
       "above": 3,
       "below": 7
     },
-    "judgement": "Breakthrough, Resoluteness. One must resolutely make the matter known\nAt the court of the king.\nIt must be announced truthfully. Danger.\nIt is necessary to notify one's own city.\nIt does not further to resort to arms.\nIt furthers one to undertake something.,\n",
+    "judgment": "Breakthrough, Resoluteness. One must resolutely make the matter known\nAt the court of the king.\nIt must be announced truthfully. Danger.\nIt is necessary to notify one's own city.\nIt does not further to resort to arms.\nIt furthers one to undertake something.,\n",
     "images": "The lake has risen up to heaven:\nThe image of Break-through.\nThus the superior man\nDispenses riches downward\nAnd refrains from resting on his virtue.\n",
     "lines": [
       {
@@ -1852,7 +1852,7 @@
     "binary": "0b111110",
     "hexagram": "䷫",
     "kingwen": 44,
-    "name": {
+    "names": {
       "chinese": "姤",
       "pinyin": "gòu",
       "english": "Coming to Meet"
@@ -1862,7 +1862,7 @@
       "above": 7,
       "below": 6
     },
-    "judgement": "Coming to Meet. The maiden is powerful.\nOne should not marry such a maiden.\n",
+    "judgment": "Coming to Meet. The maiden is powerful.\nOne should not marry such a maiden.\n",
     "images": "Under heaven, wind:\nThe image of Coming to Meet.\nThus does the prince act when disseminating his commands\nAnd proclaiming them to the four quarters of heaven.\n",
     "lines": [
       {
@@ -1895,7 +1895,7 @@
     "binary": "0b011000",
     "hexagram": "䷬",
     "kingwen": 45,
-    "name": {
+    "names": {
       "chinese": "萃",
       "pinyin": "cuì",
       "english": "Gathering Together"
@@ -1905,7 +1905,7 @@
       "above": 3,
       "below": 0
     },
-    "judgement": "Gathering Together, Massing. Success.\nThe king approaches his temple.\nIt furthers one to see the great man.\nThis brings success. Perseverance furthers.\nTo bring great offerings creates good fortune.\nIt furthers one to undertake something.\n",
+    "judgment": "Gathering Together, Massing. Success.\nThe king approaches his temple.\nIt furthers one to see the great man.\nThis brings success. Perseverance furthers.\nTo bring great offerings creates good fortune.\nIt furthers one to undertake something.\n",
     "images": "Over the earth, the lake:\nThe image of Gathering Together.\nThus the superior man renews his weapons\nIn order to meet the unforseen.\n",
     "lines": [
       {
@@ -1938,7 +1938,7 @@
     "binary": "0b000110",
     "hexagram": "䷭",
     "kingwen": 46,
-    "name": {
+    "names": {
       "chinese": "升",
       "pinyin": "shēng",
       "english": "Pushing Upward"
@@ -1948,7 +1948,7 @@
       "above": 0,
       "below": 6
     },
-    "judgement": "Pushing Upward has supreme success.\nOne must see the great man.\nFear not.\nDeparture toward the south\nBrings good fortune.\n",
+    "judgment": "Pushing Upward has supreme success.\nOne must see the great man.\nFear not.\nDeparture toward the south\nBrings good fortune.\n",
     "images": "Within the earth, wood grows:\nThe image of Pushing Upward.\nThus the superior man of devoted character\nHeaps up small things\nIn order to achieve something high and great.\n",
     "lines": [
       {
@@ -1981,7 +1981,7 @@
     "binary": "0b011010",
     "hexagram": "䷮",
     "kingwen": 47,
-    "name": {
+    "names": {
       "chinese": "困",
       "pinyin": "kùn",
       "english": "Oppression"
@@ -1991,7 +1991,7 @@
       "above": 3,
       "below": 2
     },
-    "judgement": "Oppression, Exhaustion. Success. Perseverance.\nThe great man brings about good fortune.\nNo blame.\nWhen one has something to say,\nIt is not believed.\n",
+    "judgment": "Oppression, Exhaustion. Success. Perseverance.\nThe great man brings about good fortune.\nNo blame.\nWhen one has something to say,\nIt is not believed.\n",
     "images": "There is no water in the lake:\nThe image of Exhaustion.\nThus the superior man stakes his life\nOn following his will.\n",
     "lines": [
       {
@@ -2024,7 +2024,7 @@
     "binary": "0b010110",
     "hexagram": "䷯",
     "kingwen": 48,
-    "name": {
+    "names": {
       "chinese": "井",
       "pinyin": "jǐng",
       "english": "The Well"
@@ -2034,7 +2034,7 @@
       "above": 2,
       "below": 6
     },
-    "judgement": "The Well. The town may be changed,\nBut the well cannot be changed.\nIt neither decreases nor increases.\nThey come and go and draw from the well.\nIf one gets down almost to the water\nAnd the rope does not go all the way,\nOr the jug breaks, it brings misfortune.\n",
+    "judgment": "The Well. The town may be changed,\nBut the well cannot be changed.\nIt neither decreases nor increases.\nThey come and go and draw from the well.\nIf one gets down almost to the water\nAnd the rope does not go all the way,\nOr the jug breaks, it brings misfortune.\n",
     "images": "Water over wood: the image of the Well.\nThus the superior man encourages the people at their work,\nAnd exhorts them to help one another.\n",
     "lines": [
       {
@@ -2067,7 +2067,7 @@
     "binary": "0b011101",
     "hexagram": "䷰",
     "kingwen": 49,
-    "name": {
+    "names": {
       "chinese": "革",
       "pinyin": "gé",
       "english": "Revolution"
@@ -2077,7 +2077,7 @@
       "above": 3,
       "below": 5
     },
-    "judgement": "Revolution, Molting. On your own day\nYou are believed.\nSupreme success,\nFurthering through perseverance.\nRemorse disappears.\n",
+    "judgment": "Revolution, Molting. On your own day\nYou are believed.\nSupreme success,\nFurthering through perseverance.\nRemorse disappears.\n",
     "images": "Fire in the lake: the image of Revolution.\nThus the superior man\nSets the calendar in order\nAnd makes the seasons clear.\n",
     "lines": [
       {
@@ -2110,7 +2110,7 @@
     "binary": "0b101110",
     "hexagram": "䷱",
     "kingwen": 50,
-    "name": {
+    "names": {
       "chinese": "鼎",
       "pinyin": "dǐng",
       "english": "The Cauldron"
@@ -2120,7 +2120,7 @@
       "above": 5,
       "below": 6
     },
-    "judgement": "The Cauldron. Supreme good fortune.\nSuccess.\n",
+    "judgment": "The Cauldron. Supreme good fortune.\nSuccess.\n",
     "images": "Fire over wood:\nThe image of the Cauldron.\nThus the superior man consolidates his fate\nBy making his position correct.\n",
     "lines": [
       {
@@ -2153,7 +2153,7 @@
     "binary": "0b001001",
     "hexagram": "䷲",
     "kingwen": 51,
-    "name": {
+    "names": {
       "chinese": "震",
       "pinyin": "zhèn",
       "english": "The Arousing (Thunder)"
@@ -2163,7 +2163,7 @@
       "above": 1,
       "below": 1
     },
-    "judgement": "Shock, the Arousing Thunder, brings success.\nShock comes(emoh, oh!\nLaughing words(emha, ha!\nThe shock terrifies for a hundred miles,\nAnd he does not let fall the sacrificial spoon and chalice.,\n",
+    "judgment": "Shock, the Arousing Thunder, brings success.\nShock comes(emoh, oh!\nLaughing words(emha, ha!\nThe shock terrifies for a hundred miles,\nAnd he does not let fall the sacrificial spoon and chalice.,\n",
     "images": "Thunder repeated: the image of Shock.\nThus in fear and trembling\nThe superior man sets his life in order\nAnd examines himself.\n",
     "lines": [
       {
@@ -2196,7 +2196,7 @@
     "binary": "0b100100",
     "hexagram": "䷳",
     "kingwen": 52,
-    "name": {
+    "names": {
       "chinese": "艮",
       "pinyin": "gèn",
       "english": "The Still (Mountain)"
@@ -2206,7 +2206,7 @@
       "above": 4,
       "below": 4
     },
-    "judgement": "The Keeping Still. Keeping his back still\nSo that he no longer feels his body.\nHe goes into his courtyard\nAnd does not see his people.\nNo blame.\n",
+    "judgment": "The Keeping Still. Keeping his back still\nSo that he no longer feels his body.\nHe goes into his courtyard\nAnd does not see his people.\nNo blame.\n",
     "images": "Mountains standing close together:\nThe image of Keeping Still.\nThus the superior man\nDoes not permit his thoughts\nTo go beyond his situation.\n",
     "lines": [
       {
@@ -2239,7 +2239,7 @@
     "binary": "0b110100",
     "hexagram": "䷴",
     "kingwen": 53,
-    "name": {
+    "names": {
       "chinese": "漸",
       "pinyin": "jiàn",
       "english": "Development"
@@ -2249,7 +2249,7 @@
       "above": 6,
       "below": 4
     },
-    "judgement": "Development, Gradual Progress. The maiden\nIs given in marriage.\nGood fortune.\nPerseverance furthers.\n",
+    "judgment": "Development, Gradual Progress. The maiden\nIs given in marriage.\nGood fortune.\nPerseverance furthers.\n",
     "images": "On the mountain, a tree:\nThe image of Development.\nThus the superior man abides in dignity and virtue,\nIn order to improve the mores.\n",
     "lines": [
       {
@@ -2282,7 +2282,7 @@
     "binary": "0b001011",
     "hexagram": "䷵",
     "kingwen": 54,
-    "name": {
+    "names": {
       "chinese": "歸妹",
       "pinyin": "guī mèi",
       "english": "The Marrying Maiden"
@@ -2292,7 +2292,7 @@
       "above": 1,
       "below": 3
     },
-    "judgement": "The Marrying Maiden.\nUndertakings bring misfortune.\nNothing that would further.\n",
+    "judgment": "The Marrying Maiden.\nUndertakings bring misfortune.\nNothing that would further.\n",
     "images": "Thunder over the lake:\nThe image of the Marrying Maiden.\nThus the superior man\nUnderstands the transitory\nIn the light of the eternity of the end.\n",
     "lines": [
       {
@@ -2325,7 +2325,7 @@
     "binary": "0b001101",
     "hexagram": "䷶",
     "kingwen": 55,
-    "name": {
+    "names": {
       "chinese": "豐",
       "pinyin": "fēng",
       "english": "Abundance"
@@ -2335,7 +2335,7 @@
       "above": 1,
       "below": 5
     },
-    "judgement": "Abundance, Fullness has success.\nThe king attains abundance.\nBe not sad.\nBe like the sun at midday.\n",
+    "judgment": "Abundance, Fullness has success.\nThe king attains abundance.\nBe not sad.\nBe like the sun at midday.\n",
     "images": "Both thunder and lightning come:\nThe image of Abundance.\nThus the superior man decides lawsuits\nAnd carries out punishments.\n",
     "lines": [
       {
@@ -2368,7 +2368,7 @@
     "binary": "0b101100",
     "hexagram": "䷷",
     "kingwen": 56,
-    "name": {
+    "names": {
       "chinese": "旅",
       "pinyin": "lǚ",
       "english": "The Wanderer"
@@ -2378,7 +2378,7 @@
       "above": 5,
       "below": 4
     },
-    "judgement": "The Wanderer. Success through smallness.\nPerseverance brings good fortune\nTo the wanderer.\n",
+    "judgment": "The Wanderer. Success through smallness.\nPerseverance brings good fortune\nTo the wanderer.\n",
     "images": "Fire on the mountain:\nThe image of the Wanderer.\nThus the superior man\nIs clear-minded and cautious\nIn imposing penalties,\nAnd protracts no lawsuits.\n",
     "lines": [
       {
@@ -2411,7 +2411,7 @@
     "binary": "0b110110",
     "hexagram": "䷸",
     "kingwen": 57,
-    "name": {
+    "names": {
       "chinese": "巽",
       "pinyin": "xùn",
       "english": "The Gentle (Wind)"
@@ -2421,7 +2421,7 @@
       "above": 6,
       "below": 6
     },
-    "judgement": "The Gentle, the Penetrating. Success through what is small.\nIt furthers one to have somewhere to go.\nIt furthers one to see the great man.\n",
+    "judgment": "The Gentle, the Penetrating. Success through what is small.\nIt furthers one to have somewhere to go.\nIt furthers one to see the great man.\n",
     "images": "Winds following one upon the other:\nThe image of the Gently Penetrating.\nThus the superior man\nSpreads his commands abroad\nAnd carries out his undertakings.\n",
     "lines": [
       {
@@ -2454,7 +2454,7 @@
     "binary": "0b011011",
     "hexagram": "䷹",
     "kingwen": 58,
-    "name": {
+    "names": {
       "chinese": "兌",
       "pinyin": "duì",
       "english": "The Joyous (Lake)"
@@ -2464,7 +2464,7 @@
       "above": 3,
       "below": 3
     },
-    "judgement": "The Joyous. Success.\nPerseverance is favorable.\n",
+    "judgment": "The Joyous. Success.\nPerseverance is favorable.\n",
     "images": "Lakes resting one on the other:\nThe image of the Joyous.\nThus the superior man joins with his friends\nFor discussion and practice.\n",
     "lines": [
       {
@@ -2497,7 +2497,7 @@
     "binary": "0b110010",
     "hexagram": "䷺",
     "kingwen": 59,
-    "name": {
+    "names": {
       "chinese": "渙",
       "pinyin": "huàn",
       "english": "Dispersion"
@@ -2507,7 +2507,7 @@
       "above": 6,
       "below": 2
     },
-    "judgement": "Dispersion, Dissolution. Success.\nThe king approaches his temple.\nIt furthers one to cross the great water.\nPerseverance furthers.\n",
+    "judgment": "Dispersion, Dissolution. Success.\nThe king approaches his temple.\nIt furthers one to cross the great water.\nPerseverance furthers.\n",
     "images": "The wind drives over the water:\nThe image of Dispersion.\nThus the kings of old sacrificed to the Lord\nAnd built temples.\n",
     "lines": [
       {
@@ -2540,7 +2540,7 @@
     "binary": "0b010011",
     "hexagram": "䷻",
     "kingwen": 60,
-    "name": {
+    "names": {
       "chinese": "節",
       "pinyin": "jié",
       "english": "Limitation"
@@ -2550,7 +2550,7 @@
       "above": 2,
       "below": 3
     },
-    "judgement": "Limitation. Success.\nGalling limitation must not be persevered in.\n",
+    "judgment": "Limitation. Success.\nGalling limitation must not be persevered in.\n",
     "images": "Water over lake: the image of Limitation.\nThus the superior man\nCreates number and measure,\nAnd examines the nature of virtue and correct conduct.\n",
     "lines": [
       {
@@ -2583,7 +2583,7 @@
     "binary": "0b110011",
     "hexagram": "䷼",
     "kingwen": 61,
-    "name": {
+    "names": {
       "chinese": "中孚",
       "pinyin": "zhōng fú",
       "english": "Inner Truth"
@@ -2593,7 +2593,7 @@
       "above": 6,
       "below": 3
     },
-    "judgement": "Inner Truth. Pigs and fishes.\nGood fortune.\nIt furthers one to cross the great water.\nPerseverance furthers.\n",
+    "judgment": "Inner Truth. Pigs and fishes.\nGood fortune.\nIt furthers one to cross the great water.\nPerseverance furthers.\n",
     "images": "Wind over lake: the image of Inner Truth.\nThus the superior man discusses criminal cases\nIn order to delay executions.\n",
     "lines": [
       {
@@ -2626,7 +2626,7 @@
     "binary": "0b001100",
     "hexagram": "䷽",
     "kingwen": 62,
-    "name": {
+    "names": {
       "chinese": "小過",
       "pinyin": "xiǎo guò",
       "english": "Small Preponderance"
@@ -2636,7 +2636,7 @@
       "above": 1,
       "below": 4
     },
-    "judgement": "Preponderance of the Small. Success.\nPerseverance furthers.\nSmall things may be done; great things should not be done.\nThe flying bird brings the message:\nIt is not well to strive upward,\nIt is well to remain below.\nGreat good fortune.\n",
+    "judgment": "Preponderance of the Small. Success.\nPerseverance furthers.\nSmall things may be done; great things should not be done.\nThe flying bird brings the message:\nIt is not well to strive upward,\nIt is well to remain below.\nGreat good fortune.\n",
     "images": "Thunder on the mountain:\nThe image of Preponderance of the Small.\nThus in his conduct the superior man gives preponderance to reverence.\nIn bereavement he gives preponderance to grief.\nIn his expenditures he gives preponderance to thrift.\n",
     "lines": [
       {
@@ -2669,7 +2669,7 @@
     "binary": "0b010101",
     "hexagram": "䷾",
     "kingwen": 63,
-    "name": {
+    "names": {
       "chinese": "既濟",
       "pinyin": "jì jì",
       "english": "After Completion"
@@ -2679,7 +2679,7 @@
       "above": 2,
       "below": 5
     },
-    "judgement": "After Completion. Success in small matters.\nPerseverance furthers.\nAt the beginning good fortune,\nAt the end disorder.\n",
+    "judgment": "After Completion. Success in small matters.\nPerseverance furthers.\nAt the beginning good fortune,\nAt the end disorder.\n",
     "images": "Water over fire: the image of the condition\nIn After Completion.\nThus the superior man\nTakes thought of misfortune\nAnd arms himself against it in advance.\n",
     "lines": [
       {
@@ -2712,7 +2712,7 @@
     "binary": "0b101010",
     "hexagram": "䷿",
     "kingwen": 64,
-    "name": {
+    "names": {
       "chinese": "未濟",
       "pinyin": "wèi jì",
       "english": "Before Completion"
@@ -2722,7 +2722,7 @@
       "above": 5,
       "below": 2
     },
-    "judgement": "Before Completion. Success.\nBut if the little fox, after nearly completing the crossing,\nGets his tail in the water,\nThere is nothing that would further.\n",
+    "judgment": "Before Completion. Success.\nBut if the little fox, after nearly completing the crossing,\nGets his tail in the water,\nThere is nothing that would further.\n",
     "images": "Fire over water: The image of the condition before transition.\nThus the superior man is careful\nIn the differentiation of things,\nSo that each finds its place.\n",
     "lines": [
       {

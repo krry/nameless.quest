@@ -4,19 +4,30 @@ span.char
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'Hanzi',
+  name: "Hanzi",
   props: {
-    char: String,
-    pinyin: String
+    char: {
+      type: String,
+      default: "坤",
+    },
+    pinyin: {
+      type: String,
+      default: "kūn",
+    },
   },
-})
+});
 </script>
 
-<style scoped lang="sass">
-.hanzi
-  font-size: 2em
-.char
-  display: inline-block</style>
+<style scoped lang="postcss">
+.hanzi {
+  font-size: 2em;
+  padding: 0 0.125em;
+}
+
+.char {
+  display: inline-block;
+}
+</style>

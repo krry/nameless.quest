@@ -1,43 +1,40 @@
 <template lang="pug">
 article.meaning-node
-  interps(
-    :hanzi="node.name.chinese"
-    :pinyin="node.name.pinyin"
-    :english="node.name.english"
-    :judgement="node.judgement"
-    :images="node.images"
-    :trigrams="node.trigramPair"
-    :lines="node.hexagram"
-    :binary="node.binary"
-    :octal="node.octal"
-    :kingwen="node.kingwen"
+  change(
+    :hex="hex"
   )
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import Interps from './Interps'
+import { defineComponent, PropType } from "vue";
+import { defaultHexagram, Hexagram } from "../schema";
+import Change from "./Change.vue";
 
 export default defineComponent({
-  name: 'Meaning',
+  name: "Meaning",
   components: {
-    interps: Interps,
+    change: Change,
   },
   props: {
-    node: Object,
+    hex: {
+      type: Object as PropType<Hexagram>,
+      default() {
+        return { defaultHexagram };
+      },
+    },
   },
-})
+});
 </script>
 
-<style scoped lang="sass">
-.meaning-node
-  padding: 1em
-  border: 1px solid transparent
-  background-color: transparent
-  text-align: center
-  display: flex
-  flex-direction: column
-  justify-content: center
-  transition: 555ms
-.lines
-  font-size: 2em</style>
+<style scoped lang="postcss">
+.meaning-node {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1em;
+  text-align: center;
+  border: 1px solid transparent;
+  background-color: transparent;
+  transition: 555ms;
+}
+</style>
