@@ -14,4 +14,4 @@ declare module '@vue/runtime-core' {
 
 app.config.globalProperties.$bus = $bus
 // app.use(router).mount('#app')
-app.mount('#app')
+app.mount('#bollard')
