@@ -1,0 +1,61 @@
+{
+  "name": "namefree",
+  "version": "0.3.1",
+  "description": "An interactive, graphic resource for and paean to 易經 (Yìjīng, and often I Ching) the Classic Book of Changes) wherein you can see the glorious symmetries of the perfect Octals, decode the binary of the hexagrams, pronounce the Pinyin, and peruse scholarly interpretations.",
+  "license": "CC-BY-NC-SA-4.0",
+  "main": "main.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "vuedx-typecheck . && vite build",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "lint": "eslint --fix && yarn format",
+    "release": "yarn lint && yarn build && npm version && git push && git tag && git push --tag"
+  },
+  "dependencies": {
+    "@fontsource/inconsolata": "^4.1.0",
+    "@fontsource/museomoderno": "^4.1.0",
+    "@fontsource/quicksand": "^4.1.0",
+    "@fontsource/roboto-slab": "^4.1.0",
+    "@sanity/block-content-to-html": "^1.3.8",
+    "@sanity/client": "^2.1.0",
+    "@sanity/image-url": "^0.140.19",
+    "@types/node": "^14.14.21",
+    "firebase": "^8.2.3",
+    "magic-sdk": "^4.0.2",
+    "vue": "^3.0.5",
+    "vue-router": "4"
+  },
+  "devDependencies": {
+    "@magic-sdk/provider": "^4.0.2",
+    "@magic-sdk/types": "^3.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.4.0",
+    "@typescript-eslint/parser": "^4.4.0",
+    "@vitejs/plugin-vue": "^1.0.4",
+    "@vue/compiler-sfc": "^3.0.5",
+    "@vue/eslint-config-typescript": "^7.0.0",
+    "@vuedx/typecheck": "^0.4.1",
+    "@vuedx/typescript-plugin-vue": "^0.4.1",
+    "babel-eslint": "^10.0.1",
+    "browserslist": "^4",
+    "eslint": "^7.15.0",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-plugin-vue": "^7.0.0-alpha.0",
+    "husky": "^5.0.6",
+    "postcss": "^8.2.1",
+    "postcss-advanced-variables": "^3.0.1",
+    "postcss-import": "^14.0.0",
+    "postcss-modules": "^4.0.0",
+    "postcss-normalize": "^9.0.0",
+    "postcss-preset-env": "^6.7.0",
+    "precss": "^4.0.0",
+    "prettier": "^2.2.1",
+    "pug": "^3.0.0",
+    "stylelint": "^13.8.0",
+    "stylelint-config-standard": "^20.0.0",
+    "typescript": "^4.1.3",
+    "vite": "^2.0.0-beta.12"
+  },
+  "browserslist": [
+    "defaults"
+  ]
+}

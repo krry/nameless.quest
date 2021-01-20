@@ -1,0 +1,15 @@
+[
+  {
+    "user": {
+      "name": "Kerrbear",
+      "id": "1234"
+    },
+    "enquiries": [
+      {
+        "time": "2021-01-02 04:45:04",
+        "query": "What's the hurry?",
+        "roll": "798788"
+      }
+    ]
+  }
+]

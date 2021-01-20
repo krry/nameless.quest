@@ -1,0 +1,63 @@
+.font.md,
+.font.lg,
+.font.xl,
+.font.xxl,
+.font.x2l,
+.font.x3l,
+.font.x4l,
+.font.x5l,
+.font.x6l,
+.font.x7l,
+.font.x8l {
+  margin: 1rem 0;
+  line-height: 1.25;
+}
+
+.font.xs {
+  font-size: 0.75rem;
+}
+
+.font.sm {
+  font-size: 0.875rem;
+}
+
+.font.md {
+  font-size: 1rem;
+}
+
+.font.lg {
+  font-size: 1.25rem;
+}
+
+.font.xl {
+  font-size: 1.5rem;
+}
+
+.font.x2l,
+.font.xxl {
+  font-size: 2rem;
+}
+
+.font.x3l {
+  font-size: 3rem;
+}
+
+.font.x4l {
+  font-size: 4rem;
+}
+
+.font.x5l {
+  font-size: 5rem;
+}
+
+.font.x6l {
+  font-size: 6rem;
+}
+
+.font.x7l {
+  font-size: 7rem;
+}
+
+.font.x8l {
+  font-size: 8rem;
+}

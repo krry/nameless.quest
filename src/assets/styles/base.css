@@ -1,0 +1,89 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.25;
+  margin: 0 auto 0.75em;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font);
+}
+
+p {
+  line-height: var(--leading);
+  margin: 0 auto 1em;
+  font-family: var(--text);
+  font-weight: 300;
+}
+
+.theme-day p {
+  font-weight: 400;
+}
+
+pre {
+  white-space: break-spaces;
+  font-family: inherit;
+}
+
+a {
+  /* transition: var(--beat); */
+  cursor: pointer;
+}
+
+a:link {
+  color: var(--link);
+}
+
+a:active,
+a.router-link-active,
+a:link.router-link-active,
+a:visited.router-link-active {
+  color: var(--brand);
+  /* font-weight: 700; */
+}
+
+a:hover {
+  color: var(--flair);
+}
+
+a:visited {
+  color: var(--flair);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+::selection {
+  background-color: var(--glow);
+}
+
+code {
+  background: var(--silk);
+  color: var(--flair);
+  padding: 1px 3px;
+  display: inline-block;
+  font-family: var(--mono);
+}
+
+blockquote {
+  font-style: italic;
+  margin: 1em 2em;
+  padding: 1em;
+  font-size: 1.25em;
+  font-weight: 400;
+  line-height: var(--pleading);
+}

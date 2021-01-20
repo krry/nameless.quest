@@ -1,0 +1,71 @@
+.field {
+  position: relative;
+  margin: 1em 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.field label {
+  display: block;
+  font-size: 0.75em;
+}
+
+.field input + label,
+.field textarea + label {
+  order: 1;
+  margin-bottom: 0.5em;
+  opacity: 0.75;
+  font-size: 1rem;
+
+  @media (min-width: 48rem) {
+    font-size: 1.25rem;
+  }
+}
+
+.field input:focus + label,
+.field textarea:focus + label {
+  opacity: 1;
+}
+
+.field input,
+.field textarea {
+  order: 2;
+  appearance: none;
+  padding: 0.25em 0.5em;
+  font-family: var(--text);
+  font-weight: 500;
+  font-size: 1.125em;
+  text-align: center;
+  color: var(--ink);
+  background: var(--paper);
+  border: 2px solid var(--glow);
+  border-radius: var(--bevel);
+  transition: var(--bea2) var(--ease-in-out-cubic);
+}
+
+.field textarea {
+  resize: none;
+  padding: 0.5em 0.75em;
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+.field input:hover,
+.field input:focus,
+.field textarea:hover,
+.field textarea:focus {
+  outline: 2px dotted var(--glow);
+  outline-offset: -5px;
+}
+
+.field input:valid,
+.field textarea:valid {
+  border-color: var(--good);
+}
+
+.field input:invalid,
+.field textarea:invalid {
+  border-color: var(--bad);
+}

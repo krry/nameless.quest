@@ -1,0 +1,4 @@
+#!/bin/sh
+. "$(dirname $0)/_/husky.sh"
+
+rg -s TODO --line-number -g '!{package.json, README.md}' > .todo

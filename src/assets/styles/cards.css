@@ -1,0 +1,103 @@
+.sleeve {
+  position: relative;
+  z-index: 20;
+  perspective: 1000em;
+  pointer-events: auto;
+  text-align: center;
+  background-size: cover;
+}
+
+.card {
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  position: absolute;
+}
+
+.sleeve,
+.card {
+  min-width: 15rem;
+  min-height: 15rem;
+  max-width: 92vw;
+  max-height: 92vh;
+  width: 26em;
+  height: 32em;
+}
+
+@media (orientation: landscape) and (max-height: 36rem) {
+  .sleeve,
+  .card {
+    max-height: 100vh;
+  }
+}
+
+@media (min-height: 48rem) {
+  .sleeve,
+  .card {
+    height: 40rem;
+  }
+}
+
+.face h2 {
+  margin-top: 0.5em;
+}
+
+.face {
+  position: absolute;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  overflow-y: auto;
+  transition-property: all;
+  transition-duration: var(--bea2);
+  transition-timing-function: var(--ease-in-out-cubic);
+  background: var(--paper);
+  border: 2px solid var(--glow);
+  border-radius: var(--bevel);
+  padding: var(--bumper);
+  box-shadow: var(--shaglow);
+}
+
+.oracle .face,
+.face.face--front,
+.sleeve:focus-within .face {
+  box-shadow: var(--focus-glow);
+}
+
+.face.flip-enter-active,
+.face.flip-leave-active {
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  transition: var(--bea2) var(--ease-in-out-cubic);
+  box-shadow: none;
+}
+
+.face.flip-leave-to,
+.face.flip-enter-from {
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  transform: rotateY(180deg) translateZ(0);
+  pointer-events: none;
+  box-shadow: none;
+  opacity: 0;
+  z-index: 22;
+}
+
+.face.flip-enter-from {
+  transform: rotateY(-180deg);
+}
+
+.face.flip-leave-from,
+.face.flip-enter-to {
+  backface-visibility: visible;
+  -webkit-backface-visibility: visible;
+  transform: rotateY(0) translateZ(0);
+  pointer-events: auto;
+  overflow-y: auto;
+  opacity: 1;
+  z-index: 25;
+}

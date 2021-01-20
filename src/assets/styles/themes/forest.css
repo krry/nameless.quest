@@ -1,0 +1,35 @@
+/*
+FOREST Palette
+*/
+$deep-shade: hsl(157, 67%, 5%);
+$silk-forest: hsla(157, 67%, 11%, 0.85);
+$canopy-dusk: hsl(157, 87%, 11%);
+$spore-print: hsla(37, 12%, 22%, 0.6);
+$dirt-trail: hsl(37, 39%, 37%);
+$vine-green: hsl(157, 87%, 61%);
+$plumage-teal: hsl(187, 87%, 46%);
+$chlorophyll: hsl(127, 87%, 61%);
+$frog-paint: hsl(7, 87%, 61%);
+$blood-froth: hsl(337, 87%, 81%);
+$glow-forest: hsla(67, 97%, 93%, 0.5);
+$sunglow: 0 0 0.125vw 0.0625vw hsl(27, 77%, 77%), 0 0 0.25vw 0.125vw hsl(77, 77%, 77%),
+  0 0 0.5vw 0.25vw hsl(27, 77%, 77%), 0 0 1vw 0.5vw hsl(77, 77%, 77%), 0 0 2vw 1vw hsl(27, 77%, 77%),
+  0 0 4vw 2vw hsl(77, 77%, 77%), 0 0 8vw 4vw hsl(27, 77%, 77%);
+
+[data-theme='forest'],
+.theme-forest {
+  --theme-icons: '🦌🏕';
+  --pip: '🌲';
+  --paper: $canopy-dusk;
+  --silk: $silk-forest;
+  --ground: $deep-shade;
+  --ink: $vine-green;
+  --flair: $plumage-teal;
+  --link: $blood-froth;
+  --pencil: $spore-print;
+  --dust: $spore-print;
+  --good: $chlorophyll;
+  --bad: $frog-paint;
+  --glow: $glow-forest;
+  --focus-glow: $sunglow;
+}
