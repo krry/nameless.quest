@@ -6,7 +6,7 @@
   "main": "main.ts",
   "scripts": {
     "dev": "vite",
-    "build": "vuedx-typecheck . && vite build",
+    "build": "vite build",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "lint": "eslint --fix && yarn format",
     "release": "yarn lint && yarn build && npm version && git push && git tag && git push --tag"

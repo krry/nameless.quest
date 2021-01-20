@@ -114,19 +114,23 @@
   left: 0;
 }
 
-.abs.t {
+.abs.t,
+.fixed.t {
   top: 0;
 }
 
-.abs.r {
+.abs.r,
+.fixed.r {
   right: 0;
 }
 
-.abs.b {
+.abs.b,
+.fixed.b {
   bottom: 0;
 }
 
-.abs.l {
+.abs.l,
+.fixed.l {
   left: 0;
 }
 

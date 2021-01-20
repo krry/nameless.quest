@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "noEmit": true,
+    "isolatedModules": true,
     "strict": true,
     "sourceMap": true,
     "jsx": "preserve",

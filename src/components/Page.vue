@@ -25,8 +25,17 @@ export default defineComponent({
       return Math.floor(Math.random() * max) + 1
     }
 
+    function sizeBg() {
+      const screenWidth = window.innerWidth
+      const screenHeight = window.innerHeight
+      const smallerDim = screenWidth < screenHeight ? screenWidth : screenHeight
+      if (smallerDim > 1080) return 'bg-lg/'
+      if (smallerDim > 576) return 'bg-md/'
+      else return 'bg-sm/'
+    }
+
     watchEffect(() => {
-      rx.backdrop = 'url(/bg/' + rx.theme + getRand(3) + '.jpg)'
+      rx.backdrop = 'url(/' + sizeBg() + rx.theme + getRand(3) + '.jpg)'
     })
 
     return {
@@ -54,19 +63,23 @@ export default defineComponent({
   min-width: calc(100vw - var(--drawer-dim));
   width: 100vw;
   max-width: 100vw;
-  padding: 2rem;
   min-height: calc(100vh + 1px);
 
   @media (min-width: 36rem) {
     margin-left: var(--drawer-dim);
+    padding: 0 2rem;
   }
 
   @media (min-width: 36rem) and (min-height: 36rem) {
-    padding: 3rem;
+    padding: 0 3rem;
     min-height: 100vh;
   }
 
   @media (min-width: 48rem) and (min-height: 48rem) {
+    padding: 0 4rem;
+  }
+
+  @media (min-width: 64rem) and (min-height: 36rem) {
     padding: 4rem;
   }
 }
@@ -91,6 +104,10 @@ export default defineComponent({
 
   @media (min-width: 48rem) {
     width: auto;
+    max-width: 72ch;
+  }
+
+  @media (min-width: 64rem) {
     max-width: 80ch;
   }
 }
@@ -121,6 +138,10 @@ export default defineComponent({
   box-shadow: inset 0 0 0.5rem 0 var(--ink);
 }
 
+.callout strong {
+  color: var(--flair);
+}
+
 .callout p {
   text-align: left;
   font-weight: 400;
@@ -132,18 +153,31 @@ export default defineComponent({
 }
 
 .page .toc {
-  margin: 1rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin: 3rem 0;
   padding: 1rem;
   list-style: none;
+  border-top: 1px solid var(--glow);
+  border-bottom: 1px solid var(--glow);
 }
 
 .page .toc li {
-  /* margin-left: 1rem; */
-  padding: 0 2rem;
   position: relative;
   font-size: 1.125em;
   font-weight: 500;
   font-variant: small-caps;
+
+  @media (min-width: 48rem) {
+    padding: 0 1rem;
+    flex-basis: 50%;
+  }
+
+  @media (min-width: 64rem) {
+    padding: 0 2rem;
+    flex-basis: 33%;
+  }
 }
 
 .toc a.btn {

@@ -5,14 +5,13 @@ AppDrawer#drawer.drawer.fixed.abs-0.fs(
   @showModal="modalShown = true"
   @click.stop="closeDrawer"
   )
-transition(name="flag" mode="out-in" appear)
-  button.btn.naked.tab.surf.abs.b.l.float(
-    v-if="drawerClosed"
+button.btn.naked.tab.surf.fixed.b.l.ride(
+  @click="closeDrawer"
+  ) 🏄
+transition(name="flag" appear)
+  button.btn.naked.tab.surf.fixed.b.l.float(
+    v-if="!drawerOpen"
     @click="openDrawer"
-    ) 🏄
-  button.btn.naked.tab.surf.abs.b.l(
-    v-else
-    @click="closeDrawer"
     ) 🏄
 #app.app.rel(
   ref="ether"
@@ -85,7 +84,7 @@ export default defineComponent({
     const rx = reactive({
       ether: ref<HTMLElement>(),
       modalShown: ref(false),
-      drawerClosed: ref(false),
+      drawerOpen: ref(true),
       hasNavved: ref(checkStorage('hasNavved')),
     })
 
@@ -109,9 +108,9 @@ export default defineComponent({
       setTheme(lastTheme)
     }
     document.addEventListener('scroll', () => {
-      if (document.documentElement.scrollLeft >= 300) {
-        this.drawerClosed = true
-      } else this.drawerClosed = false
+      if (document.documentElement.scrollLeft <= 250) {
+        this.drawerOpen = true
+      } else this.drawerOpen = false
     })
   },
   unmounted() {
@@ -121,9 +120,9 @@ export default defineComponent({
       }
     })
     window.removeEventListener('scroll', () => {
-      if (document.documentElement.scrollLeft >= 300) {
-        this.drawerClosed = true
-      } else this.drawerClosed = false
+      if (document.documentElement.scrollLeft <= 250) {
+        this.drawerOpen = true
+      } else this.drawerOpen = false
     })
   },
   methods: {
@@ -189,43 +188,45 @@ body {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   left: 0;
-  transform: translateX(calc(100vw - 6rem));
-
-  @media (min-width: 36rem) {
-    transform: translateX(17rem);
-  }
 
   &:hover {
     background: var(--dust);
   }
 }
 
-.btn.surf.tab.float {
-  left: calc(100vw - 3rem);
-  z-index: 3;
-  transform: scaleX(-1);
+.btn.surf.tab.ride {
+  transform: translateX(calc(100vw - 6rem));
 
   @media (min-width: 36rem) {
-    left: 20rem;
+    transform: translateX(16.9rem);
   }
+}
+
+.btn.surf.tab.float {
+  z-index: 3;
+  transform: translateX(0) rotateY(180deg);
 }
 
 .flag-enter-active,
 .flag-leave-active {
-  transition: all var(--beat) 0;
+  transition: transform var(--beat);
   transform-origin: left center;
 }
 
 .flag-enter-from {
-  transform: rotateY(90deg);
+  transform: rotateY(90deg) translateX(0);
 }
 
 .flag-leave-to {
-  transform: rotateY(-90deg);
+  transform: rotateY(90deg) translateX(calc(100vw - 6rem));
+
+  @media (min-width: 36rem) {
+    transform: rotateY(90deg) translateX(17rem);
+  }
 }
 
 .flag-enter-to,
 .flag-leave-from {
-  transform: rotateY(0deg);
+  transform: rotateY(180deg) translateX(0);
 }
 </style>

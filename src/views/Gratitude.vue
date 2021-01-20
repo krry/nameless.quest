@@ -27,47 +27,47 @@ Page.gratitude(:theme="theme")
       dt
         router-link(to="https://unsplash.com/@philipgraves97") Philip Graves
       dd
-        img.thumb(src="/bg/sea1.jpg")
+        img.thumb(src="/bg-sm/sea1.jpg")
       dd
-        img.thumb(src="/bg/sea2.jpg")
+        img.thumb(src="/bg-sm/sea2.jpg")
       dd
-        img.thumb(src="/bg/sea3.jpg")
+        img.thumb(src="/bg-sm/sea3.jpg")
       dt
         router-link(to="https://unsplash.com/@allain_sidd21") Allain Siddiqui
       dd
-        img.thumb(src="/bg/forest1.jpg")
+        img.thumb(src="/bg-sm/forest1.jpg")
       dt
         router-link(to="https://unsplash.com/@mjliao") Michael L
       dd
-        img.thumb(src="/bg/forest2.jpg")
+        img.thumb(src="/bg-sm/forest2.jpg")
       dt
         router-link(to="https://unsplash.com/@veeterzy") Veeterzy
       dd
-        img.thumb(src="/bg/forest3.jpg")
+        img.thumb(src="/bg-sm/forest3.jpg")
       dt
         router-link(to="https://unsplash.com/@eli_from_prague") Eliška Motisová
       dd
-        img.thumb(src="/bg/day2.jpg")
+        img.thumb(src="/bg-sm/day2.jpg")
       dt
         router-link(to="https://unsplash.com/@johnwestrock") Dave Hoefler
       dd
-        img.thumb(src="/bg/day1.jpg")
+        img.thumb(src="/bg-sm/day1.jpg")
       dt
         router-link(to="https://unsplash.com/@dbmartin00") David Brooke Martin
       dd
-        img.thumb(src="/bg/day3.jpg")
+        img.thumb(src="/bg-sm/day3.jpg")
       dt
         router-link(to="https://unsplash.com/@felix_mittermeier") Felix Mittermeier
       dd
-        img.thumb(src="/bg/night1.jpg")
+        img.thumb(src="/bg-sm/night1.jpg")
       dt
         router-link(to="https://unsplash.com/@jeremythomasphoto?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText") Jeremy Thomas
       dd
-        img.thumb(src="/bg/night2.jpg")
+        img.thumb(src="/bg-sm/night2.jpg")
       dt
         router-link(to="https://unsplash.com/@luca42?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText") Luca Baggio
       dd
-        img.thumb(src="/bg/night3.jpg")
+        img.thumb(src="/bg-sm/night3.jpg")
     h3
       | And thanks to 
       router-link(to="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText") Unsplash

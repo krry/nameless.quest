@@ -28,14 +28,14 @@ Page.about
     p Every path leads to and from the Source. There is no right or wrong way to encounter the divine. But certain methods allow insight to arise more readily. Mindsets and settings carefully prepared and arranged can clear the skies, peel our eyes, and prime our hearts to absorb the truth of the matter in this moment.
 
     aside.callout
-      h4 TL:DR; My Divination Ritual
+      h4 TL:DR; A Divination Ritual
       ol.ls
         li
           | Commit five to fifty minutes to seeing the truth, then 
           strong stop time.
         li
-          strong Gather the kit: 
-          | cards, coins, candles, incense, crystals, totem.
+          strong Gather the kit
+          | : cards, coins, candles, incense, crystals, totem.
         li
           | Calm the senses. 
           strong Amass silence.
@@ -45,8 +45,8 @@ Page.about
           strong Follow it inward.
         li
           | Remain paused as 
-          strong the burning question ignites
-          | you. Hold it close.
+          strong the burning question ignites you
+          | . Hold it close.
         li
           | Let's dance: 
           strong cast lots
@@ -218,12 +218,5 @@ export default defineComponent({
 <style lang="postcss" scoped>
 .page.about {
   background-color: var(--silk);
-}
-
-.toc {
-  display: flex;
-  margin: 3rem 0;
-  border-top: 1px solid var(--glow);
-  border-bottom: 1px solid var(--glow);
 }
 </style>
