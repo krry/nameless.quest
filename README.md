@@ -74,6 +74,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/): Customize configur
 - [x] BUG: why doesnt the spinnable respond to the mouse?
 - [x] arrow keys to move between changes
 - [x] use Magic.link
+- [x] firebase backend
   - [ ] enable passwordless login through passport.js?
   - [ ] [read this](https://medium.com/@ninjudd/passwords-are-obsolete-9ed56d483eb)
   - [ ] [log the Magic.link process](./docs/passwordless.md) for a lib and a post on Atmanautica.com
@@ -95,7 +96,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/): Customize configur
 - [ ] Shift or meta click on tiles to keep the others open
 - [ ] consider a [Geomancy](https://www.wikiwand.com/en/Geomantic_figures) clone
 - [ ] BUG: escape doesn't hide cards after a resort b/c focus was lost; refocus card after resort?
-- [ ] TODO: make the Face components DRYer
 - [ ] give the oracle its own root level route
 - [ ] fill in config page with global settings
   - [ ] pinny - pinyin or not
@@ -103,5 +103,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/): Customize configur
   - [ ] texty - text or glyphs first
   - [ ] primary text?
   - [ ] hermagrams or hexagrams
-- [x] firebase backend
 - [ ] store users in Sanity?
+- [ ] TODO: make the Face components DRYer
+- [ ] TODO: capture how user got to login and send them back there: src/views/Login.vue:122
+- [ ] TODO: recover from SMS fail by resetting recaptcha: src/views/Login.vue:158
+- [ ] TODO: only show marks when two cards: src/components/ChangeNode.vue:100
+- [ ] TODO: only show changing lines on first card: src/components/ChangeNode.vue:101
+- [ ] TODO: trigger onboarding flow: src/router.ts:111

@@ -97,8 +97,8 @@ export default defineComponent({
 
     onMounted(() => {
       watchEffect(() => {
-        // TODO: only show marks when two cards
-        // TODO: only show changing lines on first card
+        // only show marks when two cards
+        // only show changing lines on first card
         if (isActive.value === 0 && props.roll.toss) {
           changeData.liney = true
           changeData.mark = 'Being'

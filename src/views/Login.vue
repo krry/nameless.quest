@@ -119,7 +119,7 @@ export default defineComponent({
       console.log('import.meta.env.DEV', import.meta.env.DEV)
       console.log('baseUrl + this.$route.path.slice(1)', baseUrl + this.$route.path.slice(1))
       const actionCodeSettings = {
-        url: baseUrl + 'journal', // TODO: capture how user got ot login and send them back there
+        url: baseUrl + 'journal', // where to send user back to
         handleCodeInApp: true, // must be true?
       }
       console.log('actionCode url', actionCodeSettings.url)
@@ -152,10 +152,10 @@ export default defineComponent({
         })
         .catch((error) => {
           console.error("didn't send SMS", error)
+          // recover from SMS fail by resetting recaptcha
           // window.recaptchaVerifier.render().then(function (widgetId) {
           // grecaptcha.reset(widgetId)
           // })
-          //TODO: recover from SMS fail by resetting recaptcha
         })
       window.confirmationResult
         .confirm(this.confcode)

@@ -108,7 +108,7 @@ router.beforeEach(
             console.log('user signed in!', result.user)
             if (result.additionalUserInfo) {
               console.log('user is new', result.additionalUserInfo.isNewUser)
-              // TODO: trigger onboarding flow
+              // can trigger onboarding flow here
             }
             next()
           })
