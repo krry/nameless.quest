@@ -54,8 +54,18 @@ export default defineComponent({
     const rand = ref(1)
     const {getHexagrams} = useHexagrams()
     const {getActiveRoll} = useRolls()
+    const theme = ref(activeTheme)
+
+    function sizeBg() {
+      const screenWidth = window.innerWidth
+      const screenHeight = window.innerHeight
+      const smallerDim = screenWidth < screenHeight ? screenWidth : screenHeight
+      if (smallerDim > 1080) return 'bg-lg/'
+      if (smallerDim > 576) return 'bg-md/'
+      else return 'bg-sm/'
+    }
+
     const rx = reactive({
-      theme: activeTheme,
       roll: computed(() => {
         return (
           getActiveRoll() || {
@@ -66,7 +76,7 @@ export default defineComponent({
       }),
       hexagrams: computed(() => getHexagrams(wenny.value)),
       backdrop: computed(() => {
-        return 'url(/bg/' + rx.theme + rand.value + '.jpg)'
+        return 'url(/' + sizeBg() + theme.value + rand.value + '.jpg)'
       }),
       rolly: computed(() => getActiveRoll() !== undefined),
     })

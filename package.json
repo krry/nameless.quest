@@ -12,6 +12,7 @@
     "release": "yarn lint && yarn build && npm version && git push && git tag && git push --tag"
   },
   "dependencies": {
+    "@feedback-fish/vue": "https://github.com/Atmanautica/feedback-fish-vue/",
     "@fontsource/inconsolata": "^4.1.0",
     "@fontsource/museomoderno": "^4.1.0",
     "@fontsource/quicksand": "^4.1.0",
@@ -25,8 +26,6 @@
     "vue-router": "4"
   },
   "devDependencies": {
-    "@magic-sdk/provider": "^4.0.2",
-    "@magic-sdk/types": "^3.0.1",
     "@typescript-eslint/eslint-plugin": "^4.4.0",
     "@typescript-eslint/parser": "^4.4.0",
     "@vitejs/plugin-vue": "^1.0.4",
