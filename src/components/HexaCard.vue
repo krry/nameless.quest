@@ -242,7 +242,6 @@ export default defineComponent({
   }
 }
 
-/* TODO: there has gotta be a better way to position these */
 @media (min-width: 36rem) and (min-height: 36rem) {
   .sleeve {
     position: absolute;

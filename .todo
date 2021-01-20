@@ -1,9 +1,5 @@
+src/router.ts:111:              // TODO: trigger onboarding flow
 src/views/Login.vue:122:        url: baseUrl + 'journal', // TODO: capture how user got ot login and send them back there
 src/views/Login.vue:158:          //TODO: recover from SMS fail by resetting recaptcha
 src/components/ChangeNode.vue:100:        // TODO: only show marks when two cards
 src/components/ChangeNode.vue:101:        // TODO: only show changing lines on first card
-src/components/HexaCard.vue:245:/* TODO: there has gotta be a better way to position these */
-src/router.ts:111:              // TODO: trigger onboarding flow
-README.md:12:## TODO
-README.md:16:- [x] set up precommit TODO rake with husky
-README.md:98:- [ ] TODO: make the Face components DRYer
