@@ -6,10 +6,12 @@
   "main": "main.ts",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "lint": "eslint --fix && yarn format",
-    "release": "yarn lint && yarn build && npm version && git push && git tag && git push --tag"
+    "build": "yarn lint && vite build",
+    "deploy": "yarn build && netlify deploy",
+    "deprod": "yarn build && netlify deploy --prod",
+    "release": "yarn build && npm version && git push && git tag && git push --tag"
   },
   "dependencies": {
     "@feedback-fish/vue": "https://github.com/Atmanautica/feedback-fish-vue/",

@@ -57,14 +57,17 @@ Page.about
 
     p As a relative novice with a sporadic practice involving the Yìjīng and the Tarot de Marseilles, I am not here as a teacher, but as one who experiences profound revelations when I open my heart to the big questions in the presence of these ancient systems of soothsaying. I am making Nameless to share my joy and enthusiasm for this very old book, and hopefully to usher you toward that softly echoing well of being yawning out of the void of all possibilities housed at heart center.
 
-    p With a cursory search we can turn up manifold sages and mystics who hold (or claim) expertise in this timeless realm of interface with the divine. If it be authority ye seek, authority ye will find, and not within ye shall it be. If I may offer a bit of unsolicited advice regarding solicitation, we must, when navigating the sublime, beware the hard sell, the up-sell, and really just the sell. The answers we seek cannot be bought or sold, or taught or stolen. But when we find a good teacher, we also often find that it doesn't matter what they teach us.
+    p
+      | With a cursory search we can turn up manifold sages and mystics who hold (or claim) expertise in this timeless realm of interface with the divine. 
+      em If it be authority ye seek, authority ye will find, and not within ye shall it be.
+      |  If I may offer a bit of unsolicited advice regarding solicitation, we must, when navigating the sublime, beware the hard sell, the up-sell, and really the sell altogether. The answers we seek cannot be bought or sold, or taught or stolen. But when we find a good teacher, we also often find that it doesn't matter what they teach us.
 
   hr.dinkus.fleur
 
   section(ref="define")
     h2 Defining the Yìjīng: Resources for Understanding
 
-    p If you would like to dive deeper into the history and (potential) meaning of the Yìjīng, I can offer little outside of recommending you to the resources that have enriched my journey to the oracle. In no particular order:
+    p If you would like to dive deeper into the history and (potential) meaning of the Yìjīng, I can offer little outside of recommending you to the resources that have enriched my journey to the oracle. In no particular order, and expanding as I discover and ingest them:
 
     ul
       li

@@ -4,9 +4,9 @@ dist
 dist-ssr
 .local
 .vercel
-.env
 
 # local env files
+.env
 .env.local
 .env.*.local
 
