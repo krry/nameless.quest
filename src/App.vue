@@ -1,5 +1,4 @@
 <template lang="pug">
-FeedBack
 #modals.modals.fs.fixed.abs-0
 AppDrawer#drawer.drawer.fixed.abs-0.fs(
   @showModal="modalShown = true"
@@ -30,7 +29,6 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import {activeTheme, useThemes} from './composables/themes'
 import {defTheme} from './schema'
-import FeedBack from './components/FeedBack.vue'
 import AppDrawer from './components/AppDrawer.vue'
 
 const {setTheme} = useThemes()
@@ -77,7 +75,6 @@ function checkStorage(key: string): boolean | undefined {
 export default defineComponent({
   name: 'App',
   components: {
-    FeedBack,
     AppDrawer,
   },
   setup() {

@@ -236,10 +236,6 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@feedback-fish/vue@https://github.com/Atmanautica/feedback-fish-vue/":
-  version "1.0.0"
-  resolved "https://github.com/Atmanautica/feedback-fish-vue/#42f7a54d126d09c48823421132a6f25c8cc40a99"
-
 "@firebase/analytics-types@0.4.0":
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/@firebase/analytics-types/-/analytics-types-0.4.0.tgz#d6716f9fa36a6e340bc0ecfe68af325aa6f60508"

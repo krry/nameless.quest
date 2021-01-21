@@ -97,7 +97,6 @@
       @click="$emit('back')"
       ) ♽ Start Over
     router-link.btn.naked.sm(to="about") About the Oracle
-    FeedbackButton
   button.btn.back.naked(
     type="button"
     :title="'Start Over'"
@@ -116,7 +115,6 @@ import LogoBrand from './LogoBrand.vue'
 import {generateRandomToss} from '../utils/tosses'
 import IconCrystalBall from './icons/IconCrystalBall.vue'
 import IconMiracle from './icons/IconMiracle.vue'
-import FeedbackButton from './FeedbackButton.vue'
 
 export default defineComponent({
   name: 'OracleToss',
@@ -129,7 +127,6 @@ export default defineComponent({
     IconCrystalBall,
     IconMiracle,
     LogoBrand,
-    FeedbackButton,
   },
   props: {
     query: {

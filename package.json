@@ -14,7 +14,6 @@
     "release": "yarn build && npm version && git push && git tag && git push --tag"
   },
   "dependencies": {
-    "@feedback-fish/vue": "https://github.com/Atmanautica/feedback-fish-vue/",
     "@fontsource/inconsolata": "^4.1.0",
     "@fontsource/museomoderno": "^4.1.0",
     "@fontsource/quicksand": "^4.1.0",

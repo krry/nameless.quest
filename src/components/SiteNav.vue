@@ -32,9 +32,7 @@ nav.flex.mid.string.col
           IconCandles
         |  Gratitude
     li
-      a.btn.naked(
-        @click.stop
-        data-feedback-fish)
+      a.btn.naked(@click.stop)
         IconBase(viewBox="0 0 17 15")
           IconConversation
         | &nbsp; Feedback?
@@ -44,7 +42,6 @@ nav.flex.mid.string.col
 
 <script lang="ts">
 import {defineComponent} from 'vue'
-import FeedbackButton from './FeedbackButton.vue'
 import IconBase from './icons/IconBase.vue'
 import IconScroll from './icons/IconScroll.vue'
 import IconBagua from './icons/IconBagua.vue'
@@ -60,7 +57,6 @@ import IconSpellBook from './icons/IconSpellBook.vue'
 export default defineComponent({
   name: 'SiteNav',
   components: {
-    FeedbackButton,
     IconBase,
     IconScroll,
     IconMiracle,
