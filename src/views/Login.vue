@@ -193,7 +193,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 .grecaptcha-badge {
   visibility: hidden;
   opacity: 0;

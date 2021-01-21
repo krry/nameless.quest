@@ -95,19 +95,25 @@ export default defineComponent({
   max-width: 48rem;
 
   @media (min-height: 36rem) {
-    padding: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   @media (min-height: 48rem) {
-    padding: 3rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
 
   @media (min-width: 48rem) {
     width: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
     max-width: 72ch;
   }
 
   @media (min-width: 64rem) {
+    padding-left: 3rem;
+    padding-right: 3rem;
     max-width: 80ch;
   }
 }

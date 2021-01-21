@@ -5,7 +5,7 @@ Page.text-center(
   )
   router-link.page-nav.btn.naked.prev.clickable.abs.t.l(:to="prev") 𐡷 {{ prev }}
   transition.under(name="slide-fade" appear)
-    .hint.vapor.abs.t.r.l.center.font.sm(v-if="!hasNavved && mousePresent") ⬅️ Did you try the arrow keys? ➡️
+    .hint.vapor.abs.t.r.l.center.font.sm(v-if="!hasNavved && !touchPresent") ⬅️ Did you try the arrow keys? ➡️
   router-link.page-nav.btn.naked.next.clickable.abs.t.r(:to="next") {{ next }} 𐡸
   h1.hexagram.font.x7l
     | {{ hex.hexagram }}
@@ -140,7 +140,8 @@ export default defineComponent({
     const rx = reactive({
       hex,
       isSpinning: ref(false),
-      mousePresent: ref(false),
+      // mousePresent: ref(false),
+      touchPresent: ref(false),
       prev: getPrevHex(props.id),
       next: getNextHex(props.id),
       pinyin: computed(() => hex.value.names.pinyin.split(' ')),
@@ -156,15 +157,21 @@ export default defineComponent({
     })
 
     onMounted(() => {
-      document.addEventListener(
-        'mousemove',
-        function onMouseMove() {
-          // see if there's a mouse in the house
-          document.removeEventListener('mousemove', onMouseMove, false)
-          rx.mousePresent = true
-        },
-        false,
-      )
+      // document.addEventListener(
+      //   'mousemove',
+      //   function onMouseMove() {
+      //     // see if there's a mouse in the house
+      //     document.removeEventListener('mousemove', onMouseMove, false)
+      //     rx.mousePresent = true
+      //   },
+      //   false,
+      // )
+      document.addEventListener('touchmove', function onTouchMove() {
+        // see if anyone's in touch
+        document.removeEventListener('touchmove', onTouchMove, false)
+        rx.touchPresent = true
+        // initializeTouchBehavior();
+      })
       if (spinner.value) {
         const {getSpinning, setSpinning} = useSpinnable(spinner.value)
 
@@ -241,8 +248,10 @@ dd + dd {
   margin-top: 0;
 }
 
-section {
-  margin: 2rem;
+@media (min-width: 36rem) and (min-height: 36rem) {
+  section {
+    margin: 2rem;
+  }
 }
 
 h3 {
@@ -272,8 +281,9 @@ dl + dl::before {
 }
 
 .page-nav.btn.naked {
-  padding: 0.5em;
+  padding: 0.125em 0.5em;
   margin: 0.5rem;
+  text-decoration: none;
 }
 
 .hint {
