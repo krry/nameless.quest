@@ -3,6 +3,7 @@ import hexagrams from '../data/hexagrams.json'
 
 export const useHexagrams = (): {
   getHexagrams: (wenny: boolean) => Map<symbol, Hexagram>
+  getHexagramByOctal: (octal: string) => Hexagram | undefined
   getHexagram: (id: string) => Hexagram
 } => {
   function getHexagrams(wenny: boolean) {
@@ -23,8 +24,17 @@ export const useHexagrams = (): {
     })[0]
   }
 
+  function getHexagramByOctal(octal: string) {
+    return hexagrams.filter((h) => {
+      console.log('h.octal', h.octal)
+      console.log('octal', '0' + octal)
+      return h.octal === '0' + octal
+    })[0]
+  }
+
   return {
     getHexagram,
+    getHexagramByOctal,
     getHexagrams,
   }
 }

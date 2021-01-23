@@ -12,13 +12,14 @@ Page.about
       pinyin="Jīng"
       reveal
       )
+  p This experience emerges from the intention to encourage us to trust our intuition. We can envision the future just as we recall the past. May we dance what feels good, each step with more love and less fear.
   ul(ref="toc").toc.ls.pad.y
     li
-      a.btn.naked.md(@click.prevent="cruiseTo(divine)") How to Consult the Oracle
+      a.btn.naked.lg(@click.prevent="cruiseTo(divine)") How to Consult the Oracle
     li
-      a.btn.naked.md(@click.prevent="cruiseTo(define)") Resources for Deeper Understanding
+      a.btn.naked.lg(@click.prevent="cruiseTo(define)") Resources for Deeper Understanding
     li
-      a.btn.naked.md(@click.prevent="cruiseTo(devsign)") Making a Nameless for Itself
+      a.btn.naked.lg(@click.prevent="cruiseTo(devsign)") Making a Nameless for Itself
 
   hr.dinkus.fleuron
 
@@ -168,7 +169,7 @@ Page.about
     h3(ref="naming") Naming (or not) Nameless
     p
       | Consult the Yìjīng regularly for any length of time and you may start to conceive of the world as composed of its nameless characters experiencing this extraordinarily finite set of Changes or moments in an infinite manifold of nested, fractal, spatiotemporal, and up-to-ten-dimensional networks. Among the facets of this odd but expansive perspective, I found myself called to seize upon and highlight the profound anonymity of the stories in the Yìjīng. These are barely fables. There be dragons, but seldom 
-      router-link(to="/changes/42") a tortoise
+      router-link(to="/change/42") a tortoise
       |  or a hare.
 
     p Consulting even the more modern scholarly English interpretations, one will encounter a deeply androcratic bias: the "superior man" makes no less than 73 appearances among the translations around the 64 hexagrams in the ubiquitous and often revered Wilhelm-Baynes version. Given the profound focus placed upon balance between mutually defining opposites throughout the Classic of Changes, I doubt that its authors and early architects intended to portray such a stark power imbalance among genders or along any spectrum. Students of the Yìjīng, along with Hermetics, Taoists, Yogis, and a multitude of mystics, are starkly aware that the pendulum swings to any and every extreme then away to its opposite, sweeping through the shades between.
@@ -195,7 +196,7 @@ export default defineComponent({
   },
   props: {
     modal: Boolean,
-    hasNavved: Boolean,
+    navved: Boolean,
   },
   setup() {
     const divine = ref<HTMLElement>()

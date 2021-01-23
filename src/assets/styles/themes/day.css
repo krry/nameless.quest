@@ -5,6 +5,7 @@ rainbow connection
 $paper-day: hsl(199, 12%, 96%);
 $silk-day: hsla(199, 22%, 96%, 0.87);
 $sky-day: hsl(199, 40%, 92%);
+$shade-day: hsla(199, 10%, 40%, 0.39);
 $dust-day: hsla(199, 10%, 50%, 0.8);
 $pencil-day: hsl(199, 50%, 18%, 0.3);
 $ink-day: hsl(199, 12%, 18%);
@@ -23,8 +24,8 @@ $springlow: 0 0 0.125vw 0.0625vw $feather, 0 0 0.25vw 0.125vw hsl(277, 77%, 77%)
 
 [data-theme='day'],
 .theme-day {
-  --theme-icons: '🌈🐻';
-  --pip: '🍦';
+  --theme-icons: '🌈🍦';
+  --pip: '🐻';
   --paper: $paper-day;
   --silk: $silk-day;
   --ground: $sky-day;
@@ -35,6 +36,8 @@ $springlow: 0 0 0.125vw 0.0625vw $feather, 0 0 0.25vw 0.125vw hsl(277, 77%, 77%)
   --dust: $dust-day;
   --good: $good-day;
   --bad: $bad-day;
-  --glow: $glow-day;
+  --glow: $shade-day;
+  --shade: $glow-day;
   --focus-glow: $springlow;
+  --border-style: solid;
 }

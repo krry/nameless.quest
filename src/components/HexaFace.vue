@@ -1,5 +1,9 @@
 <template lang="pug">
 .face
+  router-link.moar.btn.naked.md.abs.t.l.no-underline.clickable(:to="'/change/' + kingwen")
+    IconBase(viewBox="0 -100 1000 800" height="24" width="24")
+      IconScroll
+    | More
   slot(name="top")
   hr.divider.abs-0(@click.stop="$emit('flip')")
   slot(name="bottom")
@@ -8,17 +12,35 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue'
+import IconBase from './icons/IconBase.vue'
+import IconScroll from './icons/IconScroll.vue'
+
 export default defineComponent({
   name: 'HexaFace',
+  components: {
+    IconBase,
+    IconScroll,
+  },
+  props: {
+    kingwen: {
+      type: Number,
+      default: 0,
+    },
+  },
   emits: ['close', 'flip'],
 })
 </script>
 
 <style lang="postcss" scoped>
+.moar.btn.naked {
+  padding: 0 var(--frame);
+  margin: 0;
+}
+
 .close {
   font-size: 1.5rem;
   opacity: 0.5;
-  padding: 0.5rem;
+  padding: 0.25rem 0.5rem;
   position: absolute;
   cursor: pointer;
   z-index: 21;

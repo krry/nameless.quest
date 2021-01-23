@@ -1,8 +1,8 @@
 <template lang="pug">
 teleport(to="#modals")
-  transition.first(name="popup" appear)
+  transition.first(name="fade" appear)
     .modal-frame.rel.fs.flex.mid(v-if="open")
-      transition.second(name="popup" appear)
+      transition.second(name="fade" appear)
         .modal-backdrop(v-if="open")
           .close-net.fixed.fs.abs-0(@click.stop="$emit('close')")
       transition.scale.third(name="popup" appear)
@@ -48,7 +48,7 @@ export default defineComponent({
 }
 
 .close-net {
-  transition: var(--beat);
+  transition: var(--bea2);
   background: var(--dust);
   pointer-events: auto;
 }
@@ -73,40 +73,48 @@ export default defineComponent({
   transform-style: preserve-3d;
 }
 
+.fade-enter-active,
+.fade-leave-active,
 .popup-enter-active,
 .popup-leave-active {
-  transition-duration: var(--beat);
+  transition-duration: var(--bea2);
 }
 
+.fade-enter-active,
 .popup-enter-active {
   transition-timing-function: var(--ease-out-cubic);
 }
 
+.fade-leave-active,
 .popup-leave-active {
   transition-timing-function: var(--ease-in-cubic);
 }
 
-.popup-enter-active.second {
-  transition-delay: var(--beat);
+.fade-enter-active.second {
+  transition-delay: var(--bea2);
 }
 
 .popup-enter-active.third {
-  transition-delay: var(--bea2);
+  transition-delay: var(--b3at);
 }
 
-.popup-leave-active.second {
-  transition-delay: var(--beat);
+.fade-leave-active.second {
+  transition-delay: var(--bea2);
 }
 
 .popup-leave-active.first {
-  transition-delay: var(--bea2);
+  transition-delay: var(--b3at);
 }
 
+.fade-enter-from,
+.fade-leave-to,
 .popup-enter-from,
 .popup-leave-to {
   opacity: 0;
 }
 
+.fade-enter-to,
+.fade-leave-from,
 .popup-enter-to,
 .popup-leave-from {
   opacity: 1;

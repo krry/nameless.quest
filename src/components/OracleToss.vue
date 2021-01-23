@@ -1,5 +1,5 @@
 <template lang="pug">
-.face.face--back
+.face.face--back(tabindex="-1")
   LogoBrand(direction="bottom").smaller
   .instructions
     h2 "{{query.trim()}}"
@@ -10,32 +10,29 @@
         | focusing on this question,
         br
         | we flip 3 coins.
-      .glyphs.right.rtl(v-else)
+      .glyphs.left.rtl(v-else)
         IconBase.line(
           v-for="char in toss"
           :key="$getSymbol(char)"
           :class="{valid: validToss}"
           :iconName="getLineName(char)"
           )
-          component(
-            :is="`Icon${char}`"
-            )
+          component( :is="`Icon${char}`" )
   .tossing
     .field.toss
       input.rtl(
         type="tel"
         v-model="toss"
-        ref="telEl"
         id="roll"
         maxlength="6"
         min="666666"
         max="999999"
         autofocus
-        tabindex="0"
         pattern="[6-9]{1,6}"
         placeholder="678789"
         @focus="coinFocus = true"
         @blur="coinFocus = false"
+        @keyup.ctrl.enter="emitToss"
       )
     transition(name="slide" appear mode="out-in")
       button.btn.right.go(
@@ -137,7 +134,6 @@ export default defineComponent({
   emits: ['toss', 'back'],
   setup(_, context) {
     const toss = ref('')
-    const telEl = ref()
     const coinFocus = ref(false)
     const validToss = computed(() => {
       return /^[6-9]{6}$/.test(toss.value)
@@ -152,7 +148,6 @@ export default defineComponent({
     }
 
     return {
-      telEl,
       toss,
       coinFocus,
       validToss,
@@ -166,7 +161,13 @@ export default defineComponent({
   },
   methods: {
     fakeCoins() {
-      this.toss = generateRandomToss().toString()
+      const fakeFlips = generateRandomToss().toString().split('')
+      let i = 0
+      const typer = setInterval(() => {
+        this.toss += fakeFlips[i]
+        i++
+        if (i === fakeFlips.length) clearInterval(typer)
+      }, 1000)
     },
     getLineName(char: string): string {
       switch (char) {
@@ -225,7 +226,6 @@ button.back {
   position: absolute;
   top: 0;
   left: 0;
-  transition: var(--beat);
   padding: 0 0.5rem;
   width: 3rem;
   margin: 0;

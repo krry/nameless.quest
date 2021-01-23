@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import {defineComponent, PropType, computed} from 'vue'
-import {defHex, Gram, Roll, defRoll} from '../schema'
+import {defHex, Gram} from '../schema'
 import IconBase from '../components/icons/IconBase.vue'
 import Icon6 from '../components/icons/Icon6.vue'
 import Icon9 from '../components/icons/Icon9.vue'
@@ -39,15 +39,15 @@ export default defineComponent({
       type: Object as PropType<Gram>,
       default: defHex.lines[0],
     },
-    roll: {
-      type: Object as PropType<Roll>,
-      default: defRoll,
+    toss: {
+      type: String,
+      default: '',
     },
   },
   setup(props) {
-    console.log('roll in lines', props.roll)
+    console.log('toss may change', props.toss)
     const changingLines = computed((): string[] => {
-      return props.roll.toss.split('').map((char) => {
+      return props.toss.split('').map((char) => {
         if (char === '6' || char === '9') return char
         else return ''
       })
@@ -63,15 +63,9 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .gram {
-  transition: color var(--beat);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
-}
-
-.gram:hover {
-  color: var(--flair);
 }
 
 .line-side svg {

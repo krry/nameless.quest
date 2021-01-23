@@ -10,16 +10,22 @@
   --hleading: 1.25;
   --leading: 1.375;
   --pleading: 1.425;
-  --font-clamp: clamp(11px, 11px + 0.3vw, 24px);
+  --font-clamp: clamp(11px, 11px + 0.25vw, 24px);
   --brand: hsl(321, 77%, 50%); /* #E21D9D */
   --theme-icons: '🌗🌓';
   --logo-dim: 7rem; /* to size the headers and such */
   --drawer-dim: 20rem; /* the width of the nav drawer */
   --frame: 0.25vw; /* to keep content off the edges of things */
+  --pad-25: 0.25rem; /* to keep content off the edges of things */
+  --pad-5: 0.5rem; /* to keep content off the edges of things */
   --pad: 1rem; /* to keep content off the edges of things */
-  --pads: 2rem; /* a bit of extra padding */
+  --pads: 1.5rem; /* a bit of extra padding */
+  --pad2: 2rem; /* a bit of extra padding */
+  --pad3: 3rem; /* a bit of extra padding */
+  --pad4: 4rem; /* a bit of extra padding */
   --lead: 1.5rem; /* lead to lay between lines, lends vertical rhythm */
   --bevel: 0.5rem;
+  --bevels: 1rem;
   --bumper: 3em 2em; /* keeps stuff off the interior walls */
   --beat: 333ms; /* default transition duration */
   --bea2: calc(var(--beat) * 2); /* twice as long as a beat */

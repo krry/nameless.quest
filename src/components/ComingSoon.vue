@@ -1,5 +1,5 @@
 <template lang="pug">
-h2.callout.alert.text-center 🚧 Coming soon 🧙‍♂️
+h2.callout.alert.text-center 🚧 More coming soon 🧙‍♂️
 </template>
 
 <script lang="ts">

@@ -29,11 +29,14 @@
   opacity: 1;
 }
 
+.field input {
+  padding: 0.25em 0.5em;
+}
+
 .field input,
 .field textarea {
   order: 2;
   appearance: none;
-  padding: 0.25em 0.5em;
   font-family: var(--text);
   font-weight: 500;
   font-size: 1.125em;
@@ -46,17 +49,18 @@
 }
 
 .field textarea {
-  resize: none;
-  padding: 0.5em 0.75em;
-  margin-bottom: 1em;
   width: 100%;
+  resize: none;
+  padding: 0.5em;
+  margin-bottom: 1em;
+  line-height: 1.6;
 }
 
 .field input:hover,
 .field input:focus,
 .field textarea:hover,
 .field textarea:focus {
-  outline: 2px dotted var(--glow);
+  outline: 2px var(--border-style) var(--glow);
   outline-offset: -5px;
 }
 

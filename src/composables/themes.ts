@@ -1,5 +1,5 @@
 import {ref} from 'vue'
-
+import {defTheme} from '../schema'
 import {THEMES} from '../constants'
 
 interface Bg {
@@ -14,7 +14,21 @@ interface Theme {
   bgs: Bg[]
 }
 
-export const activeTheme = ref<string>(THEMES[1].title)
+function checkThemePrefs() {
+  let savedTheme, mediaPref, dayOrNight
+  const tiempo = new Date().getHours()
+  if (localStorage) {
+    savedTheme = localStorage.getItem('theme')
+    // console.log('theme saved was', savedTheme)
+  }
+  if (window.matchMedia('(prefers-color-scheme)').media !== 'not all') {
+    mediaPref = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : defTheme
+  }
+  if (tiempo) dayOrNight = tiempo < 7 || tiempo > 19 ? 'night' : ''
+  return savedTheme || mediaPref || dayOrNight || THEMES[1].title
+}
+
+export const activeTheme = ref<string>(checkThemePrefs())
 
 export const useThemes = (): {
   getThemes: () => Theme[]

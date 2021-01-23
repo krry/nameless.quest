@@ -10,7 +10,7 @@ transition-group(
     :key="change.binary"
     :hex="change"
     :hexId="change.binary"
-    :roll="roll"
+    :toss="toss"
     @show="showCards"
     @hide="hideCard"
     )
@@ -24,12 +24,11 @@ import {
   toRefs,
   computed,
   provide,
-  InjectionKey,
   PropType,
+  InjectionKey,
 } from 'vue'
 
 import ChangeNode from './ChangeNode.vue'
-import {useRolls} from '../composables/rolls'
 import {useHexagrams} from '../composables/hexagrams'
 import {activeTheme} from '../composables/themes'
 import {checkForFreshSavedData} from '../utils/tosses'
@@ -47,13 +46,13 @@ export default defineComponent({
       type: Array as PropType<string[]>,
       default: () => [''],
     },
+    navved: Boolean,
   },
-  emits: ['show', 'hide'],
+  emits: ['show', 'hide', 'navved'],
   setup(props, context) {
     const wenny = ref(false)
     const rand = ref(1)
     const {getHexagrams} = useHexagrams()
-    const {getActiveRoll} = useRolls()
     const theme = ref(activeTheme)
 
     function sizeBg() {
@@ -66,19 +65,11 @@ export default defineComponent({
     }
 
     const rx = reactive({
-      roll: computed(() => {
-        return (
-          getActiveRoll() || {
-            query: checkForFreshSavedData('query'),
-            toss: checkForFreshSavedData('toss'),
-          }
-        )
-      }),
+      toss: checkForFreshSavedData('toss')[0],
       hexagrams: computed(() => getHexagrams(wenny.value)),
       backdrop: computed(() => {
         return 'url(/' + sizeBg() + theme.value + rand.value + '.jpg)'
       }),
-      rolly: computed(() => getActiveRoll() !== undefined),
     })
 
     function showCards(bins: string[]) {
@@ -112,6 +103,27 @@ export default defineComponent({
       ...toRefs(rx),
     }
   },
+  mounted() {
+    document.addEventListener('keyup', this.onArrows)
+  },
+  methods: {
+    onArrows(e: KeyboardEvent) {
+      const arrows = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown']
+      if (!e.key || arrows.indexOf(e.key) === -1) return
+      if (e.key === 'ArrowLeft') {
+        console.log('e', e.target)
+      }
+      if (e.key === 'ArrowRight') {
+        console.log('e', e.target)
+      }
+      if (e.key === 'ArrowUp') {
+        console.log('e', e.target)
+      }
+      if (e.key === 'ArrowDown') {
+        console.log('e', e.target)
+      }
+    },
+  },
 })
 </script>
 
@@ -128,8 +140,7 @@ export default defineComponent({
   background-size: cover;
   font-size: var(--font-clamp);
   min-width: 100vw;
-  /* border: 1px solid var(--glow); */
-  box-shadow: 0 0 1em var(--glow);
+  box-shadow: 0 0 0.5rem var(--glow);
   border-left: var(--frame) solid var(--glow);
   border: var(--frame) solid var(--glow);
   pointer-events: auto;

@@ -19,21 +19,21 @@
   min-height: 15rem;
   max-width: 92vw;
   max-height: 92vh;
-  width: 26em;
-  height: 32em;
-}
+  width: 96vw;
+  height: 96vh;
 
-@media (orientation: landscape) and (max-height: 36rem) {
-  .sleeve,
-  .card {
-    max-height: 100vh;
-  }
-}
-
-@media (min-height: 48rem) {
-  .sleeve,
-  .card {
+  @media (min-height: 48rem) {
     height: 40rem;
+    max-height: 80vh;
+  }
+
+  @media (min-width: 48rem) {
+    width: 40rem;
+    max-width: 80vh;
+  }
+
+  @media (orientation: landscape) and (max-height: 36rem) {
+    max-height: 100vh;
   }
 }
 

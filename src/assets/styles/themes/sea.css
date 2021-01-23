@@ -5,6 +5,7 @@ Under the Sea Pantone colors
 $blue-depths: hsl(228, 37%, 24%);
 $silk-sea: hsla(228, 37%, 24%, 0.82);
 $unfathomed: hsl(228, 49%, 8%);
+$sea-shadow: hsla(228, 49%, 8%, 0.75);
 $turkish-sea: hsl(211, 71%, 33%);
 $viridian-green: hsl(183, 49%, 40%);
 $limpet-shell: hsl(181, 51%, 73%);
@@ -34,5 +35,7 @@ $ripple: 0 0 0.125vw 0.0625vw hsl(227, 77%, 77%), 0 0 0.25vw 0.125vw hsl(177, 77
   --good: $viridian-green;
   --bad: $living-coral;
   --glow: $glow-sea;
+  --shade: $sea-shadow;
   --focus-glow: $ripple;
+  --border-style: dashed;
 }

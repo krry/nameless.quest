@@ -1,10 +1,11 @@
 import {createApp} from 'vue'
 import router from './router'
-import firebase from 'firebase'
-import users from './plugins/users'
-import store from './plugins/store'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 import App from './App.vue'
+import users from './plugins/users'
 import {titleCase, getSymbol} from './plugins/utils'
+import {AutoResize} from './directives/autoresize'
 
 import '@fontsource/quicksand/300.css'
 import '@fontsource/quicksand/400.css'
@@ -38,16 +39,18 @@ const firebaseConfig = {
   messagingSenderId: '386380781673',
   appId: '1:386380781673:web:265412564c620104f4aaf8',
 }
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
 firebase.auth().useDeviceLanguage()
 
 const app = createApp(App)
 
+app.directive('autoresize', AutoResize)
+
 // prettier-ignore
 app
   .use(router)
-  .use(store)
   .use(users)
   .use(getSymbol)
   .use(titleCase)

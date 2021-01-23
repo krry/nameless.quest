@@ -1,26 +1,30 @@
 <template lang="pug">
 .sleeve(
-  ref="sleeve"
   tabindex="0"
   :class="quad.yPos, quad.xPos, quad.edge, quad.middle, {flipped: texty}"
   )
-  .card(:class="{flipped: texty}")
+  .card(
+    ref="card"
+    :class="{flipped: texty}"
+    )
     transition(name="flip")
       HexaFace(
         v-if="!texty"
         class="face face--front"
+        :kingwen="hex.kingwen"
         @close="$emit('close')"
         @click.stop="$emit('focus')"
         @flip="toggleTexty"
+        tabindex="-1"
         )
         template(#top)
+          .mark(v-if="mark") {{mark}}
           HexaNames(
             :names="hex.names"
             :kingwen="hex.kingwen"
             :octal="hex.octal"
             @flip="toggleTexty"
             )
-          .mark(v-if="mark") {{mark}}
         template(#bottom)
           .cross.horiz
             .glyphs
@@ -30,23 +34,22 @@
               .binary {{ hex.binary.slice(2) }}
             .glyphs
               OneGua(:gua="hex.trigramPair.below" :texty="texty")
-          router-link.moar.btn.naked.abs.t.l.no-underline.clickable(:to="'/change/' + hex.kingwen")
-            IconBase(viewBox="0 -100 1000 800" height="36" width="36")
-              IconScroll
-            | More
       HexaFace(
         v-else
         class="face face--back"
+        :kingwen="hex.kingwen"
         @click.stop="$emit('focus')"
         @close="$emit('close')"
+        tabindex="-1"
         )
         template(#top)
+          .mark(v-if="mark") {{mark}}
           HexaNames(
             :names="hex.names"
             :kingwen="hex.kingwen"
             :octal="hex.octal"
+            @flip="toggleTexty"
             )
-          .mark(v-if="mark") {{mark}}
         template(#bottom)
           HexaInterp(
             :hex="hex"
@@ -55,11 +58,10 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType, ref, reactive, toRefs} from 'vue'
+import {defineComponent, PropType, ref, reactive, toRefs, onMounted} from 'vue'
 import {defHex, Quad, defQuad, Hexagram} from '../schema'
+import {useSwipeable} from '../composables/swipeable'
 import OneGua from './OneGua.vue'
-import IconBase from './icons/IconBase.vue'
-import IconScroll from './icons/IconScroll.vue'
 import HexaFace from './HexaFace.vue'
 import HexaNames from './HexaNames.vue'
 import HexaInterp from './HexaInterp.vue'
@@ -71,8 +73,6 @@ export default defineComponent({
     HexaFace,
     HexaNames,
     HexaInterp,
-    IconBase,
-    IconScroll,
   },
   props: {
     hex: {
@@ -91,43 +91,40 @@ export default defineComponent({
   },
   emits: ['close', 'focus'],
   setup() {
-    const cardData = reactive({
-      sleeve: ref(),
+    const {handleSwipeStart, handleSwipeEnd} = useSwipeable()
+    const rx = reactive({
+      card: ref<HTMLElement>(),
       texty: ref(false),
       interpShown: ref(false),
     })
 
     function toggleTexty() {
-      cardData.texty = !cardData.texty
+      rx.texty = !rx.texty
     }
+
+    onMounted(() => {
+      const gestureZone = rx.card
+      if (!gestureZone) return
+      gestureZone.addEventListener('touchstart', handleSwipeStart, false)
+      gestureZone.addEventListener('touchend', handleSwipeEnd, false)
+    })
 
     return {
       toggleTexty,
-      ...toRefs(cardData),
+      ...toRefs(rx),
     }
   },
 })
 </script>
 
 <style lang="postcss" scoped>
-.moar.btn.naked {
-  padding: 0 0.5em 0.5em;
-  margin: 0.25rem;
-}
-
 .mark {
-  position: absolute;
-  bottom: 0.25rem;
-  left: 0.25em;
-  font-size: 1.5em;
+  font-size: 1rem;
   font-weight: 700;
   border-radius: 100%;
-  border: 1px dashed var(--glow);
   padding: 0.25em;
   color: var(--glow);
-  width: 1.5em;
-  height: 1.5em;
-  line-height: 1;
+  margin-top: -2.75em;
   text-align: center;
 }
 
@@ -151,19 +148,17 @@ export default defineComponent({
 .card {
   width: 92vw;
   height: 22rem;
-}
 
-@media (min-width: 36rem) {
-  .sleeve,
-  .card {
+  @media (min-width: 36rem) {
     width: 30rem;
   }
-}
 
-@media (min-height: 36rem) {
-  .sleeve,
-  .card {
+  @media (min-height: 36rem) {
     height: 32rem;
+  }
+
+  @media (min-height: 48rem) {
+    height: calc(61vh + 2.5vw);
   }
 }
 
@@ -175,18 +170,6 @@ export default defineComponent({
   z-index: 26;
 }
 
-.card.flipped,
-.sleeve.flipped {
-  height: 80vh;
-}
-
-@media (min-width: 36rem) {
-  .card.flipped,
-  .sleeve.flipped {
-    height: 28rem;
-  }
-}
-
 @media (min-width: 48rem) and (min-height: 36rem) {
   .card.flipped,
   .sleeve.flipped,
@@ -194,7 +177,7 @@ export default defineComponent({
   .card {
     font-size: 1.125em;
     width: 28rem;
-    height: 32rem;
+    height: 57vh;
   }
 }
 

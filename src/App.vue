@@ -1,50 +1,35 @@
 <template lang="pug">
 #modals.modals.fs.fixed.abs-0
-AppDrawer#drawer.drawer.fixed.abs-0.fs(
+AppDrawer#drawer.fixed.abs-0.fs(
   @showModal="modalShown = true"
   @click.stop="closeDrawer"
   )
 button.btn.naked.tab.surf.fixed.b.l.ride(
   @click="closeDrawer"
-  ) 🏄
+  )
 transition(name="flag" appear)
   button.btn.naked.tab.surf.fixed.b.l.float(
     v-if="!drawerOpen"
     @click="openDrawer"
-    ) 🏄
+    )
 #app.app.rel(
   ref="ether"
-  @navved="setNavved"
 )
   router-view(
     :modal="modalShown"
-    :hasNavved="hasNavved"
+    :navved="navved"
+    @navved="setNavved"
     @modal="handleModal"
+    @closeDrawer="closeDrawer"
     )
 </template>
 
 <script lang="ts">
 import {defineComponent, ref, reactive, toRefs, watchEffect} from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/auth'
 import {activeTheme, useThemes} from './composables/themes'
-import {defTheme} from './schema'
 import AppDrawer from './components/AppDrawer.vue'
 
 const {setTheme} = useThemes()
-
-function checkThemePrefs() {
-  let savedTheme, mediaPref, dayOrNight
-  const tiempo = new Date().getHours()
-  if (window.localStorage) {
-    savedTheme = localStorage.getItem('lastTheme')
-  }
-  if (window.matchMedia('(prefers-color-scheme)').media !== 'not all') {
-    mediaPref = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : defTheme
-  }
-  if (tiempo) dayOrNight = tiempo < 7 || tiempo > 19 ? 'night' : ''
-  return savedTheme || mediaPref || dayOrNight || activeTheme.value
-}
 
 function removeClassOfClassesFromEl(element: HTMLElement, className: string) {
   const classList = element.classList
@@ -58,12 +43,13 @@ function removeClassOfClassesFromEl(element: HTMLElement, className: string) {
 }
 
 function applyTheme(theme: string) {
-  // console.log('applying theme:', theme)
   const doc = document.documentElement
   removeClassOfClassesFromEl(doc, 'theme')
   doc.classList.add(`theme-${theme}`)
   doc.setAttribute('data-theme', theme)
-  localStorage.setItem('lastTheme', theme)
+  // console.log('applying theme:', theme)
+  localStorage.setItem('theme', theme)
+  // console.log('saved theme:', localStorage.getItem('theme'))
   setTheme(theme)
 }
 
@@ -82,11 +68,11 @@ export default defineComponent({
       ether: ref<HTMLElement>(),
       modalShown: ref(false),
       drawerOpen: ref(true),
-      hasNavved: ref(checkStorage('hasNavved')),
+      navved: ref(checkStorage('navved')),
     })
 
     watchEffect(() => {
-      // console.log('theme switched to', activeTheme.value)
+      // console.log('watchEffect triggered', activeTheme.value)
       applyTheme(activeTheme.value)
     })
 
@@ -100,11 +86,8 @@ export default defineComponent({
         this.modalShown = false
       }
     })
-    const lastTheme = checkThemePrefs()
-    if (lastTheme !== activeTheme.value) {
-      setTheme(lastTheme)
-    }
-    document.addEventListener('scroll', () => {
+
+    window.addEventListener('scroll', () => {
       if (document.documentElement.scrollLeft <= 250) {
         this.drawerOpen = true
       } else this.drawerOpen = false
@@ -127,14 +110,15 @@ export default defineComponent({
       window.scrollTo(0, 0)
     },
     closeDrawer(): void {
-      window.scrollTo(window.innerWidth, 0)
+      window.scrollTo(window.innerWidth, document.documentElement.scrollTop)
     },
     handleModal(state: boolean): void {
       this.modalShown = state
     },
     setNavved(bit: boolean): void {
-      this.hasNavved = bit
-      localStorage.setItem('hasNavved', JSON.stringify(bit))
+      this.navved = bit
+      // console.log('navved set to', bit)
+      localStorage.setItem('navved', JSON.stringify(bit))
     },
   },
 })
@@ -176,15 +160,33 @@ body {
   scroll-snap-type: x mandatory;
 }
 
+.btn.surf::after {
+  content: var(--pip);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  line-height: 2em;
+}
+
 .btn.surf.tab {
-  font-size: 2em;
+  font-size: 1.5em;
+  height: 2em;
+  width: 2em;
+  margin: 1em 0;
   border: 2px solid var(--glow);
   background-color: var(--silk);
-  padding: 0 0.25em;
-  margin: 0.5em 0;
+  padding: 0;
+  /* margin: 0.5em 0; */
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   left: 0;
+  border-right: 0;
+  box-shadow: 0 0 0.25rem var(--glow);
+  /* position: relative; */
 
   &:hover {
     background: var(--dust);
@@ -206,7 +208,7 @@ body {
 
 .flag-enter-active,
 .flag-leave-active {
-  transition: transform var(--beat);
+  transition: transform var(--bea2);
   transform-origin: left center;
 }
 

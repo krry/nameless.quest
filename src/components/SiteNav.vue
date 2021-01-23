@@ -1,5 +1,5 @@
 <template lang="pug">
-nav.flex.mid.string.col
+nav.flex.mid.string.col.pads.y
   ul.site-nav
     li
       a.btn(@click.stop="showOracle")
@@ -16,12 +16,14 @@ nav.flex.mid.string.col
         IconBase(width="30" height="30" viewBox="0 -150 1000 1000")
           IconCrystalBall
         |  About the Oracle
-    li(:class="{muted: isProd}")
+    //- li(:class="{muted: isProd}")
+    li
       router-link.btn.naked(:to="{ name: 'journal' }")
         IconBase(viewBox="0 -50 1000 1000")
           IconSpellBook
         |  Start a Journal
-    li(:class="{muted: isProd}")
+    //- li(:class="{muted: isProd}")
+    li
       router-link.btn.naked(:to="{ name: 'config' }")
         IconBase(viewBox="0 0 1000 1000")
           IconCauldron
@@ -37,7 +39,7 @@ nav.flex.mid.string.col
           IconConversation
         | &nbsp; Feedback?
     li
-      a.btn.sm.naked(@click.stop="$logout") Sign out
+      a.btn.sm.naked(@click.stop="$logout") ✌️ Sign out
 </template>
 
 <script lang="ts">
@@ -77,7 +79,7 @@ export default defineComponent({
   },
   methods: {
     closeSidebar() {
-      window.scrollTo(320, 0)
+      window.scrollTo(320, document.documentElement.scrollTop)
     },
     showOracle() {
       console.log('route location', this.$route)
@@ -122,10 +124,15 @@ nav a {
 }
 
 nav .btn {
-  margin: 0;
   width: 100%;
   line-height: 2;
-  padding: 0.5em 1.25em;
+  padding: 0.5em 1em;
+  margin: 0;
+
+  @media (min-height: 48rem) {
+    padding: 0.25em 1em;
+    margin: 0.75rem 0;
+  }
 }
 
 nav .btn.sm {

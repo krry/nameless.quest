@@ -1,9 +1,8 @@
 <template lang="pug">
 main.desk.flex.string(
-  ref="desk"
   :style="{backgroundImage: backdrop}"
   )
-  .page.rel(ref="page")
+  .page.rel.flex.mid.col
     slot
 </template>
 
@@ -15,8 +14,6 @@ export default defineComponent({
   name: 'HexaGrid',
   setup() {
     const rx = reactive({
-      desk: ref(),
-      page: ref(),
       theme: activeTheme,
       backdrop: ref(''),
     })
@@ -57,7 +54,7 @@ export default defineComponent({
   font-size: var(--font-clamp);
   pointer-events: auto;
   margin-left: var(--drawer-buffer);
-  box-shadow: 0 0 1em var(--glow);
+  box-shadow: 0 0 0.5rem var(--glow);
   border-left: var(--frame) solid var(--glow);
   scroll-snap-align: start;
   min-width: calc(100vw - var(--drawer-dim));
@@ -91,6 +88,7 @@ export default defineComponent({
   margin: auto;
   background-color: var(--silk);
   padding: 1rem;
+  border-radius: var(--bevels);
   width: calc(100vw - 4em);
   max-width: 48rem;
 
@@ -118,7 +116,8 @@ export default defineComponent({
   }
 }
 
-.page h1:first-child {
+.page h1:first-child,
+.page h2:first-child {
   margin-top: 1em;
 }
 
@@ -133,6 +132,7 @@ export default defineComponent({
 
 .page p {
   line-height: var(--pleading);
+  margin: 0.5em;
 }
 
 .callout {
@@ -141,7 +141,8 @@ export default defineComponent({
   color: var(--ink);
   font-family: var(--mono);
   background-color: var(--ground);
-  box-shadow: inset 0 0 0.5rem 0 var(--ink);
+  box-shadow: inset 0 0 0.25rem 0 var(--ink);
+  border-radius: var(--bevel);
 }
 
 .callout strong {
@@ -176,12 +177,12 @@ export default defineComponent({
   font-variant: small-caps;
 
   @media (min-width: 48rem) {
-    padding: 0 1rem;
+    padding: 0 0.5rem;
     flex-basis: 50%;
   }
 
   @media (min-width: 64rem) {
-    padding: 0 2rem;
+    padding: 0 1rem;
     flex-basis: 33%;
   }
 }
@@ -194,7 +195,7 @@ export default defineComponent({
 }
 
 .page section {
-  border: 1px dotted var(--glow);
+  border: 1px var(--border-style) var(--glow);
   border-radius: var(--bevel);
   margin: 2rem 0;
   padding: 1rem;

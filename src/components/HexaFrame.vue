@@ -68,6 +68,7 @@ export default defineComponent({
   line-height: 1;
   cursor: pointer;
   pointer-events: auto;
+  z-index: 2;
 }
 
 .hexagram:hover,

@@ -18,11 +18,11 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, reactive, toRefs} from "vue";
-import OneGua from "./OneGua.vue";
+import {defineComponent, reactive, toRefs} from 'vue'
+import OneGua from './OneGua.vue'
 
 export default defineComponent({
-  name: "BaguaDoors",
+  name: 'BaguaDoors',
   components: {
     gua: OneGua,
   },
@@ -41,12 +41,12 @@ export default defineComponent({
     const BaguaData = reactive({
       aboveKey: Symbol(props.above),
       belowKey: Symbol(props.below),
-    });
+    })
     return {
       ...toRefs(BaguaData),
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="postcss">
@@ -82,14 +82,28 @@ export default defineComponent({
 
 .bagua .gua:first-child {
   align-items: flex-end;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
   border-bottom: 1px solid var(--glow);
 }
 
 .bagua .gua:last-child {
   align-items: flex-start;
-  padding-top: 0.5rem;
+  padding-top: 0.25rem;
   border-top: 1px solid var(--glow);
+}
+
+.bagua .gua:last-child .trigram {
+  line-height: 0.8;
+}
+
+@media (min-height: 36rem) and (min-width: 36rem) {
+  .bagua .gua:first-child {
+    padding-bottom: 0.5rem;
+  }
+
+  .bagua .gua:last-child {
+    padding-top: 0.5rem;
+  }
 }
 
 .bagua .gua .col:first-child {

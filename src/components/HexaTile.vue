@@ -12,12 +12,12 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from "vue";
-import {defHex, Hexaname} from "../schema";
-import HanziChars from "./HanziChars.vue";
+import {defineComponent, PropType} from 'vue'
+import {defHex, Hexaname} from '../schema'
+import HanziChars from './HanziChars.vue'
 
 export default defineComponent({
-  name: "Tile",
+  name: 'Tile',
   components: {
     hanzi: HanziChars,
   },
@@ -29,17 +29,17 @@ export default defineComponent({
   },
   computed: {
     arrayedHanzi(): string[] {
-      const hanzi = this.names.chinese;
+      const hanzi = this.names.chinese
       if (!hanzi) {
-        return [];
+        return []
       }
-      return hanzi.split("");
+      return hanzi.split('')
     },
     pinyin(): string[] {
-      return this.names.pinyin.split(" ");
+      return this.names.pinyin.split(' ')
     },
   },
-});
+})
 </script>
 
 <style lang="postcss" scoped>
@@ -61,9 +61,17 @@ export default defineComponent({
 }
 </style>
 <style lang="postcss">
+.tile.names,
+.tile.names:focus,
+.tile .yingyu,
+.tile .hanzi {
+  transition: var(--b3at) var(--ease-in-out-cubic);
+}
+
 .active .tile.names,
 .active .tile.names:focus,
-.active .tile .yingyu {
+.active .tile .yingyu,
+.active .tile .hanzi {
   color: var(--ground);
 }
 </style>

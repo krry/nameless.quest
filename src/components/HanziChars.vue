@@ -1,5 +1,5 @@
 <template lang="pug">
-.char(
+.char.base(
   v-if="reveal"
   @click.stop="pinny = !pinny"
   :class="size"
@@ -103,8 +103,12 @@ export default defineComponent({
   font-size: 1.5rem;
 }
 
-.hanzi:hover,
-.hanzi:focus {
+.char.base {
+  margin: 1rem 0;
+}
+
+.char.base .hanzi:hover,
+.char.base .hanzi:focus {
   color: var(--link);
 }
 

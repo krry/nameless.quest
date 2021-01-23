@@ -37,7 +37,6 @@ pre {
 }
 
 a {
-  /* transition: var(--beat); */
   cursor: pointer;
 }
 
@@ -86,4 +85,15 @@ blockquote {
   font-size: 1.25em;
   font-weight: 400;
   line-height: var(--pleading);
+}
+
+kbd {
+  background: var(--shade);
+  color: var(--flair);
+  font-weight: 600;
+  padding: var(--frame);
+  font-size: 112.5%;
+  margin: 0 2px;
+  border: 1px solid var(--flair);
+  border-radius: 3px;
 }

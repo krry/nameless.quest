@@ -5,7 +5,7 @@ Page.text-center(
   )
   router-link.page-nav.btn.naked.prev.clickable.abs.t.l(:to="prev") 𐡷 {{ prev }}
   transition.under(name="slide-fade" appear)
-    .hint.vapor.abs.t.r.l.center.font.sm(v-if="!hasNavved && !touchPresent") ⬅️ Did you try the arrow keys? ➡️
+    .hint.vapor.abs.t.r.l.center.font.sm(v-if="!hasNavved") ⬅️ Did you try 😁 arrow keys? ➡️
   router-link.page-nav.btn.naked.next.clickable.abs.t.r(:to="next") {{ next }} 𐡸
   h1.hexagram.font.x7l
     | {{ hex.hexagram }}
@@ -40,26 +40,23 @@ Page.text-center(
     pre.text.image {{ hex.images }}
     .flex.space
       .flex.string.col.balance
-        .datum.trigram.flex.string.laze(
+        .datum.trigram.flex.string.laze.btw(
           v-for="(tri, index) in trigrams"
           :key="$getSymbol(tri.name.en)"
           )
-          .flex.col.mid
+          .flex.col.mid.more
             dt The {{ $titleCase(tri.name.en) }}
             dt {{ index === 0 ? "Above" : "Below" }}
-          .flex.col.mid
+          .flex.col.mid.less
             HanziChars(
               :char="tri.name.zh"
               :pinyin="tri.name.pn"
               size="xl"
               reveal
               )
-          .flex.col.mid
-            h2.hexagram.font.x6l.second {{ tri.trigram }}
-      .datum.hexagram.middle.font.x7l.balance.spinner.clickable(
-        ref="spinner"
-        @click.stop="isSpinning = !isSpinning"
-        ) {{ hex.hexagram }}
+          .flex.col.mid.less
+            .hexagram.font.x6l.second {{ tri.trigram }}
+      .datum.hexagram.middle.font.x7l.balance {{ hex.hexagram }}
   .flex.mid.col.string
     h2 Changing Lines
     section(
@@ -84,7 +81,6 @@ Page.text-center(
 import {defineComponent, ref, toRefs, reactive, watchEffect, onMounted, computed} from 'vue'
 import {useHexagrams} from '../composables/hexagrams'
 import {useTrigrams} from '../composables/trigrams'
-import {useSpinnable} from '../composables/spinnable'
 import Page from '../components/Page.vue'
 import HanziChars from '../components/HanziChars.vue'
 import LineGram from '../components/LineGram.vue'
@@ -93,6 +89,9 @@ import Icon6 from '../components/icons/Icon6.vue'
 import Icon7 from '../components/icons/Icon7.vue'
 import Icon8 from '../components/icons/Icon8.vue'
 import Icon9 from '../components/icons/Icon9.vue'
+
+const {getHexagram} = useHexagrams()
+const {getTrigram} = useTrigrams()
 
 function getPrevHex(id: string): string {
   if (id === '1') {
@@ -128,22 +127,19 @@ export default defineComponent({
       default: '00',
     },
     modal: Boolean,
-    hasNavved: Boolean,
+    navved: Boolean,
   },
   emits: ['navved'],
   setup(props) {
-    const {getHexagram} = useHexagrams()
-    const {getTrigram} = useTrigrams()
     const hex = ref(getHexagram(props.id))
-    const spinner = ref<HTMLElement>()
 
     const rx = reactive({
       hex,
-      isSpinning: ref(false),
-      // mousePresent: ref(false),
+      mousePresent: ref(false),
       touchPresent: ref(false),
       prev: getPrevHex(props.id),
       next: getNextHex(props.id),
+      hasNavved: ref(false),
       pinyin: computed(() => hex.value.names.pinyin.split(' ')),
     })
 
@@ -154,37 +150,28 @@ export default defineComponent({
     watchEffect(() => {
       rx.prev = getPrevHex(props.id)
       rx.next = getNextHex(props.id)
+      rx.hasNavved = props.navved
     })
 
     onMounted(() => {
-      // document.addEventListener(
-      //   'mousemove',
-      //   function onMouseMove() {
-      //     // see if there's a mouse in the house
-      //     document.removeEventListener('mousemove', onMouseMove, false)
-      //     rx.mousePresent = true
-      //   },
-      //   false,
-      // )
+      document.addEventListener(
+        'mousemove',
+        function onMouseMove() {
+          // see if there's a mouse in the house
+          document.removeEventListener('mousemove', onMouseMove, false)
+          rx.mousePresent = true
+        },
+        false,
+      )
       document.addEventListener('touchmove', function onTouchMove() {
         // see if anyone's in touch
         document.removeEventListener('touchmove', onTouchMove, false)
         rx.touchPresent = true
         // initializeTouchBehavior();
       })
-      if (spinner.value) {
-        const {getSpinning, setSpinning} = useSpinnable(spinner.value)
-
-        rx.isSpinning = getSpinning()
-
-        watchEffect(() => {
-          setSpinning(rx.isSpinning)
-        })
-      }
     })
 
     return {
-      spinner,
       trigrams,
       getHexagram,
       ...toRefs(rx),
@@ -290,7 +277,27 @@ dl + dl::before {
   padding: 1em;
 }
 
-.spinner {
-  animation: spin 2500ms infinite linear paused;
+.numbers .datum {
+  margin: 0 1rem;
+}
+
+.trigram .col {
+  margin: 0 0.5rem;
+}
+
+.hexagram.second {
+  margin-top: -0.2em;
+}
+
+.more {
+  flex-basis: 40%;
+}
+
+.less {
+  flex-basis: 30%;
+}
+
+h5 {
+  margin: 1em 0;
 }
 </style>

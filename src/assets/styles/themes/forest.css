@@ -2,6 +2,7 @@
 FOREST Palette
 */
 $deep-shade: hsl(157, 67%, 5%);
+$jung-shadow: hsla(157, 33%, 5%, 0.75);
 $silk-forest: hsla(157, 67%, 11%, 0.85);
 $canopy-dusk: hsl(157, 87%, 11%);
 $spore-print: hsla(37, 12%, 22%, 0.6);
@@ -18,8 +19,8 @@ $sunglow: 0 0 0.125vw 0.0625vw hsl(27, 77%, 77%), 0 0 0.25vw 0.125vw hsl(77, 77%
 
 [data-theme='forest'],
 .theme-forest {
-  --theme-icons: '🦌🏕';
-  --pip: '🌲';
+  --theme-icons: '🌲🏕';
+  --pip: '🦌';
   --paper: $canopy-dusk;
   --silk: $silk-forest;
   --ground: $deep-shade;
@@ -31,5 +32,7 @@ $sunglow: 0 0 0.125vw 0.0625vw hsl(27, 77%, 77%), 0 0 0.25vw 0.125vw hsl(77, 77%
   --good: $chlorophyll;
   --bad: $frog-paint;
   --glow: $glow-forest;
+  --shade: $jung-shadow;
   --focus-glow: $sunglow;
+  --border-style: double;
 }

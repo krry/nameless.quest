@@ -22,7 +22,7 @@ button.btn {
 button.btn:hover,
 button.btn:focus {
   background-color: var(--brand);
-  outline: 2px dotted var(--brand);
+  outline: 2px var(--border-style) var(--brand);
   outline-offset: 2px;
   color: var(--ground);
 }
@@ -42,9 +42,14 @@ button.btn.lg {
   font-size: 1.25rem;
 }
 
-.btn.md,
-button.btn.md {
+.btn.xl,
+button.btn.xl {
   font-size: 1.5rem;
+}
+
+.btn.xxl,
+button.btn.xxl {
+  font-size: 2rem;
 }
 
 .btn.dark,

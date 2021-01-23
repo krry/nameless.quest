@@ -16,8 +16,8 @@ article.change-node(
   Frame(:hex="hex")
   Tile.tile(
     ref="tile"
-    @click.stop="showCards(e, [hexId])"
-    @keyup.enter="showCards(e, [hexId])"
+    @click.stop="showCards([hexId])"
+    @keyup.enter="showCards([hexId])"
     :names="hex.names"
     :tabindex="wenny ? hex.kingwen : hex.octal"
   )
@@ -38,10 +38,11 @@ import {
   onMounted,
   computed,
 } from 'vue'
-import {defHex, Hexagram, defQuad, Quad, Roll, defRoll} from '../schema'
-import {wenKey} from './HexaGrid.vue'
-import {useLot} from '../composables/lots'
+
+import {defHex, Hexagram, defQuad, Quad} from '../schema'
 import {determineQuadrant} from '../utils/cards'
+import {useLot} from '../composables/lots'
+import {wenKey} from './HexaGrid.vue'
 import HexaCard from './HexaCard.vue'
 import HexaTile from './HexaTile.vue'
 import HexaFrame from './HexaFrame.vue'
@@ -65,9 +66,9 @@ export default defineComponent({
       type: String,
       default: '0b000000',
     },
-    roll: {
-      type: Object as PropType<Roll>,
-      default: defRoll,
+    toss: {
+      type: String,
+      default: '666666',
     },
   },
   emits: ['show', 'hide'],
@@ -99,15 +100,16 @@ export default defineComponent({
       watchEffect(() => {
         // only show marks when two cards
         // only show changing lines on first card
-        if (isActive.value === 0 && props.roll.toss) {
+        // console.log('props.toss', props.toss)
+        if (isActive.value === 0 && props.toss) {
           changeData.liney = true
-          changeData.mark = 'Being'
+          changeData.mark = '𐡷 Being 𐡸'
           if (!changeData.card || !changeData.card.$el) return
           changeData.card.$el.focus()
         }
         if (isActive.value === 1) {
           changeData.liney = false
-          changeData.mark = 'Becoming'
+          changeData.mark = '𐡸 Becoming 𐡷'
         }
       })
     })
@@ -121,9 +123,7 @@ export default defineComponent({
     }
   },
   methods: {
-    showCards(ev: MouseEvent, bins: string[]): void {
-      // detect center of this element
-      // detect distance of click event from
+    showCards(bins: string[]): void {
       this.$emit('show', bins)
     },
     hideCard(bin?: string): void {
@@ -143,7 +143,7 @@ export default defineComponent({
   padding: 0.61em;
   position: relative;
   text-align: center;
-  transition: var(--be4t) var(--ease-in-out-cubic);
+  transition: var(--b3at) var(--ease-in-out-cubic);
   background-color: var(--silk);
   min-width: 9em;
   min-height: 6.67em;
@@ -171,13 +171,45 @@ export default defineComponent({
 .deal-enter-to,
 .deal-leave-from {
   opacity: 1;
-  transform: translateY(0) rotateZ(0);
+  transform: rotateX(0) rotateY(0) rotate(0) scale(1);
 }
 
-.deal-leave-to,
-.deal-enter-from {
+.deal-enter-from,
+.deal-leave-to {
   opacity: 0;
-  transform: scale(0.2) translateY(180deg);
+  transform: rotateX(0) rotateY(-180deg) rotate(0) scale(0.5);
+}
+
+.change-node:nth-of-type(8n-7) .deal-enter-from {
+  transform: rotateX(-180deg) rotate(-180deg) scale(0.25);
+}
+
+.change-node:nth-of-type(8n-3) .deal-enter-from {
+  transform: rotateX(-180deg) rotate(180deg) scale(0.25);
+}
+
+.change-node:nth-of-type(8n-6) .deal-enter-from {
+  transform: rotateY(-180deg) rotate(-180deg) scale(0.25);
+}
+
+.change-node:nth-of-type(8n-2) .deal-enter-from {
+  transform: rotateY(-180deg) rotate(180deg) scale(0.25);
+}
+
+.change-node:nth-of-type(8n-5) .deal-enter-from {
+  transform: rotateX(180deg) rotate(-180deg) scale(0.25);
+}
+
+.change-node:nth-of-type(8n-1) .deal-enter-from {
+  transform: rotateX(180deg) rotate(180deg) scale(0.25);
+}
+
+.change-node:nth-of-type(8n-4) .deal-enter-from {
+  transform: rotateY(180deg) rotate(-180deg) scale(0.25);
+}
+
+.change-node:nth-of-type(8n) .deal-enter-from {
+  transform: rotateY(180deg) rotate(180deg) scale(0.25);
 }
 
 /*
@@ -197,35 +229,35 @@ export default defineComponent({
   }
 
   .change-node:nth-of-type(8n) .deal-enter-from {
-    transform: translate3d(-50%, 0%, 0) scale(0.2) rotateX(180deg) rotateZ(-180deg);
+    transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(180deg) rotateZ(-180deg);
   }
 
   .change-node:nth-of-type(8n-1) .deal-enter-from {
-    transform: translate3d(-50%, 0%, 0) scale(0.2) rotateX(-180deg) rotateZ(180deg);
+    transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(-180deg) rotateZ(180deg);
   }
 
   .change-node:nth-of-type(8n-2) .deal-enter-from {
-    transform: translate3d(-50%, 0%, 0) scale(0.2) rotateX(-180deg) rotateZ(-180deg);
+    transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(-180deg) rotateZ(-180deg);
   }
 
   .change-node:nth-of-type(8n-3) .deal-enter-from {
-    transform: translate3d(-50%, 0%, 0) scale(0.2) rotateY(-180deg) rotateZ(180deg);
+    transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(-180deg) rotateZ(180deg);
   }
 
   .change-node:nth-of-type(8n-4) .deal-enter-from {
-    transform: translate3d(-50%, 0%, 0) scale(0.2) rotateY(180deg) rotateZ(-180deg);
+    transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(180deg) rotateZ(-180deg);
   }
 
   .change-node:nth-of-type(8n-5) .deal-enter-from {
-    transform: translate3d(-50%, 0%, 0) scale(0.2) rotateY(-180deg) rotateZ(-180deg);
+    transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(-180deg) rotateZ(-180deg);
   }
 
   .change-node:nth-of-type(8n-6) .deal-enter-from {
-    transform: translate3d(-50%, 0%, 0) scale(0.2) rotateX(180deg) rotateZ(180deg);
+    transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(180deg) rotateZ(180deg);
   }
 
   .change-node:nth-of-type(8n-7) .deal-enter-from {
-    transform: translate3d(-50%, 0%, 0) scale(0.2) rotateY(180deg) rotateZ(180deg);
+    transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(180deg) rotateZ(180deg);
   }
 }
 </style>

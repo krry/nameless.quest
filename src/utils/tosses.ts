@@ -75,15 +75,42 @@ export const generateRandomToss = (): number => {
   )
 }
 
-export function checkForFreshSavedData(key: string): string {
-  console.log(`looking in localStorage for ${key} value`)
-  const savedData = localStorage.getItem(key)
-  if (!savedData) return ''
-  // console.log(`looking in localStorage for ${key}Saved`);
-  const lastSaved = parseInt(localStorage.getItem(`${key}Saved`) || '0')
+interface SavedData {
+  stored: string[]
+  timestamp: number
+}
+
+export function checkForFreshData(data: SavedData[]): SavedData | null {
+  if (!data) return null
+  // sort data by greater timestamp
+  const laterData = data.sort((a, b) => b.timestamp - a.timestamp)
   const now = new Date().getTime()
-  const fresh = now - lastSaved < 1000 * 60 * 60 * 24
-  // console.log(`saved ${key} is fresh`, fresh);
-  if (!lastSaved || !fresh) return ''
-  return fresh ? savedData : ''
+  // if latest datum is less than a day old, it is fresh
+  return now - laterData[0].timestamp < 1000 * 60 * 60 * 24 ? laterData[0] : null
+}
+
+export function checkForSavedData(nym: string): SavedData[] | null {
+  console.log(`checking localStorage for ${nym}`)
+  const savedString = localStorage.getItem(nym)
+  if (!savedString) return null
+  const savedData = JSON.parse(savedString)
+  console.log('found stored data:', savedData)
+  return savedData
+}
+
+export function checkForFreshSavedData(nym: string): string[] {
+  const savedData = checkForSavedData(nym)
+  if (!savedData) return ['']
+  const freshData = checkForFreshData(savedData)
+  if (!freshData || !freshData.stored) return ['']
+  return freshData.stored
+}
+
+export function saveNewDatum(nym: string, goo: string[]): boolean {
+  if (!nym || !goo) return false
+  // first check for existing data with the same nym
+  const savedData = checkForSavedData(nym) || []
+  savedData.push({stored: goo, timestamp: new Date().getTime()})
+  localStorage.setItem(nym, JSON.stringify(savedData))
+  return true
 }

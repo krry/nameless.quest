@@ -1,6 +1,7 @@
 import {App, ref, reactive} from 'vue'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 import router from '../router'
-import firebase from 'firebase'
 import {Token} from '../schema'
 
 // interface User {
@@ -9,6 +10,7 @@ import {Token} from '../schema'
 //   authd: boolean
 //   token: Token
 // }
+
 const token = reactive({
   val: ref(''),
   expiration: new Date().getTime(),
@@ -30,7 +32,6 @@ export default {
         .signOut()
         .then(() => {
           router.push('/')
-          // Sign-out successful.
         })
         .catch((error) => {
           router.push('/login')

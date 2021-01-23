@@ -3,6 +3,8 @@ HexaGrid(
   @show="showCards"
   @hide="hideCard"
   :lots="lots"
+  :navved="navved"
+  @navved="$emit('navved')"
   )
 ModalState(
   :open="modal"
@@ -22,8 +24,8 @@ import {defineComponent, computed} from 'vue'
 import HexaGrid from '../components/HexaGrid.vue'
 import ModalState from '../components/ModalState.vue'
 import OracleModal from '../components/OracleModal.vue'
-import {useLots} from '../composables/lots'
 import {checkForFreshSavedData} from '../utils/tosses'
+import {useLots} from '../composables/lots'
 
 export default defineComponent({
   name: 'Home',
@@ -34,9 +36,9 @@ export default defineComponent({
   },
   props: {
     modal: Boolean,
-    hasNavved: Boolean,
+    navved: Boolean,
   },
-  emits: ['modal'],
+  emits: ['modal', 'closeDrawer', 'navved'],
   setup() {
     const {getLots, setLots, nixLot} = useLots()
     const lots = computed(() => getLots())
@@ -51,7 +53,7 @@ export default defineComponent({
     if (!lots) window.scrollTo(0, 1)
     // hack to hide the browser address bar on mobile browsers
     else {
-      this.setLots(JSON.parse(lots))
+      this.setLots(lots)
       // same hack only avoids moving the grid out from under the shown cards
       window.scrollTo(window.innerWidth, 1)
     }
@@ -66,6 +68,11 @@ export default defineComponent({
   },
   methods: {
     showCards(bins: string[]) {
+      this.$emit('closeDrawer')
+      if (!bins || !bins[0]) {
+        console.log('no bins to show', bins)
+        return
+      }
       this.setLots(bins)
     },
     hideCard(bin: string) {

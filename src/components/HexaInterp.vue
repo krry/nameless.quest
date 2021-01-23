@@ -4,11 +4,11 @@
   pre.judgment {{ hex.judgment }}
   .hexagram.clickable(@click.stop="$emit('flip')") {{ hex.hexagram }}
   transition(name="slide" mode="out-in" appear)
-    .lines.right.clickable(v-if="linesShown")
+    .lines.right.clickable(v-if="liney && linesShown")
       h3 Changing Lines
       .line(v-for="gram in hex.lines" :key="$getSymbol(hex.binary)")
-        Gram(:content="gram")
-    .images.left.clickable(v-else)
+        LineGram(:content="gram" :toss="toss")
+    .images.left(v-else :class="{clickable: liney}")
       h3 Images
       pre.image {{ hex.images }}
 </template>
@@ -17,11 +17,12 @@
 import {ref, defineComponent, PropType} from 'vue'
 import {Hexagram, defHex} from '../schema'
 import LineGram from './LineGram.vue'
+import {checkForFreshSavedData} from '../utils/tosses'
 
 export default defineComponent({
   name: 'HexaInterp',
   components: {
-    Gram: LineGram,
+    LineGram,
   },
   props: {
     hex: {
@@ -32,13 +33,15 @@ export default defineComponent({
   },
   setup(props) {
     const linesShown = ref(props.liney)
+    const toss = checkForFreshSavedData('toss')[0]
 
     function showLines() {
-      if (props.hex.lines.length > 0) {
+      if (props.hex.lines.length > 0 && props.liney) {
         linesShown.value = !linesShown.value
       }
     }
     return {
+      toss,
       linesShown,
       showLines,
     }
@@ -66,7 +69,7 @@ pre.image {
 .hexagram {
   margin: 0 auto;
   font-size: 4em;
-  transition: var(--beat);
+  transition: var(--bea2);
   transform-origin: center center;
 }
 
@@ -76,7 +79,7 @@ pre.image {
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: var(--beat) var(--ease-in-out-quad);
+  transition: var(--bea2) var(--ease-in-out-quad);
 }
 
 .slide-leave-from,

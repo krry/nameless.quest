@@ -4,6 +4,7 @@ intergalactic planetary
 */
 $paper-night: hsl(199, 17%, 10%);
 $silk-night: hsla(199, 17%, 7%, 0.82);
+$night-shade: hsla(199, 10%, 2%, 0.75);
 $deep-space: hsl(199, 10%, 2%);
 $dust-night: hsla(199, 20%, 50%, 0.8);
 $pencil-night: hsla(199, 50%, 90%, 0.2);
@@ -21,7 +22,7 @@ $moonglow: 0 0 0.125vw 0.0625vw hsla(177, 77%, 77%, 1), 0 0 0.25vw 0.125vw hsla(
 [data-theme='night'],
 .theme-night {
   --theme-icons: '🦉🌚';
-  --pip: '🛸';
+  --pip: '☄️';
   --paper: $paper-night;
   --silk: $silk-night;
   --ground: $deep-space;
@@ -33,5 +34,7 @@ $moonglow: 0 0 0.125vw 0.0625vw hsla(177, 77%, 77%, 1), 0 0 0.25vw 0.125vw hsla(
   --good: $good-night;
   --bad: $bad-night;
   --glow: $glow-night;
+  --shade: $night-shade;
   --focus-glow: $moonglow;
+  --border-style: dotted;
 }

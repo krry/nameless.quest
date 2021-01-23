@@ -80,7 +80,8 @@ export default defineComponent({
   cursor: pointer;
   position: relative;
   font-size: 1.5rem;
-  transition: color var(--beat);
+  transition: color var(--bea2);
+  margin-bottom: 1rem;
 }
 
 .glyphs:hover,

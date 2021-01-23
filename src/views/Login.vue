@@ -1,26 +1,24 @@
 <template lang="pug">
-Page.login
+Page.login(ref="el")
   .flex.mid
     LogoBrand(direction="right" size="large")
   h1
-    | Passwordless Login 
-    sup
-      a(@click="explainPasswordless = !explainPasswordless") ???
+    | Sign in
+  h3.text-center
+    a(@click="explainPasswordless = !explainPasswordless") It's passwordless!?
   transition.over(name="slide-fade" appear)
     p(v-if="explainPasswordless")
       | Frankly 
       router-link(to="https://medium.com/@ninjudd/passwords-are-obsolete-9ed56d483eb") passwords are obsolete
-      |  as a security measure. Passwordless login is easier and more secure.
-
+      |  as a security measure.
+      br
+      | Signing in passwordlessly is easier and more secure.
   section
-    transition.under.msg(name="slide-fade" appear)
-      h3(v-show="msg.phone") {{ msg.phone }}
-    transition.over.msg(name="slide-fade" appear)
-      h3(v-if="msg.email") {{ msg.email }}
-    form.flex.space.spread(@submit.prevent="showOrSubmit")
+    h4.text-center.tagline Abandon the random, ye who enter here.
+    form.flex.space.spread.wrap(@submit.prevent="showOrSubmit")
       .half
         .field
-          transition.under(name="slide-fade")
+          transition.left(name="slide-fade")
             input#email.large(
               type="email"
               v-model="email"
@@ -44,8 +42,8 @@ Page.login
                 v-model="phone"
                 v-show="chosePhone"
                 :required="chosePhone"
-                placeholder="+2.718.281.8284"
-                pattern="[0-9]{7,14}"
+                placeholder="First the country code"
+                pattern="[0-9]{10,14}"
                 maxlength="14"
                 )
             button.btn.lg.outline#phone_butt(
@@ -65,7 +63,15 @@ Page.login
               )
             button.btn.outline.md(@click="confirmCode") Confirm
             label(for="phone_code") The code we texted you
-  h2.tagline Abandon all belief ye who enter here.
+    transition.under.msg(name="slide-fade" appear)
+      h3(v-if="phoneSuccessMsg")
+        | We've texted the secret code to your phone. You may close this window.
+    transition.under.msg(name="slide-fade" appear)
+      h3(v-if="phoneErrorMsg")
+        | We couldn't send an SMS to this number. You could retry, reload the page, or use email.
+    transition.over.msg(name="slide-fade" appear)
+      h3(v-if="emailSuccessMsg")
+        | We've sent the magic link to your email. You may close this window.
 </template>
 
 <script lang="ts">
@@ -75,6 +81,9 @@ import LogoBrand from '../components/LogoBrand.vue'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 
+let recaptchaVerifier: firebase.auth.RecaptchaVerifier
+let confirmResult: firebase.auth.ConfirmationResult
+
 export default defineComponent({
   name: 'Login',
   components: {
@@ -83,17 +92,17 @@ export default defineComponent({
   },
   data() {
     return {
+      email: 'you',
+      phone: 'you',
+      confCode: '',
+      recaptchaId: '',
       choseEmail: false,
       chosePhone: false,
       acceptingCode: false,
-      phone: 'you',
-      email: 'you',
-      recaptchaId: '',
+      emailSuccessMsg: false,
+      phoneErrorMsg: false,
+      phoneSuccessMsg: false,
       explainPasswordless: false,
-      msg: {
-        email: '',
-        phone: '',
-      },
     }
   },
   computed: {
@@ -103,14 +112,13 @@ export default defineComponent({
     },
   },
   mounted() {
-    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('phone_butt', {
+    recaptchaVerifier = new firebase.auth.RecaptchaVerifier('phone_butt', {
       size: 'invisible',
-      callback: (response) => {
+      callback: (response: Response) => {
         // reCAPTCHA solved, allow signInWithPhoneNumber.
         console.log('response', response)
       },
     })
-    this.recaptchaId = window.recaptchaVerifier.v.a
   },
   methods: {
     async emailLinkSend() {
@@ -128,10 +136,9 @@ export default defineComponent({
         .sendSignInLinkToEmail(this.email, actionCodeSettings)
         .then(() => {
           // The link was successfully sent. Inform the user.
-          // Save the email locally so you don't need to ask the user for it again
-          // if they open the link on the same device.
-          this.msg.email = 'Sent! Click the magic link in your email to sign in passwordlessly.'
-          window.localStorage.setItem('emailForSignIn', this.email)
+          this.emailSuccessMsg = true
+          // Save the email locally so you don't need to ask the user for it again if they open the link on the same device
+          localStorage.setItem('emailForSignIn', this.email)
         })
         .catch((error) => {
           const errorCode = error.code
@@ -140,32 +147,36 @@ export default defineComponent({
         })
     },
     async signInWithPhone() {
-      const appVerifier = window.recaptchaVerifier
-
+      const appVerifier = recaptchaVerifier
+      const confCode = this.confCode
       await firebase
         .auth()
         .signInWithPhoneNumber(this.phone, appVerifier)
         .then((confirmationResult) => {
           this.acceptingCode = true
-          this.msg.phone = 'Check your texts for a 6-digit code from 44398'
-          window.confirmationResult = confirmationResult
+          this.phoneSuccessMsg = true
+          confirmResult = confirmationResult
         })
         .catch((error) => {
           console.error("didn't send SMS", error)
+          this.phoneErrorMsg = true
           // recover from SMS fail by resetting recaptcha
           // window.recaptchaVerifier.render().then(function (widgetId) {
           // grecaptcha.reset(widgetId)
           // })
         })
-      window.confirmationResult
-        .confirm(this.confcode)
-        .then((result) => {
-          const user = result.user
-          console.log('user is ', user)
-        })
-        .catch((error) => {
-          console.error('bad verification code', error)
-        })
+      if (this.acceptingCode) {
+        confirmResult
+          .confirm(confCode)
+          .then((result) => {
+            const user = result.user
+            console.log('user is ', user)
+            localStorage.setItem('phoneForSignIn', this.phone)
+          })
+          .catch((error) => {
+            console.error('bad verification code', error)
+          })
+      }
     },
     showOrSubmit(e: MouseEvent) {
       const id = (e.target as HTMLElement).id
@@ -194,12 +205,14 @@ export default defineComponent({
 </script>
 
 <style lang="postcss" scoped>
-.grecaptcha-badge {
-  visibility: hidden;
-  opacity: 0;
-  text-indent: -99999px;
-  pointer-events: none;
-  transform: scale(0);
+.grecaptcha-badge,
+.grecaptcha-logo {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  text-indent: -99999px !important;
+  pointer-events: none !important;
+  transform: scale(0) !important;
 }
 
 label,
@@ -211,5 +224,6 @@ input {
 
 .field {
   flex-direction: column-reverse;
+  margin: 1rem 2rem;
 }
 </style>

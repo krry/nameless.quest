@@ -5,7 +5,7 @@ Page.config
   h3.tagline Hone your ritual to suit your taste
   section.flex.col.string
     h3 Change the Theme
-    ThemeSwitch
+    ThemeSwitch(size="xl")
   ComingSoon
 </template>
 

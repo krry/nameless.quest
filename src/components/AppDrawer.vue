@@ -1,10 +1,10 @@
 <template lang="pug">
-.sidebar
+.drawer.flex.begin
   header.flex.mid
     LogoBrand(direction="bottom" size="large")
       template(#tagline) A Paean to the I Ching
   SiteNav(@showModal="$emit('showModal')")
-  ThemeSwitch.tab.abs.b.themes(size="md")
+  ThemeSwitch.tab.fixed.l.vmid.themes.leftside(size="lg")
 </template>
 
 <script lang="ts">
@@ -30,7 +30,7 @@ export default defineComponent({
 </script>
 
 <style lang="postcss" scoped>
-.sidebar.drawer {
+.drawer {
   display: flex;
   justify-content: center;
   flex-flow: column nowrap;
@@ -52,15 +52,17 @@ export default defineComponent({
   border: 2px solid var(--glow);
   background-color: var(--silk);
   padding: 0 0.25em;
-  margin: 0.5em 0;
+  margin: 1em 0;
 }
 
-.themes.tab.abs.b {
+.themes.tab.l {
+  border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom: 0;
-  margin-bottom: 0;
-  padding: 0.25em 1em 0;
+  border-left: 0;
+  margin-left: 0;
+  padding: 0.5em 0.5em 0.5em 0.25em;
+  writing-mode: vertical-lr;
+  box-shadow: 0 0 0.25rem var(--glow);
 }
 
 header {

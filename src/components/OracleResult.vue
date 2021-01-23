@@ -20,16 +20,16 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, computed, PropType} from "vue";
-import IconBase from "./icons/IconBase.vue";
-import Icon6 from "./icons/Icon6.vue";
-import Icon7 from "./icons/Icon7.vue";
-import Icon8 from "./icons/Icon8.vue";
-import Icon9 from "./icons/Icon9.vue";
-import LogoBrand from "./LogoBrand.vue";
+import {defineComponent, computed, PropType} from 'vue'
+import IconBase from './icons/IconBase.vue'
+import Icon6 from './icons/Icon6.vue'
+import Icon7 from './icons/Icon7.vue'
+import Icon8 from './icons/Icon8.vue'
+import Icon9 from './icons/Icon9.vue'
+import LogoBrand from './LogoBrand.vue'
 
 export default defineComponent({
-  name: "OracleToss",
+  name: 'OracleToss',
   components: {
     IconBase,
     Icon6,
@@ -41,29 +41,29 @@ export default defineComponent({
   props: {
     toss: {
       type: String,
-      default: "",
+      default: '',
     },
     bins: {
       type: Array as PropType<string[]>,
-      default: () => [""],
+      default: () => [''],
     },
   },
-  emits: ["show", "back"],
+  emits: ['show', 'back'],
   setup(props) {
     const plural = computed((): string => {
-      return props.toss.includes("6") || props.toss.includes("9") ? "s" : "";
-    });
+      return props.toss.includes('6') || props.toss.includes('9') ? 's' : ''
+    })
 
     return {
       plural,
-    };
+    }
   },
   methods: {
     showCards(bins: string[]) {
-      this.$emit("show", bins);
+      this.$emit('show', bins)
     },
   },
-});
+})
 </script>
 
 <style lang="postcss" scoped>
@@ -110,7 +110,6 @@ button.back {
   color: inherit;
   top: 0;
   left: 0;
-  transition: var(--beat);
   border: 0;
   padding: 0.5rem;
   width: 3rem;

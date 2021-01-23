@@ -1,4 +1,4 @@
-import {ref, watchEffect} from 'vue'
+import {ref} from 'vue'
 
 interface SpinParams {
   getSpinning: () => boolean
@@ -6,20 +6,27 @@ interface SpinParams {
 }
 
 export const useSpinnable = (element: HTMLElement): SpinParams => {
+  const moveEvent = ref('')
   const spinning = ref(false)
   const mouseDetected = ref(false)
   const touchDetected = ref(false)
-  const moveEvent = ref('')
+  console.log('making element spinnable', element)
 
-  function measureDistance(el: HTMLElement, mX: number, mY: number) {
-    const rect = el.getBoundingClientRect()
+  function measureDistance(mX: number, mY: number) {
+    console.log('mX', mX)
+    console.log('mY', mY)
+    console.log('element.offsetWidth', element.offsetWidth)
+    console.log('element.offsetHeight', element.offsetHeight)
+    const rect = element.getBoundingClientRect()
+    console.log('rect left', rect.left)
+    console.log('rect top', rect.top)
     const dist = Math.floor(
       Math.sqrt(
-        Math.pow(mX - (rect.left + el.offsetWidth / 2), 2) +
-          Math.pow(mY - (rect.top + el.offsetHeight / 2), 2),
+        Math.pow(mX - (rect.left + element.offsetWidth / 2), 2) +
+          Math.pow(mY - (rect.top + element.offsetHeight / 2), 2),
       ),
     )
-    // console.log('measuring distance', dist)
+    console.log('measuring distance', dist)
     return dist
   }
 
@@ -36,42 +43,33 @@ export const useSpinnable = (element: HTMLElement): SpinParams => {
   }
 
   function fluctuateSpinner(ev: Event) {
-    // console.log('fluctuating spinner')
+    // console.log('fluctuating spinner as move occurs')
     // test for event type
     const me = isMouseEvent(ev)
     const te = isTouchEvent(ev)
 
-    let mX = 0
-    let mY = 0
-
     // get position of mouse or finger
-    if (me) {
-      mX = me.pageX
-      mY = me.pageY
-    } else if (te) {
-      mX = te.touches[0].pageX
-      mY = te.touches[0].pageY
-    }
-
-    // console.log('detected movement, propelling spinner', mX, mY)
     // calculate distance between these points every interval
-    element.style.animationDuration = measureDistance(element, mX, mY) + 'ms'
+    if (me) {
+      element.style.animationDuration = measureDistance(me.pageX, me.pageY) + 'ms'
+    } else if (te) {
+      element.style.animationDuration =
+        measureDistance(te.touches[0].pageX, te.touches[0].pageY) + 'ms'
+    }
   }
 
   // see if there's a mouse in the house
   function onMouseMove() {
+    if (!mouseDetected.value) mouseDetected.value = true
     document.removeEventListener('mousemove', onMouseMove, false)
-    mouseDetected.value = true
     trackUser()
-    // initializeMouseBehavior();
   }
 
   // see if anyone's in touch
   function onTouchMove() {
+    if (!touchDetected.value) touchDetected.value = true
     document.removeEventListener('touchmove', onTouchMove, false)
-    touchDetected.value = true
     trackUser()
-    // initializeTouchBehavior();
   }
 
   // listen to users' movements
@@ -99,8 +97,6 @@ export const useSpinnable = (element: HTMLElement): SpinParams => {
     // sniff whether we have a toucher or a clicker
     document.addEventListener('mousemove', onMouseMove, false)
     document.addEventListener('touchmove', onTouchMove, false)
-
-    trackUser()
   }
 
   function ignoreMovement() {
