@@ -22,15 +22,13 @@ Page.login(ref="el")
             input#email.large(
               type="email"
               v-model="email"
-              v-show="choseEmail"
-              :required="choseEmail"
               tabindex="0"
               maxlength="50"
               placeholder="joy.lake@bmail.com"
               )
           button.btn.lg.outline#email_butt(
             type="submit"
-            @click.prevent="showOrSubmit"
+            @click="emailLinkSend"
             ) Login via Email
           label.between(for="email_login") 🪄 We'll send {{email}} a magic link 🔗
       .half(:class="{muted: isProd}")
@@ -40,8 +38,6 @@ Page.login(ref="el")
               input#phone.large(
                 type="tel"
                 v-model="phone"
-                v-show="chosePhone"
-                :required="chosePhone"
                 placeholder="First the country code"
                 pattern="[0-9]{10,14}"
                 maxlength="14"
@@ -49,26 +45,31 @@ Page.login(ref="el")
             button.btn.lg.outline#phone_butt(
               type="submit"
               ref="phone-butt"
-              @click.prevent="showOrSubmit"
+              @click="signInWithPhone"
               ) Login via Phone
             label.between(for="email_login") 💬 We'll text {{phone}} a secure code 📲
           .field(v-else)
             input#phone_code(
               type="tel"
+              name="phone"
+              autocomplete="tel"
               ref="phone-code"
-              v-model="confcode"
+              v-model="confCode"
               pattern="[0-9]{0,6}"
               maxlength="6"
               placeholder="314159"
               )
-            button.btn.outline.md(@click="confirmCode") Confirm
+            button.btn.outline.md#confirm_butt(@click="acceptConfirmationCode") Confirm
             label(for="phone_code") The code we texted you
     transition.under.msg(name="slide-fade" appear)
       h3(v-if="phoneSuccessMsg")
-        | We've texted the secret code to your phone. You may close this window.
+        | We've texted the secret code to your phone. Please enter it above.
     transition.under.msg(name="slide-fade" appear)
       h3(v-if="phoneErrorMsg")
         | We couldn't send an SMS to this number. You could retry, reload the page, or use email.
+    transition.under.msg(name="slide-fade" appear)
+      h3(v-if="confirmErrorMsg")
+        | Oops, we need to send you a fresh code. Please tap the Login via Phone button above.
     transition.over.msg(name="slide-fade" appear)
       h3(v-if="emailSuccessMsg")
         | We've sent the magic link to your email. You may close this window.
@@ -81,8 +82,12 @@ import LogoBrand from '../components/LogoBrand.vue'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 
-let recaptchaVerifier: firebase.auth.RecaptchaVerifier
 let confirmResult: firebase.auth.ConfirmationResult
+let recaptchaVerifier: firebase.auth.RecaptchaVerifier
+
+function prevalidatePhoneNumber(phone: string) {
+  return phone.substr(0, 1) === '+' ? phone : '+' + phone
+}
 
 export default defineComponent({
   name: 'Login',
@@ -92,15 +97,14 @@ export default defineComponent({
   },
   data() {
     return {
-      email: 'you',
-      phone: 'you',
+      email: '',
+      phone: '',
       confCode: '',
       recaptchaId: '',
-      choseEmail: false,
-      chosePhone: false,
       acceptingCode: false,
       emailSuccessMsg: false,
       phoneErrorMsg: false,
+      confirmErrorMsg: false,
       phoneSuccessMsg: false,
       explainPasswordless: false,
     }
@@ -114,10 +118,8 @@ export default defineComponent({
   mounted() {
     recaptchaVerifier = new firebase.auth.RecaptchaVerifier('phone_butt', {
       size: 'invisible',
-      callback: (response: Response) => {
-        // reCAPTCHA solved, allow signInWithPhoneNumber.
-        console.log('response', response)
-      },
+      callback: (response: Response) => this.signInWithPhone(response),
+      'expired-callback': () => recaptchaVerifier.clear(),
     })
   },
   methods: {
@@ -146,12 +148,12 @@ export default defineComponent({
           console.error("couldn't send sign in link", errorCode, errorMessage)
         })
     },
-    async signInWithPhone() {
-      const appVerifier = recaptchaVerifier
-      const confCode = this.confCode
+    async signInWithPhone(response: Response) {
+      console.log('response', response)
+      // reCAPTCHA solved, allow signInWithPhoneNumber
       await firebase
         .auth()
-        .signInWithPhoneNumber(this.phone, appVerifier)
+        .signInWithPhoneNumber(prevalidatePhoneNumber(this.phone), recaptchaVerifier)
         .then((confirmationResult) => {
           this.acceptingCode = true
           this.phoneSuccessMsg = true
@@ -160,47 +162,32 @@ export default defineComponent({
         .catch((error) => {
           console.error("didn't send SMS", error)
           this.phoneErrorMsg = true
+          recaptchaVerifier.clear()
           // recover from SMS fail by resetting recaptcha
-          // window.recaptchaVerifier.render().then(function (widgetId) {
-          // grecaptcha.reset(widgetId)
-          // })
+          recaptchaVerifier.render().then((widgetId) => {
+            console.log('widgetId', widgetId)
+          })
         })
+    },
+    acceptConfirmationCode() {
       if (this.acceptingCode) {
         confirmResult
-          .confirm(confCode)
+          .confirm(this.confCode)
           .then((result) => {
             const user = result.user
             if (user && user.phoneNumber && user.uid) {
               console.log('user is ', user.uid, 'with phone', user.phoneNumber)
               localStorage.setItem('phoneForSignIn', user.phoneNumber)
             }
+            this.$router.go(-1)
           })
           .catch((error) => {
             console.error('bad verification code', error)
+            this.confirmErrorMsg = true
+            this.confCode = ''
+            this.acceptingCode = false
           })
-      }
-    },
-    showOrSubmit(e: MouseEvent) {
-      const id = (e.target as HTMLElement).id
-      if (!id) {
-        throw new Error('tantrum')
-      }
-      console.log('id is', id)
-      console.log('this.choseEmail is', this.choseEmail)
-      console.log('this.chosePhone is', this.chosePhone)
-      if (id === 'email_butt') {
-        if (!this.choseEmail) {
-          this.choseEmail = !this.chosePhone
-          this.email = ''
-          this.phone = ''
-        } else this.emailLinkSend()
-      } else if (id === 'phone_butt') {
-        if (!this.chosePhone) {
-          this.chosePhone = !this.choseEmail
-          this.email = ''
-          this.phone = ''
-        } else this.signInWithPhone()
-      }
+      } else throw new Error('not ready to accept confirmation code')
     },
   },
 })

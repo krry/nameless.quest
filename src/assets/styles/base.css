@@ -1,3 +1,29 @@
+html {
+  font-size: 100%;
+  font-size: 1rem;
+  min-width: 100vw;
+  min-height: 100vh;
+  font-family: var(--font);
+  background-color: var(--ground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  color: var(--ink);
+  background-color: var(--paper);
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.bollard {
+  --drawer-buffer: calc(100vw - 3rem);
+}
+
 h1,
 h2,
 h3,
@@ -24,11 +50,7 @@ p {
   line-height: var(--leading);
   margin: 0 auto 1em;
   font-family: var(--text);
-  font-weight: 300;
-}
-
-.theme-day p {
-  font-weight: 400;
+  /* font-weight: 300; */
 }
 
 pre {
@@ -49,7 +71,6 @@ a.router-link-active,
 a:link.router-link-active,
 a:visited.router-link-active {
   color: var(--brand);
-  /* font-weight: 700; */
 }
 
 a:hover {
@@ -70,12 +91,8 @@ a:visited {
   background-color: var(--glow);
 }
 
-code {
-  background: var(--silk);
-  color: var(--flair);
-  padding: 1px 3px;
-  display: inline-block;
-  font-family: var(--mono);
+::placeholder {
+  color: var(--glow);
 }
 
 blockquote {
@@ -85,6 +102,14 @@ blockquote {
   font-size: 1.25em;
   font-weight: 400;
   line-height: var(--pleading);
+}
+
+code {
+  background: var(--silk);
+  color: var(--flair);
+  padding: 1px 3px;
+  display: inline-block;
+  font-family: var(--mono);
 }
 
 kbd {

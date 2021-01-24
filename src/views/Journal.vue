@@ -3,7 +3,14 @@ Page.journal
   h1 Journal
   h2 Record the Ritual
   p A log of your questions and the oracle's answers. Challenges faced, insights gained.
-  .table.flex.align-start
+  .table.flex.align-start.wrap
+    .col.flex.string
+      h3.colh Moments
+      time.cell(
+        v-for="item in lotList"
+        :key="$getSymbol(item.timestamp)"
+        :datetime="item.timestamp"
+        ) {{ formattedDate(item.timestamp) }}
     .col.flex.string
       h3.colh Questions
       .cell(v-for="q in queryList") {{ q.stored[0] }}
@@ -18,13 +25,6 @@ Page.journal
           :key="$getSymbol(bin)"
           :to="'/change/' + getWenByBin(bin)"
           ) {{ getWenByBin(bin) + '. ' + getEnglishNameByBin(bin) }}
-    .col.flex.string
-      h3.colh Moments
-      time.cell(
-        v-for="item in lotList"
-        :key="$getSymbol(item.timestamp)"
-        :datetime="item.timestamp"
-        ) {{ formattedDate(item.timestamp) }}
     .col.flex.string
       h3.colh Notes
       textarea(v-autoresize rows="1" v-for="item in lotList" :key="$getSymbol(item)")

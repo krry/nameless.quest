@@ -2,10 +2,12 @@ import {createApp} from 'vue'
 import router from './router'
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import 'firebase/database'
 import App from './App.vue'
 import users from './plugins/users'
 import {titleCase, getSymbol} from './plugins/utils'
 import {AutoResize} from './directives/autoresize'
+// import {VueReCaptcha} from 'vue-recaptcha-v3'
 
 import '@fontsource/quicksand/300.css'
 import '@fontsource/quicksand/400.css'
@@ -35,6 +37,7 @@ const firebaseConfig = {
   apiKey: 'AIzaSyAYmeuIr6aDKO7QQi9kTrfbEy6XGZfuCPY',
   authDomain: 'nameless-magic.firebaseapp.com',
   projectId: 'nameless-magic',
+  databaseURL: 'https://nameless-magic-default-rtdb.firebaseio.com',
   storageBucket: 'nameless-magic.appspot.com',
   messagingSenderId: '386380781673',
   appId: '1:386380781673:web:265412564c620104f4aaf8',
@@ -43,6 +46,8 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
 firebase.auth().useDeviceLanguage()
+// Get a reference to the database service
+export const database = firebase.database()
 
 const app = createApp(App)
 
@@ -54,4 +59,5 @@ app
   .use(users)
   .use(getSymbol)
   .use(titleCase)
+  // .use(VueReCaptcha, {siteKey: import.meta.env.VITE_RECAPTCHA_PUBLIC_KEY})
   .mount('#bollard')

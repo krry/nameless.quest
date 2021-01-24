@@ -25,6 +25,7 @@
     "@types/node": "^14.14.21",
     "firebase": "^8.2.3",
     "vue": "^3.0.5",
+    "vue-recaptcha-v3": "^2.0.0",
     "vue-router": "4"
   },
   "devDependencies": {

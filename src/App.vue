@@ -134,31 +134,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="postcss">
-html {
-  font-size: 100%;
-  font-size: 1rem;
-  font-family: var(--font);
-  background-color: var(--ground);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-size: 1rem;
-  color: var(--ink);
-  background-color: var(--paper);
-  display: flex;
-  flex-wrap: nowrap;
-}
-
-.bollard {
-  --drawer-buffer: calc(100vw - 3rem);
-}
-
+<style lang="postcss" scoped>
 .modals {
   z-index: 2;
   pointer-events: none;
