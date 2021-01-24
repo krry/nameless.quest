@@ -53,13 +53,13 @@
 <script lang="ts">
 import {defineComponent} from 'vue'
 import LogoBrand from './LogoBrand.vue'
-import IconBase from './icons/IconBase.vue'
-import Icon6 from './icons/Icon6.vue'
-import Icon7 from './icons/Icon7.vue'
-import Icon8 from './icons/Icon8.vue'
-import Icon9 from './icons/Icon9.vue'
-import IconCrystalBall from './icons/IconCrystalBall.vue'
-import IconMiracle from './icons/IconMiracle.vue'
+import IconBase from '../icons/IconBase.vue'
+import Icon6 from '../icons/Icon6.vue'
+import Icon7 from '../icons/Icon7.vue'
+import Icon8 from '../icons/Icon8.vue'
+import Icon9 from '../icons/Icon9.vue'
+import IconCrystalBall from '../icons/IconCrystalBall.vue'
+import IconMiracle from '../icons/IconMiracle.vue'
 
 export default defineComponent({
   name: 'OracleQuery',

@@ -55,7 +55,7 @@ Page.text-center(
               reveal
               )
           .flex.col.mid.less
-            .hexagram.font.x6l.second {{ tri.trigram }}
+            .hexagram.font.x5l.second {{ tri.trigram }}
       .datum.hexagram.middle.font.x7l.balance {{ hex.hexagram }}
   .flex.mid.col.string
     h2 Changing Lines
@@ -80,18 +80,20 @@ Page.text-center(
 <script lang="ts">
 import {defineComponent, ref, toRefs, reactive, watchEffect, onMounted, computed} from 'vue'
 import {useHexagrams} from '../composables/hexagrams'
+import {useSwipeable} from '../composables/swipeable'
 import {useTrigrams} from '../composables/trigrams'
 import Page from '../components/Page.vue'
 import HanziChars from '../components/HanziChars.vue'
 import LineGram from '../components/LineGram.vue'
-import IconBase from '../components/icons/IconBase.vue'
-import Icon6 from '../components/icons/Icon6.vue'
-import Icon7 from '../components/icons/Icon7.vue'
-import Icon8 from '../components/icons/Icon8.vue'
-import Icon9 from '../components/icons/Icon9.vue'
+import IconBase from '../icons/IconBase.vue'
+import Icon6 from '../icons/Icon6.vue'
+import Icon7 from '../icons/Icon7.vue'
+import Icon8 from '../icons/Icon8.vue'
+import Icon9 from '../icons/Icon9.vue'
 
 const {getHexagram} = useHexagrams()
 const {getTrigram} = useTrigrams()
+const {handleSwipeStart, handleSwipeEnd} = useSwipeable()
 
 function getPrevHex(id: string): string {
   if (id === '1') {
@@ -135,6 +137,7 @@ export default defineComponent({
 
     const rx = reactive({
       hex,
+      page: ref<HTMLElement>(),
       mousePresent: ref(false),
       touchPresent: ref(false),
       prev: getPrevHex(props.id),
@@ -167,7 +170,7 @@ export default defineComponent({
         // see if anyone's in touch
         document.removeEventListener('touchmove', onTouchMove, false)
         rx.touchPresent = true
-        // initializeTouchBehavior();
+        rx.hasNavved = true
       })
     })
 
@@ -286,7 +289,7 @@ dl + dl::before {
 }
 
 .hexagram.second {
-  margin-top: -0.2em;
+  margin-top: 0;
 }
 
 .more {

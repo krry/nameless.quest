@@ -12,8 +12,8 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue'
-import IconBase from './icons/IconBase.vue'
-import IconScroll from './icons/IconScroll.vue'
+import IconBase from '../icons/IconBase.vue'
+import IconScroll from '../icons/IconScroll.vue'
 
 export default defineComponent({
   name: 'HexaFace',
@@ -27,7 +27,7 @@ export default defineComponent({
       default: 0,
     },
   },
-  emits: ['close', 'flip'],
+  emits: ['close', 'flip', 'drawer'],
 })
 </script>
 

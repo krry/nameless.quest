@@ -21,11 +21,11 @@
 
 <script lang="ts">
 import {defineComponent, computed, PropType} from 'vue'
-import IconBase from './icons/IconBase.vue'
-import Icon6 from './icons/Icon6.vue'
-import Icon7 from './icons/Icon7.vue'
-import Icon8 from './icons/Icon8.vue'
-import Icon9 from './icons/Icon9.vue'
+import IconBase from '../icons/IconBase.vue'
+import Icon6 from '../icons/Icon6.vue'
+import Icon7 from '../icons/Icon7.vue'
+import Icon8 from '../icons/Icon8.vue'
+import Icon9 from '../icons/Icon9.vue'
 import LogoBrand from './LogoBrand.vue'
 
 export default defineComponent({

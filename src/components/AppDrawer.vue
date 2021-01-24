@@ -4,7 +4,7 @@
     LogoBrand(direction="bottom" size="large")
       template(#tagline) A Paean to the I Ching
   SiteNav(@showModal="$emit('showModal')")
-  ThemeSwitch.tab.fixed.l.vmid.themes.leftside(size="lg")
+  ThemeSwitch.tab.fixed.l.vmid.themes(size="md")
 </template>
 
 <script lang="ts">
@@ -48,21 +48,23 @@ export default defineComponent({
     width: var(--drawer-dim);
   }
 }
+
 .btn.tab {
-  border: 2px solid var(--glow);
+  border: 1px solid var(--glow);
   background-color: var(--silk);
   padding: 0 0.25em;
-  margin: 1em 0;
 }
 
 .themes.tab.l {
-  border-top-left-radius: 0;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 0;
+  margin-bottom: 0;
+  border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-  border-left: 0;
-  margin-left: 0;
-  padding: 0.5em 0.5em 0.5em 0.25em;
-  writing-mode: vertical-lr;
   box-shadow: 0 0 0.25rem var(--glow);
+  transform-origin: bottom left;
+  transform: rotate(90deg);
+  top: 61%;
 }
 
 header {

@@ -111,12 +111,6 @@
   position: fixed;
 }
 
-.fixed.vmid {
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
-
 .abs-0 {
   top: 0;
   right: 0;
@@ -188,7 +182,7 @@ hr.dinkus {
 }
 
 hr.dinkus::after {
-  font-size: 3rem;
+  font-size: 1.5rem;
   font-family: var(--text);
   color: var(--flair);
   display: block;

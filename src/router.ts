@@ -85,10 +85,12 @@ const router = createRouter({
 router.beforeEach((to: RouteLocationNormalized) => {
   // console.log('from route location raw', from)
   // console.log('to route location raw', to)
-  // Confirm the link is a sign-in with email link.
   const user = firebase.auth().currentUser
-  // already signed in, can go anywhere
-  if (user) return true
+  if (user) {
+    // already signed in, can go anywhere
+    // console.log('user is', user.email)
+    return true
+  }
   // not signed in
   else {
     // coming in from a magic link
@@ -137,6 +139,12 @@ router.beforeEach((to: RouteLocationNormalized) => {
       // routing to a view that is the same if logged out
       else return true
     }
+  }
+})
+
+router.afterEach((to: RouteLocationNormalized) => {
+  if (to.name === 'change') {
+    window.scrollTo(0, 0)
   }
 })
 

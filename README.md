@@ -74,6 +74,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/): Customize configur
 - [x] BUG: why doesnt the spinnable respond to the mouse?
 - [x] arrow keys to move between changes
 - [x] use Magic.link
+- [x] on tap, let those hexagrams spin! naw, not as cool as I thought.
+- [x] BUG: escape doesn't hide cards after a resort b/c focus was lost; refocus card after resort?
 - [x] firebase backend
   - [ ] enable passwordless login through passport.js?
   - [ ] [read this](https://medium.com/@ninjudd/passwords-are-obsolete-9ed56d483eb)
@@ -88,21 +90,12 @@ See [Configuration Reference](https://cli.vuejs.org/config/): Customize configur
   - [ ] arrow keys to move between tiles
     - [ ] while card is showing
     - [ ] add tappable arrows on sides of card
-- [ ] on tap, let those hexagrams spin!
 - [ ] consider Nuxt as a router
 - [ ] consider Vuex as a store
 - [ ] zzfx on reveal answer and show oracle
-- [ ] make this a progressive web app
 - [ ] Shift or meta click on tiles to keep the others open
 - [ ] consider a [Geomancy](https://www.wikiwand.com/en/Geomantic_figures) clone
-- [ ] BUG: escape doesn't hide cards after a resort b/c focus was lost; refocus card after resort?
 - [ ] give the oracle its own root level route
-- [ ] fill in config page with global settings
-  - [ ] pinny - pinyin or not
-  - [ ] wenny - king wen or not
-  - [ ] texty - text or glyphs first
-  - [ ] primary text?
-  - [ ] hermagrams or hexagrams
 - [ ] store users in Sanity?
 - [ ] TODO: make the Face components DRYer
 - [ ] TODO: capture how user got to login and send them back there: src/views/Login.vue:122
@@ -110,3 +103,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/): Customize configur
 - [ ] TODO: only show marks when two cards: src/components/ChangeNode.vue:100
 - [ ] TODO: only show changing lines on first card: src/components/ChangeNode.vue:101
 - [ ] TODO: trigger onboarding flow: src/router.ts:111
+- [ ] make this a progressive web app
+- [ ] fill in config page with global settings
+  - [ ] pinny - pinyin or not
+  - [ ] wenny - king wen or not
+  - [ ] texty - text or glyphs first
+  - [ ] primary text?
+  - [ ] hermagrams or hexagrams

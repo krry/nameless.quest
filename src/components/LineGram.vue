@@ -23,9 +23,9 @@
 <script lang="ts">
 import {defineComponent, PropType, computed} from 'vue'
 import {defHex, Gram} from '../schema'
-import IconBase from '../components/icons/IconBase.vue'
-import Icon6 from '../components/icons/Icon6.vue'
-import Icon9 from '../components/icons/Icon9.vue'
+import IconBase from '../icons/IconBase.vue'
+import Icon6 from '../icons/Icon6.vue'
+import Icon9 from '../icons/Icon9.vue'
 
 export default defineComponent({
   name: 'LineGram',

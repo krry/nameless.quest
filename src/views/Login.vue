@@ -170,8 +170,10 @@ export default defineComponent({
           .confirm(confCode)
           .then((result) => {
             const user = result.user
-            console.log('user is ', user)
-            localStorage.setItem('phoneForSignIn', this.phone)
+            if (user && user.phoneNumber && user.uid) {
+              console.log('user is ', user.uid, 'with phone', user.phoneNumber)
+              localStorage.setItem('phoneForSignIn', user.phoneNumber)
+            }
           })
           .catch((error) => {
             console.error('bad verification code', error)

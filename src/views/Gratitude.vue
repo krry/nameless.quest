@@ -1,5 +1,5 @@
 <template lang="pug">
-Page.gratitude(:theme="theme")
+Page.gratitude
   h1 Gratitude
   h2
     | Bottomless thanks to all those
@@ -86,7 +86,7 @@ Page.gratitude(:theme="theme")
         router-link(to="https://thenounproject.com/LSEdesigns/") LSE Designs
         |  for 
         router-link(to="https://thenounproject.com/LSEdesigns/collection/a-wizards-world/") A Wizard's World
-      dd.flex.string.mid.pads.y
+      dd.flex.string.mid.pads.y.wrap
         IconBase(viewBox="0 0 1000 1250" height="84" width="84")
           IconCauldron
         IconBase(viewBox="0 0 1000 1250" height="84" width="84")
@@ -118,15 +118,15 @@ Page.gratitude(:theme="theme")
 <script lang="ts">
 import {defineComponent} from 'vue'
 import Page from '../components/Page.vue'
-import IconBase from '../components/icons/IconBase.vue'
-import IconCauldron from '../components/icons/IconCauldron.vue'
-import IconMiracle from '../components/icons/IconMiracle.vue'
-import IconCandles from '../components/icons/IconCandles.vue'
-import IconCrystalBall from '../components/icons/IconCrystalBall.vue'
-import IconOpenBook from '../components/icons/IconOpenBook.vue'
-import IconSpellBook from '../components/icons/IconSpellBook.vue'
-import IconWizardsHat from '../components/icons/IconWizardsHat.vue'
-import IconScroll from '../components/icons/IconScroll.vue'
+import IconBase from '../icons/IconBase.vue'
+import IconCauldron from '../icons/IconCauldron.vue'
+import IconMiracle from '../icons/IconMiracle.vue'
+import IconCandles from '../icons/IconCandles.vue'
+import IconCrystalBall from '../icons/IconCrystalBall.vue'
+import IconOpenBook from '../icons/IconOpenBook.vue'
+import IconSpellBook from '../icons/IconSpellBook.vue'
+import IconWizardsHat from '../icons/IconWizardsHat.vue'
+import IconScroll from '../icons/IconScroll.vue'
 
 export default defineComponent({
   name: 'Gratitude',

@@ -62,7 +62,7 @@ export default defineComponent({
 pre.judgment,
 pre.image {
   line-height: var(--leading);
-  font-weight: 300;
+  /* font-weight: 300; */
   font-family: var(--text);
 }
 

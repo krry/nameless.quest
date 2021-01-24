@@ -5,10 +5,14 @@ import router from '../router'
 import {Token} from '../schema'
 
 // interface User {
-//   id: string
+//   uid: string
 //   email: string
 //   authd: boolean
 //   token: Token
+//   phone: PhoneNumber
+//   emailVerified: boolean
+//   displayName: string
+//   photoUrl: Url
 // }
 
 const token = reactive({

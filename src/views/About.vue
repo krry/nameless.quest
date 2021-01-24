@@ -139,15 +139,6 @@ Page.about
       strong
         em What if eight were 10,
       |  so to speak?
-      
-    aside.callout
-      h4 ✋⏱ It Does Explain All the Dozens, Doesn't It, 🧭🤌
-      p
-        | Tracing the anthropomorphic origins of the base 12 and base 60 systems of counting back to the cuneiforms of the Fertile Crescent, from which we have inherited 12-inch feet, 60-minute hours, 360 degree circles and many more measures, one might symmetrically wonder 
-        strong
-          em what if twelve were 10?
-        |  For if we nimbly count our phalanges (the three little bones in each of our four fingers) with our thumbs, we quickly find twelve on a hand, and may find our decimal digits rather cro-magnon in comparison. And we can easily get to sixty by assigning each of the five digits on the other hand to a dozen as we count.
-    
     p 
       | Examining the hexagrams I also noticed that one can easily transpose them into binary numbers, taking an active or yang line 
       IconBase
@@ -156,6 +147,7 @@ Page.about
       IconBase
         Icon8
       |  as zero. I began to assemble a small database.
+      
     p For each hexagram I figured its corresponding binary number, then shifted it into octal. Then I plotted the hexagrams in an eight-by-eight grid following their octal sequence. This is the orientiation in which you first encounter the tiles here in Nameless.
     aside.callout
       h4 🕯 A Tip
@@ -173,7 +165,16 @@ Page.about
       |  or a hare.
 
     p Consulting even the more modern scholarly English interpretations, one will encounter a deeply androcratic bias: the "superior man" makes no less than 73 appearances among the translations around the 64 hexagrams in the ubiquitous and often revered Wilhelm-Baynes version. Given the profound focus placed upon balance between mutually defining opposites throughout the Classic of Changes, I doubt that its authors and early architects intended to portray such a stark power imbalance among genders or along any spectrum. Students of the Yìjīng, along with Hermetics, Taoists, Yogis, and a multitude of mystics, are starkly aware that the pendulum swings to any and every extreme then away to its opposite, sweeping through the shades between.
-    p So when it came time to crystallize the spirit of this fresh take on a three thousand year old book, I recognized the moment, then let it go. Later in the shower, I realized that my app was still nameless. And suddenly I realized it has always been Nameless, just like the players in the Changes.
+    p So when it came time to crystallize the spirit of this fresh take on a three thousand year old book, I recognized the moment, then let it go. Later in the shower, I realized that my app was still nameless. And suddenly I realized it has always been Nameless, just like those we meet in the Changes, just like us.
+
+  aside.callout
+    h4 ✋⏱ It Does Explain All the Dozens, Doesn't It, 🧭🤌
+    p
+      | Tracing the anthropomorphic origins of the base 12 and base 60 systems of counting back to the cuneiforms of the Fertile Crescent, from which we have inherited 12-inch feet, 60-minute hours, 360 degree circles and many more measures, one might symmetrically wonder 
+      strong
+        em what if twelve were 10?
+      |  For if we nimbly count our phalanges (the three little bones in each of our four fingers) with our thumbs, we quickly find twelve on a hand, and may find our decimal digits rather cro-magnon in comparison. And we can easily get to sixty by assigning each of the five digits on the other hand to a dozen as we count.
+    
 
 </template>
 
@@ -181,9 +182,9 @@ Page.about
 import {defineComponent, ref} from 'vue'
 import Page from '../components/Page.vue'
 import HanziChars from '../components/HanziChars.vue'
-import IconBase from '../components/icons/IconBase.vue'
-import Icon7 from '../components/icons/Icon7.vue'
-import Icon8 from '../components/icons/Icon8.vue'
+import IconBase from '../icons/IconBase.vue'
+import Icon7 from '../icons/Icon7.vue'
+import Icon8 from '../icons/Icon8.vue'
 
 export default defineComponent({
   name: 'About',

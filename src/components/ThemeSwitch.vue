@@ -33,7 +33,6 @@ export default defineComponent({
 <style lang="postcss">
 .theme-switch::after {
   content: var(--theme-icons);
-  /* display: block; */
 }
 
 button.btn.theme-switch {

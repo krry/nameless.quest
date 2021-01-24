@@ -1,7 +1,8 @@
 <template lang="pug">
+FeedbackFish(projectId="b186633d70b54b")
 #modals.modals.fs.fixed.abs-0
 AppDrawer#drawer.fixed.abs-0.fs(
-  @showModal="modalShown = true"
+  @showModal="showModal"
   @click.stop="closeDrawer"
   )
 button.btn.naked.tab.surf.fixed.b.l.ride(
@@ -28,6 +29,7 @@ transition(name="flag" appear)
 import {defineComponent, ref, reactive, toRefs, watchEffect} from 'vue'
 import {activeTheme, useThemes} from './composables/themes'
 import AppDrawer from './components/AppDrawer.vue'
+import {FeedbackFish} from '@feedback-fish/vue'
 
 const {setTheme} = useThemes()
 
@@ -62,6 +64,7 @@ export default defineComponent({
   name: 'App',
   components: {
     AppDrawer,
+    FeedbackFish,
   },
   setup() {
     const rx = reactive({
@@ -92,6 +95,7 @@ export default defineComponent({
         this.drawerOpen = true
       } else this.drawerOpen = false
     })
+    window.addEventListener('touchstart', () => (this.navved = true), true)
   },
   unmounted() {
     window.removeEventListener('keydown', (e) => {
@@ -107,10 +111,12 @@ export default defineComponent({
   },
   methods: {
     openDrawer(): void {
-      window.scrollTo(0, 0)
+      window.scrollTo(0, document.documentElement.scrollTop)
     },
     closeDrawer(): void {
-      window.scrollTo(window.innerWidth, document.documentElement.scrollTop)
+      const drawerWidth = window.innerWidth < 576 ? window.innerWidth - 48 : 300
+      // const drawerWidth = window.innerWidth - 96
+      window.scrollTo(drawerWidth, document.documentElement.scrollTop)
     },
     handleModal(state: boolean): void {
       this.modalShown = state
@@ -119,6 +125,10 @@ export default defineComponent({
       this.navved = bit
       // console.log('navved set to', bit)
       localStorage.setItem('navved', JSON.stringify(bit))
+    },
+    showModal(): void {
+      this.closeDrawer()
+      this.modalShown = true
     },
   },
 })

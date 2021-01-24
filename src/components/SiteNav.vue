@@ -34,27 +34,36 @@ nav.flex.mid.string.col.pads.y
           IconCandles
         |  Gratitude
     li
-      a.btn.naked(@click.stop)
+      a.btn.naked(
+        @click.stop
+        data-feedback-fish
+        :data-feedback-fish-userid="user.email"
+        )
         IconBase(viewBox="0 0 17 15")
           IconConversation
         | &nbsp; Feedback?
     li
-      a.btn.sm.naked(@click.stop="$logout") ✌️ Sign out
+      a.btn.sm.naked(@click.stop="$logout")
+        IconBase(viewBox="0 0 100 125" height="18" width="18")
+          IconPeaceSign
+        | Sign out
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue'
-import IconBase from './icons/IconBase.vue'
-import IconScroll from './icons/IconScroll.vue'
-import IconBagua from './icons/IconBagua.vue'
-import IconMiracle from './icons/IconMiracle.vue'
-import IconJournal from './icons/IconJournal.vue'
-import IconCauldron from './icons/IconCauldron.vue'
-import IconCandles from './icons/IconCandles.vue'
-import IconConversation from './icons/IconConversation.vue'
-import IconCrystalBall from './icons/IconCrystalBall.vue'
-import IconOpenBook from './icons/IconOpenBook.vue'
-import IconSpellBook from './icons/IconSpellBook.vue'
+import firebase from 'firebase/app'
+import 'firebase/auth'
+import IconBase from '../icons/IconBase.vue'
+import IconScroll from '../icons/IconScroll.vue'
+import IconCandles from '../icons/IconCandles.vue'
+import IconMiracle from '../icons/IconMiracle.vue'
+import IconJournal from '../icons/IconJournal.vue'
+import IconCauldron from '../icons/IconCauldron.vue'
+import IconOpenBook from '../icons/IconOpenBook.vue'
+import IconPeaceSign from '../icons/IconPeaceSign.vue'
+import IconSpellBook from '../icons/IconSpellBook.vue'
+import IconCrystalBall from '../icons/IconCrystalBall.vue'
+import IconConversation from '../icons/IconConversation.vue'
 
 export default defineComponent({
   name: 'SiteNav',
@@ -67,20 +76,22 @@ export default defineComponent({
     IconCandles,
     IconOpenBook,
     IconSpellBook,
-    IconBagua,
+    IconPeaceSign,
     IconCrystalBall,
     IconConversation,
   },
   emits: ['showModal'],
+  data() {
+    return {
+      user: firebase.auth().currentUser || {email: ''},
+    }
+  },
   computed: {
     isProd(): boolean {
       return process.env.NODE_ENV === 'production'
     },
   },
   methods: {
-    closeSidebar() {
-      window.scrollTo(320, document.documentElement.scrollTop)
-    },
     showOracle() {
       console.log('route location', this.$route)
       if (this.$route.name !== 'home') {
@@ -96,6 +107,7 @@ export default defineComponent({
 nav {
   flex: 4 0 auto;
   text-align: left;
+  padding-bottom: 2rem;
 }
 
 nav ul,

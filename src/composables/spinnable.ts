@@ -10,7 +10,7 @@ export const useSpinnable = (element: HTMLElement): SpinParams => {
   const spinning = ref(false)
   const mouseDetected = ref(false)
   const touchDetected = ref(false)
-  console.log('making element spinnable', element)
+  // console.log('making element spinnable', element)
 
   function measureDistance(mX: number, mY: number) {
     console.log('mX', mX)

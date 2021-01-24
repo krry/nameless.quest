@@ -58,7 +58,7 @@ export const useLots = (): {
   }
 
   const setLots = (identifiers: string[]) => {
-    console.log('setting lots to', identifiers)
+    // console.log('setting lots to', identifiers)
     lots.value = identifiers
   }
 

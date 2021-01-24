@@ -1,1 +1,1 @@
-declare module 'vueye-phone-input'
+declare module '@feedback-fish/vue'

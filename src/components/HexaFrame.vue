@@ -7,8 +7,8 @@
   .order(@click.stop="reorder")
     .octal(
       v-if="!wenny"
-      :title="`Octal No. ${hex.octal}`"
-    ) {{ hex.octal }}
+      :title="`Octal No. ${hex.octal.slice(1)}`"
+    ) {{ hex.octal.slice(1) }}
     .kingwen(
       v-if="wenny"
       :title="`King Wen No. ${hex.kingwen}`"
