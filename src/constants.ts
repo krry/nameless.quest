@@ -20,20 +20,20 @@ export const THEMES = [
     ],
   },
   {
-    title: 'forest',
+    title: 'land',
     emoji: '🦌🏕',
     pip: '🌲',
     bgs: [
       {
-        filename: 'forest1.jpg',
+        filename: 'land1.jpg',
         cred: 'allain-siddiqui-jKI1DWIWNFk-unsplash',
       },
       {
-        filename: 'forest2.jpg',
+        filename: 'land2.jpg',
         cred: 'michael-l-8Qr1ixi-rMU-unsplash',
       },
       {
-        filename: 'forest3.jpg',
+        filename: 'land3.jpg',
         cred: 'veeterzy-sMQiL_2v4vs-unsplash',
       },
     ],
