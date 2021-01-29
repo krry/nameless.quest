@@ -2,7 +2,8 @@
 .drawer.flex.begin
   header.flex.mid
     LogoBrand(direction="bottom" size="md" tabindex="1")
-      template(#tagline v-if="!cfg.beeny") A Paean to the I Ching
+      template(#tagline v-if="!cfg.beeny")
+        h2.tagline A Paean to the I Ching
   SiteNav
   ThemeSwitch.tab.fixed.l.themes(size="md")
 </template>

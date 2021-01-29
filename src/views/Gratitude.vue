@@ -1,26 +1,10 @@
 <template lang="pug">
 Page.gratitude
   h1 Gratitude
-  h2
+  h3
     | Bottomless thanks to all those
     br
     | who have made Nameless possible
-  section.pads.y
-    h3 Thanks to the I Ching scholars, enthusiasts, and custodians throughout the ages, especially…
-    p.text-left
-      | Steve VanDevender who has 
-      router-link(to="http://hexadecimal.uoregon.edu/ching/src.html") sourced the Wilhelm-Baynes translation/interpretation of the I Ching
-      |  and provided it to the WWW.
-    p.text-left
-      | Zelda Hessler (@Velfi) who provides 
-      router-link(to="https://github.com/Velfi/i-ching") the I Ching as a Rust library
-      | , which entertained my daily practice in the early days. It was then that I first wished for cards and tiles and what you see here.
-    p.text-left
-      | Hilary Barrett, whose 
-      router-link(to="https://www.onlineclarity.co.uk/") Online Clarity
-      |  I've only just discovered, and from whom I shall learn multitudes about the ways of 
-      strong Yì
-      | .
   section
     h3 Thanks to these wonderful photographers…
     dl.photos
@@ -72,6 +56,22 @@ Page.gratitude
       | And thanks to 
       router-link(to="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText") Unsplash
       |  for declaring open season on stock photography.
+  section.pads.y
+    h3 Thanks to the I Ching scholars, enthusiasts, and custodians throughout the ages, especially…
+    p.text-left
+      | Hilary Barrett, whose 
+      router-link(to="https://www.onlineclarity.co.uk/") Online Clarity
+      |  I've only just discovered, and from whom I shall learn multitudes about the ways of 
+      strong Yì
+      | .
+    p.text-left
+      | Zelda Hessler (@Velfi) who provides 
+      router-link(to="https://github.com/Velfi/i-ching") the I Ching as a Rust library
+      | , which entertained my daily practice in the early days. It was then that I first wished for cards and tiles and what you see here.
+    p.text-left
+      | Steve VanDevender who has 
+      router-link(to="http://hexadecimal.uoregon.edu/ching/src.html") sourced the Wilhelm-Baynes translation/interpretation of the I Ching
+      |  and provided it to the WWW.
   section
     h3 Thanks to the vector artists who made these rad icons…
     dl
@@ -113,6 +113,12 @@ Page.gratitude
   section.flex
     h3.pad.x And last but most of all, thanks to Elysa and 🍕🐻
     p.pad.x.text-left Your compassion, patience, and support make my dreams come true every day.
+  section
+    h3
+      | Thanks to 
+      a(href="https://atmanautica.com") Kerrbear
+      |  for making this
+    button.btn I don't even notice when $5 goes missing
 </template>
 
 <script lang="ts">

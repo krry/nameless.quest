@@ -1,8 +1,8 @@
 <template lang="pug">
-svg(
+svg.icon(
   xmlns="http://www.w3.org/2000/svg"
-  :width="width"
-  :height="height"
+  :width="size"
+  :height="size"
   :viewBox="viewBox"
   :aria-labelledby="iconName"
   role="presentation"
@@ -19,7 +19,7 @@ export default {
   props: {
     iconName: {
       type: String,
-      default: "",
+      default: '',
     },
     width: {
       type: [Number, String],
@@ -29,14 +29,23 @@ export default {
       type: [Number, String],
       default: 24,
     },
+    size: {
+      type: [Number, String],
+      default: 24,
+    },
     iconColor: {
       type: String,
-      default: "currentColor",
+      default: 'currentColor',
     },
     viewBox: {
       type: String,
-      default: "0 0 130 373",
+      default: '0 0 130 373',
     },
   },
-};
+}
 </script>
+<style lang="postcss" scoped>
+.icon {
+  vertical-align: middle;
+}
+</style>

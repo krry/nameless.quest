@@ -81,6 +81,7 @@ export default defineComponent({
 
     function askTheOracle() {
       if (user.query.length > 0 && user.query.substr(-2).includes('?')) {
+        setu('query', user.query)
         router.push({path: 'toss'})
       } else {
         invalidQuery.value = true
@@ -129,9 +130,15 @@ export default defineComponent({
 .help {
   margin: 1rem auto;
   padding-bottom: 4rem;
+  padding-top: 1rem;
 }
 
-.help h3 {
-  margin-top: 1em;
+.ls .icon {
+  vertical-align: middle;
+}
+
+.help h3,
+.ls li {
+  margin: 1em 0;
 }
 </style>

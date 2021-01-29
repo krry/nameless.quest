@@ -7,8 +7,7 @@
     .logo(ref="el")
   .stack.reveal
     h1.nameless#llamo {{ title }}
-    h2.tagline
-      slot(name="tagline")
+    slot(name="tagline")
 </template>
 
 <script lang="ts">
@@ -74,8 +73,8 @@ export default defineComponent({
 
 .brand:hover,
 .brand:focus {
-  outline: 2px var(--border-style) var(--flair);
-  outline-offset: 1vh;
+  /* outline: 2px var(--border-style) var(--flair); */
+  /* outline-offset: 1vh; */
 }
 
 .brand.bottom {

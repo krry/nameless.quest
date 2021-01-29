@@ -3,32 +3,32 @@ nav.flex.mid.string.col.pads.y
   ul.site-nav
     li
       router-link.btn.outline(:to="{ path: '/oracle' }" tabindex="1")
-        IconBase(viewBox="0 0 100 100")
+        IconBase(size="40" viewBox="0 0 100 125")
           IconMiracle
         |  Consult the Oracle
     li
       router-link.btn.naked(:to="{ name: 'home' }" tabindex="2")
-        IconBase(width="30" height="30" viewBox="0 -50 1000 800")
+        IconBase(size="40" viewBox="0 0 1000 1250")
           IconOpenBook
         |  Explore the Tiles
     li
       router-link.btn.naked(:to="{ name: 'about' }" tabindex="3")
-        IconBase(width="30" height="30" viewBox="0 -150 1000 1000")
+        IconBase(size="40" viewBox="0 0 1000 1250")
           IconCrystalBall
         |  About the Oracle
     li
       router-link.btn.naked(:to="{ name: 'journal' }" tabindex="4")
-        IconBase(viewBox="0 -50 1000 1000")
+        IconBase(size="40" viewBox="0 0 1000 1250")
           IconSpellBook
         |  Start a Journal
     li
       router-link.btn.naked(:to="{ name: 'configure' }" tabindex="5")
-        IconBase(viewBox="0 0 1000 1000")
+        IconBase(size="40" viewBox="0 0 1000 1250")
           IconCauldron
         |  Configure
     li
       router-link.btn.naked(:to="{ name: 'gratitude' }" tabindex="6")
-        IconBase(viewBox="0 -50 1000 1000")
+        IconBase(size="40" viewBox="0 0 1000 1250")
           IconCandles
         |  Gratitude
     li
@@ -38,7 +38,7 @@ nav.flex.mid.string.col.pads.y
         data-feedback-fish
         :data-feedback-fish-userid="user.email"
         )
-        IconBase(viewBox="0 0 17 15")
+        IconBase(size="36" viewBox="0 0 17 21")
           IconConversation
         | &nbsp; Feedback?
     li
@@ -46,9 +46,9 @@ nav.flex.mid.string.col.pads.y
         @click.stop="$logout"
         tabindex="8"
         )
-        IconBase(viewBox="0 0 100 125" height="18" width="18")
+        IconBase(viewBox="0 0 100 125" size="20")
           IconPeaceSign
-        | Sign out
+        |  Sign out
 </template>
 
 <script lang="ts">

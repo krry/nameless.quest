@@ -17,7 +17,7 @@ form.flex.space.spread.wrap(@submit.prevent="emailLinkSend")
       button.btn.lg.outline#email_butt(
         type="submit"
         @click.prevent="emailLinkSend"
-        ) Login via Email
+        ) Sign in via Email
 </template>
 
 <script lang="ts">
@@ -41,10 +41,12 @@ export default defineComponent({
     })
 
     async function emailLinkSend() {
-      const baseUrl = import.meta.env.DEV ? 'http://localhost:3000/' : import.meta.env.BASE_URL
-      // console.log('baseUrl', baseUrl)
-      // console.log('import.meta.env.DEV', import.meta.env.DEV)
-      // console.log('baseUrl + this.$route.path.slice(1)', baseUrl + this.$route.path.slice(1))
+      const baseUrl = import.meta.env.BASE_URL
+      console.log('baseUrl', baseUrl)
+      console.log('import.meta.env.PROD', import.meta.env.PROD)
+      console.log('props.from', props.from)
+      console.log('url: baseUrl + props.from', baseUrl + props.from)
+
       const actionCodeSettings = {
         url: baseUrl + props.from, // where to send user back to
         handleCodeInApp: true, // must be true?

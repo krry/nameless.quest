@@ -31,7 +31,7 @@ Page.journal
 </template>
 
 <script lang="ts">
-import {defineComponent, computed} from 'vue'
+import {defineComponent} from 'vue'
 import Page from '../components/Page.vue'
 import ComingSoon from '../components/ComingSoon.vue'
 import {useHexagrams} from '../composables/hexagrams'
@@ -47,8 +47,8 @@ export default defineComponent({
     modal: Boolean,
   },
   setup() {
+    const rolls = getRolls()
     const {getHexagramByOctal, getWenByBin, getEnglishNameByBin} = useHexagrams()
-    const rolls = computed(() => getRolls())
 
     return {
       rolls,

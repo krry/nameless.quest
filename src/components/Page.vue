@@ -86,7 +86,6 @@ export default defineComponent({
   margin: auto;
   background-color: var(--silk);
   padding: 1rem;
-  border-radius: var(--bevels);
   width: calc(100vw - 4em);
   max-width: 48rem;
 
@@ -98,6 +97,10 @@ export default defineComponent({
   @media (min-height: 48rem) {
     padding-top: 3rem;
     padding-bottom: 3rem;
+  }
+
+  @media (min-width: 36rem) {
+    border-radius: var(--bevels);
   }
 
   @media (min-width: 48rem) {

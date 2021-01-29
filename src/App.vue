@@ -56,7 +56,7 @@ export default defineComponent({
     }
 
     function closeDrawer() {
-      const drawerWidth = window.innerWidth < 576 ? window.innerWidth - 48 : 300
+      const drawerWidth = window.innerWidth < 576 ? window.innerWidth - 48 : 360
       // const drawerWidth = window.innerWidth - 96
       window.scrollTo(drawerWidth, document.documentElement.scrollTop)
     }
@@ -112,6 +112,7 @@ export default defineComponent({
   bottom: 0;
   right: 0;
   line-height: 2em;
+  transition: inherit;
 }
 
 .btn.surf.tab {
@@ -120,14 +121,17 @@ export default defineComponent({
   width: 2em;
   margin: 1em 0;
   border: 2px solid var(--glow);
-  background-color: var(--silk);
+  background-color: var(--paper);
   padding: 0;
   box-shadow: 0 0 0.25rem var(--glow);
 
   &:hover {
-    background-color: var(--dust);
     outline: none;
     box-shadow: 0 0 0.5rem 0.125rem var(--glow);
+  }
+
+  &:hover::after {
+    background-color: var(--dust);
   }
 }
 

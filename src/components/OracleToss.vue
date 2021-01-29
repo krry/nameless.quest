@@ -39,12 +39,12 @@
         @click="saveToss"
         ) Let's 卦 Gua
       .fake-coins(v-else)
-        transition(name="fade" mode="out-in")
-          button.btn.naked.md.left(
+        transition(name="slide-fade" mode="out-in")
+          button.btn.naked.md.under(
             v-if="!noCoins"
             @click="noCoins = true"
             ) Can't find any coins?
-          button.btn.outline.md.left(
+          button.btn.outline.md.over(
             v-else
             @click="fakeCoins"
             ) 🤸 Fake my flips 🩴
@@ -101,7 +101,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, computed} from 'vue'
+import {defineComponent, ref, computed} from 'vue'
 import {useRouter} from 'vue-router'
 import LogoBrand from './LogoBrand.vue'
 import Icon6 from '../icons/Icon6.vue'
@@ -137,6 +137,7 @@ export default defineComponent({
   },
   emits: ['toss', 'back'],
   setup() {
+    const noCoins = ref(false)
     const router = useRouter()
     const validToss = computed(() => {
       // ensure that the toss is exactly six 6s, 7s, 8s, & 9s
@@ -144,10 +145,13 @@ export default defineComponent({
     })
 
     function saveToss() {
-      console.log('emitting toss', user.toss)
       if (!validToss.value) return
       setu('toss', user.toss)
       console.log('emitting toss', user.toss)
+      router.push({name: 'response'})
+      set('modal', false)
+      set('oracle', false)
+      set('drawer', false)
       setLots(parseTossToBinary(user.toss))
       saveRoll({
         query: user.query,
@@ -165,29 +169,17 @@ export default defineComponent({
       router.push('/oracle/query')
     }
 
-    return {
-      user,
-      saveToss,
-      clearBoth,
-      validToss,
-    }
-  },
-  data() {
-    return {
-      noCoins: false,
-    }
-  },
-  methods: {
-    fakeCoins() {
+    function fakeCoins() {
       const fakeFlips = generateRandomToss().toString().split('')
       let i = 0
       const typer = setInterval(() => {
         user.toss += fakeFlips[i]
         i++
         if (i === fakeFlips.length) clearInterval(typer)
-      }, 1000)
-    },
-    getLineName(char: string): string {
+      }, 1500)
+    }
+
+    function getLineName(char: string): string {
       switch (char) {
         case '6':
           return 'Old Yin • firming'
@@ -200,7 +192,17 @@ export default defineComponent({
         default:
           return ''
       }
-    },
+    }
+
+    return {
+      user,
+      noCoins,
+      saveToss,
+      clearBoth,
+      fakeCoins,
+      getLineName,
+      validToss,
+    }
   },
 })
 </script>
@@ -293,5 +295,11 @@ button.back {
   direction: rtl;
   unicode-bidi: bidi-override;
   text-align: center;
+}
+
+blockquote {
+  /* text-align: left; */
+  border: 0;
+  margin-bottom: 0.5em;
 }
 </style>

@@ -6,14 +6,6 @@ Page.config.col
   section.flex.wrap.btw.even
     .setting.half
       ToggleSwitch(
-        label="Default Order"
-        dis="King Wen"
-        dat="Octal"
-        v-model:checked="cfg.wenny"
-        tabindex="10"
-        )
-    .setting.half
-      ToggleSwitch(
         label="Pinyin begins"
         v-model:checked="cfg.pinny"
         tabindex="11"
@@ -24,12 +16,12 @@ Page.config.col
         HanziChar(
           char="易"
           pinyin="Yì"
-          size="xl"
+          size="lg"
           )
         HanziChar(
           char="經"
           pinyin="Jīng"
-          size="xl"
+          size="lg"
           )
     .setting.half
       ToggleSwitch(
@@ -41,7 +33,8 @@ Page.config.col
       )
       transition.pads.y.under(name="slide-fade" mode="out-in" appear)
         .text.under(v-if="cfg.texty")
-          h4 Preponderance of the Small
+          router-link(to="/change/62")
+            h4 Preponderance of the Small
           HanziChar.pad.x(char="小" reveal size="md" pinyin="xiǎo")
           HanziChar.pad.x(char="過" reveal size="md" pinyin="guò")
         .glyphs.left(v-else)
@@ -71,6 +64,14 @@ Page.config.col
           | You can 
           kbd tab
           |  among the switches.
+    .setting.half
+      ToggleSwitch(
+        label="Default Order"
+        dis="King Wen"
+        dat="Octal"
+        v-model:checked="cfg.wenny"
+        tabindex="10"
+        )
     .setting.half.flex.col.mid
       h3 Switch the Theme
       .flex

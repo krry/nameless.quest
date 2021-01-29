@@ -20,16 +20,17 @@
         | One who is known, knower, knowing?
       a.btn.naked(@click="moar = true" v-if="!moar") Wut!?
     .moar.left(v-else-if="moar && more")
+      h1 The Oracle
       HanziChar(
         char="易"
         pinyin="Yì"
-        size="xl"
+        size="lg"
         reveal
         )
       HanziChar(
         char="經"
         pinyin="Jīng"
-        size="xl"
+        size="lg"
         reveal
         )
       h2 aka the I Ching
@@ -44,7 +45,7 @@
         | to understand who, where, why we are.
       router-link.btn.naked(:to="{name: 'query'}") Ah yes, now I see…
     .intro.over(v-else)
-      h2 Have you come to meet the Oracle?
+      h1 Have you come to meet the Oracle?
       .stack
         router-link.btn.xl(:to="{name: 'query'}") Yes
         button.btn.outline(@click="more = true" v-if="!more") The What?
@@ -70,10 +71,10 @@ export default defineComponent({
     const timelyGreeting = computed((): string => {
       const nowours = new Date().getHours()
       if (!nowours || nowours < 0 || nowours > 24) return 'Welcome, wanderer 🦁'
-      if (nowours < 5) return 'Greetings, traveler 🦉'
-      if (nowours < 12) return 'Good morning, new friend 🐻'
+      if (nowours < 5) return 'Hey, owl are you? 🦉'
+      if (nowours < 12) return "Bear with me, it's morning 🐻"
       if (nowours <= 18) return 'Welcome, dear wanderer 🦌'
-      if (nowours > 18) return 'Welcome, and good evening 🦁'
+      if (nowours > 18) return 'Good evening, how be you? 🐝'
       else return 'Welcome, wanderer 🦁'
     })
 
@@ -98,12 +99,22 @@ export default defineComponent({
   flex-shrink: 0;
   flex-basis: auto;
 }
+
 .intro,
 .more,
 .moar {
   flex-grow: 2;
 }
+
+.btn:last-child {
+  margin-bottom: 2rem;
+}
+
 .brand {
   flex-grow: 1;
+}
+
+h1:first-child {
+  margin: 0.5em;
 }
 </style>

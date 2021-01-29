@@ -181,7 +181,7 @@
 .deal-leave-active {
   transition-property: transform, opacity;
   transform-origin: center center;
-  transition-duration: var(--b3at);
+  transition-duration: 444ms;
 }
 
 .deal-enter-active {

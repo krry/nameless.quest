@@ -4,9 +4,10 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'
 import App from './App.vue'
-import logout from './plugins/logout'
-import {setu} from './store/user'
 import {set} from './store/cfg'
+import {setu} from './store/user'
+import {saveRoll} from './store/rolls'
+import logout from './plugins/logout'
 import {Focus} from './directives/focus'
 import {AutoResize} from './directives/autoresize'
 import {titlize, symbolize} from './plugins/utils'
@@ -58,13 +59,17 @@ export const database = firebase.database()
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
+    console.log('user detected', user)
     // User is signed in.
     if (user.uid) setu('uid', user.uid)
     if (user.email) setu('email', user.email)
     if (user.phoneNumber) setu('phone', user.phoneNumber)
     if (user.displayName) setu('name', user.displayName)
     if (user.emailVerified) set('emailVerified', user.emailVerified)
+    const roll = localStorage.getItem('roll')
+    if (roll) saveRoll(JSON.parse(roll))
   } else {
+    console.warn('user lost')
     // No user is signed in.
   }
 })

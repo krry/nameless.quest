@@ -9,7 +9,7 @@
       size="xl"
       reveal
       )
-  h3.yingyu(@click.stop="$emit('flip')") {{ names.english }}
+  h3.yingyu {{ names.english }}
   .orders(@click.stop="reorder")
     .kingwen(v-if="wenny") King Wen \#{{ kingwen }}
     .octal(v-if="!wenny") Octal \#{{ octal.slice(1) }}
@@ -100,7 +100,7 @@ export default defineComponent({
 }
 
 .text {
-  text-align: justify;
+  text-align: left;
 }
 
 .names {
@@ -122,7 +122,6 @@ export default defineComponent({
   margin-bottom: 0.5em;
   color: var(--flair);
   font-size: 1.5em;
-  cursor: pointer;
 }
 
 .orders {

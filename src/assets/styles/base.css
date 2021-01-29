@@ -114,8 +114,8 @@ code {
 }
 
 kbd {
-  background: var(--shade);
-  color: var(--flair);
+  background: var(--silk);
+  color: var(--ink);
   font-weight: 600;
   padding: var(--frame);
   font-size: 112.5%;

@@ -42,8 +42,7 @@
           .mark(v-if="mark") {{mark}}
           HexaGlyph(:hex="hex.hexagram")
           h2.yingyu {{ hex.names.english }}
-          //- h3 Judgement
-          pre.judgment {{ hex.judgment }}
+          pre.judgment.font.md {{ hex.judgment }}
         template(#bottom)
           HexaInterp(
             :hex="hex"
@@ -270,5 +269,10 @@ export default defineComponent({
   .sleeve.left.edge.middle {
     left: 100%;
   }
+}
+
+pre.judgment {
+  line-height: var(--leading);
+  font-family: var(--text);
 }
 </style>

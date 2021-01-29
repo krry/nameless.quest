@@ -36,11 +36,9 @@ Page.text-center(
         dd {{ hex.kingwen }}
         dt King Wen
   .flex.mid.col.string
-    h2
-      pre.text.judgment {{ hex.judgment }}
+    pre.judgment.font.md(v-html="adoptOrphans(hex.judgment)")
   .flex.mid.col.string
-    h3
-      pre.text.image {{ hex.images }}
+    pre.image.font.md(v-html="adoptOrphans(hex.images)")
     .flex.space
       .flex.string.col.balance
         .datum.trigram.flex.string.laze.btw(
@@ -77,13 +75,12 @@ Page.text-center(
         IconBase(height="36")
           component(:is="'Icon' + getChangingLine(line.position).is")
       h5.font.md.text.em(v-if="line.ruler") The {{ $titlize(line.ruler) }} Ruler
-      pre.text {{line.meaning}}
+      pre.text.font.md {{line.meaning}}
 </template>
 
 <script lang="ts">
 import {defineComponent, ref, toRefs, reactive, watchEffect, onMounted, computed} from 'vue'
 import {useHexagrams} from '../composables/hexagrams'
-// import {useSwipeable} from '../composables/swipeable'
 import {useTrigrams} from '../composables/trigrams'
 import {cfg, set} from '../store/cfg'
 import Page from '../components/Page.vue'
@@ -136,7 +133,6 @@ export default defineComponent({
   setup(props) {
     const {getHexagramByWen} = useHexagrams()
     const {getTrigram} = useTrigrams()
-    // const {handleSwipeStart, handleSwipeEnd} = useSwipeable()
 
     const hex = ref(getHexagramByWen(props.id))
 
@@ -224,6 +220,16 @@ export default defineComponent({
         set('navvy', true)
       }
     },
+    adoptOrphans(text: string): string {
+      // if there are multiple words in the string
+      console.log('adopting orphans', text)
+      if (text.split(' ').length > 1) {
+        const words = text.split(' ')
+        const lastWord = words.pop()
+        // replace the space before the last word with &nbsp;
+        return words.join(' ') + '&nbsp;' + lastWord
+      } else return text
+    },
   },
 })
 </script>
@@ -249,9 +255,14 @@ dd + dd {
   margin-top: 0;
 }
 
-@media (min-width: 36rem) and (min-height: 36rem) {
-  section {
-    margin: 2rem;
+section {
+  @media (min-width: 36rem) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  @media (min-height: 36rem) {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 }
 
@@ -268,10 +279,10 @@ h3 {
   align-self: normal;
 }
 
-pre.text {
-  text-align: left;
-  font-family: var(--text);
+pre {
+  /* text-align: left; */
   line-height: var(--pleading);
+  font-family: var(--text);
 }
 
 dl + dl::before {
@@ -292,7 +303,7 @@ dl + dl::before {
 }
 
 .numbers .datum {
-  margin: 0 1rem;
+  margin: 0 2.5vw;
 }
 
 .trigram .col {

@@ -1,14 +1,22 @@
 # Schema
 
-- Guest
-  - Name
-    - Kerrbear
-  - Session[]
-    - Id
-      - Symbol(day)
-    - Query[]
-      - Text
-        - Can we proceed?
-      - Roll
-        - 798968
-      - Reflection
+Seeing as we're using Firebase for storage, or a realtime database as they term it, we ought to arrange our data accordingly. Let's see what we have here.
+
+```ts
+type Lot = number
+
+interface Roll {
+  moment: Date
+  query: string
+  toss: Lot[]
+  notes: string
+}
+
+interface Guest {
+  uid: string
+  email: string
+  phone: string
+  displayName: string
+  rolls: Roll[]
+}
+```

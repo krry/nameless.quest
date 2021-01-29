@@ -1,7 +1,7 @@
 <template lang="pug">
 .face(v-focus @click.stop="tog('texty')" )
   router-link.moar.btn.naked.md.abs.t.l.no-underline.clickable(:to="'/change/' + kingwen")
-    IconBase(viewBox="0 -100 1000 800" height="24" width="24")
+    IconBase(viewBox="0 0 1000 1250" size="24")
       IconScroll
     | More
   slot(name="top")
@@ -37,7 +37,7 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .moar.btn.naked {
-  padding: 0 var(--frame);
+  padding: var(--frame) var(--frame) 0;
   margin: 0;
 }
 

@@ -52,7 +52,8 @@ export default defineComponent({
     LoginEmail,
     LoginPhone,
   },
-  beforeRouteUpdate(_to, from) {
+  beforeRouteEnter(_to, from) {
+    console.log('before entering route login', from.path)
     fromPath = from.path
   },
   emits: ['drawer'],

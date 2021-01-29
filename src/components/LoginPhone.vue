@@ -23,7 +23,7 @@ form.flex.space.spread.wrap(@submit.prevent="signInWithPhone")
           type="submit"
           ref="phone-butt"
           @click.prevent="signInWithPhone"
-          ) Login via Phone
+          ) Sign in via Phone
       .field(v-else)
         input#phone_code(
           type="tel"

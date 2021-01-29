@@ -1,20 +1,20 @@
 <template lang="pug">
 .interp(@click.stop="showLines")
   transition(name="slide-fade" mode="out-in" appear)
-    .lines.right.clickable(v-if="liney && linesShown")
-      h3 Changing Lines
+    .lines.right.clickable(v-if="linesShown")
+      //- h3 Changing Lines
       .line(v-for="gram in hex.lines" :key="$symbolize(hex.binary)")
-        LineGram(:content="gram" :toss="toss")
+        LineGram(:content="gram" :toss="user.toss")
     .images.left(v-else :class="{clickable: liney}")
       //- h3 Images
-      pre.image {{ hex.images }}
+      pre.image.font.md {{ hex.images }}
 </template>
 
 <script lang="ts">
-import {ref, defineComponent, PropType, computed} from 'vue'
+import {ref, defineComponent, PropType} from 'vue'
 import {Hexagram, defHex} from '../schema'
 import LineGram from './LineGram.vue'
-import {activeRoll} from '../store/rolls'
+import {user} from '../store/user'
 
 export default defineComponent({
   name: 'HexaInterp',
@@ -30,7 +30,6 @@ export default defineComponent({
   },
   setup(props) {
     const linesShown = ref(props.liney)
-    const toss = computed(() => activeRoll.value.toss)
 
     function showLines() {
       if (props.hex.lines.length > 0 && props.liney) {
@@ -38,7 +37,7 @@ export default defineComponent({
       }
     }
     return {
-      toss,
+      user,
       linesShown,
       showLines,
     }
@@ -46,7 +45,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 .interp {
   padding: 1rem 0 2rem;
   font-family: var(--text);
@@ -56,7 +55,6 @@ export default defineComponent({
   align-items: center;
 }
 
-pre.judgment,
 pre.image {
   line-height: var(--leading);
   font-family: var(--text);

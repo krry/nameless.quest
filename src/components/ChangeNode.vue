@@ -144,7 +144,7 @@ export default defineComponent({
   padding: 0.61em;
   position: relative;
   text-align: center;
-  transition-property: background-color, border-color, color;
+  transition-property: transform, background-color, border-color, color;
   transition-duration: var(--b3at);
   transition-timing-function: var(--ease-out-quad);
   background-color: var(--silk);

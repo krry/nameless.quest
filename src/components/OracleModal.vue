@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue'
-import {activeRoll} from '../store/rolls'
+import {getRolls} from '../store/rolls'
 import {user, setu} from '../store/user'
 
 function checkFreshness(dt: Date): boolean {
@@ -15,16 +15,19 @@ function checkFreshness(dt: Date): boolean {
 }
 
 export default defineComponent({
-  name: 'OracleCard',
+  name: 'OracleModal',
   setup() {
-    const rotd = activeRoll.value // roll of the day
-    // if there is no new roll and a stored roll from less than yesterday, deconstruct and use its values
-    if (rotd && checkFreshness(rotd.moment)) {
-      if (!user.query) setu('query', rotd.query)
-      if (!user.toss) setu('toss', rotd.toss)
-      if (!user.moment) setu('moment', rotd.moment.getTime().toString())
-      if (!user.toss) setu('toss', rotd.toss)
-    }
+    const rolls = getRolls()
+    // if (rolls.value) {
+    //   const rotd = rolls.value[0] // roll of the day
+    //   // if there is no new roll and a stored roll from less than yesterday, deconstruct and use its values
+    //   if (rotd && checkFreshness(rotd.moment)) {
+    //     if (!user.query) setu('query', rotd.query)
+    //     if (!user.toss) setu('toss', rotd.toss)
+    //     if (!user.moment) setu('moment', rotd.moment.getTime().toString())
+    //     if (!user.toss) setu('toss', rotd.toss)
+    //   }
+    // }
   },
 })
 </script>

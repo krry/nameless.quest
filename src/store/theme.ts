@@ -35,7 +35,6 @@ function applyTheme(theme: string) {
   doc.setAttribute('data-theme', theme)
   // console.log('applying theme:', theme)
   setu('theme', theme)
-  // console.log('saved theme:', localStorage.getItem('theme'))
   return theme
 }
 

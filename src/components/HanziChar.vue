@@ -73,6 +73,7 @@ export default defineComponent({
 .char {
   display: inline-block;
   position: relative;
+  --unit: 1rem;
 }
 
 .char:nth-of-type(2) {
@@ -87,7 +88,6 @@ export default defineComponent({
 
 .over .char {
   margin-top: var(--unit);
-  --unit: 1rem;
 }
 
 .char.sm {
@@ -104,6 +104,24 @@ export default defineComponent({
 
 .char.xxl {
   --unit: 2rem;
+}
+
+@media (min-width: 48rem) {
+  .char.sm {
+    --unit: 1rem;
+  }
+
+  .char.lg {
+    --unit: 1.5rem;
+  }
+
+  .char.xl {
+    --unit: 2rem;
+  }
+
+  .char.xxl {
+    --unit: 3rem;
+  }
 }
 
 .char .hanzi {

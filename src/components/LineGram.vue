@@ -1,5 +1,11 @@
 <template lang="pug">
 .gram(v-if="changingLines[content.position-1]")
+  .line-side(v-if="changingLines[content.position-1] === '6'")
+    IconBase
+      Icon6
+  .line-side(v-else-if="changingLines[content.position-1] === '9'")
+    IconBase
+      Icon9
   .the-rest
     .pos-num
       span Line {{ content.position }}: 
@@ -11,13 +17,7 @@
         b yang 
         span ⤐ 
         b yin
-    pre.meaning {{ content.meaning }}
-  .line-side(v-if="changingLines[content.position-1] === '6'")
-    IconBase
-      Icon6
-  .line-side(v-else-if="changingLines[content.position-1] === '9'")
-    IconBase
-      Icon9
+    pre.meaning.font.md {{ content.meaning }}
 </template>
 
 <script lang="ts">
@@ -72,7 +72,7 @@ export default defineComponent({
   height: 6em;
   width: 1.25em;
   color: var(--flair);
-  margin: 0 0 0 0.5em;
+  margin-right: 1rem;
 }
 
 .the-rest {

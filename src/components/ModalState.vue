@@ -6,7 +6,7 @@ teleport(to="#modals")
         .modal-backdrop(v-if="cfg.modal")
           .close-net.fixed.fs.abs-0(@click.stop="set('modal', false)")
       transition.scale.third(name="popup" appear)
-        .modal-rod.rel.scale(v-if="cfg.modal" @close="set('oracle', false)")
+        .modal-rod.rel.scale(v-if="cfg.oracle" @close="set('oracle', false)")
           slot
 </template>
 
