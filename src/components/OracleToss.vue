@@ -1,10 +1,11 @@
 <template lang="pug">
 .face.face--back(tabindex="-1")
-  LogoBrand(direction="bottom").smaller
+  LogoBrand(direction="bottom" size="sm")
   .instructions
-    h2 "{{query.trim()}}"
+    blockquote
+      h3 "{{user.query.trim()}}"
     transition(name="slide-fade" mode="out-in")
-      p.left(v-if="toss.length === 0")
+      p.left(v-if="user.toss.length === 0")
         | Now, breathing deeply,
         br
         | focusing on this question,
@@ -12,8 +13,8 @@
         | we flip 3 coins.
       .glyphs.left.rtl(v-else)
         IconBase.line(
-          v-for="char in toss"
-          :key="$getSymbol(char)"
+          v-for="char in user.toss"
+          :key="$symbolize(char)"
           :class="{valid: validToss}"
           :iconName="getLineName(char)"
           )
@@ -22,7 +23,7 @@
     .field.toss
       input.rtl(
         type="tel"
-        v-model="toss"
+        v-model="user.toss"
         id="roll"
         maxlength="6"
         min="666666"
@@ -30,14 +31,12 @@
         autofocus
         pattern="[6-9]{1,6}"
         placeholder="678789"
-        @focus="coinFocus = true"
-        @blur="coinFocus = false"
-        @keyup.ctrl.enter="emitToss"
+        @keyup.ctrl.enter="saveToss"
       )
-    transition(name="slide" appear mode="out-in")
+    transition(name="slide-fade" mode="out-in" appear)
       button.btn.right.go(
         v-if="validToss"
-        @click="emitToss"
+        @click="saveToss"
         ) Let's 卦 Gua
       .fake-coins(v-else)
         transition(name="fade" mode="out-in")
@@ -91,27 +90,32 @@
   .catch-all.stack.flex.string.wrap
     button.btn.md.outline.lastack(
       type="button"
-      @click="$emit('back')"
+      @click="clearBoth"
       ) ♽ Start Over
-    router-link.btn.naked.sm(to="about") About the Oracle
+    router-link.btn.naked.sm(to="/about") About the Oracle
   button.btn.back.naked(
     type="button"
     :title="'Start Over'"
-    @click="$emit('back')"
+    @click="clearBoth"
     ) ♽
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, computed} from 'vue'
-import IconBase from '../icons/IconBase.vue'
+import {defineComponent, computed} from 'vue'
+import {useRouter} from 'vue-router'
+import LogoBrand from './LogoBrand.vue'
 import Icon6 from '../icons/Icon6.vue'
 import Icon7 from '../icons/Icon7.vue'
 import Icon8 from '../icons/Icon8.vue'
 import Icon9 from '../icons/Icon9.vue'
-import LogoBrand from './LogoBrand.vue'
-import {generateRandomToss} from '../utils/tosses'
-import IconCrystalBall from '../icons/IconCrystalBall.vue'
+import IconBase from '../icons/IconBase.vue'
 import IconMiracle from '../icons/IconMiracle.vue'
+import IconCrystalBall from '../icons/IconCrystalBall.vue'
+import {parseTossToBinary, generateRandomToss} from '../utils/tosses'
+import {activeLots, setLots} from '../store/lots'
+import {user, setu, clearu} from '../store/user'
+import {saveRoll} from '../store/rolls'
+import {set} from '../store/cfg'
 
 export default defineComponent({
   name: 'OracleToss',
@@ -132,26 +136,40 @@ export default defineComponent({
     },
   },
   emits: ['toss', 'back'],
-  setup(_, context) {
-    const toss = ref('')
-    const coinFocus = ref(false)
+  setup() {
+    const router = useRouter()
     const validToss = computed(() => {
-      return /^[6-9]{6}$/.test(toss.value)
+      // ensure that the toss is exactly six 6s, 7s, 8s, & 9s
+      return /^[6-9]{6}$/.test(user.toss)
     })
 
-    function emitToss() {
-      // console.log("emitting toss", toss.value);
-      // ensure that the toss comprises exactly six 6s, 7s, 8s, & 9s
+    function saveToss() {
+      console.log('emitting toss', user.toss)
       if (!validToss.value) return
+      setu('toss', user.toss)
+      console.log('emitting toss', user.toss)
+      setLots(parseTossToBinary(user.toss))
+      saveRoll({
+        query: user.query,
+        toss: user.toss,
+        lots: activeLots.value,
+        moment: new Date(),
+      })
+    }
 
-      context.emit('toss', toss.value)
+    function clearBoth() {
+      confirm("Are you sure you want to start over? This will clear today's question and answer.")
+      clearu('query')
+      clearu('toss')
+      // set('oracle', true)
+      router.push('/oracle/query')
     }
 
     return {
-      toss,
-      coinFocus,
+      user,
+      saveToss,
+      clearBoth,
       validToss,
-      emitToss,
     }
   },
   data() {
@@ -164,7 +182,7 @@ export default defineComponent({
       const fakeFlips = generateRandomToss().toString().split('')
       let i = 0
       const typer = setInterval(() => {
-        this.toss += fakeFlips[i]
+        user.toss += fakeFlips[i]
         i++
         if (i === fakeFlips.length) clearInterval(typer)
       }, 1000)

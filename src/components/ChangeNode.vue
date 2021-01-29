@@ -1,26 +1,26 @@
 <template lang="pug">
 article.change-node(
-  :class="{active: showing}"
-  @keydown.esc="showCards([''])"
+  :class="{active: isActive}"
+  @keydown.esc="clearLots()"
   )
   transition(name="deal" mode="out-in" appear)
     Card(
       ref="card"
-      v-if="showing"
+      v-if="isActive"
       :hex="hex"
       :mark="mark"
       :liney="liney"
-      @close="hideCard([hexId])"
       :quad="setQuadrant()"
+      @close="removeLot(hexId)"
     )
   Frame(:hex="hex")
   Tile.tile(
     ref="tile"
-    @click.stop="showCards([hexId])"
-    @keyup.enter="showCards([hexId])"
+    :tabindex="wenny ? hex.kingwen + 9 : hex.octal + 9"
     :names="hex.names"
-    :tabindex="wenny ? hex.kingwen : hex.octal"
-  )
+    @click.stop="saveLot(hexId)"
+    @keyup.enter="saveLot(hexId)"
+    )
 </template>
 
 <script lang="ts">
@@ -32,7 +32,6 @@ import {
   toRef,
   toRefs,
   provide,
-  inject,
   InjectionKey,
   watchEffect,
   onMounted,
@@ -41,8 +40,8 @@ import {
 
 import {defHex, Hexagram, defQuad, Quad} from '../schema'
 import {determineQuadrant} from '../utils/cards'
-import {useLot} from '../composables/lots'
-import {wenKey} from './HexaGrid.vue'
+import {cfg} from '../store/cfg'
+import {activeLots, saveLot, removeLot, clearLots} from '../store/lots'
 import HexaCard from './HexaCard.vue'
 import HexaTile from './HexaTile.vue'
 import HexaFrame from './HexaFrame.vue'
@@ -66,50 +65,59 @@ export default defineComponent({
       type: String,
       default: '0b000000',
     },
-    toss: {
-      type: String,
-      default: '666666',
-    },
   },
-  emits: ['show', 'hide'],
   setup(props) {
-    const changeData = reactive({
+    const hex = toRef(props, 'hex')
+
+    const rx = reactive({
       card: ref(),
       tile: ref(),
       mark: ref(''),
-      liney: ref(false),
+      liney: false,
+      hex,
       quadrant: ref<Quad>(),
-      hex: toRef(props, 'hex'),
       id: toRef(props, 'hexId'),
-      wenny: inject(wenKey, false),
+      wenny: cfg.wenny,
+      isActive: computed(() => {
+        // console.log('activeLots', activeLots.value)
+        // console.log('hex.binary', hex.value.binary)
+        // console.log(
+        //   'activeLots()?.indexOf(rx.hex.binary)',
+        //   activeLots.value.indexOf(hex.value.binary),
+        // )
+        return activeLots.value?.indexOf(hex.value.binary) === 0
+      }),
+      isBecoming: computed(() => {
+        return activeLots.value?.indexOf(hex.value.binary) === 1
+      }),
     })
 
     function setQuadrant(e: Event): Quad {
-      if (!changeData.tile) return defQuad
-      let el = changeData.tile.$el || e.target
+      if (!rx.tile) return defQuad
+      let el = rx.tile.$el || e.target
       if (!el) return defQuad
       const bounds = el.getBoundingClientRect()
       // console.log("setting quadrant by tile bounds", bounds);
       return determineQuadrant(bounds)
     }
 
-    const {isActive} = useLot(changeData)
-    const showing = computed(() => isActive.value !== -1)
+    function notSolo(arr: string[]): boolean {
+      return typeof arr[0] !== 'undefined' && typeof arr[1] !== 'undefined' && arr[1] !== ''
+    }
 
     onMounted(() => {
       watchEffect(() => {
         // only show marks when two cards
         // only show changing lines on first card
-        // console.log('props.toss', props.toss)
-        if (isActive.value === 0 && props.toss) {
-          changeData.liney = true
-          changeData.mark = '𐡷 Being 𐡸'
-          if (!changeData.card || !changeData.card.$el) return
-          changeData.card.$el.focus()
+        if (rx.isActive && notSolo(activeLots.value)) {
+          rx.liney = true
+          rx.mark = '𐡷 Being 𐡸'
+          if (!rx.card || !rx.card.$el) return
+          rx.card.$el.focus()
         }
-        if (isActive.value === 1) {
-          changeData.liney = false
-          changeData.mark = '𐡸 Becoming 𐡷'
+        if (rx.isBecoming) {
+          rx.liney = false
+          rx.mark = '𐡸 Becoming 𐡷'
         }
       })
     })
@@ -117,19 +125,12 @@ export default defineComponent({
     provide(setQuadrantKey, setQuadrant)
 
     return {
-      showing,
+      saveLot,
+      removeLot,
+      clearLots,
       setQuadrant,
-      ...toRefs(changeData),
+      ...toRefs(rx),
     }
-  },
-  methods: {
-    showCards(bins: string[]): void {
-      this.$emit('show', bins)
-    },
-    hideCard(bin?: string): void {
-      if (!bin) this.$emit('show', [''])
-      else this.$emit('hide', bin)
-    },
   },
 })
 </script>
@@ -143,73 +144,23 @@ export default defineComponent({
   padding: 0.61em;
   position: relative;
   text-align: center;
-  transition: var(--b3at) var(--ease-in-out-cubic);
+  transition-property: background-color, border-color, color;
+  transition-duration: var(--b3at);
+  transition-timing-function: var(--ease-out-quad);
   background-color: var(--silk);
   min-width: 9em;
   min-height: 6.67em;
 }
 
-.change-node.active {
+.change-node:hover {
+  transition-duration: 100ms;
+}
+
+.change-node:hover,
+.change-node:focus-within {
   color: var(--ground);
   border-color: var(--ground);
-  background-color: var(--glow);
-}
-
-.deal-enter-active,
-.deal-leave-active {
-  transform-origin: center center;
-}
-
-.deal-enter-active {
-  transition: var(--b3at) var(--ease-in-out-quad);
-}
-
-.deal-leave-active {
-  transition: var(--bea2) var(--ease-in-quad);
-}
-
-.deal-enter-to,
-.deal-leave-from {
-  opacity: 1;
-  transform: rotateX(0) rotateY(0) rotate(0) scale(1);
-}
-
-.deal-enter-from,
-.deal-leave-to {
-  opacity: 0;
-  transform: rotateX(0) rotateY(-180deg) rotate(0) scale(0.5);
-}
-
-.change-node:nth-of-type(8n-7) .deal-enter-from {
-  transform: rotateX(-180deg) rotate(-180deg) scale(0.25);
-}
-
-.change-node:nth-of-type(8n-3) .deal-enter-from {
-  transform: rotateX(-180deg) rotate(180deg) scale(0.25);
-}
-
-.change-node:nth-of-type(8n-6) .deal-enter-from {
-  transform: rotateY(-180deg) rotate(-180deg) scale(0.25);
-}
-
-.change-node:nth-of-type(8n-2) .deal-enter-from {
-  transform: rotateY(-180deg) rotate(180deg) scale(0.25);
-}
-
-.change-node:nth-of-type(8n-5) .deal-enter-from {
-  transform: rotateX(180deg) rotate(-180deg) scale(0.25);
-}
-
-.change-node:nth-of-type(8n-1) .deal-enter-from {
-  transform: rotateX(180deg) rotate(180deg) scale(0.25);
-}
-
-.change-node:nth-of-type(8n-4) .deal-enter-from {
-  transform: rotateY(180deg) rotate(-180deg) scale(0.25);
-}
-
-.change-node:nth-of-type(8n) .deal-enter-from {
-  transform: rotateY(180deg) rotate(180deg) scale(0.25);
+  background-color: var(--flair);
 }
 
 /*

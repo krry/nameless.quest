@@ -50,7 +50,6 @@ p {
   line-height: var(--leading);
   margin: 0 auto 1em;
   font-family: var(--text);
-  /* font-weight: 300; */
 }
 
 pre {
@@ -78,7 +77,7 @@ a:hover {
 }
 
 a:visited {
-  color: var(--flair);
+  color: var(--glow);
 }
 
 *,
@@ -97,19 +96,21 @@ a:visited {
 
 blockquote {
   font-style: italic;
-  margin: 1em 2em;
-  padding: 1em;
-  font-size: 1.25em;
-  font-weight: 400;
+  margin: 1em 1em 2em;
+  padding: 0 1em;
+  font-size: 1.25rem;
+  font-weight: 500;
   line-height: var(--pleading);
+  border-left: 3px dotted var(--glow);
 }
 
 code {
   background: var(--silk);
   color: var(--flair);
-  padding: 1px 3px;
+  padding: 0px 0.5ch;
   display: inline-block;
   font-family: var(--mono);
+  border-radius: var(--bev);
 }
 
 kbd {
@@ -118,7 +119,16 @@ kbd {
   font-weight: 600;
   padding: var(--frame);
   font-size: 112.5%;
-  margin: 0 2px;
-  border: 1px solid var(--flair);
+  margin: 0 1px;
+  border: 1px solid var(--glow);
   border-radius: 3px;
+  /* vertical-align: baseline; */
+}
+
+p svg {
+  vertical-align: middle;
+}
+
+blockquote pre {
+  margin: 0 0 0 1em;
 }

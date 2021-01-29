@@ -1,25 +1,28 @@
 <template lang="pug">
 Page.about
-  h1 {{ title }}
-  h2 A Paean to the 
-    HanziChars(
-      char="易"
-      pinyin="Yì"
-      reveal
-      )
-    HanziChars(
-      char="經"
-      pinyin="Jīng"
-      reveal
-      )
-  p This experience emerges from the intention to encourage us to trust our intuition. We can envision the future just as we recall the past. May we dance what feels good, each step with more love and less fear.
+  LogoBrand
+  h1.page-title {{ title }}
+  blockquote.poem
+    pre.text-left
+      | With this Nameless offering
+      | I intend to encourage us
+      | to trust our intuition.
+      br
+      br
+      | We summon the future
+      | just as we do the past, 
+      | as echoes into now.
+      br
+      br
+      | May we dance what feels good,
+      | each step with more love.
   ul(ref="toc").toc.ls.pad.y
-    li
-      a.btn.naked.lg(@click.prevent="cruiseTo(divine)") How to Consult the Oracle
-    li
-      a.btn.naked.lg(@click.prevent="cruiseTo(define)") Resources for Deeper Understanding
-    li
-      a.btn.naked.lg(@click.prevent="cruiseTo(devsign)") Making a Nameless for Itself
+    li.flex.col.mid
+      a.btn.naked.xl(@click.prevent="cruiseTo(divine)") How to Consult the Oracle
+    li.flex.col.mid
+      a.btn.naked.xl(@click.prevent="cruiseTo(define)") Resources for Deeper Understanding
+    li.flex.col.mid
+      a.btn.naked.xl(@click.prevent="cruiseTo(devsign)") Making a Nameless for Itself
 
   hr.dinkus.fleuron
 
@@ -86,27 +89,23 @@ Page.about
         p
           | Hilary Barrett presents a wealth of knowledge and guidance about and around the Yìjīng, and offers us a delightful translation and interpretation for the new millennium, free of the trappings of androcracy, careful to treat power as responsibility rather than as dominance, and ready to reveal the light as our eyes adjust to the shining brilliance of the oracle.
         p Early in their wonderful introduction course to the Yìjīng, we learn the meaning of the book's title:
-        
-        .flex.space
+        .flex.space.pad2.top
           h3.ib.text-center
-            HanziChars(
+            HanziChar(
               char="易"
               pinyin="Yì"
               size="xl"
               reveal
+              translation="Change"
               )
-            br
-            | Change
           h3.ib.text-center
-            HanziChars(
+            HanziChar(
               char="經"
               pinyin="Jīng"
               size="xl"
               reveal
+              translation="Classic Book"
               )
-            br
-            | Classic Book
-        
         blockquote
           p Jing, ‘classic book’, is the same word as in ‘Daodejing’ (or ‘Tao Te Ching’), the ‘Book of the Way and its Power’. It literally means the warp threads on the loom. The oracle’s given name is simply Yi: Change.
       li
@@ -181,8 +180,9 @@ Page.about
 <script lang="ts">
 import {defineComponent, ref} from 'vue'
 import Page from '../components/Page.vue'
-import HanziChars from '../components/HanziChars.vue'
+import HanziChar from '../components/HanziChar.vue'
 import IconBase from '../icons/IconBase.vue'
+import LogoBrand from '../components/LogoBrand.vue'
 import Icon7 from '../icons/Icon7.vue'
 import Icon8 from '../icons/Icon8.vue'
 
@@ -193,17 +193,14 @@ export default defineComponent({
     IconBase,
     Icon7,
     Icon8,
-    HanziChars,
-  },
-  props: {
-    modal: Boolean,
-    navved: Boolean,
+    HanziChar,
+    LogoBrand,
   },
   setup() {
     const divine = ref<HTMLElement>()
     const devsign = ref<HTMLElement>()
     const define = ref<HTMLElement>()
-    const title = ref('About Nameless')
+    const title = ref('About the Oracle')
 
     return {
       title,
@@ -223,5 +220,10 @@ export default defineComponent({
 <style lang="postcss" scoped>
 .page.about {
   background-color: var(--silk);
+}
+
+blockquote.poem {
+  margin: 0;
+  padding: 0;
 }
 </style>

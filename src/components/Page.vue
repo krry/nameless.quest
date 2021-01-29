@@ -7,8 +7,9 @@ main.desk.flex.string(
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, reactive, toRefs, watchEffect} from 'vue'
-import {activeTheme} from '../composables/themes'
+import {defineComponent, ref, reactive, toRefs, watchEffect, onMounted} from 'vue'
+import {activeTheme} from '../store/theme'
+import {getRandTo} from '../utils'
 
 export default defineComponent({
   name: 'HexaGrid',
@@ -16,11 +17,8 @@ export default defineComponent({
     const rx = reactive({
       theme: activeTheme,
       backdrop: ref(''),
+      loaded: false,
     })
-
-    function getRand(max: number): number {
-      return Math.floor(Math.random() * max) + 1
-    }
 
     function sizeBg() {
       const screenWidth = window.innerWidth
@@ -32,7 +30,7 @@ export default defineComponent({
     }
 
     watchEffect(() => {
-      rx.backdrop = 'url(/' + sizeBg() + rx.theme + getRand(3) + '.jpg)'
+      rx.backdrop = 'url(/' + sizeBg() + rx.theme + getRandTo(3) + '.jpg)'
     })
 
     return {
@@ -116,6 +114,7 @@ export default defineComponent({
   }
 }
 
+.page h1:first-of-type,
 .page h1:first-child,
 .page h2:first-child {
   margin-top: 1em;

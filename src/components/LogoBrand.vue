@@ -1,14 +1,14 @@
 <template lang="pug">
 .brand(
-  :class="direction, size"
+  :class="direction, size, {grows: grows}"
   @click.stop="isSpinning = !isSpinning"
   )
   transition(name="popup" appear)
     .logo(ref="el")
-  .stack.reveal(name="slide" appear)
-    h1.brand-name#llamo {{ title }}
-    transition(name="slide" appear)
-    slot(name="tagline")
+  .stack.reveal
+    h1.nameless#llamo {{ title }}
+    h2.tagline
+      slot(name="tagline")
 </template>
 
 <script lang="ts">
@@ -25,12 +25,12 @@ export default defineComponent({
     },
     size: {
       type: String,
-      default: 'small',
+      default: 'md',
     },
+    grows: Boolean,
   },
   setup() {
     const el = ref<HTMLElement>()
-    const title = ref(SITE_TITLE)
     const isSpinning = ref(false)
 
     onMounted(() => {
@@ -47,7 +47,7 @@ export default defineComponent({
 
     return {
       el,
-      title,
+      title: SITE_TITLE,
       isSpinning,
     }
   },
@@ -58,12 +58,24 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
 }
 
 .brand {
   display: flex;
-  transition: 333ms;
+  transition: var(--beat);
   min-height: 10vh;
+}
+
+.brand.grows:hover,
+.brand.grows:focus {
+  transform: scale(1.05);
+}
+
+.brand:hover,
+.brand:focus {
+  outline: 2px var(--border-style) var(--flair);
+  outline-offset: 1vh;
 }
 
 .brand.bottom {
@@ -86,8 +98,6 @@ export default defineComponent({
   background-repeat: no-repeat;
   background-position: center;
   background-size: 80%;
-
-  /* z-index: 1; */
   transition: inherit;
   animation: spin 2500ms infinite linear paused;
 }
@@ -102,68 +112,36 @@ export default defineComponent({
   }
 }
 
-.slide-enter-active,
-.slide-leave-active,
-.popup-enter-active,
-.popup-leave-active {
-  transition: 444ms var(--ease-in-out-sine);
+.brand {
+  --logo-dim: clamp(4rem, 4rem + 3vh + 3vw, 7.5rem);
 }
 
-.slide-enter-from,
-.slide-leave-to {
-  opacity: 0;
-  transform: translateY(-100%);
+/* .brand.lg {
+  --logo-dim: calc(6vh + 8vw);
 }
 
-.slide-enter-to,
-.slide-leave-from {
-  opacity: 1;
-  transform: translateY(0%);
-}
+.brand.md {
+  --logo-dim: calc(4vh + 6vw);
+} */
 
-.popup-enter-from,
-.popup-leave-to {
-  opacity: 0;
-  transform: scale(0.7);
-}
-
-.popup-enter-to,
-.popup-leave-from {
-  opacity: 1;
-  transform: scale(1);
-}
-
-h1.brand-name {
+h1.nameless {
+  font-size: calc(var(--logo-dim) / 4);
   color: var(--brand);
   font-family: var(--heading);
-  font-size: 1.5em;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 4px;
+  letter-spacing: 3.25px;
   margin: 0;
+}
+
+h2.tagline {
+  font-size: calc(var(--logo-dim) / 6);
+  font-family: var(--font);
+  font-weight: 500;
+  margin-bottom: 0;
 }
 
 .brand.right h1:first-child {
   margin-top: 0;
-}
-
-.oracle {
-  --logo-dim: 20vh;
-}
-
-.oracle .brand-name {
-  font-size: 2rem;
-}
-
-.oracle .logo {
-  /* z-index: unset; */
-}
-
-.smaller {
-  --logo-dim: 5rem;
-}
-
-.smaller .reveal h1 {
-  display: none;
 }
 </style>

@@ -1,3 +1,32 @@
+/** FOR App.vue */
+// import {useSanityClient} from 'vue-sanity'
+
+// const projectId = import.meta.env.VITE_SANITY_PROJECT_ID
+
+// function stringForSure(str: unknown): string {
+//   if (typeof str === 'string') return str
+//   else return ''
+// }
+// setup() {
+// useSanityClient({
+//   projectId: stringForSure(projectId),
+//   dataset: 'production',
+//   useCdn: process.env.NODE_ENV === 'production',
+// })
+// }
+/** END App.vue */
+
+/** FOR hexagrams.ts */
+// import {useSanityFetcher} from 'vue-sanity'
+
+// const {data: hexagrams} = useSanityFetcher<Hexagram[]>(
+//   () => `*[_type=="hexagram"]`, // query
+//   [defHex], // initialValue
+// )
+
+// console.log('hexagrams fetched', hexagrams)
+/** END hexagrams.ts */
+
 // import sanityClient from '@sanity/client'
 // import sanityImage from '@sanity/image-url'
 

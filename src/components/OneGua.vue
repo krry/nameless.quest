@@ -1,7 +1,7 @@
 <template lang="pug">
-.gua(:class="{turned: !texty}")
+.gua
   .col
-    .trigram {{ trigrams[gua].trigram }}
+    TriGlyph( :tri="trigrams[gua].trigram" )
   .col
     span.mand-name {{ trigrams[gua].name.zh + " "}}
     span.pnyn-name  {{ trigrams[gua].name.pn }}
@@ -10,10 +10,15 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue'
+import {cfg, tog} from '../store/cfg'
+import TriGlyph from '../components/TriGlyph.vue'
 import trigramData from '../data/trigrams.json'
 
 export default defineComponent({
   name: 'OneGua',
+  components: {
+    TriGlyph,
+  },
   props: {
     gua: {
       type: Number,
@@ -24,7 +29,12 @@ export default defineComponent({
   },
   setup() {
     const trigrams = trigramData
-    return {trigrams}
+
+    return {
+      tog,
+      cfg,
+      trigrams,
+    }
   },
 })
 </script>
@@ -40,20 +50,15 @@ export default defineComponent({
 .trigram {
   font-size: 2.5em;
   line-height: 1;
-  transition: transform 444ms ease-in-out;
-}
-
-.turned .trigram {
-  transform: rotateZ(-90deg);
+  transform-origin: center center;
+  transition: transform var(--beat) var(--ease-out-quad);
 }
 </style>
 <style lang="postcss">
-.glyphs .trigram {
+.glyphs .triglyph {
   font-size: 3rem;
-}
 
-@media (min-width: 36rem) {
-  .glyphs .trigram {
+  @media (min-width: 36rem) {
     font-size: 4rem;
   }
 }

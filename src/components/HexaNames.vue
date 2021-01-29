@@ -1,30 +1,32 @@
 <template lang="pug">
 .names
   .glyphs
-    HanziChars(
+    HanziChar(
       v-for="(char, index) in names.chinese"
-      :key="$getSymbol(char)"
+      :key="$symbolize(char)"
       :char="char"  
       :pinyin="pinyin[index]"
+      size="xl"
       reveal
       )
   h3.yingyu(@click.stop="$emit('flip')") {{ names.english }}
   .orders(@click.stop="reorder")
     .kingwen(v-if="wenny") King Wen \#{{ kingwen }}
-    .octal(v-if="!wenny") Octal \#{{ octal }}
+    .octal(v-if="!wenny") Octal \#{{ octal.slice(1) }}
 </template>
 
 <script lang="ts">
 import {defineComponent, PropType, reactive, toRefs, computed, inject} from 'vue'
 import {defHex, Hexaname} from '../schema'
-import HanziChars from './HanziChars.vue'
-import {wenKey, reorderKey} from './HexaGrid.vue'
+import {cfg} from '../store/cfg'
+import HanziChar from './HanziChar.vue'
+import {reorderKey} from './HexaGrid.vue'
 import {setQuadrantKey} from './ChangeNode.vue'
 
 export default defineComponent({
   name: 'HexaNames',
   components: {
-    HanziChars,
+    HanziChar,
   },
   props: {
     names: {
@@ -45,7 +47,7 @@ export default defineComponent({
     const setQuadrant = inject(setQuadrantKey)
     const reorderTiles = inject(reorderKey)
     const hanziData = reactive({
-      wenny: inject(wenKey, false),
+      wenny: cfg.wenny,
       pinyin: computed(() => props.names.pinyin.split(' ')),
       arrayedHanzi: computed((): string[] => {
         if (!props.names.chinese) {
@@ -80,7 +82,7 @@ export default defineComponent({
   cursor: pointer;
   position: relative;
   font-size: 1.5rem;
-  transition: color var(--bea2);
+  transition: color var(--bea2) var(--ease-in-out-quad);
   margin-bottom: 1rem;
 }
 
@@ -111,7 +113,7 @@ export default defineComponent({
 
 @media (min-width: 48rem) {
   .names {
-    justify-content: flex-end;
+    justify-content: center;
   }
 }
 
@@ -126,61 +128,11 @@ export default defineComponent({
 .orders {
   cursor: pointer;
   margin: 0.5rem;
-  font-weight: 300;
+  color: var(--link);
 }
 
 .orders:hover,
 .orders:focus {
   color: var(--link);
-}
-</style>
-<style lang="postcss">
-.slide-fade-enter-active,
-.slide-fade-leave-active {
-  transform: translateZ(0);
-}
-
-.slide-fade-enter-active {
-  transition: all 0.3s var(--ease-out-cubic);
-}
-
-.slide-fade-leave-active {
-  transition: all 0.3s var(--ease-in-cubic);
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  opacity: 0;
-  transform: translateZ(0);
-}
-
-.slide-fade-enter-from.over,
-.slide-fade-leave-to.over {
-  transform: translateY(1em);
-  opacity: 0;
-}
-
-.slide-fade-enter-from.under,
-.slide-fade-leave-to.under {
-  transform: translateY(-1em);
-  opacity: 0;
-}
-
-.slide-fade-enter-from.right,
-.slide-fade-leave-to.right {
-  transform: translateX(20em);
-  opacity: 0;
-}
-
-.slide-fade-enter-from.left,
-.slide-fade-leave-to.left {
-  transform: translateX(-20em);
-  opacity: 0;
-}
-
-.slide-fade-enter-to,
-.slide-fade-leave-from {
-  transform: translateY(0) translateX(0) translateZ(0);
-  opacity: 1;
 }
 </style>

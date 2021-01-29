@@ -2,11 +2,12 @@
 .names(
   :title="names.pinyin"
   )
-  hanzi(
+  HanziChar(
     v-for="(char, index) in names.chinese"
     :key="index"
     :char="char"
     :pinyin="pinyin[index]"
+    direction="none"
   )
   h4.yingyu {{ names.english }}
 </template>
@@ -14,12 +15,12 @@
 <script lang="ts">
 import {defineComponent, PropType} from 'vue'
 import {defHex, Hexaname} from '../schema'
-import HanziChars from './HanziChars.vue'
+import HanziChar from './HanziChar.vue'
 
 export default defineComponent({
   name: 'Tile',
   components: {
-    hanzi: HanziChars,
+    HanziChar,
   },
   props: {
     names: {
@@ -53,6 +54,7 @@ export default defineComponent({
 .names:focus {
   color: var(--link);
   opacity: 1;
+  outline: none;
 }
 
 .yingyu {
@@ -61,17 +63,17 @@ export default defineComponent({
 }
 </style>
 <style lang="postcss">
-.tile.names,
-.tile.names:focus,
-.tile .yingyu,
-.tile .hanzi {
-  transition: var(--b3at) var(--ease-in-out-cubic);
+.change-node:hover .tile h4.yingyu,
+.change-node:hover .tile .hanzi {
+  color: var(--ground);
 }
 
-.active .tile.names,
-.active .tile.names:focus,
-.active .tile .yingyu,
-.active .tile .hanzi {
-  color: var(--ground);
+.face:hover .hanzi {
+  color: var(--flair);
+}
+
+.face .yingyu,
+.face:hover .yingyu {
+  color: var(--ink);
 }
 </style>

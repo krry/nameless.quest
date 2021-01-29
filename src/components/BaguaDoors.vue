@@ -70,8 +70,8 @@ export default defineComponent({
 
 .bagua .gua {
   flex-direction: row;
-  background: var(--flair);
-  color: var(--paper);
+  background: var(--ink);
+  color: var(--ground);
   pointer-events: auto;
   display: flex;
 }
@@ -83,13 +83,17 @@ export default defineComponent({
 .bagua .gua:first-child {
   align-items: flex-end;
   padding-bottom: 0.25rem;
-  border-bottom: 1px solid var(--glow);
+  border-bottom: 1px solid var(--pencil);
 }
 
 .bagua .gua:last-child {
   align-items: flex-start;
   padding-top: 0.25rem;
-  border-top: 1px solid var(--glow);
+  border-top: 1px solid var(--pencil);
+}
+
+.bagua .gua:first-child .trigram {
+  line-height: 1.2;
 }
 
 .bagua .gua:last-child .trigram {
@@ -119,13 +123,16 @@ export default defineComponent({
 
 .slip-enter-active,
 .slip-leave-active {
-  transition: 444ms ease-out;
   transform: translateY(0);
   opacity: 1;
 }
 
+.slip-enter-active {
+  transition: var(--beat) var(--ease-out-quad);
+}
+
 .slip-leave-active {
-  transition: 444ms ease-in;
+  transition: var(--beat) var(--ease-in-quad);
 }
 
 .slip-enter-to,

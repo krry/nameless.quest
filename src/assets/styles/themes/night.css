@@ -27,8 +27,8 @@ $moonglow: 0 0 0.125vw 0.0625vw hsla(177, 77%, 77%, 1), 0 0 0.25vw 0.125vw hsla(
   --silk: $silk-night;
   --ground: $deep-space;
   --ink: $ink-night;
-  --flair: $flair-night;
-  --link: $link-night;
+  --link: $flair-night;
+  --flair: $link-night;
   --pencil: $pencil-night;
   --dust: $dust-night;
   --good: $good-night;

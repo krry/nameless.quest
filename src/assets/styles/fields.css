@@ -12,7 +12,9 @@
   font-size: 0.75em;
 }
 
-.field input + label,
+.field input[type='email'] + label,
+.field input[type='text'] + label,
+.field input[type='tel'] + label,
 .field textarea + label {
   order: 1;
   margin-bottom: 0.5em;
@@ -24,28 +26,36 @@
   }
 }
 
-.field input:focus + label,
+.field input[type='email']:focus + label,
+.field input[type='text']:focus + label,
+.field input[type='tel']:focus + label,
 .field textarea:focus + label {
   opacity: 1;
 }
 
-.field input {
+.field input[type='email'],
+.field input[type='text'],
+.field input[type='tel'] {
   padding: 0.25em 0.5em;
 }
 
-.field input,
+.field input[type='email'],
+.field input[type='text'],
+.field input[type='tel'],
 .field textarea {
   order: 2;
   appearance: none;
-  font-family: var(--text);
   font-weight: 500;
+  color: var(--ink);
   font-size: 1.125em;
   text-align: center;
-  color: var(--ink);
+  font-family: var(--text);
   background: var(--paper);
-  border: 2px solid var(--glow);
   border-radius: var(--bevel);
-  transition: var(--bea2) var(--ease-in-out-cubic);
+  border: 2px solid var(--glow);
+  transition-property: outline, border-color, background-color, color;
+  transition-duration: var(--beat);
+  transition-timing-function: var(--ease-out-quad);
 }
 
 .field textarea {
@@ -56,20 +66,80 @@
   line-height: 1.6;
 }
 
-.field input:hover,
-.field input:focus,
-.field textarea:hover,
-.field textarea:focus {
-  outline: 2px var(--border-style) var(--glow);
-  outline-offset: -5px;
+.field input,
+.field textarea {
+  transition-duration: 100ms !important;
 }
 
-.field input:valid,
+.field input[type='email']:hover,
+.field input[type='email']:focus,
+.field input[type='text']:hover,
+.field input[type='text']:focus,
+.field input[type='tel']:hover,
+.field input[type='tel']:focus,
+.field textarea:hover,
+.field textarea:focus {
+  outline: 1px var(--border-style) var(--glow);
+  outline-offset: -4px;
+}
+
+.field input[type='email']:valid,
+.field input[type='text']:valid,
+.field input[type='tel']:valid,
 .field textarea:valid {
   border-color: var(--good);
 }
 
-.field input:invalid,
+.field input[type='email']:invalid,
+.field input[type='text']:invalid,
+.field input[type='tel']:invalid,
 .field textarea:invalid {
   border-color: var(--bad);
+}
+
+input[type='radio'] {
+  width: 2rem;
+  height: 2rem;
+  appearance: none;
+  border-radius: 100%;
+  margin: 0.25rem 0.5rem;
+  background: var(--silk);
+  border: 0.25rem solid var(--glow);
+  transition-property: font-weight, border-color, background-color, color;
+  transition-duration: var(--beat);
+  transition-timing-function: var(--ease-out-quad);
+}
+
+input[type='radio'],
+input[type='radio'] + label,
+.radios label {
+  display: inline-block;
+  font-family: var(--mono);
+  line-height: 3rem;
+  vertical-align: middle;
+  margin: 0.25rem;
+}
+
+input[type='radio'] + label {
+  font-weight: 400;
+}
+
+input[type='radio'] + label:hover {
+  font-weight: 700;
+  color: var(--link);
+}
+
+input[type='radio']:checked + label {
+  font-weight: 700;
+  color: var(--flair);
+}
+
+input[type='radio']:hover {
+  border-color: var(--link);
+  background-color: var(--ground);
+}
+
+input[type='radio']:checked {
+  border: 0.5rem solid var(--flair);
+  background-color: var(--ground);
 }

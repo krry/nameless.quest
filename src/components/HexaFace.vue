@@ -1,17 +1,18 @@
 <template lang="pug">
-.face
+.face(v-focus @click.stop="tog('texty')" )
   router-link.moar.btn.naked.md.abs.t.l.no-underline.clickable(:to="'/change/' + kingwen")
     IconBase(viewBox="0 -100 1000 800" height="24" width="24")
       IconScroll
     | More
   slot(name="top")
-  hr.divider.abs-0(@click.stop="$emit('flip')")
+  hr.divider.abs-0
   slot(name="bottom")
   .close.tr(@click.stop="$emit('close')") ⓧ
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue'
+import {tog} from '../store/cfg'
 import IconBase from '../icons/IconBase.vue'
 import IconScroll from '../icons/IconScroll.vue'
 
@@ -27,7 +28,10 @@ export default defineComponent({
       default: 0,
     },
   },
-  emits: ['close', 'flip', 'drawer'],
+  emits: ['close'],
+  setup() {
+    return {tog}
+  },
 })
 </script>
 

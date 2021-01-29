@@ -22,10 +22,11 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType, ref, inject} from 'vue'
+import {defineComponent, PropType, ref, inject, computed} from 'vue'
 import {defHex, Hexagram} from '../schema'
+import {cfg} from '../store/cfg'
 import BaguaDoors from './BaguaDoors.vue'
-import {wenKey, reorderKey} from './HexaGrid.vue'
+import {reorderKey} from './HexaGrid.vue'
 import {setQuadrantKey} from './ChangeNode.vue'
 
 export default defineComponent({
@@ -53,7 +54,7 @@ export default defineComponent({
     return {
       baguad,
       reorder,
-      wenny: inject(wenKey, false),
+      wenny: cfg.wenny,
     }
   },
 })

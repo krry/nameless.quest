@@ -1,17 +1,28 @@
 <template lang="pug">
 .face.face--back
-  LogoBrand(direction="bottom").smaller
+  LogoBrand(direction="bottom" size="sm")
+  blockquote
+    h3 {{user.query.trim()}}
   h2 Your Toss
   .glyphs
-  IconBase.line(
-      v-for="char in toss"
+    IconBase.line(
+      v-for="char in user.toss"
       :key="char"
-    :icon-name="char")
+      :icon-name="char"
+      )
       component(:is="`Icon${char}`")
   aside.help ☯
-  h2 Your Hexagram#{plural}
-  a.first-hex(@click="showCards(bins)") {{bins[0]}}
-  a.second-hex(@click="showCards(bins)") {{bins[1]}}
+  h2 The Oracle's response
+  .flex.wrap
+    .result.being.half(
+      v-for="hex in hexs"
+      :key="$symbolize(hex.binary)")
+      h3.font.x3l
+        HexaGlyph(:hex="hex.hexagram")
+        HanziChar(:char="hex.names.chinese" :pinyin="hex.names.pinyin" size="lg" reveal)
+      router-link.btn.naked(:to="'/change/'+hex.kingwen")
+        span {{ user.wenny ? hex.kingwen : hex.octal }}
+        span {{ hex.names.english }}
   button.back(
     type="button"
     :title="'Start Over'"
@@ -20,48 +31,40 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, computed, PropType} from 'vue'
+import {defineComponent} from 'vue'
 import IconBase from '../icons/IconBase.vue'
 import Icon6 from '../icons/Icon6.vue'
 import Icon7 from '../icons/Icon7.vue'
 import Icon8 from '../icons/Icon8.vue'
 import Icon9 from '../icons/Icon9.vue'
 import LogoBrand from './LogoBrand.vue'
+import HexaGlyph from './HexaGlyph.vue'
+import HanziChar from './HanziChar.vue'
+import {useHexagrams} from '../composables/hexagrams'
+import {user} from '../store/user'
+import {activeLots} from '../store/lots'
 
 export default defineComponent({
-  name: 'OracleToss',
+  name: 'OracleResponse',
   components: {
     IconBase,
     Icon6,
     Icon7,
     Icon8,
     Icon9,
+    HexaGlyph,
     LogoBrand,
+    HanziChar,
   },
-  props: {
-    toss: {
-      type: String,
-      default: '',
-    },
-    bins: {
-      type: Array as PropType<string[]>,
-      default: () => [''],
-    },
-  },
-  emits: ['show', 'back'],
-  setup(props) {
-    const plural = computed((): string => {
-      return props.toss.includes('6') || props.toss.includes('9') ? 's' : ''
-    })
+  emits: ['back'],
+  setup() {
+    const {getHexagramByBin} = useHexagrams()
+    const hexs = activeLots.value.map((l: string) => getHexagramByBin(l))
 
     return {
-      plural,
+      user,
+      hexs,
     }
-  },
-  methods: {
-    showCards(bins: string[]) {
-      this.$emit('show', bins)
-    },
   },
 })
 </script>
@@ -71,35 +74,9 @@ h2 {
   margin: 1em 0 0.25em;
 }
 
-.fields {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.field.half {
-  flex: 1 0 auto;
-  flex-basis: 50%;
-}
-
-.btn.go {
-  font-size: 1.125em;
-  font-weight: 700;
-  padding: 0.25em 0.5em;
-  margin: 0 0 0 1rem;
-}
-
 aside.help {
   font-size: 2em;
   margin: 0.5em auto;
-}
-
-@media (min-width: 48rem) {
-  .coins {
-    font-size: 0.875em;
-    margin-top: 0.5em;
-    order: 2;
-  }
 }
 
 button.back {

@@ -1,64 +1,28 @@
 <template lang="pug">
 FeedbackFish(projectId="b186633d70b54b")
 #modals.modals.fs.fixed.abs-0
-AppDrawer#drawer.fixed.abs-0.fs(
-  @showModal="showModal"
-  @click.stop="closeDrawer"
-  )
-button.btn.naked.tab.surf.fixed.b.l.ride(
-  @click="closeDrawer"
-  )
-transition(name="flag" appear)
+AppDrawer#drawer.fixed.abs-0.fs( @click.stop="closeDrawer" )
+transition(name="flag" appear mode="out-in")
+  button.btn.naked.tab.surf.fixed.b.l.ride(
+    v-if="cfg.drawer"
+    @click.stop="closeDrawer"
+    tabindex="9"
+    )
   button.btn.naked.tab.surf.fixed.b.l.float(
-    v-if="!drawerOpen"
-    @click="openDrawer"
+    v-else
+    @click.stop="openDrawer"
+    tabindex="9"
     )
-#app.app.rel(
-  ref="ether"
-)
-  router-view(
-    :modal="modalShown"
-    :navved="navved"
-    @navved="setNavved"
-    @modal="handleModal"
-    @closeDrawer="closeDrawer"
-    )
+#app.app.rel( ref="ether" )
+  router-view
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, reactive, toRefs, watchEffect} from 'vue'
-import {activeTheme, useThemes} from './composables/themes'
+import {defineComponent, ref, reactive, toRefs, onMounted, onUnmounted, watchEffect} from 'vue'
+import {activeTheme, setTheme} from './store/theme'
+import {cfg, set} from './store/cfg'
 import AppDrawer from './components/AppDrawer.vue'
 import {FeedbackFish} from '@feedback-fish/vue'
-
-const {setTheme} = useThemes()
-
-function removeClassOfClassesFromEl(element: HTMLElement, className: string) {
-  const classList = element.classList
-  while (classList.length > 0) {
-    const cls = classList.item(0)
-    if (cls === null) return
-    if (cls.includes(className)) {
-      classList.remove(cls)
-    }
-  }
-}
-
-function applyTheme(theme: string) {
-  const doc = document.documentElement
-  removeClassOfClassesFromEl(doc, 'theme')
-  doc.classList.add(`theme-${theme}`)
-  doc.setAttribute('data-theme', theme)
-  // console.log('applying theme:', theme)
-  localStorage.setItem('theme', theme)
-  // console.log('saved theme:', localStorage.getItem('theme'))
-  setTheme(theme)
-}
-
-function checkStorage(key: string): boolean | undefined {
-  const val = localStorage.getItem(key)
-  if (val) return val === 'true'
-}
 
 export default defineComponent({
   name: 'App',
@@ -69,74 +33,66 @@ export default defineComponent({
   setup() {
     const rx = reactive({
       ether: ref<HTMLElement>(),
-      modalShown: ref(false),
-      drawerOpen: ref(true),
-      navved: ref(checkStorage('navved')),
     })
+
+    function boundDrawer() {
+      if (document.documentElement.scrollLeft <= 250) {
+        set('drawer', true)
+      } else set('drawer', false)
+    }
+
+    function escapeOracle(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        set('modal', false)
+      }
+    }
 
     watchEffect(() => {
-      // console.log('watchEffect triggered', activeTheme.value)
-      applyTheme(activeTheme.value)
+      setTheme(activeTheme.value)
     })
 
-    return {
-      ...toRefs(rx),
-    }
-  },
-  mounted() {
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        this.modalShown = false
-      }
-    })
-
-    window.addEventListener('scroll', () => {
-      if (document.documentElement.scrollLeft <= 250) {
-        this.drawerOpen = true
-      } else this.drawerOpen = false
-    })
-    window.addEventListener('touchstart', () => (this.navved = true), true)
-  },
-  unmounted() {
-    window.removeEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        this.modalShown = false
-      }
-    })
-    window.removeEventListener('scroll', () => {
-      if (document.documentElement.scrollLeft <= 250) {
-        this.drawerOpen = true
-      } else this.drawerOpen = false
-    })
-  },
-  methods: {
-    openDrawer(): void {
+    function openDrawer() {
       window.scrollTo(0, document.documentElement.scrollTop)
-    },
-    closeDrawer(): void {
+    }
+
+    function closeDrawer() {
       const drawerWidth = window.innerWidth < 576 ? window.innerWidth - 48 : 300
       // const drawerWidth = window.innerWidth - 96
       window.scrollTo(drawerWidth, document.documentElement.scrollTop)
-    },
-    handleModal(state: boolean): void {
-      this.modalShown = state
-    },
-    setNavved(bit: boolean): void {
-      this.navved = bit
-      // console.log('navved set to', bit)
-      localStorage.setItem('navved', JSON.stringify(bit))
-    },
-    showModal(): void {
-      this.closeDrawer()
-      this.modalShown = true
-    },
+    }
+
+    function handleDrawer(bit: boolean) {
+      if (bit) openDrawer()
+      else closeDrawer()
+    }
+
+    onMounted(() => {
+      boundDrawer()
+      window.addEventListener('scroll', boundDrawer)
+      window.addEventListener('keydown', escapeOracle)
+      window.addEventListener('touchstart', () => set('navvy', true), true)
+    })
+
+    onUnmounted(() => {
+      window.removeEventListener('keydown', escapeOracle)
+      window.removeEventListener('scroll', boundDrawer)
+    })
+
+    return {
+      cfg,
+      set,
+      openDrawer,
+      closeDrawer,
+      handleDrawer,
+      ...toRefs(rx),
+    }
   },
 })
 </script>
 
 <style lang="postcss" scoped>
 .modals {
-  z-index: 2;
+  z-index: 4;
   pointer-events: none;
 }
 
@@ -166,20 +122,20 @@ export default defineComponent({
   border: 2px solid var(--glow);
   background-color: var(--silk);
   padding: 0;
-  /* margin: 0.5em 0; */
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  left: 0;
-  border-right: 0;
   box-shadow: 0 0 0.25rem var(--glow);
-  /* position: relative; */
 
   &:hover {
-    background: var(--dust);
+    background-color: var(--dust);
+    outline: none;
+    box-shadow: 0 0 0.5rem 0.125rem var(--glow);
   }
 }
 
 .btn.surf.tab.ride {
+  left: 0;
+  border-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
   transform: translateX(calc(100vw - 6rem));
 
   @media (min-width: 36rem) {
@@ -188,30 +144,24 @@ export default defineComponent({
 }
 
 .btn.surf.tab.float {
+  border-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
   z-index: 3;
-  transform: translateX(0) rotateY(180deg);
 }
 
 .flag-enter-active,
 .flag-leave-active {
-  transition: transform var(--bea2);
-  transform-origin: left center;
+  transition: all var(--bea2) var(--ease-in-out-quad);
 }
 
+.flag-leave-to,
 .flag-enter-from {
-  transform: rotateY(90deg) translateX(0);
-}
-
-.flag-leave-to {
-  transform: rotateY(90deg) translateX(calc(100vw - 6rem));
-
-  @media (min-width: 36rem) {
-    transform: rotateY(90deg) translateX(17rem);
-  }
+  transform: translateX(-6rem);
 }
 
 .flag-enter-to,
 .flag-leave-from {
-  transform: rotateY(180deg) translateX(0);
+  transform: translateX(0);
 }
 </style>

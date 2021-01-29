@@ -69,7 +69,6 @@ export const draggable = (element: HTMLElement | undefined): DragParams | undefi
     position.isDragging = false
     position.dragStartX = 0
     position.dragStartY = 0
-    document.removeEventListener('mouseup', onMouseUp)
     document.removeEventListener('mousemove', onMouseMove)
   }
 
@@ -80,7 +79,7 @@ export const draggable = (element: HTMLElement | undefined): DragParams | undefi
 
     position.isDragging = true
 
-    document.addEventListener('mouseup', onMouseUp)
+    document.addEventListener('mouseup', onMouseUp, {once: true})
     document.addEventListener('mousemove', onMouseMove)
   }
 

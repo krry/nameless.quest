@@ -1,18 +1,18 @@
 <template lang="pug">
 .face.face--front(tabindex="-1")
-  LogoBrand(direction="bottom" size="small")
+  LogoBrand(direction="bottom" size="sm")
   .field
     textarea#query(
       v-autoresize
-      v-model="query"
+      v-model="user.query"
       placeholder="…the burning question?"
       autofocus
       rows="1"
       pattern="\?$"
-      @keyup.ctrl.enter="askTheOracle"
+      @keydown.ctrl.enter="askTheOracle"
       )
     label.field-label(for="query") Now·here, my heart wonders…
-    label.validation(:class="{shown: invalid}") Is that a question?
+    label.validation(:class="{shown: invalidQuery}") Is that a question?
     button.btn.lg(type="button" @click="askTheOracle") Ask the Oracle
     label.message
       kbd(title="ctrl+enter") ⌃⏎
@@ -51,15 +51,17 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
-import LogoBrand from './LogoBrand.vue'
-import IconBase from '../icons/IconBase.vue'
+import {useRouter} from 'vue-router'
+import {defineComponent, ref} from 'vue'
+import {user, setu} from '../store/user'
 import Icon6 from '../icons/Icon6.vue'
 import Icon7 from '../icons/Icon7.vue'
 import Icon8 from '../icons/Icon8.vue'
 import Icon9 from '../icons/Icon9.vue'
-import IconCrystalBall from '../icons/IconCrystalBall.vue'
+import LogoBrand from './LogoBrand.vue'
+import IconBase from '../icons/IconBase.vue'
 import IconMiracle from '../icons/IconMiracle.vue'
+import IconCrystalBall from '../icons/IconCrystalBall.vue'
 
 export default defineComponent({
   name: 'OracleQuery',
@@ -73,22 +75,25 @@ export default defineComponent({
     IconCrystalBall,
     IconMiracle,
   },
-  emits: ['query'],
-  data() {
-    return {
-      query: '',
-      invalid: false,
-    }
-  },
-  methods: {
-    askTheOracle() {
-      if (this.query.length > 0 && this.query.substr(-2).includes('?')) {
-        this.$emit('query', this.query)
+  setup() {
+    const router = useRouter()
+    const invalidQuery = ref(false)
+
+    function askTheOracle() {
+      if (user.query.length > 0 && user.query.substr(-2).includes('?')) {
+        router.push({path: 'toss'})
       } else {
-        this.invalid = true
+        invalidQuery.value = true
         console.warn('Non-question detected!')
       }
-    },
+    }
+
+    return {
+      user,
+      setu,
+      askTheOracle,
+      invalidQuery,
+    }
   },
 })
 </script>

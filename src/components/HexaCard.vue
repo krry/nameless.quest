@@ -1,20 +1,18 @@
 <template lang="pug">
 .sleeve(
   tabindex="0"
-  :class="quad.yPos, quad.xPos, quad.edge, quad.middle, {flipped: texty}"
+  :class="quad.yPos, quad.xPos, quad.edge, quad.middle, {flipped: cfg.texty}"
   )
   .card(
     ref="card"
-    :class="{flipped: texty}"
+    :class="{flipped: cfg.texty}"
     )
     transition(name="flip")
       HexaFace(
-        v-if="!texty"
+        v-if="!cfg.texty"
         class="face face--front"
         :kingwen="hex.kingwen"
         @close="$emit('close')"
-        @click.stop="$emit('focus')"
-        @flip="toggleTexty"
         tabindex="-1"
         )
         template(#top)
@@ -23,46 +21,42 @@
             :names="hex.names"
             :kingwen="hex.kingwen"
             :octal="hex.octal"
-            @flip="toggleTexty"
             )
         template(#bottom)
           .cross.horiz
             .glyphs
               OneGua(:gua="hex.trigramPair.above")
-            .hexandbin.stack.clickable(@click.stop="toggleTexty")
-              .hexagram.turned {{ hex.hexagram }}
+            .stack
+              HexaGlyph(:hex="hex.hexagram")
               .binary {{ hex.binary.slice(2) }}
             .glyphs
-              OneGua(:gua="hex.trigramPair.below" :texty="texty")
+              OneGua(:gua="hex.trigramPair.below")
       HexaFace(
         v-else
         class="face face--back"
         :kingwen="hex.kingwen"
-        @click.stop="$emit('focus')"
         @close="$emit('close')"
         tabindex="-1"
         )
         template(#top)
           .mark(v-if="mark") {{mark}}
-          HexaNames(
-            :names="hex.names"
-            :kingwen="hex.kingwen"
-            :octal="hex.octal"
-            @flip="toggleTexty"
-            )
+          HexaGlyph(:hex="hex.hexagram")
+          h2.yingyu {{ hex.names.english }}
+          //- h3 Judgement
+          pre.judgment {{ hex.judgment }}
         template(#bottom)
           HexaInterp(
             :hex="hex"
-            @flip="toggleTexty"
             :liney="liney")
 </template>
-
 <script lang="ts">
 import {defineComponent, PropType, ref, reactive, toRefs, onMounted} from 'vue'
 import {defHex, Quad, defQuad, Hexagram} from '../schema'
 import {useSwipeable} from '../composables/swipeable'
+import {cfg, tog} from '../store/cfg'
 import OneGua from './OneGua.vue'
 import HexaFace from './HexaFace.vue'
+import HexaGlyph from './HexaGlyph.vue'
 import HexaNames from './HexaNames.vue'
 import HexaInterp from './HexaInterp.vue'
 
@@ -71,6 +65,7 @@ export default defineComponent({
   components: {
     OneGua,
     HexaFace,
+    HexaGlyph,
     HexaNames,
     HexaInterp,
   },
@@ -94,13 +89,8 @@ export default defineComponent({
     const {handleSwipeStart, handleSwipeEnd} = useSwipeable()
     const rx = reactive({
       card: ref<HTMLElement>(),
-      texty: ref(false),
-      interpShown: ref(false),
+      interpShown: false,
     })
-
-    function toggleTexty() {
-      rx.texty = !rx.texty
-    }
 
     onMounted(() => {
       const gestureZone = rx.card
@@ -110,7 +100,8 @@ export default defineComponent({
     })
 
     return {
-      toggleTexty,
+      tog,
+      cfg,
       ...toRefs(rx),
     }
   },

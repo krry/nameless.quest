@@ -1,14 +1,15 @@
 <template lang="pug">
 .drawer.flex.begin
   header.flex.mid
-    LogoBrand(direction="bottom" size="large")
-      template(#tagline) A Paean to the I Ching
-  SiteNav(@showModal="$emit('showModal')")
-  ThemeSwitch.tab.fixed.l.vmid.themes(size="md")
+    LogoBrand(direction="bottom" size="md" tabindex="1")
+      template(#tagline v-if="!cfg.beeny") A Paean to the I Ching
+  SiteNav
+  ThemeSwitch.tab.fixed.l.themes(size="md")
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue'
+import {cfg} from '../store/cfg'
 import LogoBrand from './LogoBrand.vue'
 import SiteNav from './SiteNav.vue'
 import ThemeSwitch from './ThemeSwitch.vue'
@@ -20,10 +21,9 @@ export default defineComponent({
     LogoBrand,
     SiteNav,
   },
-  emits: ['showModal', 'close'],
-  data() {
+  setup() {
     return {
-      ctrlsRight: false,
+      cfg,
     }
   },
 })
@@ -40,7 +40,7 @@ export default defineComponent({
   right: auto; /* to counter the abs-0 ute */
   width: var(--drawer-buffer);
   background: var(--ground);
-  transition: var(--bea2);
+  transition: var(--bea2) var(--ease-in-out-quad);
   overflow-y: auto;
   overflow-x: hidden;
 
@@ -51,7 +51,7 @@ export default defineComponent({
 
 .btn.tab {
   border: 1px solid var(--glow);
-  background-color: var(--silk);
+  background-color: var(--ground);
   padding: 0 0.25em;
 }
 
@@ -65,6 +65,12 @@ export default defineComponent({
   transform-origin: bottom left;
   transform: rotate(90deg);
   top: 61%;
+
+  &:hover {
+    background-color: var(--silk);
+    outline: none;
+    box-shadow: 0 0 0.5rem 0.125rem var(--glow);
+  }
 }
 
 header {

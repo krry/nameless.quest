@@ -1,22 +1,25 @@
 <template lang="pug">
 Page.text-center(
+  ref="desk"
   @keydown.left.prevent="navTo(prev)"
   @keydown.right.prevent="navTo(next)"
   )
   router-link.page-nav.btn.naked.prev.clickable.abs.t.l(:to="prev") 𐡷 {{ prev }}
   transition.under(name="slide-fade" appear)
-    .hint.vapor.abs.t.r.l.center.font.sm(v-if="!hasNavved") ⬅️ Did you try 😁 arrow keys? ➡️
+    .hint.vapor.abs.t.r.l.center.font.sm(v-if="!cfg.navvy") ⬅️ Did you try 😁 arrow keys? ➡️
   router-link.page-nav.btn.naked.next.clickable.abs.t.r(:to="next") {{ next }} 𐡸
-  h1.hexagram.font.x7l
-    | {{ hex.hexagram }}
-    HanziChars(
-      v-for="(char, index) in hex.names.chinese"
-      :key="$getSymbol(char)"
-      :char="char"
-      :pinyin="pinyin[index]"
-      size="xl"
-      reveal
-      )
+  h1.font.x2l.flex.mid
+    HexaGlyph(:hex="hex.hexagram" inline)
+    .flex.col.mid
+      HanziChar(
+        v-for="(char, index) in hex.names.chinese"
+        :key="$symbolize(char)"
+        :char="char"
+        :pinyin="pinyin[index]"
+        direction="side"
+        size="xl"
+        reveal
+        )
   h1 {{ hex.names.english }}
   section.numbers
     .flex.space.string
@@ -32,36 +35,36 @@ Page.text-center(
       .datum.kingwen
         dd {{ hex.kingwen }}
         dt King Wen
-  section.flex.mid.col.string
-    h2 The Judgement
-    pre.text.judgment {{ hex.judgment }}
-  section.flex.mid.col.string
-    h2 The Image
-    pre.text.image {{ hex.images }}
+  .flex.mid.col.string
+    h2
+      pre.text.judgment {{ hex.judgment }}
+  .flex.mid.col.string
+    h3
+      pre.text.image {{ hex.images }}
     .flex.space
       .flex.string.col.balance
         .datum.trigram.flex.string.laze.btw(
           v-for="(tri, index) in trigrams"
-          :key="$getSymbol(tri.name.en)"
+          :key="$symbolize(tri.name.en)"
           )
           .flex.col.mid.more
-            dt The {{ $titleCase(tri.name.en) }}
+            dt The {{ $titlize(tri.name.en) }}
             dt {{ index === 0 ? "Above" : "Below" }}
           .flex.col.mid.less
-            HanziChars(
+            HanziChar(
               :char="tri.name.zh"
               :pinyin="tri.name.pn"
-              size="xl"
+              size="lg"
               reveal
               )
           .flex.col.mid.less
-            .hexagram.font.x5l.second {{ tri.trigram }}
-      .datum.hexagram.middle.font.x7l.balance {{ hex.hexagram }}
+            TriGlyph.hexagram.font.x5l.second(:tri="tri.trigram")
+      HexaGlyph.datum.middle.font.x7l.balance(:hex="hex.hexagram")
   .flex.mid.col.string
     h2 Changing Lines
     section(
       v-for="line in hex.lines"
-      :key="$getSymbol(line.position)"
+      :key="$symbolize(line.position)"
       ) 
       IconBase(height="36")
         component(:is="'Icon' + getChangingLine(line.position).icon")
@@ -73,27 +76,26 @@ Page.text-center(
         .icon.font.x3l ⇢
         IconBase(height="36")
           component(:is="'Icon' + getChangingLine(line.position).is")
-      h5.font.md.text.em(v-if="line.ruler") The {{ $titleCase(line.ruler) }} Ruler
+      h5.font.md.text.em(v-if="line.ruler") The {{ $titlize(line.ruler) }} Ruler
       pre.text {{line.meaning}}
 </template>
 
 <script lang="ts">
 import {defineComponent, ref, toRefs, reactive, watchEffect, onMounted, computed} from 'vue'
 import {useHexagrams} from '../composables/hexagrams'
-import {useSwipeable} from '../composables/swipeable'
+// import {useSwipeable} from '../composables/swipeable'
 import {useTrigrams} from '../composables/trigrams'
+import {cfg, set} from '../store/cfg'
 import Page from '../components/Page.vue'
-import HanziChars from '../components/HanziChars.vue'
+import HanziChar from '../components/HanziChar.vue'
+import HexaGlyph from '../components/HexaGlyph.vue'
+import TriGlyph from '../components/TriGlyph.vue'
 import LineGram from '../components/LineGram.vue'
 import IconBase from '../icons/IconBase.vue'
 import Icon6 from '../icons/Icon6.vue'
 import Icon7 from '../icons/Icon7.vue'
 import Icon8 from '../icons/Icon8.vue'
 import Icon9 from '../icons/Icon9.vue'
-
-const {getHexagram} = useHexagrams()
-const {getTrigram} = useTrigrams()
-const {handleSwipeStart, handleSwipeEnd} = useSwipeable()
 
 function getPrevHex(id: string): string {
   if (id === '1') {
@@ -116,7 +118,9 @@ export default defineComponent({
   components: {
     Page,
     LineGram,
-    HanziChars,
+    HexaGlyph,
+    TriGlyph,
+    HanziChar,
     IconBase,
     Icon6,
     Icon7,
@@ -128,21 +132,21 @@ export default defineComponent({
       type: String,
       default: '00',
     },
-    modal: Boolean,
-    navved: Boolean,
   },
-  emits: ['navved'],
   setup(props) {
-    const hex = ref(getHexagram(props.id))
+    const {getHexagramByWen} = useHexagrams()
+    const {getTrigram} = useTrigrams()
+    // const {handleSwipeStart, handleSwipeEnd} = useSwipeable()
+
+    const hex = ref(getHexagramByWen(props.id))
 
     const rx = reactive({
       hex,
-      page: ref<HTMLElement>(),
-      mousePresent: ref(false),
-      touchPresent: ref(false),
+      desk: ref(),
+      mousePresent: false,
+      touchPresent: false,
       prev: getPrevHex(props.id),
       next: getNextHex(props.id),
-      hasNavved: ref(false),
       pinyin: computed(() => hex.value.names.pinyin.split(' ')),
     })
 
@@ -153,7 +157,6 @@ export default defineComponent({
     watchEffect(() => {
       rx.prev = getPrevHex(props.id)
       rx.next = getNextHex(props.id)
-      rx.hasNavved = props.navved
     })
 
     onMounted(() => {
@@ -166,23 +169,31 @@ export default defineComponent({
         },
         false,
       )
+
       document.addEventListener('touchmove', function onTouchMove() {
         // see if anyone's in touch
         document.removeEventListener('touchmove', onTouchMove, false)
         rx.touchPresent = true
-        rx.hasNavved = true
+        set('navvy', true)
       })
+
+      // const gestureZone = rx.desk
+      // console.log('gesureZone', gestureZone)
+      // if (!gestureZone) return
+      // gestureZone.addEventListener('touchstart', handleSwipeStart, false)
+      // gestureZone.addEventListener('touchend', handleSwipeEnd, false)
     })
 
     return {
+      cfg,
       trigrams,
-      getHexagram,
+      getHexagramByWen,
       ...toRefs(rx),
     }
   },
   watch: {
     $route(to) {
-      this.hex = this.getHexagram(to.params.id)
+      this.hex = this.getHexagramByWen(to.params.id)
     },
   },
   mounted() {
@@ -198,19 +209,19 @@ export default defineComponent({
         : {icon: '9', was: '7', is: '8', desc: 'Yang Opening'}
     },
     navTo(route: string) {
-      this.$emit('navved', true)
+      set('navvy', true)
       this.$router.push(route)
     },
     handleArrowNav(e: KeyboardEvent) {
       if (e.key === 'ArrowLeft') {
         e.preventDefault()
         this.$router.push(this.prev)
-        this.$emit('navved', true)
+        set('navvy', true)
       }
       if (e.key === 'ArrowRight') {
         e.preventDefault()
         this.$router.push(this.next)
-        this.$emit('navved', true)
+        set('navvy', true)
       }
     },
   },

@@ -1,41 +1,40 @@
 <template lang="pug">
 nav.flex.mid.string.col.pads.y
   ul.site-nav
-    li
-      a.btn(@click.stop="showOracle")
+    li(:class="{muted: isProd}")
+      router-link.btn.outline(:to="{ path: '/oracle' }" tabindex="1")
         IconBase(viewBox="0 0 100 100")
           IconMiracle
         |  Consult the Oracle
     li
-      router-link.btn.naked(:to="{ name: 'home' }")
+      router-link.btn.naked(:to="{ name: 'home' }" tabindex="2")
         IconBase(width="30" height="30" viewBox="0 -50 1000 800")
           IconOpenBook
         |  Explore the Tiles
-    li 
-      router-link.btn.naked(:to="{ name: 'about' }")
+    li
+      router-link.btn.naked(:to="{ name: 'about' }" tabindex="3")
         IconBase(width="30" height="30" viewBox="0 -150 1000 1000")
           IconCrystalBall
         |  About the Oracle
-    //- li(:class="{muted: isProd}")
     li
-      router-link.btn.naked(:to="{ name: 'journal' }")
+      router-link.btn.naked(:to="{ name: 'journal' }" tabindex="4")
         IconBase(viewBox="0 -50 1000 1000")
           IconSpellBook
         |  Start a Journal
-    //- li(:class="{muted: isProd}")
     li
-      router-link.btn.naked(:to="{ name: 'config' }")
+      router-link.btn.naked(:to="{ name: 'configure' }" tabindex="5")
         IconBase(viewBox="0 0 1000 1000")
           IconCauldron
         |  Configure
     li
-      router-link.btn.naked(:to="{ name: 'gratitude' }")
+      router-link.btn.naked(:to="{ name: 'gratitude' }" tabindex="6")
         IconBase(viewBox="0 -50 1000 1000")
           IconCandles
         |  Gratitude
     li
       a.btn.naked(
         @click.stop
+        tabindex="7"
         data-feedback-fish
         :data-feedback-fish-userid="user.email"
         )
@@ -43,7 +42,10 @@ nav.flex.mid.string.col.pads.y
           IconConversation
         | &nbsp; Feedback?
     li
-      a.btn.sm.naked(@click.stop="$logout")
+      a.btn.sm.naked(
+        @click.stop="$logout"
+        tabindex="8"
+        )
         IconBase(viewBox="0 0 100 125" height="18" width="18")
           IconPeaceSign
         | Sign out
@@ -80,7 +82,6 @@ export default defineComponent({
     IconCrystalBall,
     IconConversation,
   },
-  emits: ['showModal'],
   data() {
     return {
       user: firebase.auth().currentUser || {email: ''},
@@ -89,15 +90,6 @@ export default defineComponent({
   computed: {
     isProd(): boolean {
       return process.env.NODE_ENV === 'production'
-    },
-  },
-  methods: {
-    showOracle() {
-      console.log('route location', this.$route)
-      if (this.$route.name !== 'home') {
-        this.$router.push('/')
-      }
-      this.$emit('showModal')
     },
   },
 })

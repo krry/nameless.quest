@@ -3,37 +3,26 @@ transition-group(
   class="hexagrid"
   tag="main"
   :style="{backgroundImage: backdrop}"
-  @click.stop="showCards([''])"
+  @click.stop="clearLots"
   )
   ChangeNode(
     v-for="[identifier, change] in hexagrams.entries()"
     :key="change.binary"
     :hex="change"
     :hexId="change.binary"
-    :toss="toss"
-    @show="showCards"
-    @hide="hideCard"
     )
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  ref,
-  reactive,
-  toRefs,
-  computed,
-  provide,
-  PropType,
-  InjectionKey,
-} from 'vue'
+import {defineComponent, reactive, computed, toRefs, provide, InjectionKey} from 'vue'
 
 import ChangeNode from './ChangeNode.vue'
 import {useHexagrams} from '../composables/hexagrams'
-import {activeTheme} from '../composables/themes'
-import {checkForFreshSavedData} from '../utils/tosses'
+import {activeTheme} from '../store/theme'
+import {cfg, tog} from '../store/cfg'
+import {getRandTo} from '../utils'
+import {activeLots, setLots, clearLots} from '../store/lots'
 
-export const wenKey = Symbol('wenny')
 export const reorderKey = Symbol('reorder') as InjectionKey<() => void>
 
 export default defineComponent({
@@ -41,19 +30,10 @@ export default defineComponent({
   components: {
     ChangeNode,
   },
-  props: {
-    lots: {
-      type: Array as PropType<string[]>,
-      default: () => [''],
-    },
-    navved: Boolean,
-  },
-  emits: ['show', 'hide', 'navved'],
-  setup(props, context) {
-    const wenny = ref(false)
-    const rand = ref(1)
+  setup() {
+    let refreshBg = 1
+    const theme = activeTheme
     const {getHexagrams} = useHexagrams()
-    const theme = ref(activeTheme)
 
     function sizeBg() {
       const screenWidth = window.innerWidth
@@ -65,62 +45,52 @@ export default defineComponent({
     }
 
     const rx = reactive({
-      toss: checkForFreshSavedData('toss')[0],
-      hexagrams: computed(() => getHexagrams(wenny.value)),
-      backdrop: computed(() => {
-        return 'url(/' + sizeBg() + theme.value + rand.value + '.jpg)'
-      }),
+      hexagrams: computed(() => getHexagrams(cfg.wenny)),
+      backdrop: computed(
+        () => refreshBg && 'url(/' + sizeBg() + theme.value + getRandTo(3) + '.jpg)',
+      ),
     })
 
-    function showCards(bins: string[]) {
-      context.emit('show', bins)
-    }
-
-    function hideCard(bin: string) {
-      context.emit('hide', bin)
-    }
-
-    function hideDuringShuffle() {
-      const lots = props.lots
-      showCards([''])
-      setTimeout(() => {
-        return showCards(lots)
-      }, 1250)
-    }
-
     function reorderTiles() {
-      hideDuringShuffle()
-      rand.value = Math.floor(Math.random() * 3) + 1
-      wenny.value = !wenny.value
+      const lots = activeLots.value
+      clearLots()
+      refreshBg++
+      tog('wenny')
+      if (lots) {
+        setTimeout(() => {
+          return setLots(lots)
+        }, 1000)
+      }
     }
 
-    provide(wenKey, wenny)
     provide(reorderKey, reorderTiles)
 
     return {
-      showCards,
-      hideCard,
+      clearLots,
       ...toRefs(rx),
     }
   },
   mounted() {
     document.addEventListener('keyup', this.onArrows)
   },
+  unmounted() {
+    document.removeEventListener('keyup', this.onArrows)
+  },
   methods: {
     onArrows(e: KeyboardEvent) {
       const arrows = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown']
       if (!e.key || arrows.indexOf(e.key) === -1) return
       if (e.key === 'ArrowLeft') {
-        console.log('e', e.target)
+        console.log('hit arrow', e.key, e.target)
       }
       if (e.key === 'ArrowRight') {
-        console.log('e', e.target)
+        console.log('hit arrow', e.key, e.target)
       }
       if (e.key === 'ArrowUp') {
-        console.log('e', e.target)
+        console.log('hit arrow', e.key, e.target)
       }
       if (e.key === 'ArrowDown') {
-        console.log('e', e.target)
+        console.log('hit arrow', e.key, e.target)
       }
     },
   },

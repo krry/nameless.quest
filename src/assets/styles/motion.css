@@ -1,0 +1,237 @@
+/** 
+ * fade transition
+ *
+ */
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity var(--bea2);
+}
+
+.fade-enter-active {
+  transition-timing-function: var(--ease-out-quad);
+}
+
+.fade-leave-active {
+  transition-timing-function: var(--ease-in-quad);
+}
+
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/** 
+ * page transition
+ *
+ */
+
+.page-enter-active,
+.page-leave-active {
+  transition-property: opacity, transform;
+  transition-duration: var(--beat);
+}
+
+.page-enter-active {
+  transition-timing-function: var(--ease-out-quad);
+}
+
+.page-leave-active {
+  transition-timing-function: var(--ease-in-quad);
+}
+
+.page-enter-to,
+.page-leave-from {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
+
+.page-enter-from,
+.page-leave-to {
+  /* transform: translateX(-100vw); */
+}
+
+/** 
+ * slide-fade transition
+ *
+ */
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transform: translateZ(0);
+  transition-property: transform, opacity;
+  transition-duration: var(--beat);
+}
+
+.slide-fade-enter-active {
+  transition-timing-function: var(--ease-out-quad);
+}
+
+.slide-fade-leave-active {
+  transition-timing-function: var(--ease-in-quad);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  opacity: 0;
+  transform: translateZ(0);
+}
+
+.slide-fade-enter-from.over,
+.slide-fade-leave-to.over {
+  transform: translateY(2em);
+}
+
+.slide-fade-enter-from.under,
+.slide-fade-leave-to.under {
+  transform: translateY(-2em);
+}
+
+.slide-fade-enter-from.right,
+.slide-fade-leave-to.right {
+  transform: translateX(20em);
+}
+
+.slide-fade-enter-from.left,
+.slide-fade-leave-to.left {
+  transform: translateX(-20em);
+}
+
+.slide-fade-enter-to,
+.slide-fade-leave-from {
+  transform: translateY(0) translateX(0) translateZ(0);
+  opacity: 1;
+}
+
+/** 
+ * popup transition
+ *
+ */
+.popup-enter-active,
+.popup-leave-active {
+  transition-property: transform, opacity;
+  transition-duration: var(--beat);
+}
+
+.popup-enter-active {
+  transition-timing-function: var(--ease-out-quad);
+}
+
+.popup-leave-active {
+  transition-timing-function: var(--ease-in-quad);
+}
+
+.popup-enter-from,
+.popup-leave-to {
+  opacity: 0;
+  transform: scale(0.7);
+}
+
+.popup-enter-to,
+.popup-leave-from {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/** 
+ * land transition
+ *
+ */
+.land-enter-active,
+.land-leave-active {
+  transition-property: transform, opacity;
+  transition-duration: var(--b3at);
+}
+
+.land-enter-active {
+  transition-timing-function: var(--ease-in-quad);
+}
+
+.land-leave-active {
+  transition-timing-function: var(--ease-out-quad);
+}
+
+.land-enter-from,
+.land-leave-to {
+  opacity: 0;
+  transform: scale(3);
+}
+
+.land-enter-to,
+.land-leave-from {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/**
+ * deal transition
+ *
+ */
+.deal-enter-active,
+.deal-leave-active {
+  transition-property: transform, opacity;
+  transform-origin: center center;
+  transition-duration: var(--b3at);
+}
+
+.deal-enter-active {
+  transition-timing-function: var(--ease-out-quad);
+}
+
+.deal-leave-active {
+  transition-timing-function: var(--ease-in-quad);
+}
+
+.deal-enter-to,
+.deal-leave-from {
+  opacity: 1;
+  transform: rotateX(0) rotateY(0) rotate(0) scale(1);
+}
+
+.deal-enter-from,
+.deal-leave-to {
+  opacity: 0;
+  transform: rotateX(0) rotateY(-180deg) rotate(0) scale(0.5);
+}
+
+.change-node:nth-of-type(8n-7) .deal-enter-from {
+  transform: rotateX(-180deg) rotate(-180deg) scale(0.25);
+}
+
+.change-node:nth-of-type(8n-6) .deal-enter-from {
+  transform: rotateY(-180deg) rotate(-180deg) scale(0.25);
+}
+
+.change-node:nth-of-type(8n-5) .deal-enter-from {
+  transform: rotateX(180deg) rotate(-180deg) scale(0.25);
+}
+
+.change-node:nth-of-type(8n-4) .deal-enter-from {
+  transform: rotateY(180deg) rotate(-180deg) scale(0.25);
+}
+
+.change-node:nth-of-type(8n-3) .deal-enter-from {
+  transform: rotateX(-180deg) rotate(180deg) scale(0.25);
+}
+
+.change-node:nth-of-type(8n-2) .deal-enter-from {
+  transform: rotateY(-180deg) rotate(180deg) scale(0.25);
+}
+
+.change-node:nth-of-type(8n-1) .deal-enter-from {
+  transform: rotateX(180deg) rotate(180deg) scale(0.25);
+}
+
+.change-node:nth-of-type(8n) .deal-enter-from {
+  transform: rotateY(180deg) rotate(180deg) scale(0.25);
+}

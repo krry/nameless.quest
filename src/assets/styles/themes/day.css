@@ -3,13 +3,13 @@ DAY palette
 rainbow connection
 */
 $paper-day: hsl(199, 12%, 96%);
-$silk-day: hsla(199, 22%, 96%, 0.87);
-$sky-day: hsl(199, 40%, 92%);
+$silk-day: hsla(199, 32%, 99%, 0.72);
+$sky-day: hsl(199, 32%, 92%);
 $shade-day: hsla(199, 10%, 40%, 0.39);
-$dust-day: hsla(199, 10%, 50%, 0.8);
+$dust-day: hsla(199, 10%, 50%, 0.67);
 $pencil-day: hsl(199, 50%, 18%, 0.3);
 $ink-day: hsl(199, 12%, 18%);
-$flair-day: hsl(199, 50%, 39%);
+$flair-day: hsl(199, 77%, 39%);
 $good-day: hsl(132, 77%, 39%);
 $bad-day: hsl(12, 77%, 39%);
 $link-day: hsl(321, 77%, 39%);

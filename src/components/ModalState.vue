@@ -1,38 +1,32 @@
 <template lang="pug">
 teleport(to="#modals")
   transition.first(name="fade" appear)
-    .modal-frame.rel.fs.flex.mid(v-if="open")
+    .modal-frame.rel.fs.flex.mid(v-if="cfg.modal")
       transition.second(name="fade" appear)
-        .modal-backdrop(v-if="open")
-          .close-net.fixed.fs.abs-0(@click.stop="$emit('close')")
+        .modal-backdrop(v-if="cfg.modal")
+          .close-net.fixed.fs.abs-0(@click.stop="set('modal', false)")
       transition.scale.third(name="popup" appear)
-        .modal-rod.rel.scale(v-if="open" @close="$emit('close')")
+        .modal-rod.rel.scale(v-if="cfg.modal" @close="set('oracle', false)")
           slot
 </template>
 
 <script lang="ts">
 import LogoBrand from './LogoBrand.vue'
-import {defineComponent} from 'vue'
+import {defineComponent, onMounted, onUnmounted} from 'vue'
+import {cfg, set, tog} from '../store/cfg'
 
 export default defineComponent({
   name: 'ModalState',
   components: {
     Brand: LogoBrand,
   },
-  props: {
-    open: Boolean,
-  },
-  emits: ['close'],
-  mounted() {
-    document.addEventListener('keydown', this.onEscape)
-  },
-  unmounted() {
-    document.removeEventListener('keydown', this.onEscape)
-  },
-  methods: {
-    onEscape(e: KeyboardEvent) {
-      if (this.open && e.key === 'Escape') this.$emit('close')
-    },
+  setup() {
+    function onEscape(e: KeyboardEvent) {
+      if (cfg.modal && e.key === 'Escape') set('modal', false)
+    }
+    onMounted(() => document.addEventListener('keydown', onEscape))
+    onUnmounted(() => document.removeEventListener('keydown', onEscape))
+    return {cfg, set, tog}
   },
 })
 </script>
@@ -48,7 +42,7 @@ export default defineComponent({
 }
 
 .close-net {
-  transition: var(--bea2);
+  transition: var(--bea2) var(--ease-out-quad);
   background: var(--dust);
   pointer-events: auto;
 }
@@ -74,20 +68,16 @@ export default defineComponent({
 }
 
 .fade-enter-active,
-.fade-leave-active,
-.popup-enter-active,
-.popup-leave-active {
+.fade-leave-active {
   transition-duration: var(--bea2);
 }
 
-.fade-enter-active,
-.popup-enter-active {
-  transition-timing-function: var(--ease-out-cubic);
+.fade-enter-active {
+  transition-timing-function: var(--ease-out-quad);
 }
 
-.fade-leave-active,
-.popup-leave-active {
-  transition-timing-function: var(--ease-in-cubic);
+.fade-leave-active {
+  transition-timing-function: var(--ease-in-quad);
 }
 
 .fade-enter-active.second {
@@ -107,16 +97,12 @@ export default defineComponent({
 }
 
 .fade-enter-from,
-.fade-leave-to,
-.popup-enter-from,
-.popup-leave-to {
+.fade-leave-to {
   opacity: 0;
 }
 
 .fade-enter-to,
-.fade-leave-from,
-.popup-enter-to,
-.popup-leave-from {
+.fade-leave-from {
   opacity: 1;
 }
 

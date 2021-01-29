@@ -35,15 +35,15 @@ Page.gratitude
       dt
         router-link(to="https://unsplash.com/@allain_sidd21") Allain Siddiqui
       dd
-        img.thumb(src="/bg-sm/forest1.jpg")
+        img.thumb(src="/bg-sm/land1.jpg")
       dt
         router-link(to="https://unsplash.com/@mjliao") Michael L
       dd
-        img.thumb(src="/bg-sm/forest2.jpg")
+        img.thumb(src="/bg-sm/land2.jpg")
       dt
         router-link(to="https://unsplash.com/@veeterzy") Veeterzy
       dd
-        img.thumb(src="/bg-sm/forest3.jpg")
+        img.thumb(src="/bg-sm/land3.jpg")
       dt
         router-link(to="https://unsplash.com/@eli_from_prague") Eliška Motisová
       dd
@@ -110,9 +110,9 @@ Page.gratitude
       | And thanks to 
       router-link(to="https://thenounproject.com/") the Noun Project
       |  for helping us share scalable, dynamic drawings of objects.
-  section.flex.mid
-    h3.pad.x And last but most of all, thank you, Elysa and 🍕🐻.
-    p.pad.x.text-left Your boundless compassion, patience, and support make my dreams come true every day.
+  section.flex
+    h3.pad.x And last but most of all, thanks to Elysa and 🍕🐻
+    p.pad.x.text-left Your compassion, patience, and support make my dreams come true every day.
 </template>
 
 <script lang="ts">
@@ -141,9 +141,6 @@ export default defineComponent({
     IconSpellBook,
     IconScroll,
     IconWizardsHat,
-  },
-  props: {
-    modal: Boolean,
   },
   data() {
     return {

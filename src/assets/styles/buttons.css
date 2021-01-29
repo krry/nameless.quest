@@ -1,4 +1,5 @@
 .btn,
+a.btn,
 button.btn {
   display: inline-block;
   appearance: none;
@@ -12,17 +13,24 @@ button.btn {
   border-color: var(--border);
   border-radius: var(--bevel);
   cursor: pointer;
-  transition: 333ms;
+  transition-property: background-color, outline, color, border-color, box-shadow;
+  transition-duration: var(--beat);
   margin: 0.5em auto;
   outline: none;
+  text-decoration: none;
+}
+
+a.btn:hover,
+.btn:hover {
+  transition-duration: 100ms;
 }
 
 .btn:hover,
 .btn:focus,
 button.btn:hover,
 button.btn:focus {
-  background-color: var(--brand);
-  outline: 2px var(--border-style) var(--brand);
+  background-color: var(--flair);
+  outline: 2px var(--border-style) var(--flair);
   outline-offset: 2px;
   color: var(--ground);
 }
@@ -102,6 +110,7 @@ button.btn.outline:focus {
   color: var(--flair);
   border-color: var(--flair);
   background-color: var(--silk);
+  outline: none !important;
 }
 
 .btn.lastack,

@@ -3,12 +3,12 @@ button.btn.outline.theme-switch(
   ref="el"
   :class="'font ' + size"
   @click.stop="nextTheme"
-  ) {{ $titleCase(theme) + ' '}}
+  ) {{ $titlize(theme) + ' '}}
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue'
-import {activeTheme, useThemes} from '../composables/themes'
+import {activeTheme, nextTheme} from '../store/theme'
 
 export default defineComponent({
   name: 'ThemeSwitch',
@@ -19,7 +19,6 @@ export default defineComponent({
     },
   },
   setup() {
-    const {nextTheme} = useThemes()
     const theme = activeTheme
 
     return {
@@ -46,6 +45,7 @@ button.btn.theme-switch:focus {
   color: var(--flair);
   border-color: var(--flair);
   background: var(--silk);
+  transform: scale(1.05);
 }
 
 .icon {

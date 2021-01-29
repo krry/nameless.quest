@@ -1,4 +1,5 @@
 import {ref} from 'vue'
+import {cfg, set} from '../store/cfg'
 
 interface SpinParams {
   getSpinning: () => boolean
@@ -8,25 +9,20 @@ interface SpinParams {
 export const useSpinnable = (element: HTMLElement): SpinParams => {
   const moveEvent = ref('')
   const spinning = ref(false)
-  const mouseDetected = ref(false)
-  const touchDetected = ref(false)
   // console.log('making element spinnable', element)
 
   function measureDistance(mX: number, mY: number) {
-    console.log('mX', mX)
-    console.log('mY', mY)
-    console.log('element.offsetWidth', element.offsetWidth)
-    console.log('element.offsetHeight', element.offsetHeight)
+    // console.log('mX, mY', mX, mY)
+    // console.log('element.offsetWidth, element.offsetHeight', element.offsetWidth, element.offsetHeight)
     const rect = element.getBoundingClientRect()
-    console.log('rect left', rect.left)
-    console.log('rect top', rect.top)
+    // console.log('rect left top', rect.left, rect.top)
     const dist = Math.floor(
       Math.sqrt(
         Math.pow(mX - (rect.left + element.offsetWidth / 2), 2) +
           Math.pow(mY - (rect.top + element.offsetHeight / 2), 2),
       ),
     )
-    console.log('measuring distance', dist)
+    // console.log('measuring distance', dist)
     return dist
   }
 
@@ -60,24 +56,22 @@ export const useSpinnable = (element: HTMLElement): SpinParams => {
 
   // see if there's a mouse in the house
   function onMouseMove() {
-    if (!mouseDetected.value) mouseDetected.value = true
-    document.removeEventListener('mousemove', onMouseMove, false)
+    set('mouseDetected', true)
     trackUser()
   }
 
   // see if anyone's in touch
   function onTouchMove() {
-    if (!touchDetected.value) touchDetected.value = true
-    document.removeEventListener('touchmove', onTouchMove, false)
+    set('touchDetected', true)
     trackUser()
   }
 
   // listen to users' movements
   function trackUser() {
     // console.log('tracking user')
-    if (touchDetected.value) {
+    if (cfg.touchDetected) {
       moveEvent.value = 'touchmove'
-    } else if (mouseDetected.value) {
+    } else if (cfg.mouseDetected) {
       moveEvent.value = 'mousemove'
     }
     // console.log('wiring up spinning to', moveEvent.value)
@@ -86,39 +80,28 @@ export const useSpinnable = (element: HTMLElement): SpinParams => {
 
   function senseMovement() {
     // console.log('spinnable mounted')
-    // allow :active styles to work in CSS on mobile safari
-    document.addEventListener(
-      'touchstart',
-      function () {
-        // console.log('touch happens')
-      },
-      true,
-    )
-    // sniff whether we have a toucher or a clicker
-    document.addEventListener('mousemove', onMouseMove, false)
-    document.addEventListener('touchmove', onTouchMove, false)
+    // to allow :active styles to work in CSS on mobile safari
+    // capture touchstart events for a tick and do nothing
+    // prettier-ignore
+    document.addEventListener('touchstart', ()=>{/**/}, true)
+    // sniff out whether we have a toucher or a clicker
+    document.addEventListener('mousemove', onMouseMove, {once: true})
+    document.addEventListener('touchmove', onTouchMove, {once: true})
   }
 
   function ignoreMovement() {
-    document.removeEventListener(
-      'touchstart',
-      function () {
-        // console.log('touch happens')
-      },
-      true,
-    )
-    document.removeEventListener('mousemove', onMouseMove, false)
-    document.removeEventListener('touchmove', onTouchMove, false)
+    // prettier-ignore
+    document.removeEventListener( 'touchstart', ()=>{/**/}, true)
     document.removeEventListener(moveEvent.value, fluctuateSpinner)
-    document.removeEventListener('all', fluctuateSpinner)
+    // document.removeEventListener('all', fluctuateSpinner)
   }
 
-  function getSpinning() {
+  function getSpinning(): boolean {
     // console.log('getting spinning', spinning.value)
     return spinning.value
   }
 
-  function setSpinning(state: boolean) {
+  function setSpinning(state: boolean): void {
     spinning.value = state
     if (state) {
       senseMovement()
@@ -129,6 +112,15 @@ export const useSpinnable = (element: HTMLElement): SpinParams => {
     }
     // console.log('spinning set to', spinning.value)
   }
+
+  function giveItAWhirl(event: KeyboardEvent) {
+    if (event.key === ' ' || event.key === 'Enter') {
+      setSpinning(!getSpinning())
+      element.blur()
+    }
+  }
+
+  element.addEventListener('keydown', giveItAWhirl)
 
   return {
     getSpinning,

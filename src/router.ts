@@ -1,6 +1,8 @@
 import {createRouter, createWebHistory, RouteLocationNormalized} from 'vue-router'
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import {cfg, set} from './store/cfg'
+import {user, setu} from './store/user'
 import Home from './views/Home.vue'
 import About from './views/About.vue'
 import Login from './views/Login.vue'
@@ -9,12 +11,58 @@ import Change from './views/Change.vue'
 import Journal from './views/Journal.vue'
 import NotFound from './views/NotFound.vue'
 import Gratitude from './views/Gratitude.vue'
+import OracleModal from './components/OracleModal.vue'
+import OracleIntro from './components/OracleIntro.vue'
+import OracleQuery from './components/OracleQuery.vue'
+import OracleToss from './components/OracleToss.vue'
+import OracleResponse from './components/OracleResponse.vue'
 
 const routes = [
   {
     name: 'home',
     path: '/',
     component: Home,
+    children: [
+      {
+        name: 'oracle',
+        path: 'oracle',
+        component: OracleModal,
+        beforeEnter: (to: RouteLocationNormalized) => {
+          set('modal', true)
+          set('oracle', true)
+          set('drawer', false)
+          console.log('to params', to.params)
+          if (!to.params) {
+            if (user.toss) return {name: 'response'}
+            else if (user.query) return {name: 'toss'}
+            else if (cfg.beeny) return {name: 'query'}
+            else return true
+          } else return true
+        },
+        children: [
+          {
+            name: 'intro',
+            path: '',
+            component: OracleIntro,
+          },
+          {
+            name: 'query',
+            path: 'query',
+            component: OracleQuery,
+          },
+          {
+            name: 'toss',
+            path: 'toss',
+            component: OracleToss,
+          },
+          {
+            name: 'response',
+            path: 'response',
+            component: OracleResponse,
+          },
+        ],
+      },
+    ],
   },
   {
     name: 'about',
@@ -46,8 +94,8 @@ const routes = [
     // props: true,
   },
   {
-    name: 'config',
-    path: '/config',
+    name: 'configure',
+    path: '/configure',
     component: Config,
     meta: {
       authRequired: true,
@@ -83,26 +131,26 @@ const router = createRouter({
 })
 
 router.beforeEach((to: RouteLocationNormalized) => {
-  // console.log('from route location raw', from)
-  // console.log('to route location raw', to)
-  const user = firebase.auth().currentUser
-  if (user) {
-    // already signed in, can go anywhere
-    // console.log('user is', user.email)
+  if (firebase.auth().currentUser || user.uid) {
     return true
   }
   // not signed in
   else {
     // coming in from a magic link
     if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
-      const email = localStorage.getItem('emailForSignIn') || ''
-      // const params = new URLSearchParams(window.location.search)
-      // const apiKey = params.get('apiKey')
-      // const oobCode = params.get('oobCode')
-      // const mode = params.get('mode')
-      // const lang = params.get('lang')
-      // console.log(apiKey, oobCode, mode, lang)
+      const params = new URLSearchParams(window.location.search)
 
+      const apiKey = params.get('apiKey')
+      if (apiKey) setu('apiKey', apiKey)
+      const oobCode = params.get('oobCode')
+      if (oobCode) setu('oobCode', oobCode)
+      const mode = params.get('mode')
+      if (mode) setu('mode', mode)
+      const lang = params.get('lang')
+      if (lang) setu('lang', lang)
+
+      const email = user.email
+      console.log('email to login from', email)
       // no stored email from a past successful login
       if (!email) {
         // const remail = prompt('Please reenter your email to confirm')
@@ -115,11 +163,12 @@ router.beforeEach((to: RouteLocationNormalized) => {
           // The client SDK will parse the code from the link.
           .signInWithEmailLink(email, window.location.href)
           .then((result) => {
-            localStorage.removeItem('emailForSignIn')
+            // localStorage.removeItem('emailForSignIn')
             console.log('user signed in!', result.user)
             if (result.additionalUserInfo) {
               console.log('user is new', result.additionalUserInfo.isNewUser)
               // can trigger onboarding flow here
+              set('beeny', true)
             }
             return true
           })
@@ -137,14 +186,17 @@ router.beforeEach((to: RouteLocationNormalized) => {
         return {name: 'login'}
       }
       // routing to a view that is the same if logged out
-      else return true
+      else {
+        if (to.name !== 'oracle') set('modal', false)
+        return true
+      }
     }
   }
 })
 
 router.afterEach((to: RouteLocationNormalized) => {
   if (to.name === 'change') {
-    window.scrollTo(0, 0)
+    // window.scrollTo(window.innerWidth, 0)
   }
 })
 
