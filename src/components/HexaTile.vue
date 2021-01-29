@@ -8,6 +8,7 @@
     :char="char"
     :pinyin="pinyin[index]"
     direction="none"
+    size="lg"
   )
   h4.yingyu {{ names.english }}
 </template>

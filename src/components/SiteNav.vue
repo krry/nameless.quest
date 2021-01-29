@@ -1,7 +1,7 @@
 <template lang="pug">
 nav.flex.mid.string.col.pads.y
   ul.site-nav
-    li(:class="{muted: isProd}")
+    li
       router-link.btn.outline(:to="{ path: '/oracle' }" tabindex="1")
         IconBase(viewBox="0 0 100 100")
           IconMiracle
