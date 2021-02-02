@@ -24,64 +24,64 @@
 <script lang="ts">
 import {defineComponent, PropType, ref, inject, computed} from 'vue'
 import {defHex, Hexagram} from '../schema'
-import {cfg} from '../store/cfg'
+import {cfg} from '../store'
 import BaguaDoors from './BaguaDoors.vue'
 import {reorderKey} from './HexaGrid.vue'
 import {setQuadrantKey} from './ChangeNode.vue'
 
 export default defineComponent({
-  name: 'HexaFrame',
-  components: {
-    Bagua: BaguaDoors,
-  },
-  props: {
-    hex: {
-      type: Object as PropType<Hexagram>,
-      default: defHex,
-    },
-  },
-  setup() {
-    const baguad = ref(false)
-    const reorderTiles = inject(reorderKey)
-    const setQuadrant = inject(setQuadrantKey)
+	name: 'HexaFrame',
+	components: {
+		Bagua: BaguaDoors,
+	},
+	props: {
+		hex: {
+			type: Object as PropType<Hexagram>,
+			default: defHex,
+		},
+	},
+	setup() {
+		const baguad = ref(false)
+		const reorderTiles = inject(reorderKey)
+		const setQuadrant = inject(setQuadrantKey)
 
-    function reorder() {
-      if (!reorderTiles || !setQuadrant) throw new Error('fluck')
-      reorderTiles()
-      setQuadrant()
-    }
+		function reorder() {
+			if (!reorderTiles || !setQuadrant) throw new Error('fluck')
+			reorderTiles()
+			setQuadrant()
+		}
 
-    return {
-      baguad,
-      reorder,
-      wenny: cfg.wenny,
-    }
-  },
+		return {
+			baguad,
+			reorder,
+			wenny: cfg.wenny,
+		}
+	},
 })
 </script>
 
 <style scoped lang="postcss">
 .hexagram {
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 2em;
-  line-height: 1;
-  cursor: pointer;
-  pointer-events: auto;
-  z-index: 2;
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-size: 2em;
+	line-height: 1;
+	cursor: pointer;
+	pointer-events: auto;
+	z-index: 2;
 }
 
 .hexagram:hover,
 .hexagram:focus,
 .hexagram:active {
-  color: var(--link);
+	color: var(--link);
 }
 
 .order {
-  position: absolute;
-  top: var(--frame);
-  right: var(--frame);
-  cursor: pointer;
+	position: absolute;
+	top: var(--frame);
+	right: var(--frame);
+	cursor: pointer;
 }
 </style>

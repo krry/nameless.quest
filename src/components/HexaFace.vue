@@ -12,52 +12,59 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue'
-import {tog} from '../store/cfg'
+import {tog} from '../store'
 import IconBase from '../icons/IconBase.vue'
 import IconScroll from '../icons/IconScroll.vue'
 
 export default defineComponent({
-  name: 'HexaFace',
-  components: {
-    IconBase,
-    IconScroll,
-  },
-  props: {
-    kingwen: {
-      type: Number,
-      default: 0,
-    },
-  },
-  emits: ['close'],
-  setup() {
-    return {tog}
-  },
+	name: 'HexaFace',
+	components: {
+		IconBase,
+		IconScroll,
+	},
+	props: {
+		kingwen: {
+			type: Number,
+			default: 0,
+		},
+	},
+	emits: ['close'],
+	setup() {
+		return {tog}
+	},
 })
 </script>
 
 <style lang="postcss" scoped>
 .moar.btn.naked {
-  padding: var(--frame) var(--frame) 0;
-  margin: 0;
+	margin: 0;
+	padding: var(--frame) var(--bevel) var(--frame) var(--frame);
+	border-style: dotted;
+	border-radius: 0 0 var(--bevel) 0;
+	&:hover {
+		outline: none;
+		border-bottom-color: var(--flair);
+		border-right-color: var(--flair);
+	}
 }
 
 .close {
-  font-size: 1.5rem;
-  opacity: 0.5;
-  padding: 0.25rem 0.5rem;
-  position: absolute;
-  cursor: pointer;
-  z-index: 21;
+	font-size: 1.5rem;
+	opacity: 0.5;
+	padding: 0.25rem 0.5rem;
+	position: absolute;
+	cursor: pointer;
+	z-index: 21;
 }
 
 .close.tr {
-  top: 0;
-  right: 0;
+	top: 0;
+	right: 0;
 }
 
 .close:hover,
 .close:focus {
-  opacity: 1;
-  color: var(--bad);
+	opacity: 1;
+	color: var(--bad);
 }
 </style>

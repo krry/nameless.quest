@@ -3,7 +3,7 @@ Page.login(
   ref="el"
   )
   .flex.mid
-    LogoBrand(direction="right" size="large")
+    LogoBrand(direction="horiz" size="large")
   h1
     | Sign in
   .radios.flex.wrap.mid.spread
@@ -22,8 +22,8 @@ Page.login(
       )
     label(for="checkPhone") Phone
   transition(name="slide-fade" mode="out-in" appear)
-    LoginEmail.left(v-if="method === 'email'" :from="fromPath")
-    LoginPhone.right(v-else-if="method === 'phone'" :from="fromPath")
+    LoginEmail.left(v-if="method === 'email'")
+    LoginPhone.right(v-else-if="method === 'phone'")
   transition(name="slide-fade" mode="out-in" appear)
     h3.text-center.right(v-if="explained")
       | Frankly 
@@ -42,49 +42,42 @@ import LogoBrand from '../components/LogoBrand.vue'
 import LoginEmail from '../components/LoginEmail.vue'
 import LoginPhone from '../components/LoginPhone.vue'
 
-let fromPath: string
-
 export default defineComponent({
-  name: 'Login',
-  components: {
-    Page,
-    LogoBrand,
-    LoginEmail,
-    LoginPhone,
-  },
-  beforeRouteEnter(_to, from) {
-    console.log('before entering route login', from.path)
-    fromPath = from.path
-  },
-  emits: ['drawer'],
-  data() {
-    return {
-      method: '',
-      explained: false,
-      fromPath,
-    }
-  },
+	name: 'Login',
+	components: {
+		Page,
+		LogoBrand,
+		LoginEmail,
+		LoginPhone,
+	},
+	emits: ['drawer'],
+	data() {
+		return {
+			method: '',
+			explained: false,
+		}
+	},
 })
 </script>
 
 <style lang="postcss">
 .grecaptcha-badge,
 .grecaptcha-logo {
-  /* display: none !important; */
-  visibility: hidden !important;
-  opacity: 0 !important;
-  /* text-indent: -99999px !important; */
-  /* pointer-events: none !important; */
-  transform: scale(0) !important;
+	/* display: none !important; */
+	visibility: hidden !important;
+	opacity: 0 !important;
+	/* text-indent: -99999px !important; */
+	/* pointer-events: none !important; */
+	transform: scale(0) !important;
 }
 </style>
 <style lang="postcss" scoped>
 .login h1 {
-  margin: 1rem 0 0;
+	margin: 1rem 0 0;
 }
 
 .radios,
 .login h3 {
-  margin: 0.5rem 0;
+	margin: 0.5rem 0;
 }
 </style>

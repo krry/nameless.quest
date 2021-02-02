@@ -1,110 +1,104 @@
 <template lang="pug">
-.face.face--back
-  LogoBrand(direction="bottom" size="sm")
-  blockquote
-    h3 {{user.query.trim()}}
-  h2 Your Toss
-  .glyphs
-    IconBase.line(
-      v-for="char in user.toss"
-      :key="char"
-      :icon-name="char"
-      )
-      component(:is="`Icon${char}`")
-  aside.help ☯
-  h2 The Oracle's response
-  .flex.wrap
-    .result.being.half(
-      v-for="hex in hexs"
-      :key="$symbolize(hex.binary)")
-      h3.font.x3l
-        HexaGlyph(:hex="hex.hexagram")
-        HanziChar(:char="hex.names.chinese" :pinyin="hex.names.pinyin" size="lg" reveal)
-      router-link.btn.naked(:to="'/change/'+hex.kingwen")
-        span {{ user.wenny ? hex.kingwen : hex.octal }}
-        span {{ hex.names.english }}
-  button.back(
-    type="button"
-    :title="'Start Over'"
-    @click="$emit('back')"
-    ) ♽
+.response.flex.wrap(v-if="hexs")
+	h1.whole The Oracle Responds
+	section.col.half.mrg.x(
+		v-for="(hex, index) in hexs"
+		:key="$symbolize(hex.binary)"
+		)
+		h3
+			| {{ index === 0 ? "𐡷 Being 𐡸" : "𐡸 Becoming 𐡷" }}
+			hr.divider
+			router-link.btn.outline(:to="'/change/'+hex.kingwen")
+				span {{ cfg.wenny ? hex.kingwen : hex.octal }}
+				span {{ " " + hex.names.english }}
+		.flex.mid
+			.col.dyn.more
+				h3.font.x2l
+					HanziChar(
+						v-for="(char, i) in hex.names.chinese.split('')"
+						:key="$symbolize(char)"
+						:char="char"
+						:pinyin="hex.names.pinyin.split(' ')[i]"
+						size="lg"
+						place="side"
+						reveal)
+			.col.dyn.less
+				HexaGlyph(
+					:hex="hex.hexagram"
+					size="x5l"
+					)
+	.whole.flex.string
+		button.btn.naked(
+			type="button"
+			title="Start Over"
+			@click="$emit('clear')"
+			) ♽ Start Over
+		button.btn(@click="saveToJournal") Save to Journal
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
+import {defineComponent, computed} from 'vue'
+import {useRouter} from 'vue-router'
 import IconBase from '../icons/IconBase.vue'
-import Icon6 from '../icons/Icon6.vue'
-import Icon7 from '../icons/Icon7.vue'
-import Icon8 from '../icons/Icon8.vue'
-import Icon9 from '../icons/Icon9.vue'
 import LogoBrand from './LogoBrand.vue'
 import HexaGlyph from './HexaGlyph.vue'
 import HanziChar from './HanziChar.vue'
+import {cfg} from '../store'
+import {cached} from '../store/cache'
+import {saveRoll} from '../store/rolls'
+import {activeLots, setLots} from '../store/lots'
+import {parseTossToBinary} from '../utils/tosses'
 import {useHexagrams} from '../composables/hexagrams'
-import {user} from '../store/user'
-import {activeLots} from '../store/lots'
 
 export default defineComponent({
-  name: 'OracleResponse',
-  components: {
-    IconBase,
-    Icon6,
-    Icon7,
-    Icon8,
-    Icon9,
-    HexaGlyph,
-    LogoBrand,
-    HanziChar,
-  },
-  emits: ['back'],
-  setup() {
-    const {getHexagramByBin} = useHexagrams()
-    const hexs = activeLots.value.map((l: string) => getHexagramByBin(l))
+	name: 'OracleResponse',
+	components: {
+		IconBase,
+		HexaGlyph,
+		LogoBrand,
+		HanziChar,
+	},
+	emits: ['clear'],
+	setup() {
+		setLots(parseTossToBinary(cached.toss))
+		const router = useRouter()
+		const {getHexagramByBin} = useHexagrams()
+		const hexs = computed(() => activeLots.value.map((l: string) => getHexagramByBin(l)))
+		// console.log('hexs', hexs.value)
 
-    return {
-      user,
-      hexs,
-    }
-  },
+		function saveToJournal() {
+			if (cached.uid) {
+				saveRoll({
+					moment: new Date(),
+					query: cached.query,
+					toss: cached.toss,
+					uid: cached.uid,
+				})
+			} else {
+				localStorage.setItem(
+					'newRoll',
+					JSON.stringify({
+						moment: new Date(),
+						query: cached.query,
+						toss: cached.toss,
+					}),
+				)
+			}
+			router.push('/journal')
+		}
+
+		return {
+			cached,
+			cfg,
+			hexs,
+			saveToJournal,
+		}
+	},
 })
 </script>
 
 <style lang="postcss" scoped>
-h2 {
-  margin: 1em 0 0.25em;
-}
-
-aside.help {
-  font-size: 2em;
-  margin: 0.5em auto;
-}
-
-button.back {
-  appearance: none;
-  cursor: pointer;
-  font-size: 1.5em;
-  position: absolute;
-  color: inherit;
-  top: 0;
-  left: 0;
-  border: 0;
-  padding: 0.5rem;
-  width: 3rem;
-  background: transparent;
-}
-
-.back:hover,
-.back:focus {
-  opacity: 1;
-}
-
-.line {
-  height: 3em;
-  width: 1em;
-  margin: 0 0.125em;
-}
-
-.line.valid {
-  color: var(--good);
+.response {
+	border-color: var(--flair);
 }
 </style>

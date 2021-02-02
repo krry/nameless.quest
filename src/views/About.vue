@@ -4,14 +4,13 @@ Page.about
   h1.page-title {{ title }}
   blockquote.poem
     pre.text-left
-      | With this Nameless offering
-      | I intend to encourage us
-      | to trust our intuition.
+      | May the Nameless encourage
+      | trust in our intuition.
       br
       br
       | We summon the future
-      | just as we do the past, 
-      | as echoes into now.
+      | just as the past
+      | so many echoes into now.
       br
       br
       | May we dance what feels good,
@@ -39,7 +38,7 @@ Page.about
           strong stop time.
         li
           strong Gather the kit
-          | : cards, coins, candles, incense, crystals, totem.
+          | : cards, coins, candles, crystals, totems, etc.
         li
           | Calm the senses. 
           strong Amass silence.
@@ -52,12 +51,11 @@ Page.about
           strong the burning question ignites you
           | . Hold it close.
         li
-          | Let's dance: 
-          strong cast lots
-          | , deal a spread, flip coins, split yarrow.
+          strong Surrender
+          |  to the dance: flip coins, split yarrow, deal the spread.
         li
-          | Apply many perspectives. Ignore the ego. 
-          strong Accept what is. 
+          | Assume manifold perspectives. Ignore ego. 
+          strong Accept what emerges.
 
     p As a relative novice with a sporadic practice involving the Yìjīng and the Tarot de Marseilles, I am not here as a teacher, but as one who experiences profound revelations when I open my heart to the big questions in the presence of these ancient systems of soothsaying. I am making Nameless to share my joy and enthusiasm for this very old book, and hopefully to usher you toward that softly echoing well of being yawning out of the void of all possibilities housed at heart center.
 
@@ -173,8 +171,7 @@ Page.about
       strong
         em what if twelve were 10?
       |  For if we nimbly count our phalanges (the three little bones in each of our four fingers) with our thumbs, we quickly find twelve on a hand, and may find our decimal digits rather cro-magnon in comparison. And we can easily get to sixty by assigning each of the five digits on the other hand to a dozen as we count.
-    
-
+  app-link.btn(to="https://ko-fi/kerrbear") We encourage you to feed the Kerrbear 🐻
 </template>
 
 <script lang="ts">
@@ -187,43 +184,43 @@ import Icon7 from '../icons/Icon7.vue'
 import Icon8 from '../icons/Icon8.vue'
 
 export default defineComponent({
-  name: 'About',
-  components: {
-    Page,
-    IconBase,
-    Icon7,
-    Icon8,
-    HanziChar,
-    LogoBrand,
-  },
-  setup() {
-    const divine = ref<HTMLElement>()
-    const devsign = ref<HTMLElement>()
-    const define = ref<HTMLElement>()
-    const title = ref('About the Oracle')
+	name: 'About',
+	components: {
+		Page,
+		IconBase,
+		Icon7,
+		Icon8,
+		HanziChar,
+		LogoBrand,
+	},
+	setup() {
+		const divine = ref<HTMLElement>()
+		const devsign = ref<HTMLElement>()
+		const define = ref<HTMLElement>()
+		const title = ref('About the Oracle')
 
-    return {
-      title,
-      divine,
-      devsign,
-      define,
-    }
-  },
-  methods: {
-    cruiseTo(el: HTMLElement): void {
-      el.scrollIntoView({behavior: 'smooth'})
-    },
-  },
+		return {
+			title,
+			divine,
+			devsign,
+			define,
+		}
+	},
+	methods: {
+		cruiseTo(el: HTMLElement): void {
+			el.scrollIntoView({behavior: 'smooth'})
+		},
+	},
 })
 </script>
 
 <style lang="postcss" scoped>
 .page.about {
-  background-color: var(--silk);
+	background-color: var(--silk);
 }
 
 blockquote.poem {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 </style>

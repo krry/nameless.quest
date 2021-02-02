@@ -7,7 +7,7 @@
     :key="index"
     :char="char"
     :pinyin="pinyin[index]"
-    direction="none"
+    place="none"
     size="lg"
   )
   h4.yingyu {{ names.english }}
@@ -19,62 +19,68 @@ import {defHex, Hexaname} from '../schema'
 import HanziChar from './HanziChar.vue'
 
 export default defineComponent({
-  name: 'Tile',
-  components: {
-    HanziChar,
-  },
-  props: {
-    names: {
-      type: Object as PropType<Hexaname>,
-      default: defHex.names,
-    },
-  },
-  computed: {
-    arrayedHanzi(): string[] {
-      const hanzi = this.names.chinese
-      if (!hanzi) {
-        return []
-      }
-      return hanzi.split('')
-    },
-    pinyin(): string[] {
-      return this.names.pinyin.split(' ')
-    },
-  },
+	name: 'Tile',
+	components: {
+		HanziChar,
+	},
+	props: {
+		names: {
+			type: Object as PropType<Hexaname>,
+			default: defHex.names,
+		},
+	},
+	computed: {
+		arrayedHanzi(): string[] {
+			const hanzi = this.names.chinese
+			if (!hanzi) {
+				return []
+			}
+			return hanzi.split('')
+		},
+		pinyin(): string[] {
+			return this.names.pinyin.split(' ')
+		},
+	},
 })
 </script>
 
 <style lang="postcss" scoped>
 .names {
-  cursor: pointer;
-  opacity: 0.75;
-  color: var(--flair);
+	cursor: pointer;
+	opacity: 0.75;
+	color: var(--flair);
 }
 
 .names:hover,
 .names:focus {
-  color: var(--link);
-  opacity: 1;
-  outline: none;
+	color: var(--link);
+	opacity: 1;
+	outline: none;
 }
 
 .yingyu {
-  margin: 0;
-  color: var(--ink);
+	padding-top: 0.25em;
+	color: var(--ink);
+	@supports (font-variation-settings: normal) {
+		font-family: 'QuicksandVariable';
+		font-variation-settings: 'wght' 666;
+	}
 }
 </style>
 <style lang="postcss">
 .change-node:hover .tile h4.yingyu,
+.change-node.active .tile .yingyu,
+.change-node.active .tile .hanzi,
 .change-node:hover .tile .hanzi {
-  color: var(--ground);
+	color: var(--ground);
 }
 
 .face:hover .hanzi {
-  color: var(--flair);
+	color: var(--flair);
 }
 
 .face .yingyu,
 .face:hover .yingyu {
-  color: var(--ink);
+	color: var(--ink);
 }
 </style>

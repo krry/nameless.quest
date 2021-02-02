@@ -1,63 +1,146 @@
-.font.md,
-.font.lg,
-.font.xl,
-.font.xxl,
-.font.x2l,
-.font.x3l,
-.font.x4l,
-.font.x5l,
-.font.x6l,
-.font.x7l,
-.font.x8l {
-  margin: 1rem 0;
-  line-height: 1.25;
+.font {
+	@supports (font-variation-settings: normal) {
+		font-family: 'QuicksandVariable';
+		font-variation-settings: 'wght' 555;
+	}
 }
 
-.font.xs {
-  font-size: 0.75rem;
+.text {
+	@supports (font-variation-settings: normal) {
+		font-family: 'Roboto SlabVariable';
+		font-variation-settings: 'wght' 367;
+	}
 }
 
-.font.sm {
-  font-size: 0.875rem;
+.head {
+	@supports (font-variation-settings: normal) {
+		font-family: 'MuseoModernoVariable';
+		font-variation-settings: 'wght' 666;
+	}
 }
 
-.font.md {
-  font-size: 1rem;
+.head,
+.font,
+.text {
+	&.thin,
+	&.fw3 {
+		@supports (font-variation-settings: normal) {
+			font-variation-settings: 'wght' 222;
+		}
+	}
+	&.fine,
+	&.fw3 {
+		@supports (font-variation-settings: normal) {
+			font-variation-settings: 'wght' 333;
+		}
+	}
+	&.normal,
+	&.fw4 {
+		@supports (font-variation-settings: normal) {
+			font-variation-settings: 'wght' 444;
+		}
+	}
+	&.thicc,
+	&.fw5 {
+		@supports (font-variation-settings: normal) {
+			font-variation-settings: 'wght' 555;
+		}
+	}
+	&.thick,
+	&.fw6 {
+		@supports (font-variation-settings: normal) {
+			font-variation-settings: 'wght' 666;
+		}
+	}
+	&.phat,
+	&.fw7 {
+		@supports (font-variation-settings: normal) {
+			font-variation-settings: 'wght' 777;
+		}
+	}
 }
 
-.font.lg {
-  font-size: 1.25rem;
+.font,
+.text,
+.head {
+	&.md,
+	&.lg,
+	&.xl {
+		margin: 1rem 0;
+		line-height: var(--leading);
+	}
 }
 
-.font.xl {
-  font-size: 1.5rem;
+.font,
+.text,
+.head {
+	&.xxl,
+	&.x2l,
+	&.x3l,
+	&.x4l,
+	&.x5l,
+	&.x6l,
+	&.x7l,
+	&.x8l {
+		margin: 0.25em 0;
+		line-height: var(--hleading);
+	}
 }
 
-.font.x2l,
-.font.xxl {
-  font-size: 2rem;
+.xs {
+	--unit: 0.875rem;
 }
 
-.font.x3l {
-  font-size: 3rem;
+.sm {
+	--unit: 1rem;
 }
 
-.font.x4l {
-  font-size: 4rem;
+.md {
+	--unit: 1.25rem;
 }
 
-.font.x5l {
-  font-size: 5rem;
+.lg {
+	--unit: 1.5rem;
 }
 
-.font.x6l {
-  font-size: 6rem;
+.xl {
+	--unit: 1.75rem;
 }
 
-.font.x7l {
-  font-size: 7rem;
+.x2l,
+.xxl {
+	--unit: 2rem;
 }
 
-.font.x8l {
-  font-size: 8rem;
+.x3l {
+	--unit: 3rem;
+}
+
+.x4l {
+	--unit: 4rem;
+}
+
+.x5l {
+	--unit: 5rem;
+}
+
+.x6l {
+	--unit: 6rem;
+}
+
+.x7l {
+	--unit: 7rem;
+}
+
+.x8l {
+	--unit: 8rem;
+}
+
+.head,
+.text,
+.font {
+	font-size: calc(var(--unit) * 6 / 7);
+	@media (min-width: 48rem) and (min-height: 36rem) {
+		font-size: var(--unit);
+	}
 }

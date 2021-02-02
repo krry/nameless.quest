@@ -1,26 +1,29 @@
 <template lang="pug">
-.page.not-found
-  h1 404'd
+Page.not-found
+  LogoBrand
+  .font.x3l 404'd
   p The way back yields great fortune.
-  router-link(to="{name: 'home'}") Take me home
+  router-link(:to="{name: 'home'}") Take me home
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
-import {RouterLink} from "vue-router";
+import {defineComponent} from 'vue'
+import Page from '../components/Page.vue'
+import LogoBrand from '../components/LogoBrand.vue'
 export default defineComponent({
-  name: "NotFound",
-  components: {
-    "router-link": RouterLink,
-  },
-});
+	name: 'NotFound',
+	components: {
+		Page,
+		LogoBrand,
+	},
+})
 </script>
 
 <style lang="postcss" scoped>
 .page.not-found {
-  background: var(--silk);
+	/* background: var(--silk); */
 }
 .not-found h1 {
-  color: var(--bad);
+	/* color: var(--ground); */
 }
 </style>

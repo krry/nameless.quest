@@ -122,15 +122,15 @@ export const defHex2: Hexagram = {
 export interface Roll {
   query: string
   toss: string
-  lots: string[]
   moment: Date
+  uid: string
 }
 
 export const defRoll: Roll = {
   query: '',
   toss: '',
-  lots: ['', ''],
   moment: new Date(),
+  uid: '',
 }
 
 export interface Quad {

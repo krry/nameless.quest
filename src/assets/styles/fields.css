@@ -1,74 +1,77 @@
 .field {
-  position: relative;
-  margin: 1em 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	position: relative;
+	margin: 1em 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .field label {
-  display: block;
-  font-size: 0.75em;
+	display: block;
+	font-size: 0.75em;
 }
 
 .field input[type='email'] + label,
 .field input[type='text'] + label,
 .field input[type='tel'] + label,
 .field textarea + label {
-  order: 1;
-  margin-bottom: 0.5em;
-  opacity: 0.75;
-  font-size: 1rem;
+	order: 1;
+	margin-bottom: 0.5em;
+	opacity: 0.75;
+	font-size: 1rem;
 
-  @media (min-width: 48rem) {
-    font-size: 1.25rem;
-  }
+	@media (min-width: 48rem) {
+		font-size: 1.25rem;
+	}
 }
 
 .field input[type='email']:focus + label,
 .field input[type='text']:focus + label,
 .field input[type='tel']:focus + label,
 .field textarea:focus + label {
-  opacity: 1;
+	opacity: 1;
 }
 
 .field input[type='email'],
 .field input[type='text'],
 .field input[type='tel'] {
-  padding: 0.25em 0.5em;
+	padding: 0.25em 0.5em;
 }
 
 .field input[type='email'],
 .field input[type='text'],
 .field input[type='tel'],
 .field textarea {
-  order: 2;
-  appearance: none;
-  font-weight: 500;
-  color: var(--ink);
-  font-size: 1.125em;
-  text-align: center;
-  font-family: var(--text);
-  background: var(--paper);
-  border-radius: var(--bevel);
-  border: 2px solid var(--glow);
-  transition-property: outline, border-color, background-color, color;
-  transition-duration: var(--beat);
-  transition-timing-function: var(--ease-out-quad);
+	order: 2;
+	appearance: none;
+	@supports (font-variation-settings: normal) {
+		font-family: 'Roboto SlabVariable';
+		font-variation-settings: 'wght' 444;
+	}
+	color: var(--ink);
+	font-size: 1.125em;
+	text-align: center;
+	font-family: var(--text);
+	background: var(--paper);
+	border-radius: var(--bevel);
+	border: 2px solid var(--glow);
+	transition-property: outline, border-color, background-color, color;
+	transition-duration: var(--beat);
+	transition-timing-function: var(--ease-out-quad);
 }
 
 .field textarea {
-  width: 100%;
-  resize: none;
-  padding: 0.5em;
-  margin-bottom: 1em;
-  line-height: 1.6;
+	width: 100%;
+	resize: none;
+	padding: 0.5em;
+	margin-bottom: 1em;
+	line-height: 1.6;
 }
 
 .field input,
 .field textarea {
-  transition-duration: 100ms !important;
+	transition-duration: 100ms !important;
 }
 
 .field input[type='email']:hover,
@@ -79,67 +82,77 @@
 .field input[type='tel']:focus,
 .field textarea:hover,
 .field textarea:focus {
-  outline: 1px var(--border-style) var(--glow);
-  outline-offset: -4px;
+	outline: 1px var(--border-style) var(--flair);
+	outline-offset: -4px;
+	border-color: var(--flair);
 }
 
 .field input[type='email']:valid,
 .field input[type='text']:valid,
 .field input[type='tel']:valid,
 .field textarea:valid {
-  border-color: var(--good);
+	border-color: var(--good);
 }
 
 .field input[type='email']:invalid,
 .field input[type='text']:invalid,
 .field input[type='tel']:invalid,
 .field textarea:invalid {
-  border-color: var(--bad);
+	border-color: var(--bad);
 }
 
 input[type='radio'] {
-  width: 2rem;
-  height: 2rem;
-  appearance: none;
-  border-radius: 100%;
-  margin: 0.25rem 0.5rem;
-  background: var(--silk);
-  border: 0.25rem solid var(--glow);
-  transition-property: font-weight, border-color, background-color, color;
-  transition-duration: var(--beat);
-  transition-timing-function: var(--ease-out-quad);
+	width: 2rem;
+	height: 2rem;
+	appearance: none;
+	border-radius: 100%;
+	margin: 0.25rem 0.5rem;
+	background: var(--silk);
+	border: 0.25rem solid var(--glow);
+	transition-property: all;
+	transition-duration: var(--beat);
+	transition-timing-function: var(--ease-out-quad);
 }
 
 input[type='radio'],
 input[type='radio'] + label,
 .radios label {
-  display: inline-block;
-  font-family: var(--mono);
-  line-height: 3rem;
-  vertical-align: middle;
-  margin: 0.25rem;
+	display: inline-block;
+	font-family: var(--mono);
+	line-height: 3rem;
+	vertical-align: middle;
+	margin: 0.25rem;
 }
 
 input[type='radio'] + label {
-  font-weight: 400;
+	@supports (font-variation-settings: normal) {
+		font-family: 'QuicksandVariable';
+		font-variation-settings: 'wght' 444;
+	}
 }
 
 input[type='radio'] + label:hover {
-  font-weight: 700;
-  color: var(--link);
+	@supports (font-variation-settings: normal) {
+		font-family: 'QuicksandVariable';
+		font-variation-settings: 'wght' 666;
+	}
+	color: var(--link);
 }
 
 input[type='radio']:checked + label {
-  font-weight: 700;
-  color: var(--flair);
+	@supports (font-variation-settings: normal) {
+		font-family: 'QuicksandVariable';
+		font-variation-settings: 'wght' 666;
+	}
+	color: var(--flair);
 }
 
 input[type='radio']:hover {
-  border-color: var(--link);
-  background-color: var(--ground);
+	border-color: var(--link);
+	background-color: var(--ground);
 }
 
 input[type='radio']:checked {
-  border: 0.5rem solid var(--flair);
-  background-color: var(--ground);
+	border: 0.5rem solid var(--flair);
+	background-color: var(--ground);
 }

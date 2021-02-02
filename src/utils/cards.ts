@@ -8,24 +8,31 @@
 import {Bounds, Quad} from '../schema'
 
 export const determineQuadrant = (bounds: Bounds): Quad => {
-  const fullWidth = document.body.offsetWidth
-  const fullHeight = document.body.offsetHeight
-  const xHalf = fullWidth / 2 > bounds.left ? 'left' : 'right'
-  const yHalf = fullHeight / 2 > bounds.top ? 'top' : 'bottom'
-  let edge = ''
-  if (bounds.left < 240 || fullWidth - bounds.right < 240) {
-    edge = 'edge'
-  }
-  if (bounds.left < 120 || fullWidth - bounds.right < 120) {
-    edge = 'extreme'
-  }
+	const fullWidth = document.body.offsetWidth
+	const fullHeight = document.body.offsetHeight
+	const xHalf = fullWidth / 2 > bounds.left ? 'left' : 'right'
+	const yHalf = fullHeight / 2 > bounds.top ? 'top' : 'bottom'
+	let edge = ''
+	if (bounds.left < 240 || fullWidth - bounds.right < 240) {
+		edge = 'edge'
+	}
+	if (bounds.left < 120 || fullWidth - bounds.right < 120) {
+		edge = 'extreme'
+	}
 
-  const middle =
-    // if the top of this tile is lower than a third of the screen height
-    // or higher than the bottom third
-    bounds.top < fullHeight / 3 || bounds.bottom < (fullHeight * 2) / 3 ? 'middle' : ''
-  const quadrant = {yPos: yHalf, xPos: xHalf, edge: edge, middle: middle}
-  return quadrant
+	const middle =
+		// in the middle third of the vertical window space
+		bounds.top > fullHeight * 0.25 && bounds.bottom < fullHeight * 0.75 ? 'middle' : ''
+
+	const quadrant = {
+		yPos: yHalf,
+		xPos: xHalf,
+		edge: edge,
+		middle: middle,
+	}
+	// console.log('bounds of tile', bounds)
+	// console.log('card to quadrant', quadrant)
+	return quadrant
 }
 /*
 Result: {

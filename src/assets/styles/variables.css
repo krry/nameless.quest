@@ -3,58 +3,58 @@
 */
 
 :root {
-  --font: 'Quicksand', system-ui, sans-serif;
-  --text: 'Roboto Slab', ui-serif, serif;
-  --mono: 'Inconsolata', monospace;
-  --heading: 'MuseoModerno', system-ui, sans-serif;
-  --hleading: 1.25;
-  --leading: 1.375;
-  --pleading: 1.425;
-  --font-clamp: clamp(10px, 10px + 0.167vw + 0.167vh, 24px);
-  --brand: hsl(321, 77%, 50%); /* #E21D9D */
-  --theme-icons: '🌗🌓';
-  --logo-dim: 7rem; /* to size the headers and such */
-  --drawer-dim: 20rem; /* the width of the nav drawer */
-  --frame: 0.25vw; /* to keep content off the edges of things */
-  --pad-25: 0.25rem; /* to keep content off the edges of things */
-  --pad-5: 0.5rem; /* to keep content off the edges of things */
-  --pad: 1rem; /* to keep content off the edges of things */
-  --pads: 1.5rem; /* a bit of extra padding */
-  --pad2: 2rem; /* a bit of extra padding */
-  --pad3: 3rem; /* a bit of extra padding */
-  --pad4: 4rem; /* a bit of extra padding */
-  --lead: 1.5rem; /* lead to lay between lines, lends vertical rhythm */
-  --bev: 0.25rem;
-  --bevel: 0.5rem;
-  --bevels: 1rem;
-  --bumper: 3em 2em; /* keeps stuff off the interior walls */
-  --beat: 333ms; /* default transition duration */
-  --bea2: calc(var(--beat) * 2); /* twice as long as a beat */
-  --b3at: calc(var(--beat) * 3); /* twice as long as a beat */
-  --be4t: calc(var(--beat) * 4); /* twice as long as a beat */
-  --shaglow: 0 1px 3px 0.25px var(--dust), 0 0 10vw -2.5vw var(--glow);
-  --ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
-  --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  --ease-in-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
-  --ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-  --ease-in-sine: cubic-bezier(0.47, 0, 0.745, 0.715);
-  --ease-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
-  --ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.335);
-  --ease-in-back: cubic-bezier(0.6, -0.28, 0.735, 0.045);
-  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
-  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
-  --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-out-sine: cubic-bezier(0.39, 0.575, 0.565, 1);
-  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-  --ease-out-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
-  --ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-  --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
-  --ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
-  --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
-  --ease-in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  --ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
-  --ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
-  --ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	--font: 'Quicksand', system-ui, sans-serif;
+	--text: 'Roboto Slab', serif;
+	--mono: 'Inconsolata', monospace;
+	--heading: 'MuseoModerno', system-ui, sans-serif;
+	--hleading: 1.25;
+	--leading: 1.375;
+	--pleading: 1.425;
+	--font-clamp: clamp(10px, 10px + 0.167vw + 0.167vh, 24px);
+	--brand: hsl(321, 77%, 50%); /* #E21D9D */
+	--theme-icons: '🌗🌓';
+	--logo-dim: 7rem; /* to size the headers and such */
+	--drawer-dim: 20rem; /* the width of the nav drawer */
+	--frame: 0.25vw; /* to keep content off the edges of things */
+	--pad-25: 0.25rem; /* to keep content off the edges of things */
+	--pad-5: 0.5rem; /* to keep content off the edges of things */
+	--pad: 1rem; /* to keep content off the edges of things */
+	--pads: 1.5rem; /* a bit of extra padding */
+	--pad2: 2rem; /* a bit of extra padding */
+	--pad3: 3rem; /* a bit of extra padding */
+	--pad4: 4rem; /* a bit of extra padding */
+	--lead: 1.5rem; /* lead to lay between lines, lends vertical rhythm */
+	--bev: 0.25rem;
+	--bevel: 0.5rem;
+	--bevels: 1rem;
+	--bumper: 3em 2em; /* keeps stuff off the interior walls */
+	--beat: 333ms; /* default transition duration */
+	--bea2: calc(var(--beat) * 2); /* twice as long as a beat */
+	--b3at: calc(var(--beat) * 3); /* twice as long as a beat */
+	--be4t: calc(var(--beat) * 4); /* twice as long as a beat */
+	--shaglow: 0 1px 3px 0.25px var(--dust), 0 0 10vw -2.5vw var(--glow);
+	--ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+	--ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+	--ease-in-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+	--ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+	--ease-in-sine: cubic-bezier(0.47, 0, 0.745, 0.715);
+	--ease-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+	--ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+	--ease-in-back: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	--ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	--ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+	--ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+	--ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+	--ease-out-sine: cubic-bezier(0.39, 0.575, 0.565, 1);
+	--ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+	--ease-out-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
+	--ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	--ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	--ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+	--ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
+	--ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+	--ease-in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	--ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
+	--ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+	--ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }

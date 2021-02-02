@@ -26,54 +26,52 @@ Page.journal
           @change="saveRoll(roll)"
           )
   .section(v-else-if="rolls.length < 3")
-    router-link.btn.lg.outline(:to="{name: 'query'}") Start a new entry
-  ComingSoon
+    router-link.btn.lg.outline(:to="{name: 'oracle'}") Start a new entry
+  app-link.btn(to="https://ko-fi/kerrbear") Gift our baby some diapers 🐻
+  coming-soon
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue'
 import Page from '../components/Page.vue'
+import AppLink from '../components/AppLink.vue'
 import ComingSoon from '../components/ComingSoon.vue'
 import {useHexagrams} from '../composables/hexagrams'
-import {getRolls, saveRoll} from '../store/rolls'
+import {activeRolls, saveRoll} from '../store/rolls'
 
 export default defineComponent({
-  name: 'Journal',
-  components: {
-    Page,
-    ComingSoon,
-  },
-  props: {
-    modal: Boolean,
-  },
-  setup() {
-    const rolls = getRolls()
-    const {getHexagramByOctal, getWenByBin, getEnglishNameByBin} = useHexagrams()
-
-    return {
-      rolls,
-      saveRoll,
-      getHexagramByOctal,
-      getWenByBin,
-      getEnglishNameByBin,
-    }
-  },
-  methods: {
-    formattedDate(ms: number): string {
-      const dt = new Date(ms)
-      return [
-        dt.getHours() + ':' + dt.getMinutes() + ' on',
-        dt.getDate(),
-        dt.toLocaleString('default', {month: 'short'}),
-        dt.getFullYear(),
-      ].join(' ')
-    },
-  },
+	name: 'Journal',
+	components: {
+		Page,
+		AppLink,
+		ComingSoon,
+	},
+	setup() {
+		const {getHexagramByOctal, getWenByBin, getEnglishNameByBin} = useHexagrams()
+		return {
+			activeRolls,
+			saveRoll,
+			getHexagramByOctal,
+			getWenByBin,
+			getEnglishNameByBin,
+		}
+	},
+	methods: {
+		formattedDate(ms: number): string {
+			const dt = new Date(ms)
+			return [
+				dt.getHours() + ':' + dt.getMinutes() + ' on',
+				dt.getDate(),
+				dt.toLocaleString('default', {month: 'short'}),
+				dt.getFullYear(),
+			].join(' ')
+		},
+	},
 })
 </script>
 
 <style lang="postcss" scoped>
 .page.journal {
-  background-color: var(--silk);
+	background-color: var(--silk);
 }
 </style>

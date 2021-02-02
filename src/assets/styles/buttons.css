@@ -1,119 +1,132 @@
 .btn,
 a.btn,
 button.btn {
-  display: inline-block;
-  appearance: none;
-  background: var(--link);
-  color: var(--paper);
-  font-size: 1.125rem;
-  font-family: var(--heading);
-  padding: 0.67em 1.33em;
-  border-width: 2px;
-  border-style: solid;
-  border-color: var(--border);
-  border-radius: var(--bevel);
-  cursor: pointer;
-  transition-property: background-color, outline, color, border-color, box-shadow;
-  transition-duration: var(--beat);
-  margin: 0.5em auto;
-  outline: none;
-  text-decoration: none;
+	display: inline-block;
+	appearance: none;
+	background: var(--link);
+	color: var(--paper);
+	font-size: 1.125rem;
+	font-family: var(--heading);
+	padding: 0.67em 1.11em;
+	border-width: 2px;
+	border-style: solid;
+	border-color: var(--border);
+	border-radius: var(--bevel);
+	cursor: pointer;
+	transition-property: all;
+	transition-duration: var(--beat);
+	margin: 0.5em auto;
+	outline: none;
+	text-decoration: none;
 }
 
 a.btn:hover,
 .btn:hover {
-  transition-duration: 100ms;
+	transition-duration: 100ms;
 }
 
 .btn:hover,
 .btn:focus,
 button.btn:hover,
 button.btn:focus {
-  background-color: var(--flair);
-  outline: 2px var(--border-style) var(--flair);
-  outline-offset: 2px;
-  color: var(--ground);
+	background-color: var(--flair);
+	outline: 2px var(--border-style) var(--flair);
+	outline-offset: 2px;
+	color: var(--ground);
 }
 
 .btn.sm,
 button.btn.sm {
-  font-size: 0.875rem;
+	font-size: 0.875rem;
 }
 
 .btn.md,
 button.btn.md {
-  font-size: 1rem;
+	font-size: 1rem;
 }
 
 .btn.lg,
 button.btn.lg {
-  font-size: 1.25rem;
+	font-size: 1.25rem;
 }
 
 .btn.xl,
 button.btn.xl {
-  font-size: 1.5rem;
+	font-size: 1.5rem;
 }
 
 .btn.xxl,
 button.btn.xxl {
-  font-size: 2rem;
+	font-size: 2rem;
 }
 
 .btn.dark,
 button.btn.dark {
-  background-color: var(--ground);
-  border-color: var(--ground);
-  color: var(--ink);
+	background-color: var(--ground);
+	border-color: var(--ground);
+	color: var(--ink);
 }
 
 .btn.dark:hover,
 .btn.dark:focus,
 button.btn.dark:hover,
 button.btn.dark:focus {
-  background-color: var(--paper);
-  border-color: var(--ground);
+	background-color: var(--paper);
+	border-color: var(--ground);
 }
 
 .btn.naked,
 button.btn.naked {
-  color: var(--link);
-  background: transparent;
-  border-color: transparent;
-  appearance: none;
-  box-shadow: none;
+	color: var(--link);
+	background: transparent;
+	border-color: transparent;
+	border-width: 1px;
+	appearance: none;
+	box-shadow: none;
 }
 
 .btn.naked:hover,
 .btn.naked:focus,
 button.btn.naked:hover,
 button.btn.naked:focus {
-  background-color: transparent;
-  color: var(--flair);
+	background-color: transparent;
+	color: var(--flair);
 }
 
 .btn.naked:active {
-  background-color: var(--silk);
+	background-color: var(--silk);
 }
 
 .btn.outline,
 button.btn.outline {
-  color: var(--link);
-  border-color: var(--glow);
-  background-color: var(--paper);
+	color: var(--link);
+	border-color: var(--glow);
+	background-color: var(--paper);
 }
 
 .btn.outline:hover,
 .btn.outline:focus,
 button.btn.outline:hover,
 button.btn.outline:focus {
-  color: var(--flair);
-  border-color: var(--flair);
-  background-color: var(--silk);
-  outline: none !important;
+	color: var(--flair);
+	border-color: var(--flair);
+	background-color: var(--silk);
+	outline: none !important;
 }
 
 .btn.lastack,
 button.btn.lastack {
-  margin: auto;
+	margin: auto;
+}
+
+.btn.back {
+	font-size: 1.5em;
+	padding: 0 0.5rem;
+	width: 3rem;
+	margin: 0;
+}
+
+.btn.back:hover,
+.btn.back:focus {
+	opacity: 1;
 }

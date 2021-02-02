@@ -8,7 +8,7 @@ Page.config.col
       ToggleSwitch(
         label="Pinyin begins"
         v-model:checked="cfg.pinny"
-        tabindex="11"
+        tabindex="0"
         dis="Hidden"
         dat="Visible"
       )
@@ -27,12 +27,12 @@ Page.config.col
       ToggleSwitch(
         label="Cards begin showing"
         v-model:checked="cfg.texty"
-        tabindex="12"
+        tabindex="0"
         dis="Glyphs"
         dat="Text"
       )
       transition.pads.y.under(name="slide-fade" mode="out-in" appear)
-        .text.under(v-if="cfg.texty")
+        .under(v-if="cfg.texty")
           router-link(to="/change/62")
             h4 Preponderance of the Small
           HanziChar.pad.x(char="小" reveal size="md" pinyin="xiǎo")
@@ -43,7 +43,7 @@ Page.config.col
       ToggleSwitch(
         label="Line orientation"
         v-model:checked="cfg.turny"
-        tabindex="13"
+        tabindex="0"
         dis="Horizontal"
         dat="Vertical"
       )
@@ -55,7 +55,7 @@ Page.config.col
       ToggleSwitch(
         label="Show hotkey hints"
         v-model:checked="cfg.navvy"
-        tabindex="14"
+        tabindex="0"
         dis="No, thanks"
         dat="Yes, please"
       )
@@ -70,17 +70,18 @@ Page.config.col
         dis="King Wen"
         dat="Octal"
         v-model:checked="cfg.wenny"
-        tabindex="10"
+        tabindex="0"
         )
     .setting.half.flex.col.mid
       h3 Switch the Theme
       .flex
-        ThemeSwitch(size="xl" tabindex="20")
+        ThemeSwitch(size="xl")
+  app-link.btn(to="https://ko-fi/kerrbear") Gift our baby some diapers 🐻
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue'
-import {cfg, set} from '../store/cfg'
+import {cfg, set} from '../store'
 import Page from '../components/Page.vue'
 import ComingSoon from '../components/ComingSoon.vue'
 import ToggleSwitch from '../components/ToggleSwitch.vue'
@@ -90,54 +91,54 @@ import HexaGlyph from '../components/HexaGlyph.vue'
 import TriGlyph from '../components/TriGlyph.vue'
 
 export default defineComponent({
-  name: 'Config',
-  components: {
-    Page,
-    ComingSoon,
-    ToggleSwitch,
-    ThemeSwitch,
-    HanziChar,
-    HexaGlyph,
-    TriGlyph,
-  },
-  setup() {
-    return {
-      cfg,
-      set,
-    }
-  },
+	name: 'Config',
+	components: {
+		Page,
+		ComingSoon,
+		ToggleSwitch,
+		ThemeSwitch,
+		HanziChar,
+		HexaGlyph,
+		TriGlyph,
+	},
+	setup() {
+		return {
+			cfg,
+			set,
+		}
+	},
 })
 </script>
 
 <style lang="postcss" scoped>
 .config .page {
-  background: var(--dust);
+	background: var(--dust);
 }
 
 .setting {
-  margin: 1rem;
+	margin: 1rem;
 }
 
 h3 {
-  margin: 0.75rem 0 0.25rem;
-  text-align: left;
+	margin: 0.75rem 0 0.25rem;
+	text-align: left;
 }
 
 input[type='radio'] + label,
 label + label {
-  margin-right: 0.5rem;
+	margin-right: 0.5rem;
 }
 
 label + input {
-  margin-left: 0.5rem;
+	margin-left: 0.5rem;
 }
 
 .turned {
-  display: inline-block;
-  transform: rotate(-90deg);
+	display: inline-block;
+	transform: rotate(-90deg);
 }
 
 .example {
-  margin-top: 1rem;
+	margin-top: 1rem;
 }
 </style>

@@ -1,370 +1,395 @@
 .hidden {
-  display: none;
+	display: none;
 }
 
 .invisible {
-  visibility: hidden;
+	visibility: hidden;
 }
 
 .ib {
-  display: inline-block;
+	display: inline-block;
 }
 
 .flex {
-  display: flex;
+	display: flex;
 }
 
 .flex.col {
-  flex-direction: column;
+	flex-direction: column;
 }
 
 .flex.wrap {
-  flex-wrap: wrap;
+	flex-wrap: wrap;
 }
 
 .flex.mid {
-  justify-content: center;
-  align-items: center;
+	justify-content: center;
+	align-items: center;
 }
 
 .flex.begin {
-  justify-content: flex-start;
+	justify-content: flex-start;
 }
 
 .flex .spread {
-  flex-grow: 1;
+	flex-grow: 1;
 }
 
-.flex .balance {
-  flex: 1 0 auto;
+.flex .dyn {
+	flex: 1 0 auto;
+}
+
+.flex .whole {
+	flex-basis: 100%;
 }
 
 .flex .half {
-  flex-basis: 100%;
-  @media (min-width: 36rem) {
-    flex: 1 0 calc(50% - 2rem);
-  }
+	flex-basis: 100%;
+	@media (min-width: 36rem) {
+		flex: 1 0 calc(50% - 2rem);
+	}
+}
+
+.flex.more,
+.flex .more {
+	flex-basis: 40%;
+}
+
+.flex.less,
+.flex .less {
+	flex-basis: 30%;
 }
 
 .flex .begin {
-  align-self: flex-start;
+	align-self: flex-start;
 }
 
 .flex .middle {
-  align-self: center;
+	align-self: center;
 }
 
 .flex .finish {
-  align-self: flex-end;
+	align-self: flex-end;
 }
 
 .flex.end {
-  justify-content: center;
-  align-items: flex-end;
+	justify-content: center;
+	align-items: flex-end;
 }
 
 .flex.string {
-  justify-content: space-evenly;
-  align-items: center;
+	justify-content: space-evenly;
+	align-items: center;
 }
 
 .flex.btw {
-  justify-content: space-between;
+	justify-content: space-between;
 }
 
 .flex.even {
-  justify-content: space-evenly;
+	justify-content: space-evenly;
 }
 
 .flex.around {
-  justify-content: space-around;
+	justify-content: space-around;
 }
 
 .flex.space {
-  justify-content: space-evenly;
-  align-items: flex-start;
+	justify-content: space-evenly;
+	align-items: flex-start;
 }
 
 .flex .first {
-  order: 1;
+	order: 1;
 }
 
 .flex .second {
-  order: 2;
+	order: 2;
 }
 
 .flex .third {
-  order: 3;
+	order: 3;
 }
 
 .text-left {
-  text-align: left;
+	text-align: left;
 }
 
 .text-center {
-  text-align: center;
+	text-align: center;
 }
 
 .rel {
-  position: relative;
+	position: relative;
 }
 
 .abs {
-  position: absolute;
+	position: absolute;
 }
 
 .fs {
-  width: 100vw;
-  height: 100vh;
+	width: 100vw;
+	height: 100vh;
 }
 
 .fh {
-  height: 100vh;
+	height: 100vh;
 }
 
 .fixed {
-  position: fixed;
+	position: fixed;
 }
 
 .abs-0 {
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 }
 
 .abs.t,
 .fixed.t {
-  top: 0;
+	top: 0;
 }
 
 .abs.r,
 .fixed.r {
-  right: 0;
+	right: 0;
 }
 
 .abs.b,
 .fixed.b {
-  bottom: 0;
+	bottom: 0;
 }
 
 .abs.l,
 .fixed.l {
-  left: 0;
+	left: 0;
 }
 
 /* adds a buffer to the bottom of a scrolling stack, since otherwise margins and padding collapse */
 .lastack {
-  position: relative;
+	position: relative;
 }
 
 .lastack::after {
-  content: '';
-  height: 2em;
-  width: 100%;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%;
+	content: '';
+	height: 2em;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 100%;
 }
 
 .lastack:focus {
-  outline: none;
+	outline: none;
 }
 
 ul.ls {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
 .ls li {
-  line-height: var(--leading);
-  margin-bottom: 0.5em;
+	line-height: var(--leading);
+	margin-bottom: 0.5em;
 }
 
 hr.divider {
-  width: 80%;
-  color: var(--glow);
-  margin: 1rem auto;
+	width: 80%;
+	color: var(--glow);
+	margin: 1rem auto;
 }
 
 hr.dinkus {
-  border: 0;
-  position: relative;
-  margin: 1rem auto;
-  width: 100%;
+	border: 0;
+	position: relative;
+	margin: 1rem auto;
+	width: 100%;
 }
 
 hr.dinkus::after {
-  font-size: 2.5rem;
-  font-family: var(--text);
-  color: var(--flair);
-  display: block;
-  text-align: center;
+	font-size: 2.5rem;
+	font-family: var(--text);
+	color: var(--flair);
+	display: block;
+	text-align: center;
 }
 
 hr.dinkus.asterism::after {
-  font-size: 2rem;
+	font-size: 2rem;
 }
 
 .asterism::after {
-  content: '⁂';
+	content: '⁂';
 }
 
 .fleuron::after {
-  content: '𐡸';
+	content: '𐡸';
 }
 
 .fleuroff::after {
-  content: '𐡷';
+	content: '𐡷';
 }
 
 .fleur::after {
-  content: '⚜';
+	content: '⚜';
 }
 
 .clickable {
-  cursor: pointer;
-  pointer-events: auto;
+	cursor: pointer;
+	pointer-events: auto;
 }
 
 .vapor {
-  pointer-events: none;
-  background: none;
+	pointer-events: none;
+	background: none;
 }
 
 .no-underline {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 .text {
-  font-family: var(--text);
+	font-family: var(--text);
 }
 
 .em {
-  font-style: italic;
+	font-style: italic;
 }
 
 .bold {
-  font-weight: 600;
+	@supports (font-variation-settings: normal) {
+		font-variation-settings: 'wght' 666;
+	}
 }
 
 .pad.y {
-  padding-top: var(--pad);
-  padding-bottom: var(--pad);
+	padding-top: var(--pad);
+	padding-bottom: var(--pad);
 }
 
 .pad.x {
-  padding-left: var(--pad);
-  padding-right: var(--pad);
+	padding-left: var(--pad);
+	padding-right: var(--pad);
 }
 
 .mrg.y {
-  margin-top: var(--pad);
-  margin-bottom: var(--pad);
+	margin-top: var(--pad);
+	margin-bottom: var(--pad);
+}
+
+.tight.y {
+	margin-top: calc(var(--pad) * -0.25);
+	margin-bottom: calc(var(--pad) * -0.25);
 }
 
 .mrg.x {
-  margin-left: var(--pad);
-  margin-right: var(--pad);
+	margin-left: var(--pad);
+	margin-right: var(--pad);
 }
 
 .pads.y {
-  @media (min-height: 48rem) {
-    padding-top: var(--pads);
-    padding-bottom: var(--pads);
-  }
+	@media (min-height: 48rem) {
+		padding-top: var(--pads);
+		padding-bottom: var(--pads);
+	}
 }
 
 .pad2.top {
-  padding-top: var(--pad2);
+	padding-top: var(--pad2);
 }
 
 .pads.x {
-  padding-left: var(--pad);
-  padding-right: var(--pad);
-  @media (min-width: 48rem) {
-    padding-left: var(--pads);
-    padding-right: var(--pads);
-  }
+	padding-left: var(--pad);
+	padding-right: var(--pad);
+	@media (min-width: 48rem) {
+		padding-left: var(--pads);
+		padding-right: var(--pads);
+	}
 }
 
 .mrgs.y {
-  margin-top: var(--pads);
-  margin-bottom: var(--pads);
+	margin-top: var(--pads);
+	margin-bottom: var(--pads);
 }
 
 .mrgs.x {
-  margin-left: var(--pads);
-  margin-right: var(--pads);
+	margin-left: var(--pads);
+	margin-right: var(--pads);
 }
 
 .pad2.y {
-  padding-top: var(--pad2);
-  padding-bottom: var(--pad2);
+	padding-top: var(--pad2);
+	padding-bottom: var(--pad2);
 }
 
 .pad2.x {
-  padding-left: var(--pad2);
-  padding-right: var(--pad2);
+	padding-left: var(--pad2);
+	padding-right: var(--pad2);
 }
 
 .mrg2.y {
-  margin-top: var(--pad2);
-  margin-bottom: var(--pad2);
+	margin-top: var(--pad2);
+	margin-bottom: var(--pad2);
 }
 
 .mrg2.x {
-  margin-left: var(--pad2);
-  margin-right: var(--pad2);
+	margin-left: var(--pad2);
+	margin-right: var(--pad2);
 }
 
 .pad3.y {
-  padding-top: var(--pad3);
-  padding-bottom: var(--pad3);
+	padding-top: var(--pad3);
+	padding-bottom: var(--pad3);
 }
 
 .pad3.x {
-  padding-left: var(--pad3);
-  padding-right: var(--pad3);
+	padding-left: var(--pad3);
+	padding-right: var(--pad3);
 }
 
 .mrg3.y {
-  margin-top: var(--pad3);
-  margin-bottom: var(--pad3);
+	margin-top: var(--pad3);
+	margin-bottom: var(--pad3);
 }
 
 .mrg3.x {
-  margin-left: var(--pad3);
-  margin-right: var(--pad3);
+	margin-left: var(--pad3);
+	margin-right: var(--pad3);
 }
 
 .pad4.y {
-  padding-top: var(--pad4);
-  padding-bottom: var(--pad4);
+	padding-top: var(--pad4);
+	padding-bottom: var(--pad4);
 }
 
 .pad4.x {
-  padding-left: var(--pad4);
-  padding-right: var(--pad4);
+	padding-left: var(--pad4);
+	padding-right: var(--pad4);
 }
 
 .mrg4.y {
-  margin-top: var(--pad4);
-  margin-bottom: var(--pad4);
+	margin-top: var(--pad4);
+	margin-bottom: var(--pad4);
 }
 
 .mrg4.x {
-  margin-left: var(--pad4);
-  margin-right: var(--pad4);
+	margin-left: var(--pad4);
+	margin-right: var(--pad4);
 }
 
 .surf.out {
-  z-index: 28;
-  transform: scaleX(-1);
+	z-index: 28;
+	transform: scaleX(-1);
 }
 
 .flex.align-start {
-  align-items: flex-start;
+	align-items: flex-start;
+}
+
+.invert.y {
+	transform: scaleY(-1);
 }
