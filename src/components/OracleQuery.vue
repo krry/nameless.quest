@@ -1,5 +1,6 @@
 <template lang="pug">
 .above
+	LogoBrand(direction="vert")
 	h1.mrgb0
 		| Welcome to the Oracle
 		br
@@ -57,6 +58,7 @@ import {cached, cache} from '../store/cache'
 import {cfg} from '../store'
 import Page from './Page.vue'
 import IconBase from '../icons/IconBase.vue'
+import LogoBrand from './LogoBrand.vue'
 import HanziChar from './HanziChar.vue'
 import IconCrystalBall from '../icons/IconCrystalBall.vue'
 
@@ -65,6 +67,7 @@ export default defineComponent({
 	components: {
 		Page,
 		HanziChar,
+		LogoBrand,
 		IconBase,
 		IconCrystalBall,
 	},

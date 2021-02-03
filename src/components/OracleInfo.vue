@@ -22,7 +22,7 @@ h2 Help and FAQs
 		:class="{active: cached.help === 'yarrow'}"
 		) How to split yarrow stalks?
 transition(name="slide-fade" appear mode="out-in")
-	aside.help.text-center.pads.x.y.below( v-if="cached.help === 'query'" )
+	aside.help.text-center.pads.y.below( v-if="cached.help === 'query'" )
 		IconBase(size="100" viewBox="0 0 1000 1250" iconColor="var(--good)")
 			IconCrystalBall
 		h2 How to Query the Oracle

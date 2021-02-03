@@ -37,7 +37,7 @@ export default defineComponent({
 		async function emailLinkSend() {
 			const actionCodeSettings = {
 				// TODO: detect the path from which the user arrived here in order to redirect them appropriately
-				url: window.location.origin + '/journal', // where to send user back to
+				url: window.location.origin, // where to send user back to
 				handleCodeInApp: true, // must be true?
 			}
 			// console.log('actionCode url', actionCodeSettings.url)
