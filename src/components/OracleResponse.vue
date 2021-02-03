@@ -1,5 +1,5 @@
 <template lang="pug">
-.response.flex.wrap(v-if="hexs")
+.response.flex.wrap.right(v-if="hexs")
 	h1.whole The Oracle Responds
 	section.col.half.mrg.x(
 		v-for="(hex, index) in hexs"

@@ -1,9 +1,9 @@
 <template lang="pug">
 Page.query
 	transition(name="slide-fade" appear mode="out-in")
-		OracleCast.left(v-if="cached.step === 'cast'")
-		OracleResponse.right(v-else-if="cached.step === 'response'" @clear="clearBoth")
-		OracleQuery.above(v-else)
+		OracleCast(v-if="cached.step === 'cast'")
+		OracleResponse(v-else-if="cached.step === 'response'" @clear="clearBoth")
+		OracleQuery(v-else)
 	IconBase.mrgs.y(size="96" viewBox="0 0 100 125" iconColor="var(--glow")
 		IconThreeLegs
 	OracleInfo

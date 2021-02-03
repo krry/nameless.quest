@@ -1,52 +1,53 @@
 <template lang="pug">
-h1.mrgb0
-	| Welcome to the Oracle
-	br
-	small aka 
-		HanziChar(
-			char="易"
-			pinyin="Yì"
-			size="lg"
-			place="under"
-			reveal
-			)
-		HanziChar(
-			char="經"
-			pinyin="Jīng"
-			size="lg"
-			place="under"
-			reveal
-			)
+.above
+	h1.mrgb0
+		| Welcome to the Oracle
+		br
+		small aka 
+			HanziChar(
+				char="易"
+				pinyin="Yì"
+				size="lg"
+				place="under"
+				reveal
+				)
+			HanziChar(
+				char="經"
+				pinyin="Jīng"
+				size="lg"
+				place="under"
+				reveal
+				)
 
-section.dyn.flex.col
-	.field.dyn
-		textarea#query.query(
-			v-autoresize
-			v-model="cached.query"
-			placeholder="What…to…do?"
-			autofocus
-			rows="1"
-			pattern="\?$"
-			@keydown.ctrl.enter="askTheOracle"
-			)
-		transition(name="slide-fade" appear)
-			.lbl.above.intro(for="query" v-if="cached.query.length < 9")
-				| What does your heart wonder?
-		transition(name="slide-fade" appear)
-			.lbl.below.outro(for="query" v-if="cached.query.length < 9")
-				| What is the burning question?
-		button.btn.lg.action(type="button" @click="askTheOracle")
-			IconBase(size="36" viewBox="0 0 1000 1125")
-				IconCrystalBall
-			|  Ask the Oracle
-		transition(name="slide-fade" appear)
-			label.validation(
-				v-if="invalidQuery"
-				) Is that a question?
-		transition(name="slide-fade" appear)
-			label.feedback(v-if="!cfg.navvy")
-				kbd(title="ctrl+enter") ⌃⏎
-				span  to send
+	section.dyn.flex.col
+		.field.dyn
+			textarea#query.query(
+				v-autoresize
+				v-model="cached.query"
+				placeholder="What…to…do?"
+				autofocus
+				rows="1"
+				pattern="\?$"
+				@keydown.ctrl.enter="askTheOracle"
+				)
+			transition(name="slide-fade" appear)
+				.lbl.above.intro(for="query" v-if="cached.query.length < 9")
+					| What does your heart wonder?
+			transition(name="slide-fade" appear)
+				.lbl.below.outro(for="query" v-if="cached.query.length < 9")
+					| What is the burning question?
+			button.btn.lg.action(type="button" @click="askTheOracle")
+				IconBase(size="36" viewBox="0 0 1000 1125")
+					IconCrystalBall
+				|  Ask the Oracle
+			transition(name="slide-fade" appear)
+				label.validation(
+					v-if="invalidQuery"
+					) Is that a question?
+			transition(name="slide-fade" appear)
+				label.feedback(v-if="!cfg.navvy")
+					kbd(title="ctrl+enter") ⌃⏎
+					span  to send
 </template>
 
 <script lang="ts">

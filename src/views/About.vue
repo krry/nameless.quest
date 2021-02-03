@@ -190,27 +190,29 @@ Page.about
 <script lang="ts">
 import {defineComponent, ref} from 'vue'
 import Page from '../components/Page.vue'
-import LogoBrand from '../components/LogoBrand.vue'
+import AppLink from '../components/AppLink.vue'
 import HanziChar from '../components/HanziChar.vue'
+import LogoBrand from '../components/LogoBrand.vue'
 import IconBase from '../icons/IconBase.vue'
 import Icon7 from '../icons/Icon7.vue'
 import Icon8 from '../icons/Icon8.vue'
-import IconCrystalBall from '../icons/IconCrystalBall.vue'
 import IconBookStack from '../icons/IconBookStack.vue'
 import IconWizardsHat from '../icons/IconWizardsHat.vue'
+import IconCrystalBall from '../icons/IconCrystalBall.vue'
 
 export default defineComponent({
 	name: 'About',
 	components: {
 		Page,
-		IconBase,
+		AppLink,
+		LogoBrand,
+		HanziChar,
 		Icon7,
-		IconCrystalBall,
+		Icon8,
+		IconBase,
 		IconBookStack,
 		IconWizardsHat,
-		Icon8,
-		HanziChar,
-		LogoBrand,
+		IconCrystalBall,
 	},
 	setup() {
 		const divine = ref<HTMLElement>()

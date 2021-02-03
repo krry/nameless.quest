@@ -1,52 +1,53 @@
 <template lang="pug">
-section.cast
-	.dyn.holding(v-if="cached.query")
-		h2 Divining the Answer
-		blockquote
-			h2 {{cached.query.trim()}}
-		transition(name="slide-fade" mode="out-in")
-			h3.center( v-if="cached.toss.length === 0" )
-				| Now, holding this question gently in mind
-				br
-				| we 
-				a(@click="cache('help', 'coins')") flip three coins
-			.glyphs.left.rtl(v-else)
-				IconBase.line(
-					v-for="char in cached.toss"
-					:key="$symbolize(char)"
-					:class="{valid: validToss}"
-					:iconName="getLineName(char)"
-					)
-					component( :is="`Icon${char}`" )
-	.tossing
-		.field.toss
-			input.rtl(
-				type="tel"
-				v-model="cached.toss"
-				id="roll"
-				maxlength="6"
-				min="666666"
-				max="999999"
-				autofocus
-				pattern="[6-9]{1,6}"
-				placeholder="678789"
-				@keyup.ctrl.enter="saveToss"
-			)
-		transition(name="slide-fade" mode="out-in" appear)
-			button.btn.right.go(
-				v-if="validToss"
-				@click="saveToss"
-				) Let's 卦 Gua
-			.fake-coins(v-else)
-				transition(name="flip" mode="out-in")
-					button.btn.outline.under(
-						v-if="!noCoins"
-						@click="noCoins = true"
-						) Can't find any coins?
-					button.btn.outline.over(
-						v-else
-						@click="fakeCoins"
-						) 🤸 Fake my flips 🩴
+.left
+	h2 Divining the Answer
+	section.cast
+		.dyn.holding(v-if="cached.query")
+			blockquote
+				h2 {{cached.query.trim()}}
+			transition(name="slide-fade" mode="out-in")
+				h3.center( v-if="cached.toss.length === 0" )
+					| Now, holding this question gently in mind
+					br
+					| we 
+					a(@click="cache('help', 'coins')") flip three coins
+				.glyphs.left.rtl(v-else)
+					IconBase.line(
+						v-for="char in cached.toss"
+						:key="$symbolize(char)"
+						:class="{valid: validToss}"
+						:iconName="getLineName(char)"
+						)
+						component( :is="`Icon${char}`" )
+		.tossing
+			.field.toss
+				input.rtl(
+					type="tel"
+					v-model="cached.toss"
+					id="roll"
+					maxlength="6"
+					min="666666"
+					max="999999"
+					autofocus
+					pattern="[6-9]{1,6}"
+					placeholder="678789"
+					@keyup.ctrl.enter="saveToss"
+				)
+			transition(name="slide-fade" mode="out-in" appear)
+				button.btn.right.go(
+					v-if="validToss"
+					@click="saveToss"
+					) Let's 卦 Gua
+				.fake-coins(v-else)
+					transition(name="flip" mode="out-in")
+						button.btn.outline.under(
+							v-if="!noCoins"
+							@click="noCoins = true"
+							) Can't find any coins?
+						button.btn.outline.over(
+							v-else
+							@click="fakeCoins"
+							) 🤸 Fake my flips 🩴
 </template>
 
 <script lang="ts">
