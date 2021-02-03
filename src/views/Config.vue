@@ -78,7 +78,6 @@ Page.config.col
         ThemeSwitch(size="xl")
   AppLink.btn(to="https://ko-fi.com/kerrbear") Gift our baby some diapers 🐻
 </template>
-
 <script lang="ts">
 import {defineComponent} from 'vue'
 import {cfg, set} from '../store'

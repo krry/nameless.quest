@@ -4,19 +4,13 @@ import {set} from '../store'
 import {cached, cacheUser} from '../store/cache'
 import * as drawer from '../utils/drawer'
 
-export function beforeEach(
-	to: RouteLocationNormalized,
-	from: RouteLocationNormalized,
-): RouteLocationRaw | boolean {
+export function beforeEach(to: RouteLocationNormalized): RouteLocationRaw | boolean {
 	const requiresAuth = to.matched.some((x) => x.meta.requiresAuth)
 	console.log('before this route', to)
 	console.log('user authd?', cached.uid)
 	if (requiresAuth && !cached.uid) {
 		console.log('need auth and no user signed in')
-		console.log('coming in from path', from.path)
-		console.log('window.location.pathname', window.location.pathname)
-		const loginPath = from.path || window.location.pathname
-		return {name: 'login', query: {from: loginPath}}
+		return {name: 'login'}
 	}
 
 	if (auth.isSignInWithEmailLink(window.location.href)) {

@@ -114,7 +114,6 @@ export default defineComponent({
 	margin: 1rem 0 0.25rem;
 }
 
-.char.over,
 .char.under {
 	margin: 0.25rem 0 1rem;
 }

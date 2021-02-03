@@ -16,6 +16,7 @@ form.flex.space.spread.wrap(@submit.prevent="emailLinkSend")
           | 🪄 We'll send you a magic link 🔗
       button.btn.lg.outline#email_butt(
         type="submit"
+				v-if="!emailSuccessMsg"
         @click.prevent="emailLinkSend"
         ) Sign in via Email
 </template>
@@ -35,6 +36,7 @@ export default defineComponent({
 
 		async function emailLinkSend() {
 			const actionCodeSettings = {
+				// TODO: detect the path from which the user arrived here in order to redirect them appropriately
 				url: window.location.origin + '/journal', // where to send user back to
 				handleCodeInApp: true, // must be true?
 			}

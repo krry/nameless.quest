@@ -111,8 +111,10 @@ export default defineComponent({
 	font-size: var(--font-clamp);
 	min-width: 100vw;
 	box-shadow: 0 0 0.5rem var(--glow);
-	border-left: var(--frame) solid var(--glow);
-	border: var(--pad) solid var(--shade);
+	border: var(--frame) solid var(--glow);
+	@media (min-width: 36rem) and (min-height: 36rem) {
+		border: var(--pad) solid var(--shade);
+	}
 	pointer-events: auto;
 	margin-left: var(--drawer-buffer);
 	transition: var(--bea2);

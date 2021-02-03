@@ -29,6 +29,7 @@
 				rows="1"
 				pattern="\?$"
 				@keydown.ctrl.enter="askTheOracle"
+				:class="{invalid: invalidQuery}"
 				)
 			transition(name="slide-fade" appear)
 				.lbl.above.intro(for="query" v-if="cached.query.length < 9")
@@ -96,7 +97,7 @@ export default defineComponent({
 .validation {
 	order: 3;
 	color: var(--brand);
-	margin: -0.75em 0 0;
+	/* margin: -0.75em 0 0; */
 	@supports (font-variation-settings: normal) {
 		font-family: 'QuicksandVariable';
 		font-variation-settings: 'wght' 555;
@@ -145,7 +146,7 @@ export default defineComponent({
 	}
 }
 
-.field textarea {
+.field textarea.invalid {
 	margin-bottom: 0;
 }
 </style>

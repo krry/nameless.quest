@@ -124,12 +124,13 @@ Page.gratitude
       | You can support me, your loyal 
       router-link._blank(to="https://atmanautica.com") Kerrbear
       | , the devsigner/creator of this here Nameless doodad.
-    router-link.btn(to="https://ko-fi.com/kerrbear") I don't even notice when $5 goes missing
+    AppLink.btn(to="https://ko-fi.com/kerrbear") I don't even notice when $5 goes missing
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue'
 import Page from '../components/Page.vue'
+import AppLink from '../components/AppLink.vue'
 import IconBase from '../icons/IconBase.vue'
 import IconCauldron from '../icons/IconCauldron.vue'
 import IconMiracle from '../icons/IconMiracle.vue'
@@ -144,6 +145,7 @@ export default defineComponent({
 	name: 'Gratitude',
 	components: {
 		Page,
+		AppLink,
 		IconBase,
 		IconCauldron,
 		IconMiracle,

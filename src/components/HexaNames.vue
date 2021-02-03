@@ -7,6 +7,7 @@
       :char="char"  
       :pinyin="pinyin[index]"
       size="x2l"
+			place="over"
       reveal
       )
   h3.yingyu.head.xxl {{ names.english }}

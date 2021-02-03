@@ -27,7 +27,7 @@ Page.login(
   transition(name="slide-fade" mode="out-in" appear)
     h3.text-center.right(v-if="explained")
       | Frankly 
-      a(href="https://medium.com/@ninjudd/passwords-are-obsolete-9ed56d483eb") passwords are obsolete
+      AppLink(to="https://medium.com/@ninjudd/passwords-are-obsolete-9ed56d483eb") passwords are obsolete
       | .
       br
       | Signing in passwordlessly is easier and more secure.
@@ -38,6 +38,7 @@ Page.login(
 <script lang="ts">
 import {defineComponent} from 'vue'
 import Page from '../components/Page.vue'
+import AppLink from '../components/AppLink.vue'
 import LogoBrand from '../components/LogoBrand.vue'
 import LoginEmail from '../components/LoginEmail.vue'
 import LoginPhone from '../components/LoginPhone.vue'
@@ -46,6 +47,7 @@ export default defineComponent({
 	name: 'Login',
 	components: {
 		Page,
+		AppLink,
 		LogoBrand,
 		LoginEmail,
 		LoginPhone,

@@ -3,13 +3,13 @@
   transition-group(
     name="slip"
   )
-    gua.above(
+    OneGua.above(
       v-if="baguad"
       :key="aboveKey"
       :gua="above"
       :above="true"
     )
-    gua.below(
+    OneGua.below(
       v-if="baguad"
       :key="belowKey"
       :gua="below"
@@ -24,7 +24,7 @@ import OneGua from './OneGua.vue'
 export default defineComponent({
 	name: 'BaguaDoors',
 	components: {
-		gua: OneGua,
+		OneGua,
 	},
 	props: {
 		above: {
@@ -79,6 +79,7 @@ export default defineComponent({
 
 .bagua .gua .triglyph {
 	transform: translateY(-0.5vh);
+	margin: 0;
 }
 
 .bagua .gua:first-child {

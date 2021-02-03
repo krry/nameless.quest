@@ -53,6 +53,7 @@ Page.text-center(
               :char="tri.name.zh"
               :pinyin="tri.name.pn"
               size="lg"
+							place="over"
               reveal
               )
           .flex.col.mid.less
@@ -205,6 +206,7 @@ export default defineComponent({
 				: {icon: '9', was: '7', is: '8', desc: 'Yang Opening'}
 		},
 		navTo(route: string) {
+			if (cfg.justCast) return
 			set('navvy', true)
 			this.$router.push(route)
 		},

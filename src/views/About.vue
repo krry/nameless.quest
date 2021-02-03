@@ -87,16 +87,16 @@ Page.about
     ul
       li
         h4
-          router-link(to="http://cranf.com/wpen/android/deepware/changes/") Deepware Changes
+          AppLink(to="http://cranf.com/wpen/android/deepware/changes/") Deepware Changes
         p
           | The most in-depth and full-featured digital experience of the I Ching I have found comes to us as an Android app called 
           strong Deepware Changes
           | . With this app, one may resolve a hexagram by taps, or simulated coins, or a painstaking digitization of the meditative but somewhat laborious 
-          router-link(to="http://cranf.com/wpen/android/deepware/changes/extensive-documentation/yarrow-stalks-method/") yarrow stalks method
+          AppLink(to="http://cranf.com/wpen/android/deepware/changes/extensive-documentation/yarrow-stalks-method/") yarrow stalks method
           | . Interestingly you won't be guided to offer a question to the oracle, or to hold the question as you tap or flip or swipe. The authors also attempt to frost and layer the hexagrams with semantic characterizations of body, mind, and spirit for each, the significance of which remains opaque to me. Luckily a bewildered but curious student will also find links to several more web-based resources and various translations and interpretations, including…
       li
         h4
-          router-link(to="https://onlineclarity.co.uk") Hilary Barrett's I Ching with Clarity
+          AppLink(to="https://onlineclarity.co.uk") Hilary Barrett's I Ching with Clarity
         p
           | Hilary Barrett presents a wealth of knowledge and guidance about and around the Yìjīng, and offers us a delightful translation and interpretation for the new millennium, free of the trappings of androcracy, careful to treat power as responsibility rather than as dominance, and ready to reveal the light as our eyes adjust to the shining brilliance of the oracle.
         p Early in their wonderful introduction course to the Yìjīng, we learn the meaning of the book's title:
@@ -121,7 +121,7 @@ Page.about
           p Jing, ‘classic book’, is the same word as in ‘Daodejing’ (or ‘Tao Te Ching’), the ‘Book of the Way and its Power’. It literally means the warp threads on the loom. The oracle’s given name is simply Yi: Change.
       li
         h4
-          router-link(to="https://divination.com/iching/") Paul O'Brien's Visionary I Ching
+          AppLink(to="https://divination.com/iching/") Paul O'Brien's Visionary I Ching
         p A wisdom tradition that already spans three thousand years is not particularly fertile soil for superlative contribution. Certain among us like Hilary Barrett and Paul O'Brien undertake a complete recodification of the sourcework. These efforts span decades, lifetimes. Paul's ouevre stands apart with Hilary's as a non-patriarchal renewal of this ancient spirit of clarity and insight.
 
   hr.dinkus.asterism
@@ -138,7 +138,7 @@ Page.about
       | The initial vision came all at once as I was leafing through the Wilhelm-Baynes translation/interpretation of the Yìjīng: 
       em The I Ching or the Book of Changes. 
       | My favorite 
-      a(href="http://tarot-de-marseille-millennium.com/english/tarot_sacred_code.html") Tarot de Marseilles deck
+      AppLink(to="http://tarot-de-marseille-millennium.com/english/tarot_sacred_code.html") Tarot de Marseilles deck
       |  sat on the desk beside me: 78 cards in a timeless cycle of birth, becoming, decay, and death. And here in the Yìjīng, I found sixty-four hexagrams describing the full set of Changes we,
       strong  the nameless
       | , may experience.
@@ -163,7 +163,7 @@ Page.about
       h4 🕯 A Tip
       p
         | As you may have noticed, if you tap the octal number in the upper right corner of the tile, the board reorders by what is known as the King Wen Sequence. They say that 
-        router-link(to="https://www.wikiwand.com/en/King_Wen_of_Zhou") Wen was no king
+        AppLink(to="https://www.wikiwand.com/en/King_Wen_of_Zhou") Wen was no king
         | , and it was his son Wu who united the Zhou dynasty from which the Yìjīng has passed to us. For this sequence we tend to use decimal numbers from 1 to 64, rather than 00 to 77 as with the octals.
 
     hr.dinkus.fleuron
