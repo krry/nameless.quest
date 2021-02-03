@@ -40,7 +40,6 @@
 import {defineComponent, computed} from 'vue'
 import {useRouter} from 'vue-router'
 import IconBase from '../icons/IconBase.vue'
-import LogoBrand from './LogoBrand.vue'
 import HexaGlyph from './HexaGlyph.vue'
 import HanziChar from './HanziChar.vue'
 import {cfg} from '../store'
@@ -55,7 +54,6 @@ export default defineComponent({
 	components: {
 		IconBase,
 		HexaGlyph,
-		LogoBrand,
 		HanziChar,
 	},
 	emits: ['clear'],
@@ -100,5 +98,9 @@ export default defineComponent({
 <style lang="postcss" scoped>
 .response {
 	border-color: var(--flair);
+}
+
+h3 {
+	margin-bottom: 0.25em;
 }
 </style>

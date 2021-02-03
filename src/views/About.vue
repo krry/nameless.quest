@@ -1,7 +1,7 @@
 <template lang="pug">
 Page.about
-  LogoBrand
-  h1.page-title {{ title }}
+  h1.page-title
+    LogoBrand
   blockquote.poem
     pre.text-left
       | May the Nameless encourage
@@ -38,7 +38,8 @@ Page.about
   hr.dinkus.fleuron
 
   section(ref="divine")
-    h2 Divination: How to Consult the Oracle
+    h2 Divination
+    h3 How to Consult the Oracle
 
     p Every path leads to and from the Source. There is no right or wrong way to encounter the divine. But certain methods allow insight to arise more readily. Mindsets and settings carefully prepared and arranged can clear the skies, peel our eyes, and prime our hearts to absorb the truth of the matter in this moment.
 

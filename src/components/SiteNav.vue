@@ -1,5 +1,5 @@
 <template lang="pug">
-nav.flex.mid.string.col.pads.y
+nav.flex.col.pad.y
 	ul.site-nav
 		li
 			router-link.btn.outline(:to="{ name: 'oracle' }" tabindex="0")
@@ -31,6 +31,11 @@ nav.flex.mid.string.col.pads.y
 					IconCrystalBall
 				| About 
 				span(v-if="!cfg.metafied") This
+		li
+			router-link.btn.naked(:to="{ name: 'source' }" tabindex="0")
+				IconBase(size="40" viewBox="0 0 100 125")
+					IconMiracle
+				| Source
 		li
 			router-link.btn.naked(:to="{ name: 'gratitude' }" tabindex="0")
 				IconBase(size="40" viewBox="0 0 1000 1250")

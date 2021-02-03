@@ -12,6 +12,7 @@
 	--pleading: 1.425;
 	--font-clamp: clamp(10px, 10px + 0.167vw + 0.167vh, 24px);
 	--brand: hsl(321, 77%, 50%); /* #E21D9D */
+	--brand-ish: hsl(321, 77%, 33%);
 	--theme-icons: '🌗🌓';
 	--logo-dim: 7rem; /* to size the headers and such */
 	--drawer-dim: 20rem; /* the width of the nav drawer */

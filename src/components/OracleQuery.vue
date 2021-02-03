@@ -23,7 +23,7 @@ section.dyn.flex.col
 		textarea#query.query(
 			v-autoresize
 			v-model="cached.query"
-			placeholder="What to do?"
+			placeholder="What…to…do?"
 			autofocus
 			rows="1"
 			pattern="\?$"

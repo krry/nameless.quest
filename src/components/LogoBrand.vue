@@ -22,7 +22,7 @@ export default defineComponent({
 	props: {
 		direction: {
 			type: String,
-			default: 'horiz',
+			default: 'none',
 		},
 		size: {
 			type: String,
@@ -153,5 +153,10 @@ h2.tagline {
 
 .brand.horiz h1:first-child {
 	margin-top: 0;
+}
+
+.brand a:focus,
+.brand a:hover {
+	outline: none;
 }
 </style>

@@ -56,6 +56,7 @@ export default defineComponent({
 })
 </script>
 <style lang="postcss" scoped>
-.scope {
+.page {
+	padding: 0;
 }
 </style>
