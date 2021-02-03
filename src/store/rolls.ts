@@ -8,15 +8,19 @@ const userRollRef = db.ref('/rolls/' + cached.uid)
 export const activeRolls = ref<Roll[]>([])
 
 export function getRolls(): void {
-	userRollRef.once('value').then((snapshot) => {
-		activeRolls.value = snapshot.val()
-		console.log('snapping a shot', snapshot.val())
-	})
+	if (cached.uid) {
+		userRollRef.once('value').then((snapshot) => {
+			activeRolls.value = snapshot.val()
+			console.log('snapping a shot', snapshot.val())
+		})
+	}
 }
 
 export const saveRoll = (roll: Roll): void => {
-	const newRollKey = db.ref().child('rolls').push().key
-	const rolls: {[key: string]: Roll} = {}
-	if (newRollKey) rolls['/rolls/' + newRollKey] = roll
-	db.ref().update(rolls)
+	if (cached.uid) {
+		const newRollKey = db.ref().child('rolls').push().key
+		const rolls: {[key: string]: Roll} = {}
+		if (newRollKey) rolls['/rolls/' + newRollKey] = roll
+		db.ref().update(rolls)
+	}
 }

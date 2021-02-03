@@ -112,7 +112,7 @@ export default defineComponent({
 	min-width: 100vw;
 	box-shadow: 0 0 0.5rem var(--glow);
 	border-left: var(--frame) solid var(--glow);
-	border: var(--frame) solid var(--glow);
+	border: var(--pad) solid var(--shade);
 	pointer-events: auto;
 	margin-left: var(--drawer-buffer);
 	transition: var(--bea2);

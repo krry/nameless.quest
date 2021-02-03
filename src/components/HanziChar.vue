@@ -51,7 +51,7 @@ export default defineComponent({
 		},
 		place: {
 			type: String,
-			default: 'over',
+			default: '',
 		},
 		inline: Boolean,
 	},

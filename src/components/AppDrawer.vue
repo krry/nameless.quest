@@ -1,22 +1,22 @@
 <template lang="pug">
 .drawer.fixed.abs-0.fs.flex.begin(
-	@click.stop="$emit('drawer', false)"
+	@click.stop="drawer.close"
 	)
 	header#header.flex.mid
 		LogoBrand(direction="vert" size="md" )
 			template(#tagline)
 				Taglinez
 	SiteNav
-	ThemeSwitch.tab.fixed.l.themes(size="md")
+	ThemeSwitch.tab.fixed.b.themes(size="md")
 transition( name="flag" appear mode="out-in" )
 	button.btn.naked.tab.surf.fixed.b.l.ride(
 		v-if="cfg.drawer"
-		@click.stop="$emit('drawer', false)"
+		@click.stop="drawer.close"
 		tabindex="0"
 		)
 	button.btn.naked.tab.surf.fixed.b.l.float(
 		v-else
-		@click.stop="$emit('drawer', true)"
+		@click.stop="drawer.open"
 		tabindex="0"
 		)
 </template>
@@ -28,6 +28,7 @@ import SiteNav from './SiteNav.vue'
 import LogoBrand from './LogoBrand.vue'
 import ThemeSwitch from './ThemeSwitch.vue'
 import Taglinez from './Taglinez.vue'
+import * as drawer from '../utils/drawer'
 
 export default defineComponent({
 	name: 'AppDrawer',
@@ -37,10 +38,10 @@ export default defineComponent({
 		SiteNav,
 		Taglinez,
 	},
-	emits: ['drawer'],
 	setup() {
 		return {
 			cfg,
+			drawer,
 		}
 	},
 })
@@ -72,16 +73,17 @@ export default defineComponent({
 	padding: 0 0.25em;
 }
 
-.themes.tab.l {
+.themes.tab.b {
 	padding: 0.5rem 0.75rem;
+	background-color: var(--paper);
 	border-bottom: 0;
 	margin-bottom: 0;
 	border-bottom-right-radius: 0;
 	border-bottom-left-radius: 0;
 	box-shadow: 0 0 0.25rem var(--glow);
-	transform-origin: bottom left;
-	transform: rotate(90deg);
-	top: 61%;
+	transform-origin: bottom center;
+	left: 4%;
+	bottom: 0;
 
 	&:hover {
 		background-color: var(--silk);

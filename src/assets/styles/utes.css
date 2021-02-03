@@ -393,3 +393,13 @@ hr.dinkus.asterism::after {
 .invert.y {
 	transform: scaleY(-1);
 }
+
+.pip::before {
+	content: var(--pip);
+	display: inline-block;
+	transform: scaleX(-1);
+}
+
+.pip::after {
+	content: var(--pip);
+}

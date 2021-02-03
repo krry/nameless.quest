@@ -47,12 +47,14 @@ export const useSpinnable = (element: HTMLElement): SpinParams => {
 		// get position of mouse or finger
 		// calculate distance between these points every interval
 		if (me) {
-			element.style.animationDuration = `${measureDistance(me.pageX, me.pageY)} ms`
+			element.style.animationDuration = `${measureDistance(me.pageX, me.pageY)}ms`
+			// console.log('element.style.animationDuration', element.style.animationDuration)
 		} else if (te) {
 			element.style.animationDuration = `${measureDistance(
 				te.touches[0].pageX,
 				te.touches[0].pageY,
-			)} ms`
+			)}ms`
+			// console.log('element.style.animationDuration', element.style.animationDuration)
 		}
 	}
 

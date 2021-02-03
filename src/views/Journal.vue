@@ -27,8 +27,8 @@ Page.journal
           )
   .section(v-else-if="rolls.length < 3")
     router-link.btn.lg.outline(:to="{name: 'oracle'}") Start a new entry
-  app-link.btn(to="https://ko-fi/kerrbear") Gift our baby some diapers 🐻
-  coming-soon
+  ComingSoon
+  AppLink.naked.btn(to="https://ko-fi.com/kerrbear") Want to gift our baby 🐻 some diapers?
 </template>
 
 <script lang="ts">
@@ -37,6 +37,7 @@ import Page from '../components/Page.vue'
 import AppLink from '../components/AppLink.vue'
 import ComingSoon from '../components/ComingSoon.vue'
 import {useHexagrams} from '../composables/hexagrams'
+import {set} from '../store'
 import {activeRolls, saveRoll} from '../store/rolls'
 
 export default defineComponent({
@@ -48,13 +49,18 @@ export default defineComponent({
 	},
 	setup() {
 		const {getHexagramByOctal, getWenByBin, getEnglishNameByBin} = useHexagrams()
+
 		return {
-			activeRolls,
 			saveRoll,
-			getHexagramByOctal,
+			rolls: [],
+			activeRolls,
 			getWenByBin,
+			getHexagramByOctal,
 			getEnglishNameByBin,
 		}
+	},
+	mounted() {
+		set('journaled', true)
 	},
 	methods: {
 		formattedDate(ms: number): string {

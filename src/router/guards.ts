@@ -2,6 +2,7 @@ import {RouteLocationRaw, RouteLocationNormalized} from 'vue-router'
 import {auth} from '../firebase'
 import {set} from '../store'
 import {cached, cacheUser} from '../store/cache'
+import * as drawer from '../utils/drawer'
 
 export function beforeEach(
 	to: RouteLocationNormalized,
@@ -43,7 +44,7 @@ export function beforeEach(
 				}
 				console.log('logged in successfully to', to)
 
-				return {name: 'home', replace: true}
+				return {name: 'journal', replace: true}
 			})
 			.catch((error) => {
 				console.error(
@@ -71,4 +72,30 @@ export function changeGuard(to: RouteLocationNormalized): RouteLocationRaw | boo
 	if (id < 1 || id > 64) {
 		return {name: 'not-found'}
 	} else return true
+}
+
+export function afterEach(): void {
+	let active = false
+
+	function relax() {
+		console.log('relaxing')
+		document.removeEventListener('touchstart', activate)
+		document.removeEventListener('mousemove', activate)
+		document.removeEventListener('keydown', activate)
+	}
+
+	function activate() {
+		console.log('activated')
+		active = true
+		relax()
+	}
+
+	document.addEventListener('touchstart', activate)
+	document.addEventListener('mousemove', activate)
+	document.addEventListener('keydown', activate)
+
+	setTimeout(() => {
+		console.log('activated', active)
+		!active && drawer.close()
+	}, 1500)
 }

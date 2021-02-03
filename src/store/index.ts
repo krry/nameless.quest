@@ -9,12 +9,17 @@ export const cfg: {[key: string]: boolean} = reactive({
 	navvy: lsd('navvy'), // prefer no more hints
 	beeny: lsd('beeny'), // seen the intro pane
 	drawer: lsd('drawer'), // site nav visible
+	perused: lsd('perused'), // visited changes
+	metafied: lsd('metafied'), // visited about
+	journaled: lsd('journaled'), // visited journal
+	consulted: lsd('consulted'), // visited oracle
+	configured: lsd('configured'), // visited config
 	emailVerified: lsd('emailVerified'),
 	phoneVerified: lsd('phoneVerified'),
 })
 
 export function set(nym: string, val: boolean): void {
-	console.log('set', nym, 'to', val)
+	// console.log('set', nym, 'to', val)
 	localStorage.setItem(nym, JSON.stringify(val))
 	cfg[nym] = val
 }

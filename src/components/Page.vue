@@ -7,18 +7,15 @@ main.desk.flex.string(
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, reactive, toRefs, watchEffect} from 'vue'
+import {defineComponent, ref, watchEffect, onMounted} from 'vue'
 import {activeTheme} from '../store/theme'
 import {getRandTo} from '../utils'
+import * as drawer from '../utils/drawer'
 
 export default defineComponent({
 	name: 'HexaGrid',
 	setup() {
-		const rx = reactive({
-			theme: activeTheme,
-			backdrop: ref(''),
-			loaded: false,
-		})
+		const backdrop = ref('')
 
 		function sizeBg() {
 			const screenWidth = window.innerWidth
@@ -30,11 +27,13 @@ export default defineComponent({
 		}
 
 		watchEffect(() => {
-			rx.backdrop = 'url(/' + sizeBg() + rx.theme + getRandTo(3) + '.jpg)'
+			backdrop.value = 'url(/' + sizeBg() + activeTheme.value + getRandTo(3) + '.jpg)'
 		})
 
+		onMounted(() => drawer.close())
+
 		return {
-			...toRefs(rx),
+			backdrop,
 		}
 	},
 })

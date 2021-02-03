@@ -54,7 +54,7 @@ transition(name="slide-fade" appear mode="out-in")
 		IconBase.mrg3.y(viewBox="0 0 1000 1250" size="80" iconColor="var(--glow)")
 			IconCauldron
 		h3
-			app-link(to="https://www.onlineclarity.co.uk/learn/beginners/3-how-to-cast-a-reading/your-question/") Hilary Barrett's Suggestions
+			AppLink(to="https://www.onlineclarity.co.uk/learn/beginners/3-how-to-cast-a-reading/your-question/") Hilary Barrett's Suggestions
 		ul.ls
 			li
 				span.text.md.tip What do I need to understand about...?
@@ -76,7 +76,8 @@ transition(name="slide-fade" appear mode="out-in")
 			src="https://www.youtube.com/embed/LIBi8T2KI8E" frameborder="0" 
 			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
 			)
-		IconBase(size="80" viewBox="0 0 1000 1250")
+		br
+		IconBase.mrgs.y(size="80" viewBox="0 0 1000 1250")
 			IconCandles
 	aside.help.text-center.pads.x.y.left(
 		v-else-if="cached.help === 'oracle'"
@@ -228,10 +229,10 @@ transition(name="slide-fade" appear mode="out-in")
 		IconBase.mrgs.y.turner(
 			size="84"
 			viewBox="0 0 100 125"
-			iconColor="var(--pencil)"
+			iconColor="var(--glow)"
 			:class="{turned: cfg.turny}")
 			IconPenroseTriangle
-app-link.btn(to="https://ko-fi/kerrbear") Just. Like. Wow. 🐻
+AppLink.btn.naked.pip(to="https://ko-fi.com/kerrbear")  I love this, please make more 
 </template>
 <script lang="ts">
 import {defineComponent, reactive, toRefs} from 'vue'
@@ -342,8 +343,7 @@ export default defineComponent({
 }
 
 .help h3,
-.ls li,
-.field-label {
+.ls li {
 	@supports (font-variation-settings: normal) {
 		font-family: 'QuicksandVariable';
 		font-variation-settings: 'wght' 555;

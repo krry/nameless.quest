@@ -4,7 +4,7 @@ export const activeLots = ref()
 
 export function setLots(lots: string[]): void {
 	if (lots) {
-		console.log('setting lots', lots)
+		// console.log('setting lots', lots)
 		activeLots.value = lots
 		localStorage.setItem('lots', JSON.stringify(lots))
 	}

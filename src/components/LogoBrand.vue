@@ -99,7 +99,7 @@ export default defineComponent({
 	background-position: center;
 	background-size: 80%;
 	transition: inherit;
-	animation: spin 2500ms infinite linear paused;
+	animation: spin var(--be4t) infinite linear paused;
 }
 
 @keyframes spin {

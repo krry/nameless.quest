@@ -3,7 +3,7 @@
 @import '@fontsource/quicksand/latin-400.css';
 @import '@fontsource/roboto-slab/latin-400.css';
 @import './fontsource.css';
-@import './variables.css';
+@import './vars.css';
 @import './themes/sea.css';
 @import './themes/day.css';
 @import './themes/night.css';

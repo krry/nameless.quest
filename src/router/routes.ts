@@ -1,5 +1,5 @@
 import {changeGuard} from './guards'
-import Home from '../views/Home.vue'
+import Changes from '../views/Changes.vue'
 import Oracle from '../components/Oracle.vue'
 import About from '../views/About.vue'
 import Config from '../views/Config.vue'
@@ -12,13 +12,13 @@ import NotFound from '../views/NotFound.vue'
 const routes = [
 	{
 		path: '/',
-		name: 'home',
-		component: Home,
-	},
-	{
-		path: '/oracle',
 		name: 'oracle',
 		component: Oracle,
+	},
+	{
+		path: '/changes',
+		name: 'changes',
+		component: Changes,
 	},
 	{
 		path: '/about',

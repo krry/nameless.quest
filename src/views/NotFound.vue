@@ -3,7 +3,7 @@ Page.not-found
   LogoBrand
   .font.x3l 404'd
   p The way back yields great fortune.
-  router-link(:to="{name: 'home'}") Take me home
+  router-link(:to="{name: 'oracle'}") Return to the source
 </template>
 
 <script lang="ts">

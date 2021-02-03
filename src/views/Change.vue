@@ -222,7 +222,7 @@ export default defineComponent({
 		},
 		adoptOrphans(text: string): string {
 			// if there are multiple words in the string
-			console.log('adopting orphans', text)
+			// console.log('adopting orphans', text)
 			if (text.split(' ').length > 1) {
 				const words = text.split(' ')
 				const lastWord = words.pop()

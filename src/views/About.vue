@@ -17,11 +17,23 @@ Page.about
       | each step with more love.
   ul(ref="toc").toc.ls.pad.y
     li.flex.col.mid
-      a.btn.naked.xl(@click.prevent="cruiseTo(divine)") How to Consult the Oracle
+      a.btn.naked.xl(@click.prevent="cruiseTo(divine)")
+        IconBase(viewBox="0 0 1000 1250" size="48" iconColor="var(--link)")
+          IconCrystalBall
+        br
+        | How to Consult the Oracle
     li.flex.col.mid
-      a.btn.naked.xl(@click.prevent="cruiseTo(define)") Resources for Deeper Understanding
+      a.btn.naked.xl(@click.prevent="cruiseTo(define)")
+        IconBase(viewBox="0 0 100 125" size="48" iconColor="var(--link)")
+          IconBookStack
+        br
+        | Resources for Deeper Understanding
     li.flex.col.mid
-      a.btn.naked.xl(@click.prevent="cruiseTo(devsign)") Making a Nameless for Itself
+      a.btn.naked.xl(@click.prevent="cruiseTo(devsign)")
+        IconBase(viewBox="0 0 1000 1250" size="48" iconColor="var(--link)")
+          IconWizardsHat
+        br
+        | Making a Nameless for Itself
 
   hr.dinkus.fleuron
 
@@ -171,17 +183,20 @@ Page.about
       strong
         em what if twelve were 10?
       |  For if we nimbly count our phalanges (the three little bones in each of our four fingers) with our thumbs, we quickly find twelve on a hand, and may find our decimal digits rather cro-magnon in comparison. And we can easily get to sixty by assigning each of the five digits on the other hand to a dozen as we count.
-  app-link.btn(to="https://ko-fi/kerrbear") We encourage you to feed the Kerrbear 🐻
+  AppLink.btn(to="https://ko-fi.com/kerrbear") We encourage you to feed the Kerrbear 🐻
 </template>
 
 <script lang="ts">
 import {defineComponent, ref} from 'vue'
 import Page from '../components/Page.vue'
+import LogoBrand from '../components/LogoBrand.vue'
 import HanziChar from '../components/HanziChar.vue'
 import IconBase from '../icons/IconBase.vue'
-import LogoBrand from '../components/LogoBrand.vue'
 import Icon7 from '../icons/Icon7.vue'
 import Icon8 from '../icons/Icon8.vue'
+import IconCrystalBall from '../icons/IconCrystalBall.vue'
+import IconBookStack from '../icons/IconBookStack.vue'
+import IconWizardsHat from '../icons/IconWizardsHat.vue'
 
 export default defineComponent({
 	name: 'About',
@@ -189,6 +204,9 @@ export default defineComponent({
 		Page,
 		IconBase,
 		Icon7,
+		IconCrystalBall,
+		IconBookStack,
+		IconWizardsHat,
 		Icon8,
 		HanziChar,
 		LogoBrand,

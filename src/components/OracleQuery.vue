@@ -1,10 +1,8 @@
 <template lang="pug">
-section.query.dyn.flex.col
-	h1
-		| Welcome to the Oracle
-		br
-		small aka the I Ching
-		br
+h1.mrgb0
+	| Welcome to the Oracle
+	br
+	small aka 
 		HanziChar(
 			char="易"
 			pinyin="Yì"
@@ -19,21 +17,25 @@ section.query.dyn.flex.col
 			place="under"
 			reveal
 			)
+
+section.dyn.flex.col
 	.field.dyn
-		textarea#query(
+		textarea#query.query(
 			v-autoresize
 			v-model="cached.query"
-			placeholder="How can I help?"
+			placeholder="What to do?"
 			autofocus
 			rows="1"
 			pattern="\?$"
 			@keydown.ctrl.enter="askTheOracle"
 			)
-		label.field-label(for="query")
-			| Here and now, what does your heart wonder?
-			br
-			| What is the burning question?
-		button.btn.lg(type="button" @click="askTheOracle")
+		transition(name="slide-fade" appear)
+			.lbl.above.intro(for="query" v-if="cached.query.length < 9")
+				| What does your heart wonder?
+		transition(name="slide-fade" appear)
+			.lbl.below.outro(for="query" v-if="cached.query.length < 9")
+				| What is the burning question?
+		button.btn.lg.action(type="button" @click="askTheOracle")
 			IconBase(size="36" viewBox="0 0 1000 1125")
 				IconCrystalBall
 			|  Ask the Oracle
@@ -42,7 +44,7 @@ section.query.dyn.flex.col
 				v-if="invalidQuery"
 				) Is that a question?
 		transition(name="slide-fade" appear)
-			label.message(v-if="!cfg.navvy")
+			label.feedback(v-if="!cfg.navvy")
 				kbd(title="ctrl+enter") ⌃⏎
 				span  to send
 </template>
@@ -100,16 +102,49 @@ export default defineComponent({
 	}
 }
 
-.message {
+.feedback {
+	order: 6;
+}
+
+.action {
 	order: 5;
 }
 
-.field .btn {
+.validation {
 	order: 4;
+}
+
+.outro {
+	order: 3;
+}
+
+.query {
+	order: 2;
+}
+
+.intro {
+	order: 1;
 }
 
 .brand,
 .field {
 	flex: 1 0 auto;
+}
+
+.mrgb0 {
+	margin-bottom: 0;
+}
+
+.lbl {
+	margin: 0.5rem 0;
+	opacity: 0.75;
+	@supports (font-variation-settings: normal) {
+		font-family: 'QuicksandVariable';
+		font-variation-settings: 'wght' 555;
+	}
+}
+
+.field textarea {
+	margin-bottom: 0;
 }
 </style>

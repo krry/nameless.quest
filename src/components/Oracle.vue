@@ -16,6 +16,7 @@ Page.query
 </template>
 <script lang="ts">
 import {defineComponent} from 'vue'
+import {set} from '../store'
 import {cached, uncache} from '../store/cache'
 import Page from './Page.vue'
 import OracleInfo from './OracleInfo.vue'
@@ -48,6 +49,9 @@ export default defineComponent({
 			cached,
 			clearBoth,
 		}
+	},
+	mounted() {
+		set('consulted', true)
 	},
 })
 </script>

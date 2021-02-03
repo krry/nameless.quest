@@ -38,7 +38,7 @@ Page.config.col
           HanziChar.pad.x(char="小" reveal size="md" pinyin="xiǎo")
           HanziChar.pad.x(char="過" reveal size="md" pinyin="guò")
         .glyphs.left(v-else)
-          HexaGlyph(hex="䷽")
+          HexaGlyph(hex="䷽" size="x4l")
     .setting.half
       ToggleSwitch(
         label="Line orientation"
@@ -48,9 +48,9 @@ Page.config.col
         dat="Vertical"
       )
       .example
-        TriGlyph(tri="☵" inline)
-        HexaGlyph(hex="䷂" inline)
-        TriGlyph(tri="☳" inline)
+        TriGlyph(tri="☵" inline size="x3l")
+        HexaGlyph(hex="䷂" inline size="x3l")
+        TriGlyph(tri="☳" inline size="x3l")
     .setting.half
       ToggleSwitch(
         label="Show hotkey hints"
@@ -76,13 +76,14 @@ Page.config.col
       h3 Switch the Theme
       .flex
         ThemeSwitch(size="xl")
-  app-link.btn(to="https://ko-fi/kerrbear") Gift our baby some diapers 🐻
+  AppLink.btn(to="https://ko-fi.com/kerrbear") Gift our baby some diapers 🐻
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue'
 import {cfg, set} from '../store'
 import Page from '../components/Page.vue'
+import AppLink from '../components/AppLink.vue'
 import ComingSoon from '../components/ComingSoon.vue'
 import ToggleSwitch from '../components/ToggleSwitch.vue'
 import ThemeSwitch from '../components/ThemeSwitch.vue'
@@ -94,6 +95,7 @@ export default defineComponent({
 	name: 'Config',
 	components: {
 		Page,
+		AppLink,
 		ComingSoon,
 		ToggleSwitch,
 		ThemeSwitch,

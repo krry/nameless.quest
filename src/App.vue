@@ -1,17 +1,17 @@
 <template lang="pug">
 FeedbackFish(projectId="b186633d70b54b")
-AppDrawer( @drawer="handleDrawer" )
+AppDrawer
 #app.app.rel
 	router-view
 </template>
 
 <script lang="ts">
 import {defineComponent, onMounted, onUnmounted} from 'vue'
-import {useSanityClient} from 'vue-sanity'
 import {set} from './store'
 import {FeedbackFish} from '@feedback-fish/vue'
 import AppDrawer from './components/AppDrawer.vue'
 import {activeTheme, setTheme} from './store/theme'
+import * as drawer from './utils/drawer'
 
 export default defineComponent({
 	name: 'App',
@@ -20,45 +20,20 @@ export default defineComponent({
 		FeedbackFish,
 	},
 	setup() {
-		useSanityClient({
-			projectId: 'eclxc5mj',
-			dataset: 'production',
-			useCdn: import.meta.env.PROD,
-		})
-		function boundDrawer() {
-			if (document.documentElement.scrollLeft <= 250) {
-				set('drawer', true)
-			} else set('drawer', false)
-		}
-
-		function openDrawer() {
-			window.scrollTo(0, document.documentElement.scrollTop)
-		}
-
-		function closeDrawer() {
-			const drawerWidth = window.innerWidth < 576 ? window.innerWidth - 48 : 360
-			window.scrollTo(drawerWidth, document.documentElement.scrollTop)
-		}
-
-		function handleDrawer(bit: boolean) {
-			if (bit) openDrawer()
-			else closeDrawer()
-		}
-
 		onMounted(() => {
 			setTheme(activeTheme.value)
-			boundDrawer()
-			window.addEventListener('scroll', boundDrawer)
+			drawer.bound()
+			window.addEventListener('scroll', drawer.bound)
 			window.addEventListener('touchstart', () => set('navvy', true), true)
 		})
 
 		onUnmounted(() => {
-			window.removeEventListener('scroll', boundDrawer)
+			window.removeEventListener('scroll', drawer.bound)
 		})
 
 		return {
 			set,
-			handleDrawer,
+			drawer,
 		}
 	},
 })
