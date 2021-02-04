@@ -1,5 +1,5 @@
 <template lang="pug">
-a(v-if="isExternalLink" v-bind="$attrs" :href="to" target="_blank")
+a.link(v-if="isExternalLink" v-bind="$attrs" :href="to" target="_blank")
 	slot
 router-link(
 	v-else
@@ -7,7 +7,7 @@ router-link(
 	custom
 	v-slot="{ isActive, href, navigate }"
 )
-	a(
+	a.link(
 		v-bind="$attrs"
 		:href="to"
 		@click="navigate"
@@ -53,3 +53,13 @@ export default {
 	},
 }
 </script>
+<style lang="postcss" scoped>
+._blank::after {
+	content: '🔗';
+	display: inline-block;
+	text-decoration: none;
+	margin-left: 0.25rem;
+	font-size: 0.75rem;
+	vertical-align: middle;
+}
+</style>

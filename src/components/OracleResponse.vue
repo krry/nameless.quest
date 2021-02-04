@@ -1,5 +1,7 @@
 <template lang="pug">
 .response.flex.wrap.right(v-if="hexs")
+	blockquote
+		h2 {{cached.query.trim()}}
 	h1.whole The Oracle Responds
 	section.col.half.mrg.x(
 		v-for="(hex, index) in hexs"
