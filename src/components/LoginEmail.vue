@@ -9,10 +9,10 @@ form.flex.space.spread.wrap(@submit.prevent="emailLinkSend")
         maxlength="50"
         placeholder="make.believe@email.com"
         )
-      transition.left.msg.between(name="slide-fade" mode="out-in" appear)
-        label.between(for="email_login" v-if="emailSuccessMsg")
+      transition.msg.between(name="slide-fade" mode="out-in" appear)
+        label.right.between(for="email_login" v-if="emailSuccessMsg")
           | We've sent the magic link to your email.
-        label.between(for="email_login" v-else)
+        label.left.between(for="email_login" v-else)
           | 🪄 We'll send you a magic link 🔗
       button.btn.lg.outline#email_butt(
         type="submit"
