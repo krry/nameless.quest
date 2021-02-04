@@ -145,6 +145,10 @@ export default defineComponent({
 	/* line-height: 0; */
 }
 
+.char.none .pinyin {
+	display: none;
+}
+
 .char.reveal .hanzi:hover,
 .char.reveal .hanzi:focus {
 	color: var(--link);
