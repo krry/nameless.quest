@@ -12,6 +12,13 @@
 	}
 }
 
+.mono {
+	@supports (font-variation-settings: normal) {
+		font-family: 'InconsolataVariable';
+		font-variation-settings: 'wght' 420;
+	}
+}
+
 .head {
 	@supports (font-variation-settings: normal) {
 		font-family: 'MuseoModernoVariable';
@@ -30,6 +37,7 @@
 
 .head,
 .font,
+.mono,
 .text {
 	&.thin,
 	&.fw3 {
@@ -71,6 +79,7 @@
 
 .font,
 .text,
+.mono,
 .head {
 	&.md,
 	&.lg,
@@ -82,6 +91,7 @@
 
 .font,
 .text,
+.mono,
 .head {
 	&.xxl,
 	&.x2l,
@@ -116,9 +126,12 @@
 	--unit: 1.75rem;
 }
 
-.x2l,
-.xxl {
+.x2l {
 	--unit: 2rem;
+}
+
+.xxl {
+	--unit: 2.5rem;
 }
 
 .x3l {
@@ -147,6 +160,7 @@
 
 .head,
 .text,
+.mono,
 .font {
 	font-size: calc(var(--unit) * 6 / 7);
 	@media (min-width: 48rem) and (min-height: 36rem) {

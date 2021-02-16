@@ -10,7 +10,7 @@
 			place="over"
       reveal
       )
-  h3.yingyu.head.xxl {{ names.english }}
+  h3.yingyu.head.x2l {{ names.english }}
   .orders(@click.stop="reorder")
     .kingwen(v-if="wenny") King Wen \#{{ kingwen }}
     .octal(v-if="!wenny") Octal \#{{ octal.slice(1) }}

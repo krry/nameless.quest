@@ -59,21 +59,28 @@ Page.gratitude
 			|  for declaring open season on stock photography.
 	section.pads.y
 		h3.head.xxl Thanks 
-		h4.font.lg to the I Ching scholars, enthusiasts, and custodians throughout the ages, especially…
-		p.text-left
-			| Hilary Barrett, whose 
-			AppLink._blank(to="https://www.onlineclarity.co.uk/") Online Clarity
-			|  I've only just discovered, and from whom I shall learn multitudes about the ways of 
-			strong Yì
-			| .
-		p.text-left
-			| Zelda Hessler (@Velfi) who provides 
-			AppLink._blank(to="https://github.com/Velfi/i-ching") the I Ching as a Rust library
-			| , which entertained my daily practice in the early days. It was then that I first wished for cards and tiles and what you see here.
-		p.text-left
-			| Steve VanDevender who has 
-			AppLink._blank(to="http://hexadecimal.uoregon.edu/ching/src.html") sourced the Wilhelm-Baynes translation/interpretation of the I Ching
-			|  and provided it to the WWW.
+		h4.font.lg
+			| to the I Ching scholars, enthusiasts, and custodians 
+			br
+			| throughout the ages, especially…
+		ul.ls
+			li
+				p.text-left
+					| Hilary Barrett, whose 
+					AppLink._blank(to="https://www.onlineclarity.co.uk/") Online Clarity
+					|  I've only just discovered, and from whom I shall learn multitudes about the ways of 
+					strong Yì
+					| .
+			li
+				p.text-left
+					| Zelda Hessler (@Velfi) who provides 
+					AppLink._blank(to="https://github.com/Velfi/i-ching") the I Ching as a Rust library
+					| , which entertained my daily practice in the early days. It was then that I first wished for cards and tiles and what you see here.
+			li
+				p.text-left
+					| Steve VanDevender who has 
+					AppLink._blank(to="http://hexadecimal.uoregon.edu/ching/src.html") sourced the Wilhelm-Baynes translation/interpretation of the I Ching
+					|  and provided it to the WWW.
 	section
 		h3.head.xxl Thanks
 		h4.font.lg to the vector artists who made these rad icons…

@@ -52,7 +52,7 @@
 							size="x7l"
 							noturn
 							)
-					h2.yingyu.head.xxl {{ hex.names.english }}
+					h2.yingyu.head.x2l {{ hex.names.english }}
 					pre.judgment.text.md {{ hex.judgment }}
 				template(#bottom)
 					HexaInterp(

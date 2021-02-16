@@ -5,11 +5,9 @@ Page.about
   blockquote.poem
     pre.text-left
       | May the Nameless encourage
-      | trust in our intuition.
-      br
-      br
-      | We summon the future
-      | just as the past
+      | trust in our intuition
+      | as we summon the future
+      | just as the past:
       | so many echoes into now.
       br
       br
@@ -18,7 +16,7 @@ Page.about
   ul(ref="toc").toc.ls.pad.y
     li.flex.col.mid
       a.btn.naked.xl(@click.prevent="$cruiseTo(divine)")
-        IconBase(viewBox="0 0 1000 1250" size="48" iconColor="var(--link)")
+        IconBase(viewBox="0 0 1000 1250" size="64" iconColor="var(--link)")
           IconCrystalBall
         br
         | How to Consult the Oracle
@@ -38,14 +36,16 @@ Page.about
   hr.dinkus.fleuron
 
   section(ref="divine")
-    h2 Divination
-    h3 How to Consult the Oracle
+    h2.head.xxl Divination
+    h3.font.xl How to Consult the Oracle
+    IconBase(viewBox="0 0 1000 1250" size="80" iconColor="var(--flair)")
+      IconCrystalBall
 
     p Every path leads to and from the Source. There is no right or wrong way to encounter the divine. But certain methods allow insight to arise more readily. Mindsets and settings carefully prepared and arranged can clear the skies, peel our eyes, and prime our hearts to absorb the truth of the matter in this moment.
 
     aside.callout
-      h4 TL:DR; A Divination Ritual
-      ol.ls
+      h4.head.thick.xl TL:DR; A Divination Ritual
+      ol.ls.mono.thick
         li
           | Commit five to fifty minutes to seeing the truth, then 
           strong stop time.
@@ -80,7 +80,10 @@ Page.about
   hr.dinkus.fleur
 
   section(ref="define")
-    h2 Defining the Yìjīng: Resources for Understanding
+    h2.head.xxl Defining the Yìjīng
+    h3.font.xl Resources for Understanding
+    IconBase(viewBox="0 0 100 125" size="64" iconColor="var(--flair)")
+      IconBookStack
 
     p If you would like to dive deeper into the history and (potential) meaning of the Yìjīng, I can offer little outside of recommending you to the resources that have enriched my journey to the oracle. In no particular order, and expanding as I discover and ingest them:
 
@@ -127,8 +130,10 @@ Page.about
   hr.dinkus.asterism
 
   section(ref="devsign")
-    h2 Devsigning Nameless
-    h3 A New Take on a Timeless Classic
+    h2.head.xxl Devsigning Nameless
+    h3.font.xl A New Take on a Timeless Classic
+    IconBase(viewBox="0 0 1000 1250" size="64" iconColor="var(--flair)")
+      IconWizardsHat
     p
       | Originally conceived in a fever dream deep in a frozen pit of winter, 
       strong Nameless 
@@ -160,7 +165,7 @@ Page.about
       
     p For each hexagram I figured its corresponding binary number, then shifted it into octal. Then I plotted the hexagrams in an eight-by-eight grid following their octal sequence. This is the orientiation in which you first encounter the tiles here in Nameless.
     aside.callout
-      h4 🕯 A Tip
+      h4.font.lg 🕯 A Tip
       p
         | As you may have noticed, if you tap the octal number in the upper right corner of the tile, the board reorders by what is known as the King Wen Sequence. They say that 
         AppLink(to="https://www.wikiwand.com/en/King_Wen_of_Zhou") Wen was no king
@@ -168,7 +173,7 @@ Page.about
 
     hr.dinkus.fleuron
 
-    h3(ref="naming") Naming (or not) Nameless
+    h3.font.xl.phat(ref="naming") Naming (or not) Nameless
     p
       | Consult the Yìjīng regularly for any length of time and you may start to conceive of the world as composed of its nameless characters experiencing this extraordinarily finite set of Changes or moments in an infinite manifold of nested, fractal, spatiotemporal, and up-to-ten-dimensional networks. Among the facets of this odd but expansive perspective, I found myself called to seize upon and highlight the profound anonymity of the stories in the Yìjīng. These are barely fables. There be dragons, but seldom 
       router-link(to="/change/42") a tortoise
@@ -178,7 +183,7 @@ Page.about
     p So when it came time to crystallize the spirit of this fresh take on a three thousand year old book, I recognized the moment, then let it go. Later in the shower, I realized that my app was still nameless. And suddenly I realized it has always been Nameless, just like those we meet in the Changes, just like us.
 
   aside.callout
-    h4 ✋⏱ It Does Explain All the Dozens, Doesn't It, 🧭🤌
+    h4.font.lg.thick ✋⏱ It Does Explain All the Dozens, Doesn't It, 🧭🤌
     p
       | Tracing the anthropomorphic origins of the base 12 and base 60 systems of counting back to the cuneiforms of the Fertile Crescent, from which we have inherited 12-inch feet, 60-minute hours, 360 degree circles and many more measures, one might symmetrically wonder 
       strong
