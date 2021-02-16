@@ -21,7 +21,6 @@ form.flex.space.spread.wrap(@submit.prevent="signInWithPhone")
             | 💬 We'll text you a secure code 📲
         button.btn.lg.outline#phone_butt(
           type="submit"
-          ref="phone-butt"
           @click.prevent="signInWithPhone"
           ) Sign in via Phone
       .field(v-else)
@@ -29,7 +28,6 @@ form.flex.space.spread.wrap(@submit.prevent="signInWithPhone")
           type="tel"
           name="phone"
           autocomplete="tel"
-          ref="phone-code"
           v-model="confCode"
           pattern="[0-9]{0,6}"
           maxlength="6"

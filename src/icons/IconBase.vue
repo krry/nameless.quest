@@ -6,6 +6,7 @@ svg.icon(
   :viewBox="viewBox"
   :aria-labelledby="iconName"
   role="presentation"
+  :style="{color: iconColor}"
 )
   title(
     :id="iconName"
@@ -16,36 +17,36 @@ svg.icon(
 </template>
 <script lang="ts">
 export default {
-  props: {
-    iconName: {
-      type: String,
-      default: '',
-    },
-    width: {
-      type: [Number, String],
-      default: 24,
-    },
-    height: {
-      type: [Number, String],
-      default: 24,
-    },
-    size: {
-      type: [Number, String],
-      default: 24,
-    },
-    iconColor: {
-      type: String,
-      default: 'currentColor',
-    },
-    viewBox: {
-      type: String,
-      default: '0 0 130 373',
-    },
-  },
+	props: {
+		iconName: {
+			type: String,
+			default: '',
+		},
+		width: {
+			type: [Number, String],
+			default: 24,
+		},
+		height: {
+			type: [Number, String],
+			default: 24,
+		},
+		size: {
+			type: [Number, String],
+			default: 24,
+		},
+		iconColor: {
+			type: String,
+			default: 'currentColor',
+		},
+		viewBox: {
+			type: String,
+			default: '0 0 130 373',
+		},
+	},
 }
 </script>
 <style lang="postcss" scoped>
 .icon {
-  vertical-align: middle;
+	vertical-align: middle;
 }
 </style>

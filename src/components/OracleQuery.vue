@@ -21,6 +21,7 @@
 				)
 
 	section.dyn.flex.col
+		//- h2 What is your question?
 		.field.dyn
 			textarea#query.query(
 				v-autoresize
@@ -33,17 +34,17 @@
 				:class="{invalid: invalidQuery}"
 				)
 			transition(name="slide-fade" appear)
-				.lbl.above.intro(for="query" v-if="cached.query.length < 9")
+				.lbl.font.md.phat.above.intro(for="query" v-if="cached.query.length < 9")
 					| What does your heart wonder?
 			transition(name="slide-fade" appear)
-				.lbl.below.outro(for="query" v-if="cached.query.length < 9")
+				.lbl.font.md.phat.below.outro(for="query" v-if="cached.query.length < 9")
 					| What is the burning question?
 			button.btn.lg.action(type="button" @click="askTheOracle")
 				IconBase(size="36" viewBox="0 0 1000 1125")
 					IconCrystalBall
 				|  Ask the Oracle
 			transition(name="slide-fade" appear)
-				label.validation(
+				label.validation.mrg.t(
 					v-if="invalidQuery"
 					) Is that a question?
 			transition(name="slide-fade" appear)
@@ -98,9 +99,8 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .validation {
-	order: 3;
+	order: 4;
 	color: var(--brand);
-	/* margin: -0.75em 0 0; */
 	@supports (font-variation-settings: normal) {
 		font-family: 'QuicksandVariable';
 		font-variation-settings: 'wght' 555;
@@ -113,10 +113,6 @@ export default defineComponent({
 
 .action {
 	order: 5;
-}
-
-.validation {
-	order: 4;
 }
 
 .outro {

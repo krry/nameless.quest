@@ -72,14 +72,14 @@ export function afterEach(): void {
 	let active = false
 
 	function relax() {
-		console.log('relaxing')
+		// console.log('relaxing')
 		document.removeEventListener('touchstart', activate)
 		document.removeEventListener('mousemove', activate)
 		document.removeEventListener('keydown', activate)
 	}
 
 	function activate() {
-		console.log('activated')
+		// console.log('activated')
 		active = true
 		relax()
 	}
@@ -89,7 +89,7 @@ export function afterEach(): void {
 	document.addEventListener('keydown', activate)
 
 	setTimeout(() => {
-		console.log('activated', active)
+		// console.log('activated', active)
 		!active && drawer.close()
 	}, 1500)
 }

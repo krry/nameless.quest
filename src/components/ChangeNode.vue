@@ -72,7 +72,7 @@ export default defineComponent({
 		const rx = reactive({
 			card: ref(),
 			tile: ref(),
-			mark: ref(''),
+			mark: '',
 			liney: false,
 			hex,
 			quadrant: ref<Quad>(),

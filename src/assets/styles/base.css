@@ -148,3 +148,17 @@ p svg {
 blockquote pre {
 	margin: 0 0 0 1em;
 }
+
+img,
+iframe,
+figure,
+video {
+	max-width: 100vw;
+}
+
+strong {
+	@supports (font-variation-settings: normal) {
+		font-family: 'QuicksandVariable';
+		font-variation-settings: 'wght' 777;
+	}
+}

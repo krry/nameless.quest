@@ -17,19 +17,19 @@ Page.about
       | each step with more love.
   ul(ref="toc").toc.ls.pad.y
     li.flex.col.mid
-      a.btn.naked.xl(@click.prevent="cruiseTo(divine)")
+      a.btn.naked.xl(@click.prevent="$cruiseTo(divine)")
         IconBase(viewBox="0 0 1000 1250" size="48" iconColor="var(--link)")
           IconCrystalBall
         br
         | How to Consult the Oracle
     li.flex.col.mid
-      a.btn.naked.xl(@click.prevent="cruiseTo(define)")
+      a.btn.naked.xl(@click.prevent="$cruiseTo(define)")
         IconBase(viewBox="0 0 100 125" size="48" iconColor="var(--link)")
           IconBookStack
         br
         | Resources for Deeper Understanding
     li.flex.col.mid
-      a.btn.naked.xl(@click.prevent="cruiseTo(devsign)")
+      a.btn.naked.xl(@click.prevent="$cruiseTo(devsign)")
         IconBase(viewBox="0 0 1000 1250" size="48" iconColor="var(--link)")
           IconWizardsHat
         br
@@ -226,11 +226,6 @@ export default defineComponent({
 			devsign,
 			define,
 		}
-	},
-	methods: {
-		cruiseTo(el: HTMLElement): void {
-			el.scrollIntoView({behavior: 'smooth'})
-		},
 	},
 })
 </script>

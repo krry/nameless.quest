@@ -22,4 +22,12 @@ const symbolize = {
 	},
 }
 
-export {titlize, symbolize}
+const cruiseTo = {
+	install: (app: App): void => {
+		app.config.globalProperties.$cruiseTo = (el: HTMLElement): void => {
+			el.scrollIntoView({behavior: 'smooth'})
+		}
+	},
+}
+
+export {titlize, symbolize, cruiseTo}

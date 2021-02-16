@@ -281,6 +281,10 @@ hr.dinkus.asterism::after {
 	margin-bottom: var(--pad);
 }
 
+.mrg.t {
+	margin-top: var(--pad);
+}
+
 .tight.y {
 	margin-top: calc(var(--pad) * -0.25);
 	margin-bottom: calc(var(--pad) * -0.25);
@@ -402,4 +406,8 @@ hr.dinkus.asterism::after {
 
 .pip::after {
 	content: var(--pip);
+}
+
+.tute {
+	text-decoration: dotted underline;
 }

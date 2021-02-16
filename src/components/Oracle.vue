@@ -4,9 +4,10 @@ Page.query
 		OracleCast(v-if="cached.step === 'cast'")
 		OracleResponse(v-else-if="cached.step === 'response'" @clear="clearBoth")
 		OracleQuery(v-else)
-	IconBase.mrgs.y(size="96" viewBox="0 0 100 125" iconColor="var(--glow")
-		IconThreeLegs
-	OracleInfo
+	Spinnable
+		IconBase.mrgs.y(size="96" viewBox="0 0 100 125" iconColor="var(--glow)")
+			IconThreeLegs
+	OracleInfo(ref="help")
 	button.btn.back.naked.abs.t.l(
 		type="button"
 		v-if="cached.toss"
@@ -15,10 +16,11 @@ Page.query
 		) ♽
 </template>
 <script lang="ts">
-import {defineComponent} from 'vue'
+import {defineComponent, ref} from 'vue'
 import {set} from '../store'
 import {cached, uncache} from '../store/cache'
 import Page from './Page.vue'
+import Spinnable from './Spinnable.vue'
 import OracleInfo from './OracleInfo.vue'
 import OracleCast from './OracleCast.vue'
 import OracleQuery from './OracleQuery.vue'
@@ -30,6 +32,7 @@ export default defineComponent({
 	name: 'Oracle',
 	components: {
 		Page,
+		Spinnable,
 		OracleInfo,
 		OracleCast,
 		OracleQuery,
@@ -38,14 +41,20 @@ export default defineComponent({
 		IconThreeLegs,
 	},
 	setup() {
+		const help = ref()
 		function clearBoth() {
-			confirm("Are you sure you want to start over? This will clear today's question and answer.")
-			uncache('query')
-			uncache('toss')
-			uncache('step')
+			const clearAffirmed = confirm(
+				"Are you sure you want to start over? This will clear today's question and answer.",
+			)
+			if (clearAffirmed) {
+				uncache('query')
+				uncache('toss')
+				uncache('step')
+			}
 		}
 
 		return {
+			help,
 			cached,
 			clearBoth,
 		}

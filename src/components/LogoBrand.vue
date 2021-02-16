@@ -5,7 +5,8 @@
 	tabindex="0"
 	)
 	transition(name="popup" appear)
-		.logo(ref="el")
+		Spinnable
+			.logo
 	.stack.reveal
 		router-link(to="/")
 			h1.nameless#llamo {{ title }}
@@ -13,12 +14,15 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, watchEffect, onMounted} from 'vue'
+import {defineComponent} from 'vue'
 import {SITE_TITLE} from '../constants'
-import {useSpinnable} from '../composables/spinnable'
+import Spinnable from './Spinnable.vue'
 
 export default defineComponent({
 	name: 'LogoBrand',
+	components: {
+		Spinnable,
+	},
 	props: {
 		direction: {
 			type: String,
@@ -31,25 +35,8 @@ export default defineComponent({
 		grows: Boolean,
 	},
 	setup() {
-		const el = ref<HTMLElement>()
-		const isSpinning = ref(false)
-
-		onMounted(() => {
-			if (el.value) {
-				const {getSpinning, setSpinning} = useSpinnable(el.value)
-
-				isSpinning.value = getSpinning()
-
-				watchEffect(() => {
-					setSpinning(isSpinning.value)
-				})
-			}
-		})
-
 		return {
-			el,
 			title: SITE_TITLE,
-			isSpinning,
 		}
 	},
 })
@@ -99,30 +86,11 @@ export default defineComponent({
 	background-position: center;
 	background-size: 80%;
 	transition: inherit;
-	animation: spin var(--be4t) infinite linear paused;
-}
-
-@keyframes spin {
-	0% {
-		transform: rotate(0deg);
-	}
-
-	100% {
-		transform: rotate(360deg);
-	}
 }
 
 .brand {
 	--logo-dim: clamp(4rem, 4rem + 3vh + 3vw, 7.5rem);
 }
-
-/* .brand.lg {
-	--logo-dim: calc(6vh + 8vw);
-}
-
-.brand.md {
-	--logo-dim: calc(4vh + 6vw);
-} */
 
 h1.nameless#llamo {
 	font-size: calc(var(--logo-dim) / 4);

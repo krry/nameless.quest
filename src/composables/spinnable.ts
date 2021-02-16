@@ -13,7 +13,11 @@ export const useSpinnable = (element: HTMLElement): SpinParams => {
 
 	function measureDistance(mX: number, mY: number) {
 		// console.log('mX, mY', mX, mY)
-		// console.log('element.offsetWidth, element.offsetHeight', element.offsetWidth, element.offsetHeight)
+		// console.log(
+		// 	'element.offsetWidth, element.offsetHeight',
+		// 	element.offsetWidth,
+		// 	element.offsetHeight,
+		// )
 		const rect = element.getBoundingClientRect()
 		// console.log('rect left top', rect.left, rect.top)
 		const dist = Math.floor(
@@ -27,7 +31,7 @@ export const useSpinnable = (element: HTMLElement): SpinParams => {
 	}
 
 	function isMouseEvent(ev: Event): MouseEvent | undefined {
-		if ((ev as MouseEvent).pageX !== undefined) {
+		if ((ev as MouseEvent).clientX !== undefined) {
 			return ev as MouseEvent
 		}
 	}
@@ -47,12 +51,12 @@ export const useSpinnable = (element: HTMLElement): SpinParams => {
 		// get position of mouse or finger
 		// calculate distance between these points every interval
 		if (me) {
-			element.style.animationDuration = `${measureDistance(me.pageX, me.pageY)}ms`
+			element.style.animationDuration = `${measureDistance(me.clientX, me.clientY)}ms`
 			// console.log('element.style.animationDuration', element.style.animationDuration)
 		} else if (te) {
 			element.style.animationDuration = `${measureDistance(
-				te.touches[0].pageX,
-				te.touches[0].pageY,
+				te.touches[0].clientX,
+				te.touches[0].clientY,
 			)}ms`
 			// console.log('element.style.animationDuration', element.style.animationDuration)
 		}
@@ -124,6 +128,7 @@ export const useSpinnable = (element: HTMLElement): SpinParams => {
 		}
 	}
 
+	// console.log('element to spin', element)
 	element.addEventListener('keydown', giveItAWhirl)
 
 	return {

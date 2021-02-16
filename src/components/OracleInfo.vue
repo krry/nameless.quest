@@ -1,6 +1,6 @@
 <template lang="pug">
 h2 Help and FAQs
-.flex.btw.pads.y.wrap
+.flex.pads.y.wrap.mid
 	button.btn.md.mrg.x.outline(
 		@click="cache('help', 'oracle')"
 		:class="{active: cached.help === 'oracle'}"
@@ -14,17 +14,21 @@ h2 Help and FAQs
 		:class="{active: cached.help === 'yijing'}"
 		) What is the Yijing?
 	button.btn.md.mrg.x.outline(
-		@click="cache('help', 'count')"
-		:class="{active: cached.help === 'count'}"
+		@click="cache('help', 'coins')"
+		:class="{active: cached.help === 'coins'}"
 		) How to count the coins?
 	button.btn.md.mrg.x.outline(
 		@click="cache('help', 'yarrow')"
 		:class="{active: cached.help === 'yarrow'}"
 		) How to split yarrow stalks?
 transition(name="slide-fade" appear mode="out-in")
-	aside.help.text-center.pads.y.below( v-if="cached.help === 'query'" )
-		IconBase(size="100" viewBox="0 0 1000 1250" iconColor="var(--good)")
-			IconCrystalBall
+	aside.help.text-center.pads.y.below(
+		v-if="cached.help === 'query'"
+		ref="helpQuery"
+		)
+		Spinnable
+			IconBase(size="100" viewBox="0 0 1000 1250" iconColor="var(--flair)")
+				IconCrystalBall
 		h2 How to Query the Oracle
 		ul.ls
 			li 
@@ -51,8 +55,9 @@ transition(name="slide-fade" appear mode="out-in")
 				span.text.md.tip "Should I …?"
 				IconBase(size="24" iconColor="var(--bad)")
 					Icon6
-		IconBase.mrg3.y(viewBox="0 0 1000 1250" size="80" iconColor="var(--glow)")
-			IconCauldron
+		Spinnable
+			IconBase.mrg3.y(viewBox="0 0 1000 1250" size="80" iconColor="var(--flair)")
+				IconCauldron
 		h3
 			AppLink(to="https://www.onlineclarity.co.uk/learn/beginners/3-how-to-cast-a-reading/your-question/") Hilary Barrett's Suggestions
 		ul.ls
@@ -64,11 +69,16 @@ transition(name="slide-fade" appear mode="out-in")
 				span.text.md.tip How can I...?
 			li
 				span.text.md.tip What if I...?
-		IconBase.mrg3.y(size="100" viewBox="0 0 1000 1250" iconColor="var(--flair)")
-			IconScroll
-	aside.help.text-center.pads.x.y.right(v-else-if="cached.help === 'yarrow'")
-		IconBase(size="80" viewBox="0 0 1000 1250")
-			IconWizardsHat
+		Spinnable
+			IconBase.mrg3.y(size="100" viewBox="0 0 1000 1250" iconColor="var(--flair)")
+				IconScroll
+	aside.help.text-center.pads.x.y.right(
+		v-else-if="cached.help === 'yarrow'"
+		ref="helpYarrow"
+		)
+		Spinnable
+			IconBase(size="80" viewBox="0 0 1000 1250" iconColor="var(--flair)")
+				IconWizardsHat
 		h2 How to Divine with Yarrow Stalks
 		iframe(
 			width="560" 
@@ -77,13 +87,16 @@ transition(name="slide-fade" appear mode="out-in")
 			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
 			)
 		br
-		IconBase.mrgs.y(size="80" viewBox="0 0 1000 1250")
-			IconCandles
+		Spinnable
+			IconBase.mrgs.y(size="80" viewBox="0 0 1000 1250" iconColor="var(--flair)")
+				IconCandles
 	aside.help.text-center.pads.x.y.left(
 		v-else-if="cached.help === 'oracle'"
+		ref="helpOracle"
 		)
-		IconBase(size="80" viewBox="0 0 100 125")
-			IconMiracle
+		Spinnable
+			IconBase(size="80" viewBox="0 0 100 125" iconColor="var(--flair)")
+				IconMiracle
 		h2 What is the Oracle?
 		pre.font.md.text-left
 			| Who answers a question
@@ -96,11 +109,13 @@ transition(name="slide-fade" appear mode="out-in")
 			| beyond time, without name or face?
 			| Who remembers all that is,
 			| all that has been and will be?
-		IconBase(size="80" viewBox="0 0 100 125").invert.y
-			IconLooptyLoop
+		Spinnable
+			IconBase(size="80" viewBox="0 0 100 125" iconColor="var(--flair)").invert.y
+				IconLooptyLoop
 	aside.help.text-center.pads.x.y.right( v-else-if="cached.help === 'yijing'" )
-		IconBase(size="80" viewBox="0 0 1000 1250")
-			IconSpellBook
+		Spinnable
+			IconBase(size="80" viewBox="0 0 1000 1250" iconColor="var(--flair)")
+				IconSpellBook
 		h2 What is the Yìjīng?
 		pre.font.md.text-left
 			| An ancient wisdom tradition 
@@ -119,11 +134,13 @@ transition(name="slide-fade" appear mode="out-in")
 			| allowing what is to be, truth to blossom,
 			| we divine the flavor of the moment
 			| to understand who, where, why we are.
-		IconBase(size="80" viewBox="0 0 1000 1250")
-			IconOpenBook
-	aside.help.text-center.pad3.y.left(v-else)
-		IconBase(size="80" viewBox="0 0 100 125" iconColor="var(--flair)")
-			IconTwoRings
+		Spinnable
+			IconBase(size="80" viewBox="0 0 1000 1250" iconColor="var(--flair)")
+				IconOpenBook
+	aside.help.text-center.pad3.y.left(v-else ref="helpCoins")
+		Spinnable
+			IconBase(size="80" viewBox="0 0 512 640" iconColor="var(--flair)")
+				IconCarnivalCoin
 		h2 How to Count the Coins
 		ul.ls.text.md.fine.pad.y
 			li We toss six rounds of three coins.
@@ -134,26 +151,30 @@ transition(name="slide-fade" appear mode="out-in")
 			span 🦚 🦚 🦚 = 6
 			span yin ⤐ yang
 			span.ib
-				IconBase.turner(:class="{unturned: !cfg.turny}")
-					Icon6
+				Turnable(ortho)
+					IconBase
+						Icon6
 			span firming
 			span 🦚 🦚 👸 = 7
 			span yang
 			span.ib
-				IconBase.turner(:class="{unturned: !cfg.turny}")
-					Icon7
+				Turnable(ortho)
+					IconBase
+						Icon7
 			span firm
 			span 🦚 👸 👸 = 8
 			span yin
 			span.ib
-				IconBase.turner(:class="{unturned: !cfg.turny}")
-					Icon8
+				Turnable(ortho)
+					IconBase
+						Icon8
 			span open
 			span 👸 👸 👸 = 9
 			span yang ⤐ yin
 			span.ib
-				IconBase.turner(:class="{unturned: !cfg.turny}")
-					Icon9
+				Turnable(ortho)
+					IconBase
+						Icon9
 			span opening
 		ul.ls.text.md.fine.pad.y
 			li Each round sums to 6, 7, 8, or 9
@@ -173,69 +194,92 @@ transition(name="slide-fade" appear mode="out-in")
 				span 🦚 🦚 👸
 				span 7
 				span.ib
-					IconBase.turner(:class="{unturned: !cfg.turny}")
-						Icon7
+					Turnable(ortho)
+						IconBase
+							Icon7
 				span 5
 				span 🦚 🦚 🦚
 				span 6
 				span.ib
-					IconBase.turner(:class="{unturned: !cfg.turny}")
-						Icon6
+					Turnable(ortho)
+						IconBase
+							Icon6
 				span 4
 				span 👸 👸 👸
 				span 9
 				span.ib
-					IconBase.turner(:class="{unturned: !cfg.turny}")
-						Icon9
+					Turnable(ortho)
+						IconBase
+							Icon9
 				span 3
 				span 🦚 👸 👸
 				span 8
 				span.ib
-					IconBase.turner(:class="{unturned: !cfg.turny}")
-						Icon8
+					Turnable(ortho)
+						IconBase
+							Icon8
 				span 2
 				span 🦚 🦚 👸
 				span 7
 				span.ib
-					IconBase.turner(:class="{unturned: !cfg.turny}")
-						Icon7
+					Turnable(ortho)
+						IconBase
+							Icon7
 				span 1
 				span 🦚 🦚 🦚
 				span 6
 				span.ib
-					IconBase.turner(:class="{unturned: !cfg.turny}")
-						Icon6
+					Turnable(ortho)
+						IconBase
+							Icon6
 			h4 which assembles these hexagrams:
 			.flex.string
-				.stack.col.tight.turner(:class="{turned: cfg.turny}")
-					IconBase
-						Icon7
-					IconBase
-						Icon6
-					IconBase
-						Icon9
-					IconBase
-						Icon8
-					IconBase
-						Icon7
-					IconBase
-						Icon6
-				HexaGlyph(hex="䷿" size="x4l")
-				HexaGlyph(hex="䷼" size="x4l")
+				Turnable
+					.stack.col.tight
+						IconBase
+							Icon7
+						IconBase
+							Icon6
+						IconBase
+							Icon9
+						IconBase
+							Icon8
+						IconBase
+							Icon7
+						IconBase
+							Icon6
+				LineGlyph(glyph="䷿" size="x4l")
+				LineGlyph(glyph="䷼" size="x4l")
 			h5
 				| Remember, the first line is on the 
 				span {{ cfg.turny ? 'right' : 'bottom' }}
 				| .
-		IconBase.mrgs.y.turner(
-			size="84"
-			viewBox="0 0 100 125"
-			iconColor="var(--glow)"
-			:class="{turned: cfg.turny}")
-			IconPenroseTriangle
+		Spinnable.mrgs.y.x.ib
+			IconBase(
+				size="96"
+				viewBox="0 0 1000 1250"
+				iconColor="var(--ink)"
+				)
+				IconSpellBook
+		Spinnable.mrgs.y.x.ib
+			IconBase(
+				size="96"
+				viewBox="0 -12 100 125"
+				iconColor="var(--flair)"
+				)
+				IconPenroseTriangle
+		Spinnable.mrgs.y.x.ib
+			IconBase(
+				size="96"
+				viewBox="0 0 1000 1250"
+				iconColor="var(--link)"
+				)
+				IconOpenBook
 AppLink.btn.naked.pip(to="https://ko-fi.com/kerrbear")  I love this, please make more 
 </template>
+
 <script lang="ts">
-import {defineComponent, reactive, toRefs} from 'vue'
+import {defineComponent} from 'vue'
 import {cfg} from '../store'
 import {cached, cache} from '../store/cache'
 import IconBase from '../icons/IconBase.vue'
@@ -245,21 +289,24 @@ import Icon7 from '../icons/Icon7.vue'
 import Icon8 from '../icons/Icon8.vue'
 import Icon9 from '../icons/Icon9.vue'
 import HanziChar from './HanziChar.vue'
-import HexaGlyph from './HexaGlyph.vue'
+import LineGlyph from './LineGlyph.vue'
+import Turnable from './Turnable.vue'
+import Spinnable from './Spinnable.vue'
 import IconScroll from '../icons/IconScroll.vue'
 import IconMiracle from '../icons/IconMiracle.vue'
 import IconCandles from '../icons/IconCandles.vue'
 import IconCauldron from '../icons/IconCauldron.vue'
 import IconOpenBook from '../icons/IconOpenBook.vue'
-import IconTwoRings from '../icons/IconTwoRings.vue'
 import IconSpellBook from '../icons/IconSpellBook.vue'
 import IconLooptyLoop from '../icons/IconLooptyLoop.vue'
 import IconWizardsHat from '../icons/IconWizardsHat.vue'
 import IconCrystalBall from '../icons/IconCrystalBall.vue'
+import IconCarnivalCoin from '../icons/IconCarnivalCoin.vue'
+import IconCrescentMoon from '../icons/IconCrescentMoon.vue'
 import IconPenroseTriangle from '../icons/IconPenroseTriangle.vue'
 
 export default defineComponent({
-	name: 'ComponentName',
+	name: 'OracleInfo',
 	components: {
 		Icon6,
 		Icon7,
@@ -268,32 +315,32 @@ export default defineComponent({
 		AppLink,
 		IconBase,
 		HanziChar,
-		HexaGlyph,
+		LineGlyph,
+		Turnable,
+		Spinnable,
+		IconScroll,
 		IconCandles,
 		IconMiracle,
 		IconCauldron,
-		IconTwoRings,
 		IconOpenBook,
 		IconSpellBook,
 		IconWizardsHat,
 		IconLooptyLoop,
-		IconScroll,
 		IconCrystalBall,
+		IconCarnivalCoin,
+		IconCrescentMoon,
 		IconPenroseTriangle,
 	},
 	setup() {
-		const rx = reactive({
-			// help: '',
-		})
 		return {
 			cfg,
 			cache,
 			cached,
-			...toRefs(rx),
 		}
 	},
 })
 </script>
+
 <style lang="postcss" scoped>
 .grid {
 	text-align: center;

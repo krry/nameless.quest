@@ -65,7 +65,7 @@
 	width: 100%;
 	resize: none;
 	padding: 0.5em;
-	margin-bottom: 1em;
+	/* margin-bottom: 1em; */
 	line-height: 1.375;
 }
 

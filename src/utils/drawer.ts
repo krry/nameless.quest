@@ -12,7 +12,7 @@ export function open(): void {
 
 export function close(): void {
 	const drawerWidth = window.innerWidth < 576 ? window.innerWidth - 48 : 360
-	console.log('closing drawer to', drawerWidth)
+	// console.log('closing drawer to', drawerWidth)
 	window.scrollTo(drawerWidth, document.documentElement.scrollTop)
 }
 

@@ -1,94 +1,100 @@
 <template lang="pug">
 Page.text-center(
-  ref="desk"
-  @keydown.left.prevent.exact="navTo(prev)"
-  @keydown.right.prevent.exact="navTo(next)"
-  )
-  router-link.page-nav.btn.naked.prev.clickable.abs.t.l(:to="prev") 𐡷 {{ prev }}
-  transition.under(name="slide-fade" appear)
-    .hint.vapor.abs.t.r.l.center.font.sm(v-if="!cfg.navvy") ⬅️ Did you try 😁 arrow keys? ➡️
-  router-link.page-nav.btn.naked.next.clickable.abs.t.r(:to="next") {{ next }} 𐡸
-  h1.font.x2l.flex.mid
-    HexaGlyph(:hex="hex.hexagram" inline size="x8l")
-    .flex.col.mid
-      HanziChar(
-        v-for="(char, index) in hex.names.chinese"
-        :key="$symbolize(char)"
-        :char="char"
-        :pinyin="pinyin[index]"
-        place="side"
-        size="xl"
-        reveal
-        )
-  h1 {{ hex.names.english }}
-  section.numbers
-    .flex.space.string
-      .datum.binary
-        dd {{ hex.binary.slice(2) }}
-        dt Binary
-      .datum.octal
-        dd {{ hex.octal }}
-        dt Octal
-      .datum.octal
-        dd {{ parseInt(hex.binary.slice(2), 2) }}
-        dt Decimal
-      .datum.kingwen
-        dd {{ hex.kingwen }}
-        dt King Wen
-  .flex.mid.col.string
-    pre.judgment.font.md(v-html="adoptOrphans(hex.judgment)")
-  .flex.mid.col.string
-    pre.image.font.md(v-html="adoptOrphans(hex.images)")
-    .flex.space
-      .flex.string.col.dyn
-        .datum.trigram.flex.string.laze.btw(
-          v-for="(tri, index) in trigrams"
-          :key="$symbolize(tri.name.en)"
-          )
-          .flex.col.mid.more
-            dt The {{ $titlize(tri.name.en) }}
-            dt {{ index === 0 ? "Above" : "Below" }}
-          .flex.col.mid.less
-            HanziChar(
-              :char="tri.name.zh"
-              :pinyin="tri.name.pn"
-              size="lg"
+	ref="desk"
+	@keydown.left.prevent.exact="navTo(prev)"
+	@keydown.right.prevent.exact="navTo(next)"
+	)
+	router-link.page-nav.btn.naked.prev.clickable.abs.t.l(:to="prev") 𐡷 {{ prev }}
+	transition.under(name="slide-fade" appear)
+		.hint.vapor.abs.t.r.l.center.font.sm(v-if="!cfg.navvy") ⬅️ Did you try 😁 arrow keys? ➡️
+	router-link.page-nav.btn.naked.next.clickable.abs.t.r(:to="next") {{ next }} 𐡸
+	h1.font.x2l.flex.mid
+		LineGlyph(:glyph="hex.hexagram" inline size="x8l")
+		.flex.col.mid
+			HanziChar(
+				v-for="(char, index) in hex.names.chinese"
+				:key="$symbolize(char)"
+				:char="char"
+				:pinyin="pinyin[index]"
+				place="side"
+				size="xl"
+				reveal
+				)
+	h1 {{ hex.names.english }}
+	section.numbers
+		.flex.space.string
+			.datum.binary
+				dd {{ hex.binary.slice(2) }}
+				dt Binary
+			.datum.octal
+				dd {{ hex.octal }}
+				dt Octal
+			.datum.octal
+				dd {{ parseInt(hex.binary.slice(2), 2) }}
+				dt Decimal
+			.datum.kingwen
+				dd {{ hex.kingwen }}
+				dt King Wen
+	.flex.mid.col.string
+		pre.judgment.font.md(v-html="adoptOrphans(hex.judgment)")
+	.flex.mid.col.string
+		pre.image.font.md(v-html="adoptOrphans(hex.images)")
+		.flex.space
+			.flex.string.col.dyn
+				.datum.trigram.flex.string.laze.btw(
+					v-for="(tri, index) in trigrams"
+					:key="$symbolize(tri.name.en)"
+					)
+					.flex.col.mid.more
+						dt The {{ $titlize(tri.name.en) }}
+						dt {{ index === 0 ? "Above" : "Below" }}
+					.flex.col.mid.less
+						HanziChar(
+							:char="tri.name.zh"
+							:pinyin="tri.name.pn"
+							size="lg"
 							place="over"
-              reveal
-              )
-          .flex.col.mid.less
-            TriGlyph.hexagram.second(:tri="tri.trigram" size="x5l")
-      HexaGlyph.datum.middle.dyn(:hex="hex.hexagram" size="x7l")
-  .flex.mid.col.string
-    h2 Changing Lines
-    section(
-      v-for="line in hex.lines"
-      :key="$symbolize(line.position)"
-      ) 
-      IconBase(height="36")
-        component(:is="'Icon' + getChangingLine(line.position).icon")
-      h4.font.lg Line {{line.position + ': ' + getChangingLine(line.position).desc }}
-      .flex.mid
-        .icon.font.x3l   
-        IconBase(height="36")
-          component(:is="'Icon' + getChangingLine(line.position).was")
-        .icon.font.x3l ⇢
-        IconBase(height="36")
-          component(:is="'Icon' + getChangingLine(line.position).is")
-      h5.text.md.em(v-if="line.ruler") The {{ $titlize(line.ruler) }} Ruler
-      pre.text.md.line {{line.meaning}}
+							reveal
+							)
+					.flex.col.mid.less
+						LineGlyph.second(
+							trigram
+							:glyph="tri.trigram"
+							size="x5l")
+			LineGlyph.datum.middle.dyn(
+				:glyph="hex.hexagram"
+				size="x6l")
+	.flex.mid.col.string
+		h2 Changing Lines
+		section(
+			v-for="line in hex.lines"
+			:key="$symbolize(line.position)"
+			)
+			Turnable
+				IconBase(size="60")
+					component(:is="'Icon' + getChangingLine(line.position).icon")
+			h4.font.lg Line {{line.position + ': ' + getChangingLine(line.position).desc }}
+			.flex.mid
+				.icon.font.x3l   
+				IconBase(size="36")
+					component(:is="'Icon' + getChangingLine(line.position).was")
+				.icon.font.x3l ⇢
+				IconBase(size="36")
+					component(:is="'Icon' + getChangingLine(line.position).is")
+			h5.text.md.em(v-if="line.ruler") The {{ $titlize(line.ruler) }} Ruler
+			pre.text.md.line {{line.meaning}}
 </template>
 
 <script lang="ts">
 import {defineComponent, ref, toRefs, reactive, watchEffect, onMounted, computed} from 'vue'
 import {useHexagrams} from '../composables/hexagrams'
 import {useTrigrams} from '../composables/trigrams'
-import {cfg, set} from '../store'
+import {cfg, set, tog} from '../store'
 import Page from '../components/Page.vue'
 import HanziChar from '../components/HanziChar.vue'
-import HexaGlyph from '../components/HexaGlyph.vue'
-import TriGlyph from '../components/TriGlyph.vue'
+import LineGlyph from '../components/LineGlyph.vue'
 import LineGram from '../components/LineGram.vue'
+import Turnable from '../components/Turnable.vue'
 import IconBase from '../icons/IconBase.vue'
 import Icon6 from '../icons/Icon6.vue'
 import Icon7 from '../icons/Icon7.vue'
@@ -116,10 +122,10 @@ export default defineComponent({
 	components: {
 		Page,
 		LineGram,
-		HexaGlyph,
-		TriGlyph,
+		LineGlyph,
 		HanziChar,
 		IconBase,
+		Turnable,
 		Icon6,
 		Icon7,
 		Icon8,
@@ -183,6 +189,8 @@ export default defineComponent({
 
 		return {
 			cfg,
+			set,
+			tog,
 			trigrams,
 			getHexagramByWen,
 			...toRefs(rx),
@@ -315,7 +323,7 @@ dl + dl::before {
 	margin: 0 0.5rem;
 }
 
-.hexagram.second {
+.triglyph.second {
 	margin-top: 0;
 }
 

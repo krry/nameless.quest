@@ -1,8 +1,9 @@
 <template lang="pug">
 .gua
   .col
-    TriGlyph(
-			:tri="trigrams[gua].trigram"
+    LineGlyph(
+			trigram
+			:glyph="trigrams[gua].trigram"
 			:size="size"
 			)
   .col
@@ -14,13 +15,13 @@
 <script lang="ts">
 import {defineComponent} from 'vue'
 import {cfg, tog} from '../store'
-import TriGlyph from '../components/TriGlyph.vue'
+import LineGlyph from '../components/LineGlyph.vue'
 import trigramData from '../data/trigrams.json'
 
 export default defineComponent({
 	name: 'OneGua',
 	components: {
-		TriGlyph,
+		LineGlyph,
 	},
 	props: {
 		gua: {

@@ -65,11 +65,8 @@ export default defineComponent({
 <style lang="postcss">
 .grecaptcha-badge,
 .grecaptcha-logo {
-	/* display: none !important; */
 	visibility: hidden !important;
 	opacity: 0 !important;
-	/* text-indent: -99999px !important; */
-	/* pointer-events: none !important; */
 	transform: scale(0) !important;
 }
 </style>

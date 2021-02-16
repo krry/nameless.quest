@@ -1,6 +1,5 @@
 <template lang="pug">
 button.btn.outline.theme-switch(
-  ref="el"
   :class="'font ' + size"
 	tabindex="0"
   @click.stop="nextTheme"

@@ -19,6 +19,15 @@
 	}
 }
 
+.alert {
+	color: var(--flair);
+	font-style: italic;
+	@supports (font-variation-settings: normal) {
+		font-family: 'QuicksandVariable';
+		font-variation-settings: 'wght' 533;
+	}
+}
+
 .head,
 .font,
 .text {

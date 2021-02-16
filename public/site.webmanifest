@@ -1,9 +1,9 @@
 {
+  "lang": "en",
   "name": "Nameless ☯ I Ching",
   "short_name": "Nameless",
-  "start_url": "https://nameless.atmanaut.us",
+  "start_url": "https://nameless.easeness.biz",
   "description": "An interactive, graphic resource for and paean to 易經 (Yìjīng, and often I Ching) the Classic Book of Changes) wherein you can see the glorious symmetries of the perfect Octals, decode the binary of the hexagrams, pronounce the Pinyin, and peruse scholarly interpretations.",
-  "lang": "en",
   "icons": [
     {
       "src": "/nameless-192x192.png",

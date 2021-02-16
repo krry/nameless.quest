@@ -31,14 +31,14 @@ Page.config.col
         dis="Glyphs"
         dat="Text"
       )
-      transition.pads.y.under(name="slide-fade" mode="out-in" appear)
-        .under(v-if="cfg.texty")
+      transition.pads.y(name="slide-fade" mode="out-in" appear)
+        .right(v-if="cfg.texty")
           router-link(to="/change/62")
             h4 Preponderance of the Small
           HanziChar.pad.x(char="小" reveal size="md" pinyin="xiǎo")
           HanziChar.pad.x(char="過" reveal size="md" pinyin="guò")
-        .glyphs.left(v-else)
-          HexaGlyph(hex="䷽" size="x4l")
+        .glyphs.right(v-else)
+          LineGlyph(glyph="䷽" size="x4l")
     .setting.half
       ToggleSwitch(
         label="Line orientation"
@@ -48,9 +48,20 @@ Page.config.col
         dat="Vertical"
       )
       .example
-        TriGlyph(tri="☵" inline size="x3l")
-        HexaGlyph(hex="䷂" inline size="x3l")
-        TriGlyph(tri="☳" inline size="x3l")
+        LineGlyph(
+          trigram
+          inline
+          glyph="☵"
+          size="x3l")
+        LineGlyph(
+          inline
+          glyph="䷂"
+          size="x4l")
+        LineGlyph(
+          trigram
+          inline
+          glyph="☳"
+          size="x3l")
     .setting.half
       ToggleSwitch(
         label="Show hotkey hints"
@@ -59,7 +70,7 @@ Page.config.col
         dis="No, thanks"
         dat="Yes, please"
       )
-      transition.under(name="slide-fade")
+      transition.over(name="slide-fade")
         h5.example.pads.y(v-if="cfg.navvy")
           | You can 
           kbd tab
@@ -73,7 +84,7 @@ Page.config.col
         tabindex="0"
         )
     .setting.half.flex.col.mid
-      h3 Switch the Theme
+      h4.font.md.thicc Switch the Theme
       .flex
         ThemeSwitch(size="xl")
   AppLink.btn(to="https://ko-fi.com/kerrbear") Gift our baby some diapers 🐻
@@ -87,8 +98,7 @@ import ComingSoon from '../components/ComingSoon.vue'
 import ToggleSwitch from '../components/ToggleSwitch.vue'
 import ThemeSwitch from '../components/ThemeSwitch.vue'
 import HanziChar from '../components/HanziChar.vue'
-import HexaGlyph from '../components/HexaGlyph.vue'
-import TriGlyph from '../components/TriGlyph.vue'
+import LineGlyph from '../components/LineGlyph.vue'
 
 export default defineComponent({
 	name: 'Config',
@@ -99,8 +109,7 @@ export default defineComponent({
 		ToggleSwitch,
 		ThemeSwitch,
 		HanziChar,
-		HexaGlyph,
-		TriGlyph,
+		LineGlyph,
 	},
 	setup() {
 		return {

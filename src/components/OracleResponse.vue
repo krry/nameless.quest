@@ -25,8 +25,8 @@
 						place="side"
 						reveal)
 			.col.dyn.less
-				HexaGlyph(
-					:hex="hex.hexagram"
+				LineGlyph(
+					:glyph="hex.hexagram"
 					size="x5l"
 					)
 	.whole.flex.string
@@ -42,7 +42,7 @@
 import {defineComponent, computed} from 'vue'
 import {useRouter} from 'vue-router'
 import IconBase from '../icons/IconBase.vue'
-import HexaGlyph from './HexaGlyph.vue'
+import LineGlyph from './LineGlyph.vue'
 import HanziChar from './HanziChar.vue'
 import {cfg} from '../store'
 import {cached} from '../store/cache'
@@ -55,7 +55,7 @@ export default defineComponent({
 	name: 'OracleResponse',
 	components: {
 		IconBase,
-		HexaGlyph,
+		LineGlyph,
 		HanziChar,
 	},
 	emits: ['clear'],

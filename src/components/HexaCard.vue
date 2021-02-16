@@ -1,61 +1,63 @@
 <template lang="pug">
 .sleeve(
-  tabindex="0"
-  :class="quad.yPos, quad.xPos, quad.edge, quad.middle"
-  )
-  .card(ref="card")
-    transition(name="flip")
-      HexaFace(
-        v-if="!cfg.texty"
-        class="face face--front"
-        :kingwen="hex.kingwen"
-        @close="$emit('close')"
-        tabindex="-1"
-        )
-        template(#top)
-          .mark(v-if="mark") {{mark}}
-          HexaNames(
-            :names="hex.names"
-            :kingwen="hex.kingwen"
-            :octal="hex.octal"
-            )
-        template(#bottom)
-          .cross.horiz
-            .glyphs
-              OneGua(
+	tabindex="0"
+	:class="quad.yPos, quad.xPos, quad.edge, quad.middle"
+	)
+	.card(ref="card")
+		transition(name="flip")
+			HexaFace(
+				v-if="!cfg.texty"
+				class="face face--front"
+				:kingwen="hex.kingwen"
+				@close="$emit('close')"
+				tabindex="-1"
+				)
+				template(#top)
+					.mark(v-if="mark") {{mark}}
+					HexaNames(
+						:names="hex.names"
+						:kingwen="hex.kingwen"
+						:octal="hex.octal"
+						)
+				template(#bottom)
+					.cross.horiz
+						.glyphs
+							OneGua(
 								:gua="hex.trigramPair.above"
 								size="x4l"
 								)
-            .stack
-              HexaGlyph(
-								:hex="hex.hexagram"
+						.stack
+							LineGlyph(
+								:glyph="hex.hexagram"
 								size="x5l"
 							)
-              .binary {{ hex.binary.slice(2) }}
-            .glyphs
-              OneGua(
+							.binary {{ hex.binary.slice(2) }}
+						.glyphs
+							OneGua(
 								:gua="hex.trigramPair.below"
 								size="x4l"
 								)
-      HexaFace(
-        v-else
-        class="face face--back"
-        :kingwen="hex.kingwen"
-        @close="$emit('close')"
-        tabindex="-1"
-        )
-        template(#top)
-          .mark(v-if="mark") {{mark}}
-          HexaGlyph(
-						:hex="hex.hexagram"
-						size="x7l"
-						)
-          h2.yingyu.head.xxl {{ hex.names.english }}
-          pre.judgment.text.md {{ hex.judgment }}
-        template(#bottom)
-          HexaInterp(
-            :hex="hex"
-            :liney="liney")
+			HexaFace(
+				v-else
+				class="face face--back"
+				:kingwen="hex.kingwen"
+				@close="$emit('close')"
+				tabindex="-1"
+				)
+				template(#top)
+					.mark(v-if="mark") {{mark}}
+					Spinnable
+						LineGlyph(
+							:glyph="hex.hexagram"
+							size="x7l"
+							noturn
+							)
+					h2.yingyu.head.xxl {{ hex.names.english }}
+					pre.judgment.text.md {{ hex.judgment }}
+				template(#bottom)
+					HexaInterp(
+						:hex="hex"
+						:liney="liney")
 </template>
 <script lang="ts">
 import {defineComponent, PropType, ref, reactive, toRefs, onMounted} from 'vue'
@@ -64,7 +66,8 @@ import {useSwipeable} from '../composables/swipeable'
 import {cfg, tog} from '../store'
 import OneGua from './OneGua.vue'
 import HexaFace from './HexaFace.vue'
-import HexaGlyph from './HexaGlyph.vue'
+import LineGlyph from './LineGlyph.vue'
+import Spinnable from './Spinnable.vue'
 import HexaNames from './HexaNames.vue'
 import HexaInterp from './HexaInterp.vue'
 
@@ -73,7 +76,8 @@ export default defineComponent({
 	components: {
 		OneGua,
 		HexaFace,
-		HexaGlyph,
+		LineGlyph,
+		Spinnable,
 		HexaNames,
 		HexaInterp,
 	},

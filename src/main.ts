@@ -9,7 +9,7 @@ import {saveRoll} from './store/rolls'
 import logout from './plugins/logout'
 import {Focus} from './directives/focus'
 import {AutoResize} from './directives/autoresize'
-import {titlize, symbolize} from './plugins/utils'
+import {titlize, symbolize, cruiseTo} from './plugins/utils'
 
 import './assets/styles/main.css'
 
@@ -24,6 +24,7 @@ app
   .use(logout)
   .use(symbolize)
   .use(titlize)
+  .use(cruiseTo)
   .mount('#bollard')
 
 auth.onAuthStateChanged((user) => {

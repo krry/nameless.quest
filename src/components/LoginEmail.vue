@@ -5,12 +5,13 @@ form.flex.space.spread.wrap(@submit.prevent="emailLinkSend")
       input#email.email-input.large(
         type="email"
         v-model="email"
+				:class="{sent: emailSuccessMsg}"
         tabindex="0"
         maxlength="50"
         placeholder="make.believe@email.com"
         )
       transition.msg.between(name="slide-fade" mode="out-in" appear)
-        label.right.between(for="email_login" v-if="emailSuccessMsg")
+        label.right.between.font.alert(for="email_login" v-if="emailSuccessMsg")
           | We've sent the magic link to your email.
         label.left.between(for="email_login" v-else)
           | 🪄 We'll send you a magic link 🔗
@@ -85,5 +86,9 @@ label.between {
 
 .email-input {
 	width: 18rem;
+}
+
+.field input[type='email']:valid.sent {
+	border-color: var(--flair);
 }
 </style>
