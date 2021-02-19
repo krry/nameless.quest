@@ -5,11 +5,9 @@
   "license": "CC-BY-NC-SA-4.0",
   "main": "main.ts",
   "scripts": {
-    "dev": "vite",
-    "dev:codesee": "vite .codesee",
+    "dev": "vite --port 2021",
     "lint": "eslint --fix",
     "build": "npm run lint && vite build",
-    "build:codesee": "./node_modules/.bin/babel ./src --out-dir ./.codesee --extensions '.ts' --source-maps inline",
     "deploy": "npm run build && netlify deploy",
     "deprod": "npm run build && netlify deploy --prod",
     "release": "npm run build && npm version && git push && git tag && git push --tag"
@@ -35,12 +33,6 @@
     "vue-sanity": "^1.0.0-beta.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.16",
-    "@babel/core": "^7.12.16",
-    "@babel/plugin-proposal-class-properties": "^7.12.13",
-    "@babel/plugin-proposal-object-rest-spread": "^7.12.13",
-    "@babel/preset-env": "^7.12.16",
-    "@babel/preset-typescript": "^7.12.16",
     "@codesee/babel-plugin-instrument": "^0.10.1",
     "@codesee/tracker": "^0.10.1",
     "@types/node": "^14.14.21",

@@ -168,11 +168,7 @@ export default defineComponent({
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-around;
-	margin: 3rem 0;
-	padding: 1rem;
 	list-style: none;
-	border-top: 1px solid var(--glow);
-	border-bottom: 1px solid var(--glow);
 }
 
 .page .toc li {

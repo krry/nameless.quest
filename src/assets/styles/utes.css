@@ -31,6 +31,14 @@
 	justify-content: flex-start;
 }
 
+.flex.start {
+	align-items: flex-start;
+}
+
+.flex.finish {
+	justify-content: flex-end;
+}
+
 .flex .spread {
 	flex-grow: 1;
 }
@@ -271,9 +279,27 @@ hr.dinkus.asterism::after {
 	padding-bottom: var(--pad);
 }
 
+.pad-25.x {
+	padding-left: var(--pad-25);
+	padding-right: var(--pad-25);
+}
+
+.pad-50.x {
+	padding-left: var(--pad-50);
+	padding-right: var(--pad-50);
+}
+
 .pad.x {
 	padding-left: var(--pad);
 	padding-right: var(--pad);
+}
+
+.mrg0 {
+	margin: 0 !important;
+}
+
+.pad0 {
+	padding: 0;
 }
 
 .mrg.y {
@@ -283,6 +309,22 @@ hr.dinkus.asterism::after {
 
 .mrg.t {
 	margin-top: var(--pad);
+}
+
+.mrg.r {
+	margin-right: var(--pad);
+}
+
+.mrg.l {
+	margin-left: var(--pad);
+}
+
+.mrg2.r {
+	margin-right: var(--pad2);
+}
+
+.mrg2.l {
+	margin-left: var(--pad2);
 }
 
 .tight.y {
@@ -410,4 +452,11 @@ hr.dinkus.asterism::after {
 
 .tute {
 	text-decoration: dotted underline;
+}
+
+.stack {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
 }

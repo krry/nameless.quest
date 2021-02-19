@@ -11,3 +11,8 @@ The Taiji is a map of changing light as seasons cycle
 [Yìjīng is the Book of Ease](https://www.chinesefortunecalendar.com/yinyang.htm)
 易 change, ease, sun over moon
 經 book, classic, profound book
+
+## Hermagrams Done
+
+2 Earth
+59 Dispersion

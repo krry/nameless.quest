@@ -1,12 +1,13 @@
 <template lang="pug">
 .interp
-	.images.left
-		//- h3 Images
-		pre.image.text.md {{ hex.images }}
-	.lines.right.clickable
-		//- h3 Changing Lines
-		.line(v-for="gram in hex.lines" :key="$symbolize(hex.binary)")
-			LineGram(:content="gram" :toss="cached.toss")
+	.line(
+		v-for="gram in hex.lines"
+		:key="$symbolize(hex.binary)"
+		)
+		LineGram(
+			:content="gram"
+			:toss="cached.toss"
+			)
 </template>
 
 <script lang="ts">
@@ -16,7 +17,7 @@ import LineGram from './LineGram.vue'
 import {cached} from '../store/cache'
 
 export default defineComponent({
-	name: 'HexaInterp',
+	name: 'ChangingLines',
 	components: {
 		LineGram,
 	},
@@ -42,10 +43,6 @@ export default defineComponent({
 	font-size: 1rem;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-}
-
-pre.image {
-	line-height: var(--leading);
+	align-items: flex-start;
 }
 </style>

@@ -1,63 +1,68 @@
 <template lang="pug">
-.bagua
-  transition-group(
-    name="slip"
-  )
-    OneGua.above(
-      v-if="baguad"
-      :key="aboveKey"
-      :gua="above"
-      :above="true"
-    )
-    OneGua.below(
-      v-if="baguad"
-      :key="belowKey"
-      :gua="below"
-      :above="false"
-    )
+.bagua.abs.abs-0.flex.col
+	transition-group(name="slip")
+		.gua.flex.string(
+			v-if="baguad"
+			v-for="[key, val] in Object.entries(pair)"
+			:key="$symbolize(pair[key])"
+			:class="key"
+			)
+			LineGlyph.tripad(
+				trigram
+				:glyph="trigrams[val].trigram"
+				size="xxl"
+				color="ground"
+				)
+			.flex.wrap.string.spread
+				.flex.string
+					.char.font.lg.mrg0 {{trigrams[val].name.zh}}&nbsp;
+					.pinyin {{trigrams[val].name.pn}}
+				.translation.pad-50.x {{trigrams[val].name.en}}
 </template>
 
 <script lang="ts">
-import {defineComponent, reactive, toRefs} from 'vue'
-import OneGua from './OneGua.vue'
+import {defineComponent, PropType, watchEffect, ref} from 'vue'
+import {cfg} from '../store'
+import HanziChar from '../components/HanziChar.vue'
+import LineGlyph from '../components/LineGlyph.vue'
+import trigramData from '../data/trigrams.json'
+
+interface TrigramPair {
+	above: number
+	below: number
+}
+
+const defPair: TrigramPair = {
+	above: 0,
+	below: 0,
+}
 
 export default defineComponent({
 	name: 'BaguaDoors',
 	components: {
-		OneGua,
+		HanziChar,
+		LineGlyph,
 	},
 	props: {
-		above: {
-			type: Number,
-			default: 0,
-		},
-		below: {
-			type: Number,
-			default: 0,
+		pair: {
+			type: Object as PropType<TrigramPair>,
+			default: defPair,
 		},
 		baguad: Boolean,
 	},
-	setup(props) {
-		const BaguaData = reactive({
-			aboveKey: Symbol(props.above),
-			belowKey: Symbol(props.below),
-		})
+	setup() {
 		return {
-			...toRefs(BaguaData),
+			trigrams: trigramData,
 		}
 	},
 })
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 .bagua {
-	align-items: justify;
 	bottom: 0;
 	color: white;
-	display: flex;
-	flex-flow: column nowrap;
 	height: 100%;
-	justify-content: space-evenly;
 	left: 0;
 	overflow: hidden;
 	pointer-events: none;
@@ -68,37 +73,19 @@ export default defineComponent({
 	z-index: 2;
 }
 
-.bagua .gua {
-	flex-direction: row;
+.gua {
+	flex: 1 0 auto;
 	background: var(--ink);
 	color: var(--ground);
 	pointer-events: auto;
-	display: flex;
-	align-items: center;
 }
 
-.bagua .gua .triglyph {
-	transform: translateY(-0.5vh);
-	margin: 0;
-}
-
-.bagua .gua:first-child {
+.gua:first-child {
 	border-bottom: 1px solid var(--pencil);
 }
 
-.bagua .gua:last-child {
+.gua:last-child {
 	border-top: 1px solid var(--pencil);
-}
-
-.bagua .gua .col:first-child {
-	text-align: center;
-	flex: 1 0 40%;
-}
-
-.bagua .gua .col:last-child {
-	text-align: right;
-	padding-right: 1rem;
-	flex: 1 0 60%;
 }
 
 .slip-enter-active,
@@ -130,5 +117,15 @@ export default defineComponent({
 .slip-enter-from.above,
 .slip-leave-to.above {
 	transform: translateY(min(-13vh, -7.5rem));
+}
+
+.glyph,
+.hanzi {
+	color: var(--ground);
+}
+
+.tripad {
+	padding-left: 0.5em;
+	padding-right: 0.5em;
 }
 </style>

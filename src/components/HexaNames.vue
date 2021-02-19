@@ -74,7 +74,6 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .glyphs {
-	/* height: 3em; */
 	width: 100%;
 	display: flex;
 	flex-direction: row;
@@ -82,9 +81,7 @@ export default defineComponent({
 	text-align: center;
 	cursor: pointer;
 	position: relative;
-	/* font-size: 2rem; */
 	transition: color var(--bea2) var(--ease-in-out-quad);
-	/* margin-bottom: 1rem; */
 }
 
 .glyphs .char {

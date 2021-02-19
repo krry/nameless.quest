@@ -23,6 +23,7 @@ import {cfg, tog} from '../store'
 import {getRandTo} from '../utils'
 import {activeLots, setLots, clearLots} from '../store/lots'
 
+// TODO: extract reorderTiles to a tiles composable or util
 export const reorderKey = Symbol('reorder') as InjectionKey<() => void>
 
 export default defineComponent({
@@ -113,7 +114,7 @@ export default defineComponent({
 	box-shadow: 0 0 0.5rem var(--glow);
 	border: var(--frame) solid var(--glow);
 	@media (min-width: 36rem) and (min-height: 36rem) {
-		border: var(--pad) solid var(--shade);
+		border: var(--bevel) solid var(--shade);
 	}
 	pointer-events: auto;
 	margin-left: var(--drawer-buffer);

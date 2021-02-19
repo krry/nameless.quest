@@ -13,16 +13,15 @@
       v-if="wenny"
       :title="`King Wen No. ${hex.kingwen}`"
     ) {{ hex.kingwen }}
-  Bagua(
+  BaguaDoors(
     @click.stop="baguad = !baguad"
     :baguad="baguad"
-    :above="hex.trigramPair.above"
-    :below="hex.trigramPair.below"
+    :pair="hex.trigramPair"
   )
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType, ref, inject, computed} from 'vue'
+import {defineComponent, PropType, ref, inject, watchEffect} from 'vue'
 import {defHex, Hexagram} from '../schema'
 import {cfg} from '../store'
 import BaguaDoors from './BaguaDoors.vue'
@@ -32,7 +31,7 @@ import {setQuadrantKey} from './ChangeNode.vue'
 export default defineComponent({
 	name: 'HexaFrame',
 	components: {
-		Bagua: BaguaDoors,
+		BaguaDoors,
 	},
 	props: {
 		hex: {
@@ -46,10 +45,12 @@ export default defineComponent({
 		const setQuadrant = inject(setQuadrantKey)
 
 		function reorder() {
-			if (!reorderTiles || !setQuadrant) throw new Error('fluck')
+			if (!reorderTiles || !setQuadrant) throw new Error("can't reorder tiles atm 🤨")
 			reorderTiles()
 			setQuadrant()
 		}
+
+		watchEffect(() => (baguad.value = cfg.baguy))
 
 		return {
 			baguad,
@@ -72,10 +73,11 @@ export default defineComponent({
 	z-index: 2;
 }
 
+.order:hover,
+.order:focus,
 .hexagram:hover,
-.hexagram:focus,
-.hexagram:active {
-	color: var(--link);
+.hexagram:focus {
+	color: var(--silk);
 }
 
 .order {

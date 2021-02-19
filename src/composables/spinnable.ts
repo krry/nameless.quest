@@ -11,7 +11,7 @@ export const useSpinnable = (element: HTMLElement): SpinParams => {
 	const spinning = ref(false)
 	// console.log('making element spinnable', element)
 
-	function measureDistance(mX: number, mY: number) {
+	function measureDistance(mX: number, mY: number): number {
 		// console.log('mX, mY', mX, mY)
 		// console.log(
 		// 	'element.offsetWidth, element.offsetHeight',
@@ -51,13 +51,12 @@ export const useSpinnable = (element: HTMLElement): SpinParams => {
 		// get position of mouse or finger
 		// calculate distance between these points every interval
 		if (me) {
-			element.style.animationDuration = `${measureDistance(me.clientX, me.clientY)}ms`
+			element.style.animationDuration = `${0.5 * measureDistance(me.clientX, me.clientY)}ms`
 			// console.log('element.style.animationDuration', element.style.animationDuration)
 		} else if (te) {
-			element.style.animationDuration = `${measureDistance(
-				te.touches[0].clientX,
-				te.touches[0].clientY,
-			)}ms`
+			element.style.animationDuration = `${
+				0.5 * measureDistance(te.touches[0].clientX, te.touches[0].clientY)
+			}ms`
 			// console.log('element.style.animationDuration', element.style.animationDuration)
 		}
 	}

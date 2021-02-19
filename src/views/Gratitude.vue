@@ -114,13 +114,13 @@ Page.gratitude
 				|  for 
 				AppLink._blank(to="https://thenounproject.com/jeremy.j.bristol/uploads/") Assorted Drawrings
 			dd.flex.string.mid.pads.y
-				IconBase(viewBox="0 0 100 125" size="84")
+				IconBase(viewBox="0 0 100 125" size="64")
 					IconPeaceSign
-				IconBase(viewBox="0 0 100 125" size="84")
+				IconBase(viewBox="0 0 100 125" size="64")
 					IconPenroseTriangle
-				IconBase(viewBox="0 0 100 125" size="84")
+				IconBase(viewBox="0 0 100 125" size="64")
 					IconThreeLegs
-				IconBase(viewBox="0 0 100 125" size="84")
+				IconBase(viewBox="0 0 100 125" size="64")
 					IconLooptyLoop
 			dt
 				AppLink._blank(to="https://thenounproject.com/microdotgraphic/") Jino
@@ -162,7 +162,7 @@ Page.gratitude
 			h4.mrg.x.y.half.font.lg To Elysa and Zephyr
 			p.mrg.x.y.text-left.half Your smiles and wiggles make my dreams come true every day.
 	section
-		h2.head.xxl Feeling grateful too?
+		h2.head.x2l Feeling grateful too?
 		h3.font.md
 			| Support 
 			AppLink._blank(to="https://atmanautica.com") Kerrbear
