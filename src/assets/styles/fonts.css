@@ -93,6 +93,33 @@
 .text,
 .mono,
 .head {
+	&.flair {
+		color: var(--flair);
+	}
+	&.link {
+		color: var(--link);
+	}
+	&.ink {
+		color: var(--ink);
+	}
+	&.ground {
+		color: var(--ground);
+	}
+	&.paper {
+		color: var(--paper);
+	}
+	&.pencil {
+		color: var(--pencil);
+	}
+	&.dust {
+		color: var(--dust);
+	}
+}
+
+.font,
+.text,
+.mono,
+.head {
 	&.xxl,
 	&.x2l,
 	&.x3l,
@@ -112,6 +139,10 @@
 
 .sm {
 	--unit: 1rem;
+}
+
+.sd {
+	--unit: 1.125rem;
 }
 
 .md {

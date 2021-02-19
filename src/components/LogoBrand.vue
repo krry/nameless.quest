@@ -42,13 +42,6 @@ export default defineComponent({
 })
 </script>
 <style lang="postcss">
-.stack {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	text-align: center;
-}
-
 .brand {
 	display: flex;
 	transition: var(--beat);

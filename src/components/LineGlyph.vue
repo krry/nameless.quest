@@ -1,10 +1,10 @@
 <template lang="pug">
 .glyph.font(v-if="noturn"
-	:class="size, {ib: inline}, {trigram}"
+	:class="size, {ib: inline}, {trigram}, color"
 	) {{ glyph }}
-Turnable(v-else)
+Turnable(v-else :class="{trigram}")
 	.glyph.font(
-		:class="size, {ib: inline}, {trigram}"
+		:class="size, {ib: inline}, {trigram}, color"
 		) {{ glyph }}
 </template>
 
@@ -24,6 +24,10 @@ export default defineComponent({
 			type: String,
 			default: 'xl',
 		},
+		color: {
+			type: String,
+			default: 'flair',
+		},
 		inline: Boolean,
 		trigram: Boolean,
 		noturn: Boolean,
@@ -33,8 +37,11 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .glyph {
-	color: var(--flair);
 	margin: 0 auto;
+}
+
+.glyph.font {
+	margin: 0;
 }
 
 .trigram {

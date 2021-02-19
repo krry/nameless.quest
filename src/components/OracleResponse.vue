@@ -1,8 +1,18 @@
 <template lang="pug">
-.response.flex.wrap.right(v-if="hexs")
+.response.flex.wrap.mid(v-if="hexs")
 	blockquote
 		h2 {{cached.query.trim()}}
 	h1.whole The Oracle Responds
+	h2 {{ cached.toss }}
+	.lines.whole.text-center.font
+		IconBase.line(
+			v-for="char in cached.toss"
+			:key="$symbolize(char)"
+			height="36"
+			width="20"
+			size="48"
+			)
+			component( :is="`Icon${char}`" )
 	section.col.half.mrg.x(
 		v-for="(hex, index) in hexs"
 		:key="$symbolize(hex.binary)"
@@ -14,7 +24,7 @@
 				span {{ cfg.wenny ? hex.kingwen : hex.octal }}
 				span {{ " " + hex.names.english }}
 		.flex.mid
-			.col.dyn.more
+			.col.dyn.more.flex.mid.mrg2.r
 				h3.font.x2l
 					HanziChar(
 						v-for="(char, i) in hex.names.chinese.split('')"
@@ -24,7 +34,7 @@
 						size="lg"
 						place="side"
 						reveal)
-			.col.dyn.less
+			.col.dyn.less.flex.mid.mrg.r
 				LineGlyph(
 					:glyph="hex.hexagram"
 					size="x5l"
@@ -42,6 +52,10 @@
 import {defineComponent, computed} from 'vue'
 import {useRouter} from 'vue-router'
 import IconBase from '../icons/IconBase.vue'
+import Icon6 from '../icons/Icon6.vue'
+import Icon7 from '../icons/Icon7.vue'
+import Icon8 from '../icons/Icon8.vue'
+import Icon9 from '../icons/Icon9.vue'
 import LineGlyph from './LineGlyph.vue'
 import HanziChar from './HanziChar.vue'
 import {cfg} from '../store'
@@ -55,6 +69,10 @@ export default defineComponent({
 	name: 'OracleResponse',
 	components: {
 		IconBase,
+		Icon6,
+		Icon7,
+		Icon8,
+		Icon9,
 		LineGlyph,
 		HanziChar,
 	},
@@ -100,6 +118,10 @@ export default defineComponent({
 <style lang="postcss" scoped>
 .response {
 	border-color: var(--flair);
+}
+
+.response blockquote {
+	margin-bottom: 0;
 }
 
 h3 {

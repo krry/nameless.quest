@@ -17,7 +17,7 @@
         b yang 
         span ⤐ 
         b yin
-    pre.meaning.font.md {{ content.meaning }}
+    pre.meaning.font.sm.fine {{ content.meaning }}
 </template>
 
 <script lang="ts">
@@ -71,10 +71,6 @@ export default defineComponent({
 	width: 1.25em;
 	color: var(--flair);
 	margin-right: 1rem;
-}
-
-.the-rest {
-	flex: 1 0 auto;
 }
 
 .gram:not(:last-child) {

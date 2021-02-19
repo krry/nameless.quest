@@ -20,23 +20,35 @@
 						:octal="hex.octal"
 						)
 				template(#bottom)
-					.cross.horiz
-						.glyphs
+					h3.mrg.y.font.head.xl The Image
+					.images.left
+						pre.image.text.sd.fine {{ hex.images }}
+					.cross.horiz.flex
+						.flex.col.mid
+							LineGlyph( :glyph="hex.hexagram" size="x6l" )
+							.binary.font.sm(v-show="cfg.turny") {{ hex.binary.slice(2) }}
+							.decimal.font.sm(v-show="cfg.turny") {{ parseInt(hex.binary.slice(2), 2) + ' of 64' }}
+							.kingwen.font.sm(v-show="!cfg.turny")
+								span King Wen 
+								span \#{{ hex.kingwen }}
+							.octal.font.sm(v-show="!cfg.turny")
+								span Octal 
+								span {{ hex.octal }}
+						.liangua.spread.flex.col.even
 							OneGua(
 								:gua="hex.trigramPair.above"
 								size="x4l"
+								charSize="md"
+								above
 								)
-						.stack
-							LineGlyph(
-								:glyph="hex.hexagram"
-								size="x5l"
-							)
-							.binary {{ hex.binary.slice(2) }}
-						.glyphs
+								.pos-name.font.sm above
 							OneGua(
 								:gua="hex.trigramPair.below"
 								size="x4l"
+								charSize="md"
+								below
 								)
+								.pos-name.font.sm below
 			HexaFace(
 				v-else
 				class="face face--back"
@@ -53,9 +65,9 @@
 							noturn
 							)
 					h2.yingyu.head.x2l {{ hex.names.english }}
-					pre.judgment.text.md {{ hex.judgment }}
+					pre.judgment.text.sd.fine {{ hex.judgment }}
 				template(#bottom)
-					HexaInterp(
+					ChangingLines(
 						:hex="hex"
 						:liney="liney")
 </template>
@@ -66,20 +78,22 @@ import {useSwipeable} from '../composables/swipeable'
 import {cfg, tog} from '../store'
 import OneGua from './OneGua.vue'
 import HexaFace from './HexaFace.vue'
+import HanziChar from './HanziChar.vue'
 import LineGlyph from './LineGlyph.vue'
 import Spinnable from './Spinnable.vue'
 import HexaNames from './HexaNames.vue'
-import HexaInterp from './HexaInterp.vue'
+import ChangingLines from './ChangingLines.vue'
 
 export default defineComponent({
 	name: 'HexaCard',
 	components: {
 		OneGua,
 		HexaFace,
+		HanziChar,
 		LineGlyph,
 		Spinnable,
 		HexaNames,
-		HexaInterp,
+		ChangingLines,
 	},
 	props: {
 		hex: {
@@ -201,7 +215,7 @@ hr.divider {
 .cross.horiz {
 	display: flex;
 	flex-direction: row;
-	align-items: baseline;
+	align-items: flex-start;
 	min-width: 16em;
 	padding-bottom: 1rem;
 }
@@ -212,23 +226,8 @@ hr.divider {
 	}
 }
 
-.stack {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	align-items: center;
-}
-
-.glyphs {
-	height: 100%;
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	text-align: center;
-}
-
-pre.judgment {
+pre.judgment,
+pre.image {
 	line-height: var(--leading);
 }
 
@@ -301,5 +300,8 @@ pre.judgment {
 	.sleeve.left.edge.middle {
 		left: 100%;
 	}
+}
+.pos-name {
+	margin-top: -1em;
 }
 </style>

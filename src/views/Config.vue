@@ -1,8 +1,7 @@
 <template lang="pug">
 Page.config.col
-  h1.font.x3l Config
-  h2 Customize the Oracle
-  h4.tagline Hone your ritual to suit your taste
+  h1.font.x3l Configure the Oracle
+  p.text.lg Arrange the altar, hone the ritual
   section.flex.wrap.btw.even
     .setting.half
       ToggleSwitch(
@@ -17,11 +16,15 @@ Page.config.col
           char="易"
           pinyin="Yì"
           size="lg"
+          place="over"
+          reveal
           )
         HanziChar(
           char="經"
           pinyin="Jīng"
           size="lg"
+          place="over"
+          reveal
           )
     .setting.half
       ToggleSwitch(
@@ -52,7 +55,7 @@ Page.config.col
           trigram
           inline
           glyph="☵"
-          size="x3l")
+          size="x4l")
         LineGlyph(
           inline
           glyph="䷂"
@@ -61,7 +64,7 @@ Page.config.col
           trigram
           inline
           glyph="☳"
-          size="x3l")
+          size="x4l")
     .setting.half
       ToggleSwitch(
         label="Show hotkey hints"
@@ -78,11 +81,20 @@ Page.config.col
     .setting.half
       ToggleSwitch(
         label="Default Order"
-        dis="King Wen"
-        dat="Octal"
+        dis="Octal"
+        dat="King Wen"
         v-model:checked="cfg.wenny"
         tabindex="0"
         )
+    .setting.half
+      ToggleSwitch(
+        label="Bagua Doors"
+        dis="Open"
+        dat="Closed"
+        v-model:checked="cfg.baguy"
+        tabindex="0"
+        )
+      ChangeNode.example
     .setting.half.flex.col.mid
       h4.font.md.thicc Switch the Theme
       .flex
@@ -92,13 +104,16 @@ Page.config.col
 <script lang="ts">
 import {defineComponent} from 'vue'
 import {cfg, set} from '../store'
+import {defHex} from '../schema'
 import Page from '../components/Page.vue'
 import AppLink from '../components/AppLink.vue'
 import ComingSoon from '../components/ComingSoon.vue'
 import ToggleSwitch from '../components/ToggleSwitch.vue'
 import ThemeSwitch from '../components/ThemeSwitch.vue'
+import ChangeNode from '../components/ChangeNode.vue'
 import HanziChar from '../components/HanziChar.vue'
 import LineGlyph from '../components/LineGlyph.vue'
+import HexaCard from '../components/HexaCard.vue'
 
 export default defineComponent({
 	name: 'Config',
@@ -108,23 +123,22 @@ export default defineComponent({
 		ComingSoon,
 		ToggleSwitch,
 		ThemeSwitch,
+		ChangeNode,
 		HanziChar,
 		LineGlyph,
+		HexaCard,
 	},
 	setup() {
 		return {
 			cfg,
 			set,
+			defHex,
 		}
 	},
 })
 </script>
 
 <style lang="postcss" scoped>
-.config .page {
-	background: var(--dust);
-}
-
 .setting {
 	margin: 1rem;
 }
@@ -143,12 +157,22 @@ label + input {
 	margin-left: 0.5rem;
 }
 
-.turned {
+.turner {
 	display: inline-block;
+}
+
+.turned {
 	transform: rotate(-90deg);
 }
 
 .example {
 	margin-top: 1rem;
+	position: relative !important;
+}
+</style>
+<style lang="postcss">
+.config .page {
+	/* background-color: var(--pencil); */
+	min-width: 24rem;
 }
 </style>

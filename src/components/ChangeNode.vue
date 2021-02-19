@@ -1,10 +1,10 @@
 <template lang="pug">
 article.change-node(
-  :class="{active: isActive}"
+  :class="{active: isActive}, {active: isBecoming}"
   @keydown.esc="clearLots()"
   )
   transition(name="deal" mode="out-in" appear)
-    Card(
+    HexaCard(
       ref="card"
       v-if="isActive"
       :hex="hex"
@@ -13,8 +13,8 @@ article.change-node(
       :quad="setQuadrant()"
       @close="removeLot(hexId)"
     )
-  Frame(:hex="hex")
-  Tile.tile(
+  HexaFrame(:hex="hex")
+  HexaTile.tile(
     ref="tile"
     :tabindex="wenny ? hex.kingwen + 9 : hex.octal + 9"
     :names="hex.names"
@@ -32,8 +32,8 @@ import {
 	toRef,
 	toRefs,
 	provide,
-	InjectionKey,
 	watchEffect,
+	InjectionKey,
 	onMounted,
 	computed,
 } from 'vue'
@@ -46,14 +46,15 @@ import HexaCard from './HexaCard.vue'
 import HexaTile from './HexaTile.vue'
 import HexaFrame from './HexaFrame.vue'
 
+// TODO: extract setQuadrant to a tiles composable or util
 export const setQuadrantKey = Symbol('quadrant') as InjectionKey<() => Quad>
 
 export default defineComponent({
 	name: 'ChangeNode',
 	components: {
-		Card: HexaCard,
-		Tile: HexaTile,
-		Frame: HexaFrame,
+		HexaCard,
+		HexaTile,
+		HexaFrame,
 	},
 	props: {
 		hex: {
@@ -78,18 +79,8 @@ export default defineComponent({
 			quadrant: ref<Quad>(),
 			id: toRef(props, 'hexId'),
 			wenny: cfg.wenny,
-			isActive: computed(() => {
-				// console.log('activeLots', activeLots.value)
-				// console.log('hex.binary', hex.value.binary)
-				// console.log(
-				//   'activeLots()?.indexOf(rx.hex.binary)',
-				//   activeLots.value.indexOf(hex.value.binary),
-				// )
-				return activeLots.value?.indexOf(hex.value.binary) === 0
-			}),
-			isBecoming: computed(() => {
-				return activeLots.value?.indexOf(hex.value.binary) === 1
-			}),
+			isActive: computed(() => activeLots.value?.indexOf(hex.value.binary) === 0),
+			isBecoming: computed(() => activeLots.value?.indexOf(hex.value.binary) === 1),
 		})
 
 		function setQuadrant(e: Event): Quad {

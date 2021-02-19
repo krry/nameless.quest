@@ -1,31 +1,20 @@
 <template lang="pug">
-.char.reveal(
-  v-if="reveal"
-  @click.stop="pinny = !pinny"
-  :class="size, place, {ib: inline}"
-  )
-  .hanzi {{ char }}
-  transition(name="slide-fade")
-    .pinyin(
-      v-show="pinny"
-      :class="place"
-      ) {{ pinyin }}
-  h4.translation(v-if="translation") {{ translation }}
 .char(
-  v-else
-  :title="pinyin"
-  :class="size, place, {ib: inline}"
-  )
-  .hanzi {{ char }}
-  .pinyin.over(
-    v-show="cfg.pinny"
-    :class="place"
-    ) {{ pinyin }}
-  h4.translation(v-if="translation") {{ translation }}
+	@click.passive="showPinny"
+	:class="size, place, {ib: inline}, {reveal}"
+	:title="pinyin"
+	)
+	.hanzi {{ char }}
+	transition(name="slide-fade")
+		.pinyin(
+			v-show="pinny || !reveal"
+			:class="place"
+			) {{ pinyin }}
+	h4.translation.rel(v-if="translation") {{ translation }}
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from 'vue'
+import {defineComponent, ref, watchEffect} from 'vue'
 import {cfg} from '../store'
 
 export default defineComponent({
@@ -56,15 +45,21 @@ export default defineComponent({
 		inline: Boolean,
 	},
 	setup(props) {
-		if (props.reveal) {
-			const pinny = ref(cfg.pinny)
-			return {
-				pinny,
-				cfg,
+		const pinny = ref(cfg.pinny)
+
+		function showPinny(ev: MouseEvent) {
+			if (props.reveal) {
+				ev.stopPropagation()
+				pinny.value = !pinny.value
 			}
 		}
+
+		watchEffect(() => (pinny.value = cfg.pinny))
+
 		return {
+			pinny,
 			cfg,
+			showPinny,
 		}
 	},
 })
@@ -74,6 +69,7 @@ export default defineComponent({
 .char {
 	display: inline-block;
 	position: relative;
+	text-align: center;
 }
 
 .char:nth-of-type(2) {
@@ -106,8 +102,18 @@ export default defineComponent({
 	font-size: calc(var(--unit) * 1.5);
 }
 
-.char .pinyin {
+.char.sm .hanzi {
+	font-size: calc(var(--unit) * 1.25);
+}
+
+.char .pinyin,
+.translation {
 	font-size: calc(var(--unit) * 0.8);
+}
+
+.translation {
+	bottom: -70%;
+	margin-bottom: 0;
 }
 
 .char.over {
@@ -121,6 +127,8 @@ export default defineComponent({
 .char.side {
 	margin: 0 1rem;
 	display: block;
+	width: 1em;
+	padding-right: 0.25em;
 }
 
 .char.side.ib {
@@ -138,6 +146,7 @@ export default defineComponent({
 	font-size: var(--unit);
 	padding: 0;
 	font-size: inherit;
+	line-height: calc(var(--unit) * 1.5);
 }
 
 .char.none {
@@ -187,6 +196,7 @@ export default defineComponent({
 	top: 50%;
 	left: 0;
 	right: -1rem;
+	text-align: left;
 	pointer-events: none;
 }
 
@@ -200,18 +210,27 @@ export default defineComponent({
 .pinyin.side,
 .pinyin.side.slide-fade-enter-to,
 .pinyin.side.slide-fade-leave-from {
-	transform: translateX(calc(var(--unit) * 2)) translateY(-50%);
+	transform: translateX(calc(var(--unit) * 2.25)) translateY(-50%);
+	/* padding: 0 0 calc(var(--unit) * 0.25); */
 }
 
-.ib .pinyin.side,
-.ib .pinyin.side.slide-fade-enter-to,
-.ib .pinyin.side.slide-fade-leave-from {
-	transform: translateX(calc(var(--unit) * 1.5)) translateY(-50%);
+.md .pinyin.side,
+.md .pinyin.side.slide-fade-enter-to,
+.md .pinyin.side.slide-fade-leave-from {
+	transform: translateX(calc(var(--unit) * 1.75)) translateY(-50%);
+	padding: 0 0 calc(var(--unit) * 1.75);
+}
+
+.sm .pinyin.side,
+.sm .pinyin.side.slide-fade-enter-to,
+.sm .pinyin.side.slide-fade-leave-from {
+	transform: translateX(calc(var(--unit) * 1.375)) translateY(-50%);
+	padding: 0 0 calc(var(--unit) * 1.375);
 }
 
 .pinyin.side.slide-fade-leave-to,
 .pinyin.side.slide-fade-enter-from {
-	transform: translateY(-50%);
+	transform: translateX(50%) translateY(-50%);
 }
 </style>
 <style lang="postcss">

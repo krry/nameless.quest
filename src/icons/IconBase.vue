@@ -1,8 +1,8 @@
 <template lang="pug">
 svg.icon(
   xmlns="http://www.w3.org/2000/svg"
-  :width="size"
-  :height="size"
+  :width="width || size"
+  :height="height || size"
   :viewBox="viewBox"
   :aria-labelledby="iconName"
   role="presentation"
@@ -24,11 +24,11 @@ export default {
 		},
 		width: {
 			type: [Number, String],
-			default: 24,
+			default: 0,
 		},
 		height: {
 			type: [Number, String],
-			default: 24,
+			default: 0,
 		},
 		size: {
 			type: [Number, String],

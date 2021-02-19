@@ -1,11 +1,11 @@
 <template lang="pug">
-h2.callout.alert.text-center 🚧 More coming soon 🧙‍♂️
+h2.callout.text-center 🚧 More coming soon 🧙‍♂️
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue'
 export default defineComponent({
-  name: 'ComingSoon',
+	name: 'ComingSoon',
 })
 </script>
 

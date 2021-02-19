@@ -90,10 +90,10 @@ export interface Quad {
 }
 
 export const defQuad: Quad = {
-	yPos: 'top',
-	xPos: 'left',
-	edge: 'edge',
-	middle: 'middle',
+	yPos: '',
+	xPos: '',
+	edge: '',
+	middle: '',
 }
 
 export interface Person {

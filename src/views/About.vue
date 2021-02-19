@@ -2,21 +2,10 @@
 Page.about
   h1.page-title
     LogoBrand
-  blockquote.poem
-    pre.text-left
-      | May the Nameless encourage
-      | trust in our intuition
-      | as we summon the future
-      | just as the past:
-      | so many echoes into now.
-      br
-      br
-      | May we dance what feels good,
-      | each step with more love.
-  ul(ref="toc").toc.ls.pad.y
+  ul(ref="toc").toc.ls.pad.y.flex.start
     li.flex.col.mid
       a.btn.naked.xl(@click.prevent="$cruiseTo(divine)")
-        IconBase(viewBox="0 0 1000 1250" size="64" iconColor="var(--link)")
+        IconBase(viewBox="0 0 1000 1000" size="48" iconColor="var(--link)")
           IconCrystalBall
         br
         | How to Consult the Oracle
@@ -38,8 +27,9 @@ Page.about
   section(ref="divine")
     h2.head.xxl Divination
     h3.font.xl How to Consult the Oracle
-    IconBase(viewBox="0 0 1000 1250" size="80" iconColor="var(--flair)")
-      IconCrystalBall
+    Spinnable
+      IconBase(viewBox="0 0 1000 1250" size="80" iconColor="var(--flair)")
+        IconCrystalBall
 
     p Every path leads to and from the Source. There is no right or wrong way to encounter the divine. But certain methods allow insight to arise more readily. Mindsets and settings carefully prepared and arranged can clear the skies, peel our eyes, and prime our hearts to absorb the truth of the matter in this moment.
 
@@ -82,8 +72,9 @@ Page.about
   section(ref="define")
     h2.head.xxl Defining the Yìjīng
     h3.font.xl Resources for Understanding
-    IconBase(viewBox="0 0 100 125" size="64" iconColor="var(--flair)")
-      IconBookStack
+    Spinnable
+      IconBase(viewBox="0 0 100 125" size="64" iconColor="var(--flair)")
+        IconBookStack
 
     p If you would like to dive deeper into the history and (potential) meaning of the Yìjīng, I can offer little outside of recommending you to the resources that have enriched my journey to the oracle. In no particular order, and expanding as I discover and ingest them:
 
@@ -109,6 +100,7 @@ Page.about
               char="易"
               pinyin="Yì"
               size="xl"
+              place="over"
               reveal
               translation="Change"
               )
@@ -117,6 +109,7 @@ Page.about
               char="經"
               pinyin="Jīng"
               size="xl"
+              place="over"
               reveal
               translation="Classic Book"
               )
@@ -132,8 +125,9 @@ Page.about
   section(ref="devsign")
     h2.head.xxl Devsigning Nameless
     h3.font.xl A New Take on a Timeless Classic
-    IconBase(viewBox="0 0 1000 1250" size="64" iconColor="var(--flair)")
-      IconWizardsHat
+    Spinnable
+      IconBase(viewBox="0 0 1000 1250" size="64" iconColor="var(--flair)")
+        IconWizardsHat
     p
       | Originally conceived in a fever dream deep in a frozen pit of winter, 
       strong Nameless 
@@ -189,7 +183,24 @@ Page.about
       strong
         em what if twelve were 10?
       |  For if we nimbly count our phalanges (the three little bones in each of our four fingers) with our thumbs, we quickly find twelve on a hand, and may find our decimal digits rather cro-magnon in comparison. And we can easily get to sixty by assigning each of the five digits on the other hand to a dozen as we count.
-  AppLink.btn(to="https://ko-fi.com/kerrbear") We encourage you to feed the Kerrbear 🐻
+
+  hr.dinkus.fleuroff
+
+  blockquote.poem.mrgs.y
+    pre.text-left.fine.text
+      | May the Nameless encourage
+      | trust in our intuition
+      | as we summon the future
+      | just as the past:
+      | so many echoes into now.
+      br
+      br
+      | May we dance what feels good,
+      | each step with more love.
+
+  hr.dinkus.fleuron
+
+  AppLink.btn(to="https://ko-fi.com/kerrbear") Please feed the Bears 🐻
 </template>
 
 <script lang="ts">
@@ -198,6 +209,7 @@ import Page from '../components/Page.vue'
 import AppLink from '../components/AppLink.vue'
 import HanziChar from '../components/HanziChar.vue'
 import LogoBrand from '../components/LogoBrand.vue'
+import Spinnable from '../components/Spinnable.vue'
 import IconBase from '../icons/IconBase.vue'
 import Icon7 from '../icons/Icon7.vue'
 import Icon8 from '../icons/Icon8.vue'
@@ -211,6 +223,7 @@ export default defineComponent({
 		Page,
 		AppLink,
 		LogoBrand,
+		Spinnable,
 		HanziChar,
 		Icon7,
 		Icon8,
@@ -241,7 +254,7 @@ export default defineComponent({
 }
 
 blockquote.poem {
-	margin: 0;
+	/* margin: 0; */
 	padding: 0;
 }
 </style>

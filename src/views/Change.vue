@@ -9,7 +9,8 @@ Page.text-center(
 		.hint.vapor.abs.t.r.l.center.font.sm(v-if="!cfg.navvy") ⬅️ Did you try 😁 arrow keys? ➡️
 	router-link.page-nav.btn.naked.next.clickable.abs.t.r(:to="next") {{ next }} 𐡸
 	h1.font.x2l.flex.mid
-		LineGlyph(:glyph="hex.hexagram" inline size="x8l")
+		Spinnable
+			LineGlyph(:glyph="hex.hexagram" noturn inline size="x8l")
 		.flex.col.mid
 			HanziChar(
 				v-for="(char, index) in hex.names.chinese"
@@ -38,7 +39,6 @@ Page.text-center(
 	.flex.mid.col.string
 		pre.judgment.font.md(v-html="adoptOrphans(hex.judgment)")
 	.flex.mid.col.string
-		pre.image.font.md(v-html="adoptOrphans(hex.images)")
 		.flex.space
 			.flex.string.col.dyn
 				.datum.trigram.flex.string.laze.btw(
@@ -64,6 +64,7 @@ Page.text-center(
 			LineGlyph.datum.middle.dyn(
 				:glyph="hex.hexagram"
 				size="x6l")
+		pre.image.font.md(v-html="adoptOrphans(hex.images)")
 	.flex.mid.col.string
 		h2 Changing Lines
 		section(
@@ -71,7 +72,7 @@ Page.text-center(
 			:key="$symbolize(line.position)"
 			)
 			Turnable
-				IconBase(size="60")
+				IconBase(size="60" iconColor="var(--flair)")
 					component(:is="'Icon' + getChangingLine(line.position).icon")
 			h4.font.lg Line {{line.position + ': ' + getChangingLine(line.position).desc }}
 			.flex.mid
@@ -94,6 +95,7 @@ import Page from '../components/Page.vue'
 import HanziChar from '../components/HanziChar.vue'
 import LineGlyph from '../components/LineGlyph.vue'
 import LineGram from '../components/LineGram.vue'
+import Spinnable from '../components/Spinnable.vue'
 import Turnable from '../components/Turnable.vue'
 import IconBase from '../icons/IconBase.vue'
 import Icon6 from '../icons/Icon6.vue'
@@ -126,6 +128,7 @@ export default defineComponent({
 		HanziChar,
 		IconBase,
 		Turnable,
+		Spinnable,
 		Icon6,
 		Icon7,
 		Icon8,

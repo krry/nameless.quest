@@ -8,6 +8,7 @@ export const cfg: {[key: string]: boolean} = reactive({
 	turny: lsd('turny'), // prefer vertical lines
 	navvy: lsd('navvy'), // prefer no more hints
 	beeny: lsd('beeny'), // seen the intro pane
+	baguy: lsd('baguy'), // bagua doors shut
 	drawer: lsd('drawer'), // site nav visible
 	perused: lsd('perused'), // visited changes
 	metafied: lsd('metafied'), // visited about
