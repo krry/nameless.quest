@@ -15,6 +15,8 @@ export const cfg: {[key: string]: boolean} = reactive({
 	journaled: lsd('journaled'), // visited journal
 	consulted: lsd('consulted'), // visited oracle
 	configured: lsd('configured'), // visited config
+	thanked: lsd('thanked'), // visited gratitude
+	fedback: lsd('fedback'), // visited feedback
 	emailVerified: lsd('emailVerified'),
 	phoneVerified: lsd('phoneVerified'),
 })

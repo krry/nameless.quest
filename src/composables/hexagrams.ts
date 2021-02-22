@@ -15,6 +15,7 @@ export const useHexagrams = (): {
 	})
 
 	function getHexagrams(wenny: boolean) {
+		// console.log('getHexagrams', wenny)
 		const order = wenny ? 'kingwen' : 'octal'
 		return new Map(
 			rx.hexagrams
@@ -27,24 +28,30 @@ export const useHexagrams = (): {
 	}
 
 	function getHexagramByBin(bin: string) {
+		// console.log('getHexagramByBin', bin)
+		// console.log('getting hexagram with bin', bin)
 		return rx.hexagrams.filter((h) => {
 			return h.binary.toString() === bin
 		})[0]
 	}
 
 	function getHexagramByWen(wen: string) {
+		// console.log('getHexagramByWen', wen)
 		return rx.hexagrams.filter((h) => {
 			return h.kingwen.toString() === wen
 		})[0]
 	}
 
 	function getHexagramByOctal(octal: string) {
+		// console.log('getHexagramByOctal', octal)
+		const octalWithZeroes = octal.length === 1 ? '00' + octal : '0' + octal
 		return rx.hexagrams.filter((h) => {
-			return h.octal === '0' + octal
+			return h.octal === octalWithZeroes
 		})[0]
 	}
 
 	function binaryToOctal(bin: string) {
+		// console.log('binaryToOctal', bin)
 		// takes a binary string like 0b010110
 		// converts it to a decimal number with parseInt
 		// then converts this into an octal string with toString(8)
@@ -52,10 +59,12 @@ export const useHexagrams = (): {
 	}
 
 	function getEnglishNameByBin(bin: string) {
+		// console.log('getEnglishNameByBin', bin)
 		return getHexagramByOctal(binaryToOctal(bin))?.names.english ?? ''
 	}
 
 	function getWenByBin(bin: string) {
+		// console.log('getWenByBin', bin)
 		return getHexagramByOctal(binaryToOctal(bin))?.kingwen.toString() ?? '0'
 	}
 

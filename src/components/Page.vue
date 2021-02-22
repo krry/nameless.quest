@@ -141,10 +141,13 @@ export default defineComponent({
 	margin: 1.5em 0;
 	padding: 1.5em;
 	color: var(--ink);
-	font-family: var(--mono);
 	background-color: var(--ground);
 	box-shadow: inset 0 0 0.25rem 0 var(--ink);
 	border-radius: var(--bevel);
+	@supports (font-variation-settings: normal) {
+		font-family: 'QuicksandVariable';
+		font-variation-settings: 'wght' 444;
+	}
 }
 
 .callout strong {

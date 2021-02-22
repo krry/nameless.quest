@@ -11,7 +11,7 @@ Page.config.col
         dis="Hidden"
         dat="Visible"
       )
-      .flex.font.mid.string.text-center.pad.y
+      .flex.font.mid.string.font.center.pad.y
         HanziChar(
           char="易"
           pinyin="Yì"

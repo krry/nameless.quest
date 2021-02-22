@@ -16,6 +16,7 @@ export const cached: {[key: string]: string} = reactive({
 	toss: lsd('toss'),
 	step: lsd('step'),
 	help: lsd('help'),
+	newRoll: lsd('newRoll'),
 })
 
 export const cache = (nym: string, val: string): void => {

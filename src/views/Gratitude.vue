@@ -150,7 +150,7 @@ Page.gratitude
 			dd.flex.string.mid.pads.y
 				IconBase(viewBox="0 0 50000 62500" size="192")
 					IconCoinFlip
-		p.text.text-center
+		p.text.center
 			| And thanks to 
 			AppLink._blank(to="https://thenounproject.com/") the Noun Project
 			|  for helping us
@@ -181,6 +181,7 @@ Page.gratitude
 
 <script lang="ts">
 import {defineComponent} from 'vue'
+import {set} from '../store'
 import Page from '../components/Page.vue'
 import AppLink from '../components/AppLink.vue'
 import IconBase from '../icons/IconBase.vue'
@@ -228,6 +229,9 @@ export default defineComponent({
 		return {
 			title: 'Thanks and Credits',
 		}
+	},
+	mounted() {
+		set('thanked', true)
 	},
 })
 </script>

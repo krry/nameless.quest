@@ -20,7 +20,6 @@
   "background_color": "#151B1E",
   "display": "standalone",
   "categories": ["oracle", "divination", "wellness", "spirituality", "wisdom"],
-  "orientation": "landscape",
   "screenshots": [
     {
       "src": "screenshot1.webp",

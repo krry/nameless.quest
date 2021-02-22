@@ -1,6 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
-import 'firebase/database'
+// import 'firebase/database'
+import 'firebase/firestore'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -14,10 +15,11 @@ const firebaseConfig = {
 }
 firebase.initializeApp(firebaseConfig)
 
-const db = firebase.database()
+const db = firebase.firestore()
 const auth = firebase.auth()
 auth.useDeviceLanguage()
 export type UserCredential = firebase.auth.UserCredential
+// export type fbDbRef = firebase.database.Reference
 // const userz = db.collection('users')
 // const rollz = db.collection('rolls')
 

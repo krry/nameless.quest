@@ -25,13 +25,13 @@ Page.login(
     LoginEmail.left(v-if="method === 'email'")
     LoginPhone.right(v-else-if="method === 'phone'")
   transition(name="slide-fade" mode="out-in" appear)
-    h3.text-center.right(v-if="explained")
+    h3.font.center.right(v-if="explained")
       | Frankly 
       AppLink(to="https://medium.com/@ninjudd/passwords-are-obsolete-9ed56d483eb") passwords are obsolete
       | .
       br
       | Signing in passwordlessly is easier and more secure.
-    h3.text-center.left(v-else @click="explained = !explained")
+    h3.font.center.left(v-else @click="explained = !explained")
       a It's passwordless!?
 </template>
 

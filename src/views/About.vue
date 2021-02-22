@@ -5,19 +5,19 @@ Page.about
   ul(ref="toc").toc.ls.pad.y.flex.start
     li.flex.col.mid
       a.btn.naked.xl(@click.prevent="$cruiseTo(divine)")
-        IconBase(viewBox="0 0 1000 1000" size="48" iconColor="var(--link)")
+        IconBase(viewBox="0 0 1000 1000" size="48")
           IconCrystalBall
         br
         | How to Consult the Oracle
     li.flex.col.mid
       a.btn.naked.xl(@click.prevent="$cruiseTo(define)")
-        IconBase(viewBox="0 0 100 125" size="48" iconColor="var(--link)")
+        IconBase(viewBox="0 0 100 125" size="48")
           IconBookStack
         br
         | Resources for Deeper Understanding
     li.flex.col.mid
       a.btn.naked.xl(@click.prevent="$cruiseTo(devsign)")
-        IconBase(viewBox="0 0 1000 1250" size="48" iconColor="var(--link)")
+        IconBase(viewBox="0 0 1000 1250" size="48")
           IconWizardsHat
         br
         | Making a Nameless for Itself
@@ -28,14 +28,17 @@ Page.about
     h2.head.xxl Divination
     h3.font.xl How to Consult the Oracle
     Spinnable
-      IconBase(viewBox="0 0 1000 1250" size="80" iconColor="var(--flair)")
+      IconBase(viewBox="0 0 1000 1250" size="80" iconColor="var(--link)")
         IconCrystalBall
 
     p Every path leads to and from the Source. There is no right or wrong way to encounter the divine. But certain methods allow insight to arise more readily. Mindsets and settings carefully prepared and arranged can clear the skies, peel our eyes, and prime our hearts to absorb the truth of the matter in this moment.
 
     aside.callout
-      h4.head.thick.xl TL:DR; A Divination Ritual
-      ol.ls.mono.thick
+      h3.head.thick.xl 
+        small TL:DR;
+        br
+        | A Divination Ritual
+      ol.ls.thick
         li
           | Commit five to fifty minutes to seeing the truth, then 
           strong stop time.
@@ -73,7 +76,7 @@ Page.about
     h2.head.xxl Defining the Yìjīng
     h3.font.xl Resources for Understanding
     Spinnable
-      IconBase(viewBox="0 0 100 125" size="64" iconColor="var(--flair)")
+      IconBase(viewBox="0 0 100 125" size="64" iconColor="var(--link)")
         IconBookStack
 
     p If you would like to dive deeper into the history and (potential) meaning of the Yìjīng, I can offer little outside of recommending you to the resources that have enriched my journey to the oracle. In no particular order, and expanding as I discover and ingest them:
@@ -95,7 +98,7 @@ Page.about
           | Hilary Barrett presents a wealth of knowledge and guidance about and around the Yìjīng, and offers us a delightful translation and interpretation for the new millennium, free of the trappings of androcracy, careful to treat power as responsibility rather than as dominance, and ready to reveal the light as our eyes adjust to the shining brilliance of the oracle.
         p Early in their wonderful introduction course to the Yìjīng, we learn the meaning of the book's title:
         .flex.space.pad2.top
-          h3.ib.text-center
+          h3.ib.font.center
             HanziChar(
               char="易"
               pinyin="Yì"
@@ -104,7 +107,7 @@ Page.about
               reveal
               translation="Change"
               )
-          h3.ib.text-center
+          h3.ib.font.center
             HanziChar(
               char="經"
               pinyin="Jīng"
@@ -126,7 +129,7 @@ Page.about
     h2.head.xxl Devsigning Nameless
     h3.font.xl A New Take on a Timeless Classic
     Spinnable
-      IconBase(viewBox="0 0 1000 1250" size="64" iconColor="var(--flair)")
+      IconBase(viewBox="0 0 1000 1250" size="64" iconColor="var(--link)")
         IconWizardsHat
     p
       | Originally conceived in a fever dream deep in a frozen pit of winter, 
@@ -138,16 +141,13 @@ Page.about
       em The I Ching or the Book of Changes. 
       | My favorite 
       AppLink(to="http://tarot-de-marseille-millennium.com/english/tarot_sacred_code.html") Tarot de Marseilles deck
-      |  sat on the desk beside me: 78 cards in a timeless cycle of birth, becoming, decay, and death. And here in the Yìjīng, I found sixty-four hexagrams describing the full set of Changes we,
-      strong  the nameless
+      |  sat on the desk beside me: 78 cards in a timeless cycle of birth, becoming, decay, and death. And here in the Yìjīng, I found sixty-four hexagrams describing the full set of Changes 
+      strong we, the nameless
       | , may experience.
     p
       | Sixty-four, as we know, is the square of eight. Which got me wondering how the Yìjīng might look in an octal 
       code base8
-      |  number system.
-      strong
-        em What if eight were 10,
-      |  so to speak?
+      |  number system. What if eight were 10, so to speak?
     p 
       | Examining the hexagrams I also noticed that one can easily transpose them into binary numbers, taking an active or yang line 
       IconBase
@@ -180,8 +180,7 @@ Page.about
     h4.font.lg.thick ✋⏱ It Does Explain All the Dozens, Doesn't It, 🧭🤌
     p
       | Tracing the anthropomorphic origins of the base 12 and base 60 systems of counting back to the cuneiforms of the Fertile Crescent, from which we have inherited 12-inch feet, 60-minute hours, 360 degree circles and many more measures, one might symmetrically wonder 
-      strong
-        em what if twelve were 10?
+      strong what if twelve were 10?
       |  For if we nimbly count our phalanges (the three little bones in each of our four fingers) with our thumbs, we quickly find twelve on a hand, and may find our decimal digits rather cro-magnon in comparison. And we can easily get to sixty by assigning each of the five digits on the other hand to a dozen as we count.
 
   hr.dinkus.fleuroff
