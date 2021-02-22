@@ -5,13 +5,13 @@ nav.flex.col.pad.y
 			router-link.btn.outline(:to="{ name: 'oracle' }" tabindex="0")
 				IconBase(size="40" viewBox="0 0 100 125")
 					IconMiracle
-				span(v-if="!cfg.consulted") Consult the 
+				span(v-if="!cfg.consulted") Ask the 
 				span Oracle
 		li
 			router-link.btn.naked(:to="{ name: 'changes' }" tabindex="0")
 				IconBase(size="40" viewBox="0 0 1000 1250")
 					IconOpenBook
-				span(v-if="!cfg.perused") Peruse the 
+				span(v-if="!cfg.perused") See the 
 				span Changes
 		li
 			router-link.btn.naked(:to="{ name: 'journal' }" tabindex="0")
@@ -40,17 +40,19 @@ nav.flex.col.pad.y
 			router-link.btn.naked(:to="{ name: 'gratitude' }" tabindex="0")
 				IconBase(size="40" viewBox="0 0 1000 1250")
 					IconCandles
-				| Gratitude
+				span(v-if="!cfg.thanked") Gratitude
+				span(v-if="cfg.thanked") Thanks
 		li
 			a.btn.naked(
-				@click.stop
+				@click.stop="set('fedback', true)"
 				tabindex="0"
 				data-feedback-fish
 				:data-feedback-fish-userid="cached.email"
 				)
 				IconBase(size="36" viewBox="0 0 17 21")
 					IconConversation
-				|  Feedback?
+				span(v-if="!cfg.fedback") Questions or Feedback?
+				span(v-if="cfg.fedback") Feedback?
 		li(v-if="cached.uid")
 			a.btn.md.naked.signout(
 				@click.stop="$logout"
@@ -63,9 +65,8 @@ nav.flex.col.pad.y
 
 <script lang="ts">
 import {defineComponent} from 'vue'
-import {cfg} from '../store'
+import {cfg, set} from '../store'
 import {cached} from '../store/cache'
-import {getRolls} from '../store/rolls'
 import IconBase from '../icons/IconBase.vue'
 import IconScroll from '../icons/IconScroll.vue'
 import IconCandles from '../icons/IconCandles.vue'
@@ -94,10 +95,9 @@ export default defineComponent({
 		IconConversation,
 	},
 	setup() {
-		const rolls = getRolls()
-		console.log('rolls', rolls)
 		return {
 			cfg,
+			set,
 			cached,
 		}
 	},

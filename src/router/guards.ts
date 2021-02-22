@@ -1,12 +1,13 @@
 import {RouteLocationRaw, RouteLocationNormalized} from 'vue-router'
 import {auth} from '../firebase'
-import {set} from '../store'
+import {cfg, set} from '../store'
+import {addRoll, cachedRoll} from '../store/rolls'
 import {cached, cacheUser} from '../store/cache'
 import * as drawer from '../utils/drawer'
 
 export function beforeEach(to: RouteLocationNormalized): RouteLocationRaw | boolean {
 	const requiresAuth = to.matched.some((x) => x.meta.requiresAuth)
-	console.log('before this route', to)
+	// console.log('before this route', to)
 	console.log('user authd?', cached.uid)
 	if (requiresAuth && !cached.uid) {
 		console.log('need auth and no user signed in')
@@ -37,7 +38,9 @@ export function beforeEach(to: RouteLocationNormalized): RouteLocationRaw | bool
 					set('beeny', false)
 				}
 				console.log('logged in successfully to', to)
-
+				if (cachedRoll.value) {
+					addRoll(cachedRoll.value)
+				}
 				return {name: 'journal', replace: true}
 			})
 			.catch((error) => {
@@ -72,14 +75,15 @@ export function afterEach(): void {
 	let active = false
 
 	function relax() {
-		// console.log('relaxing')
+		console.log('relaxing')
 		document.removeEventListener('touchstart', activate)
 		document.removeEventListener('mousemove', activate)
 		document.removeEventListener('keydown', activate)
+		document.removeEventListener('scroll', activate)
 	}
 
 	function activate() {
-		// console.log('activated')
+		console.log('activated')
 		active = true
 		relax()
 	}
@@ -87,9 +91,10 @@ export function afterEach(): void {
 	document.addEventListener('touchstart', activate)
 	document.addEventListener('mousemove', activate)
 	document.addEventListener('keydown', activate)
+	document.addEventListener('scroll', activate)
 
 	setTimeout(() => {
-		// console.log('activated', active)
-		!active && drawer.close()
+		console.log('activated', active)
+		cfg.drawer && !active && drawer.close()
 	}, 1500)
 }

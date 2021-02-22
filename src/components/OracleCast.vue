@@ -49,7 +49,7 @@
 					) Let's 卦 Gua
 				.fake-coins(v-else)
 					transition(name="flip" mode="out-in")
-						button.btn.outline.under(
+						button.btn.outline(
 							v-if="!noCoins"
 							@click="noCoins = true"
 							) Can't find any coins?
@@ -94,12 +94,12 @@ export default defineComponent({
 
 		function saveToss() {
 			if (!validToss.value) return
-			cache('toss', cached.toss)
+			cache('toss', cached.toss.split('').reverse().join(''))
 			cache('step', 'response')
 		}
 
 		function flipFlipper(bit: boolean): void {
-			console.log('flipper', flipper)
+			// console.log('flipper', flipper)
 			if (flipper.value) {
 				flipper.value.style.animationPlayState = bit ? 'running' : 'paused'
 				flipper.value.style.animationDelay = '666ms'
@@ -170,7 +170,7 @@ h2 {
 
 .toss input[type='tel'] {
 	font-size: 2em;
-	width: 12ch;
+	width: 8ch;
 }
 
 .line {

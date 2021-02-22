@@ -4,7 +4,7 @@
 		h2 {{cached.query.trim()}}
 	h1.whole The Oracle Responds
 	h2 {{ cached.toss }}
-	.lines.whole.text-center.font
+	.lines.whole.font.center.font
 		IconBase.line(
 			v-for="char in cached.toss"
 			:key="$symbolize(char)"
@@ -60,7 +60,7 @@ import LineGlyph from './LineGlyph.vue'
 import HanziChar from './HanziChar.vue'
 import {cfg} from '../store'
 import {cached} from '../store/cache'
-import {saveRoll} from '../store/rolls'
+import {addRoll, cachedRoll} from '../store/rolls'
 import {activeLots, setLots} from '../store/lots'
 import {parseTossToBinary} from '../utils/tosses'
 import {useHexagrams} from '../composables/hexagrams'
@@ -86,21 +86,19 @@ export default defineComponent({
 
 		function saveToJournal() {
 			if (cached.uid) {
-				saveRoll({
+				addRoll({
 					moment: new Date(),
 					query: cached.query,
 					toss: cached.toss,
 					uid: cached.uid,
 				})
 			} else {
-				localStorage.setItem(
-					'newRoll',
-					JSON.stringify({
-						moment: new Date(),
-						query: cached.query,
-						toss: cached.toss,
-					}),
-				)
+				cachedRoll.value = {
+					moment: new Date(),
+					query: cached.query,
+					toss: cached.toss,
+					uid: '',
+				}
 			}
 			router.push('/journal')
 		}

@@ -119,20 +119,20 @@
 	order: 3;
 }
 
-.text-left {
-	text-align: left;
-}
-
-.text-center {
-	text-align: center;
-}
-
 .rel {
 	position: relative;
 }
 
 .abs {
 	position: absolute;
+}
+
+.block {
+	display: block;
+}
+
+.inline {
+	display: inline;
 }
 
 .fs {
@@ -203,6 +203,10 @@ ul.ls {
 .ls li {
 	line-height: var(--leading);
 	margin-bottom: 0.5em;
+}
+
+ol.ls {
+	padding-left: 1.25em;
 }
 
 hr.divider {

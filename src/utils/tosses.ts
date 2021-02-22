@@ -29,14 +29,14 @@ function secondHexMatch(char: string): string {
 }
 
 export const parseTossToBinary = (toss: string): string[] => {
-	// console.log('parsing toss to binary', toss);
+	// console.log('parsing toss to binary', toss)
 	if (toss.length !== 6 || !toss) return ['']
 
-	const properlyOrderedToss = toss.split('').reverse().join('')
+	// const properlyOrderedToss = toss.split('').reverse().join('')
 
 	const firstHex =
 		'0b' +
-		properlyOrderedToss
+		toss
 			.split('')
 			.map((c: string): string => {
 				return firstHexMatch(c)
@@ -45,19 +45,20 @@ export const parseTossToBinary = (toss: string): string[] => {
 
 	const secondHex =
 		'0b' +
-		properlyOrderedToss
+		toss
 			.split('')
 			.map((c: string): string => {
 				return secondHexMatch(c)
 			})
 			.join('')
 
+	// console.log('[firstHex, secondHex]', [firstHex, secondHex])
 	if (firstHex === secondHex) {
 		return [firstHex]
 	}
 	const lots = [firstHex, secondHex]
 
-	// console.log('binary parsed to', lots);
+	// console.log('binary parsed to', lots)
 	return lots
 }
 

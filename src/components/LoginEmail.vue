@@ -8,7 +8,7 @@ form.flex.space.spread.wrap(@submit.prevent="emailLinkSend")
 				:class="{sent: emailSuccessMsg}"
         tabindex="0"
         maxlength="50"
-        placeholder="make.believe@email.com"
+        placeholder="your@email.com"
         )
       transition.msg.between(name="slide-fade" mode="out-in" appear)
         label.right.between.font.alert(for="email_login" v-if="emailSuccessMsg")

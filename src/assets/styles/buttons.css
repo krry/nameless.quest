@@ -1,13 +1,14 @@
 .btn,
 a.btn,
 button.btn {
+	--unit: 1.125em;
 	display: inline-block;
 	appearance: none;
 	background: var(--link);
 	color: var(--paper);
-	font-size: 1.125rem;
+	font-size: var(--unit);
 	font-family: var(--heading);
-	padding: 0.67em 1.11em;
+	padding: calc(var(--unit) * 0.67) calc(var(--unit));
 	border-width: 2px;
 	border-style: solid;
 	border-color: var(--border);
@@ -15,118 +16,113 @@ button.btn {
 	cursor: pointer;
 	transition-property: all;
 	transition-duration: var(--beat);
-	margin: 0.5em auto;
+	margin: calc(var(--unit) * 0.5) auto;
 	outline: none;
 	text-decoration: none;
-}
 
-a.btn:hover,
-.btn:hover {
-	transition-duration: 100ms;
-}
+	&:hover {
+		transition-duration: 100ms;
+	}
 
-.btn:hover,
-.btn:focus,
-button.btn:hover,
-button.btn:focus {
-	background-color: var(--flair);
-	outline: 2px var(--border-style) var(--flair);
-	outline-offset: 2px;
-	color: var(--ground);
-}
+	&:hover,
+	&:focus {
+		background-color: var(--flair);
+		outline: 2px var(--border-style) var(--flair);
+		outline-offset: 2px;
+		color: var(--ground);
+	}
 
-.btn.sm,
-button.btn.sm {
-	font-size: 0.875rem;
-}
+	&.dark {
+		background-color: var(--ground);
+		border-color: var(--ground);
+		color: var(--ink);
+	}
 
-.btn.md,
-button.btn.md {
-	font-size: 1rem;
-}
+	&.dark:hover,
+	&.dark:focus {
+		background-color: var(--paper);
+		border-color: var(--ground);
+	}
 
-.btn.lg,
-button.btn.lg {
-	font-size: 1.25rem;
-}
+	&.naked {
+		color: var(--link);
+		background: transparent;
+		border-color: transparent;
+		border-width: 1px;
+		appearance: none;
+		box-shadow: none;
+	}
 
-.btn.xl,
-button.btn.xl {
-	font-size: 1.5rem;
-}
+	&.naked:hover,
+	&.naked:focus {
+		background-color: transparent;
+		color: var(--flair);
+	}
 
-.btn.xxl,
-button.btn.xxl {
-	font-size: 2rem;
-}
+	&.naked:active {
+		background-color: var(--silk);
+	}
 
-.btn.dark,
-button.btn.dark {
-	background-color: var(--ground);
-	border-color: var(--ground);
-	color: var(--ink);
-}
+	&.outline {
+		color: var(--link);
+		border-color: var(--glow);
+		background-color: var(--paper);
+	}
 
-.btn.dark:hover,
-.btn.dark:focus,
-button.btn.dark:hover,
-button.btn.dark:focus {
-	background-color: var(--paper);
-	border-color: var(--ground);
-}
+	&.outline:hover,
+	&.outline:focus {
+		color: var(--flair);
+		border-color: var(--flair);
+		background-color: var(--silk);
+		outline: none !important;
+	}
 
-.btn.naked,
-button.btn.naked {
-	color: var(--link);
-	background: transparent;
-	border-color: transparent;
-	border-width: 1px;
-	appearance: none;
-	box-shadow: none;
-}
+	&.lastack {
+		margin: auto;
+	}
 
-.btn.naked:hover,
-.btn.naked:focus,
-button.btn.naked:hover,
-button.btn.naked:focus {
-	background-color: transparent;
-	color: var(--flair);
-}
+	&.back {
+		font-size: 1.5em;
+		padding: 0 0.5rem;
+		width: 3rem;
+		margin: 0;
+	}
 
-.btn.naked:active {
-	background-color: var(--silk);
-}
+	&.back:hover,
+	&.back:focus {
+		opacity: 1;
+	}
 
-.btn.outline,
-button.btn.outline {
-	color: var(--link);
-	border-color: var(--glow);
-	background-color: var(--paper);
-}
+	&.skinny {
+		padding: calc(var(--unit) * 0.133) calc(var(--unit) * 0.267);
+	}
 
-.btn.outline:hover,
-.btn.outline:focus,
-button.btn.outline:hover,
-button.btn.outline:focus {
-	color: var(--flair);
-	border-color: var(--flair);
-	background-color: var(--silk);
-	outline: none !important;
-}
+	&.static {
+		cursor: default;
+		color: var(--ink);
+		/* text-decoration: underline; */
+		&:hover {
+			color: var(--ink);
+			outline: none;
+		}
+	}
 
-.btn.lastack,
-button.btn.lastack {
-	margin: auto;
-}
+	&.inert {
+		filter: grayscale(1);
+		cursor: default;
+		color: var(--flair);
+		&:hover {
+			outline: none;
+			color: var(--flair);
+		}
+	}
 
-.btn.back {
-	font-size: 1.5em;
-	padding: 0 0.5rem;
-	width: 3rem;
-	margin: 0;
-}
+	&.ib {
+		margin-left: calc(var(--unit) * 0.5);
+		margin-right: calc(var(--unit) * 0.5);
+	}
 
-.btn.back:hover,
-.btn.back:focus {
-	opacity: 1;
+	&.block {
+		display: block;
+	}
 }

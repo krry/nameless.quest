@@ -69,10 +69,12 @@ export const defHex: Hexagram = {
 }
 
 export interface Roll {
+	uid: string
 	query: string
 	toss: string
 	moment: Date
-	uid: string
+	// id?: string
+	// notes?: string
 }
 
 export const defRoll: Roll = {
@@ -80,6 +82,7 @@ export const defRoll: Roll = {
 	toss: '',
 	moment: new Date(),
 	uid: '',
+	// notes: '',
 }
 
 export interface Quad {

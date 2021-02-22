@@ -1,5 +1,5 @@
 <template lang="pug">
-Page.text-center(
+Page.font.center(
 	ref="desk"
 	@keydown.left.prevent.exact="navTo(prev)"
 	@keydown.right.prevent.exact="navTo(next)"
@@ -8,7 +8,24 @@ Page.text-center(
 	transition.under(name="slide-fade" appear)
 		.hint.vapor.abs.t.r.l.center.font.sm(v-if="!cfg.navvy") ⬅️ Did you try 😁 arrow keys? ➡️
 	router-link.page-nav.btn.naked.next.clickable.abs.t.r(:to="next") {{ next }} 𐡸
-	h1.font.x2l.flex.mid
+	.mark(v-if="lots")
+		.btn.naked.md.ib.skinny.static(v-if="lots[0] === hex.binary") Being 
+		router-link.font.md(
+			v-if="lots[0] === hex.binary"
+			:to="{name: 'oracle'}")
+			span(v-if="lots[1]") ⇢
+			span(v-if="!lots[1]") ꜛ
+		router-link.btn.naked.md.skinny.ib(
+			v-if="lots[0] === hex.binary && lots[1]"
+			:to="'/change/'+getWenByBin(lots[1])") Becoming
+		router-link.btn.naked.md.skinny.ib(
+			v-if="lots[1] === hex.binary"
+			:to="'/change/'+getWenByBin(lots[0])") Being
+		router-link.font.md(
+			v-if="lots[1] === hex.binary"
+			:to="{name: 'oracle'}") ⇠
+		.btn.naked.md.ib.skinny.static(v-if="lots[1] === hex.binary") Becoming
+	h1.font.x2l.flex.mid.mrg0.t
 		Spinnable
 			LineGlyph(:glyph="hex.hexagram" noturn inline size="x8l")
 		.flex.col.mid
@@ -37,7 +54,7 @@ Page.text-center(
 				dd {{ hex.kingwen }}
 				dt King Wen
 	.flex.mid.col.string
-		pre.judgment.font.md(v-html="adoptOrphans(hex.judgment)")
+		pre.judgment.text.md(v-html="adoptOrphans(hex.judgment)")
 	.flex.mid.col.string
 		.flex.space
 			.flex.string.col.dyn
@@ -64,14 +81,14 @@ Page.text-center(
 			LineGlyph.datum.middle.dyn(
 				:glyph="hex.hexagram"
 				size="x6l")
-		pre.image.font.md(v-html="adoptOrphans(hex.images)")
+		pre.image.text.md(v-html="adoptOrphans(hex.images)")
 	.flex.mid.col.string
 		h2 Changing Lines
 		section(
 			v-for="line in hex.lines"
 			:key="$symbolize(line.position)"
 			)
-			Turnable
+			Turnable(ortho)
 				IconBase(size="60" iconColor="var(--flair)")
 					component(:is="'Icon' + getChangingLine(line.position).icon")
 			h4.font.lg Line {{line.position + ': ' + getChangingLine(line.position).desc }}
@@ -88,15 +105,17 @@ Page.text-center(
 
 <script lang="ts">
 import {defineComponent, ref, toRefs, reactive, watchEffect, onMounted, computed} from 'vue'
+import {cfg, set} from '../store'
+import {cached} from '../store/cache'
+import {parseTossToBinary} from '../utils/tosses'
 import {useHexagrams} from '../composables/hexagrams'
 import {useTrigrams} from '../composables/trigrams'
-import {cfg, set, tog} from '../store'
 import Page from '../components/Page.vue'
 import HanziChar from '../components/HanziChar.vue'
 import LineGlyph from '../components/LineGlyph.vue'
-import LineGram from '../components/LineGram.vue'
 import Spinnable from '../components/Spinnable.vue'
 import Turnable from '../components/Turnable.vue'
+import LineGram from '../components/LineGram.vue'
 import IconBase from '../icons/IconBase.vue'
 import Icon6 from '../icons/Icon6.vue'
 import Icon7 from '../icons/Icon7.vue'
@@ -141,7 +160,7 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
-		const {getHexagramByWen} = useHexagrams()
+		const {getHexagramByWen, getWenByBin} = useHexagrams()
 		const {getTrigram} = useTrigrams()
 
 		const hex = ref(getHexagramByWen(props.id))
@@ -149,6 +168,7 @@ export default defineComponent({
 		const rx = reactive({
 			hex,
 			desk: ref(),
+			lots: parseTossToBinary(cached.toss),
 			mousePresent: false,
 			touchPresent: false,
 			prev: getPrevHex(props.id),
@@ -183,6 +203,8 @@ export default defineComponent({
 				set('navvy', true)
 			})
 
+			// console.log('getWenByBin(lots[0])', getWenByBin(rx.lots[0]))
+			// console.log('getWenByBin(lots[1])', getWenByBin(rx.lots[1]))
 			// const gestureZone = rx.desk
 			// console.log('gesureZone', gestureZone)
 			// if (!gestureZone) return
@@ -192,9 +214,8 @@ export default defineComponent({
 
 		return {
 			cfg,
-			set,
-			tog,
 			trigrams,
+			getWenByBin,
 			getHexagramByWen,
 			...toRefs(rx),
 		}

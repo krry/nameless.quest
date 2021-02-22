@@ -22,7 +22,7 @@ h2 Help and FAQs
 		:class="{active: cached.help === 'yarrow'}"
 		) How to split yarrow stalks?
 transition(name="slide-fade" appear mode="out-in")
-	aside.help.text-center.pads.y.below(
+	aside.help.font.center.pads.y.below(
 		v-if="cached.help === 'query'"
 		ref="helpQuery"
 		)
@@ -72,7 +72,7 @@ transition(name="slide-fade" appear mode="out-in")
 		Spinnable
 			IconBase.mrg3.y(size="100" viewBox="0 0 1000 1250" iconColor="var(--flair)")
 				IconScroll
-	aside.help.text-center.pads.x.y.right(
+	aside.help.font.center.pads.x.y.right(
 		v-else-if="cached.help === 'yarrow'"
 		ref="helpYarrow"
 		)
@@ -90,7 +90,7 @@ transition(name="slide-fade" appear mode="out-in")
 		Spinnable
 			IconBase.mrgs.y(size="80" viewBox="0 0 1000 1250" iconColor="var(--flair)")
 				IconCandles
-	aside.help.text-center.pads.x.y.left(
+	aside.help.font.center.pads.x.y.left(
 		v-else-if="cached.help === 'oracle'"
 		ref="helpOracle"
 		)
@@ -112,7 +112,7 @@ transition(name="slide-fade" appear mode="out-in")
 		Spinnable
 			IconBase(size="80" viewBox="0 0 100 125" iconColor="var(--flair)").invert.y
 				IconLooptyLoop
-	aside.help.text-center.pads.x.y.right( v-else-if="cached.help === 'yijing'" )
+	aside.help.font.center.pads.x.y.right( v-else-if="cached.help === 'yijing'" )
 		Spinnable
 			IconBase(size="80" viewBox="0 0 1000 1250" iconColor="var(--flair)")
 				IconSpellBook
@@ -137,7 +137,7 @@ transition(name="slide-fade" appear mode="out-in")
 		Spinnable
 			IconBase(size="80" viewBox="0 0 1000 1250" iconColor="var(--flair)")
 				IconOpenBook
-	aside.help.text-center.pad3.y.left(v-else ref="helpCoins")
+	aside.help.font.center.pad3.y.left(v-else ref="helpCoins")
 		Spinnable
 			IconBase(size="80" viewBox="0 0 512 640" iconColor="var(--flair)")
 				IconCarnivalCoin

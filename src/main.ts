@@ -4,7 +4,7 @@ import App from './App.vue'
 import {auth} from './firebase'
 
 import {uncache, activeUser} from './store/cache'
-import {saveRoll} from './store/rolls'
+import {addRoll, cachedRoll} from './store/rolls'
 
 import logout from './plugins/logout'
 import {Focus} from './directives/focus'
@@ -31,12 +31,10 @@ auth.onAuthStateChanged((user) => {
 	if (user) {
 		console.log('user detected', user.uid)
 		activeUser.value = user.uid
-		const cachedRoll = localStorage.getItem('roll')
-		if (cachedRoll) {
-			const roll = JSON.parse(cachedRoll)
-			roll.uid = user.uid
-			saveRoll(roll)
-			localStorage.removeItem('roll')
+		if (cachedRoll.value) {
+			cachedRoll.value.uid = user.uid
+			addRoll(cachedRoll.value)
+			cachedRoll.value = null
 		}
 	} else {
 		console.warn('user lost 😞')

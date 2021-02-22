@@ -112,6 +112,7 @@ export default defineComponent({
 					if (!rx.card || !rx.card.$el) return
 					rx.card.$el.focus()
 				}
+				// TODO: make marks link together, showing each other's cards
 				if (rx.isBecoming) {
 					rx.liney = false
 					rx.mark = '𐡸 Becoming 𐡷'

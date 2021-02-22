@@ -47,6 +47,11 @@ const routes = [
 		component: Gratitude,
 	},
 	{
+		path: '/change/',
+		redirect: '/change/1',
+		props: {id: 1},
+	},
+	{
 		path: '/change/:id',
 		name: 'change',
 		component: Change,

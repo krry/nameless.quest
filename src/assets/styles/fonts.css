@@ -75,24 +75,12 @@
 			font-variation-settings: 'wght' 777;
 		}
 	}
-}
-
-.font,
-.text,
-.mono,
-.head {
 	&.md,
 	&.lg,
 	&.xl {
 		margin: 1rem 0;
 		line-height: var(--leading);
 	}
-}
-
-.font,
-.text,
-.mono,
-.head {
 	&.flair {
 		color: var(--flair);
 	}
@@ -114,12 +102,6 @@
 	&.dust {
 		color: var(--dust);
 	}
-}
-
-.font,
-.text,
-.mono,
-.head {
 	&.xxl,
 	&.x2l,
 	&.x3l,
@@ -130,6 +112,22 @@
 	&.x8l {
 		margin: 0.25em 0;
 		line-height: var(--hleading);
+	}
+	&.left {
+		text-align: left;
+	}
+
+	&.center {
+		text-align: center;
+	}
+
+	&.right {
+		text-align: right;
+	}
+
+	font-size: calc(var(--unit) * 6 / 7);
+	@media (min-width: 48rem) and (min-height: 36rem) {
+		font-size: var(--unit);
 	}
 }
 
@@ -187,14 +185,4 @@
 
 .x8l {
 	--unit: 8rem;
-}
-
-.head,
-.text,
-.mono,
-.font {
-	font-size: calc(var(--unit) * 6 / 7);
-	@media (min-width: 48rem) and (min-height: 36rem) {
-		font-size: var(--unit);
-	}
 }
