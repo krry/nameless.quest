@@ -36,7 +36,7 @@ Page.config.col
       )
       transition.pads.y(name="slide-fade" mode="out-in" appear)
         .right(v-if="cfg.texty")
-          router-link(to="/change/62")
+          router-link(to="/changes/62")
             h4 Preponderance of the Small
           HanziChar.pad.x(char="小" reveal size="md" pinyin="xiǎo")
           HanziChar.pad.x(char="過" reveal size="md" pinyin="guò")

@@ -6,7 +6,7 @@ Page.font.center(
 	)
 	router-link.page-nav.btn.naked.prev.clickable.abs.t.l(:to="prev") 𐡷 {{ prev }}
 	transition.under(name="slide-fade" appear)
-		.hint.vapor.abs.t.r.l.center.font.sm(v-if="!cfg.navvy") ⬅️ Did you try 😁 arrow keys? ➡️
+		.hint.vapor.abs.t.r.l.alcenter.font.sm(v-if="!cfg.navvy") ⬅️ Did you try 😁 arrow keys? ➡️
 	router-link.page-nav.btn.naked.next.clickable.abs.t.r(:to="next") {{ next }} 𐡸
 	.mark(v-if="lots")
 		.btn.naked.md.ib.skinny.static(v-if="lots[0] === hex.binary") Being 
@@ -17,10 +17,10 @@ Page.font.center(
 			span(v-if="!lots[1]") ꜛ
 		router-link.btn.naked.md.skinny.ib(
 			v-if="lots[0] === hex.binary && lots[1]"
-			:to="'/change/'+getWenByBin(lots[1])") Becoming
+			:to="'/changes/'+getWenByBin(lots[1])") Becoming
 		router-link.btn.naked.md.skinny.ib(
 			v-if="lots[1] === hex.binary"
-			:to="'/change/'+getWenByBin(lots[0])") Being
+			:to="'/changes/'+getWenByBin(lots[0])") Being
 		router-link.font.md(
 			v-if="lots[1] === hex.binary"
 			:to="{name: 'oracle'}") ⇠
@@ -83,10 +83,11 @@ Page.font.center(
 				size="x6l")
 		pre.image.text.md(v-html="adoptOrphans(hex.images)")
 	.flex.mid.col.string
-		h2 Changing Lines
+		h2.btn.naked.xl.clickable(@click="tog('liney')") {{ cfg.liney ? 'All Lines' : 'Changing Lines'}}
 		section(
 			v-for="line in hex.lines"
 			:key="$symbolize(line.position)"
+			v-show="lineIsChanging(line.position)"
 			)
 			Turnable(ortho)
 				IconBase(size="60" iconColor="var(--flair)")
@@ -105,7 +106,7 @@ Page.font.center(
 
 <script lang="ts">
 import {defineComponent, ref, toRefs, reactive, watchEffect, onMounted, computed} from 'vue'
-import {cfg, set} from '../store'
+import {cfg, set, tog} from '../store'
 import {cached} from '../store/cache'
 import {parseTossToBinary} from '../utils/tosses'
 import {useHexagrams} from '../composables/hexagrams'
@@ -176,6 +177,13 @@ export default defineComponent({
 			pinyin: computed(() => hex.value.names.pinyin.split(' ')),
 		})
 
+		function lineIsChanging(lineNo: number) {
+			const lineCode = cached.toss.split('')[lineNo - 1]
+			const tossedThisLot = rx.lots[0] === rx.hex.binary
+			const activeLines = tossedThisLot && (lineCode === '6' || lineCode === '9')
+			return activeLines || !cached.toss || cfg.liney
+		}
+
 		const trigrams = computed(() => {
 			return Object.values(rx.hex.trigramPair).map((t) => getTrigram(t))
 		})
@@ -214,8 +222,11 @@ export default defineComponent({
 
 		return {
 			cfg,
+			tog,
+			cached,
 			trigrams,
 			getWenByBin,
+			lineIsChanging,
 			getHexagramByWen,
 			...toRefs(rx),
 		}

@@ -1,7 +1,6 @@
 .btn,
 a.btn,
 button.btn {
-	--unit: 1.125em;
 	display: inline-block;
 	appearance: none;
 	background: var(--link);

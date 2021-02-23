@@ -230,9 +230,6 @@ export default defineComponent({
 			title: 'Thanks and Credits',
 		}
 	},
-	mounted() {
-		set('thanked', true)
-	},
 })
 </script>
 

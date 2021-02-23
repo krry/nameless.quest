@@ -59,9 +59,6 @@ export default defineComponent({
 			clearBoth,
 		}
 	},
-	mounted() {
-		set('consulted', true)
-	},
 })
 </script>
 <style lang="postcss" scoped>

@@ -9,7 +9,9 @@
 				h3.center(v-if="cached.toss.length === 0")
 					| Holding this question gently in mind
 					br
-					a.tute(@click="cache('help', 'coins'); $cruiseTo(help)") flip three coins
+					a.tute(
+						@click="showCoinsHelp"
+						) flip three coins
 				.glyphs.left.rtl(v-else)
 					IconBase.line(
 						v-for="char in cached.toss"
@@ -71,6 +73,7 @@ import IconCoin from '../icons/IconCoin.vue'
 import IconCoinFlip from '../icons/IconCoinFlip.vue'
 import {generateRandomToss} from '../utils/tosses'
 import {cached, cache} from '../store/cache'
+import VueScrollTo from 'vue-scrollto'
 
 export default defineComponent({
 	name: 'OracleCast',
@@ -135,6 +138,11 @@ export default defineComponent({
 			}
 		}
 
+		function showCoinsHelp() {
+			cache('help', 'coins')
+			setTimeout(() => VueScrollTo.scrollTo('#helpCoins'), 1000)
+		}
+
 		return {
 			cache,
 			cached,
@@ -143,6 +151,7 @@ export default defineComponent({
 			saveToss,
 			fakeCoins,
 			getLineName,
+			showCoinsHelp,
 			validToss,
 		}
 	},

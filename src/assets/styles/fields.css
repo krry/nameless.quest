@@ -5,100 +5,106 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-}
 
-.field label {
-	display: block;
-	font-size: 0.75em;
-}
-
-.field input[type='email'] + label,
-.field input[type='text'] + label,
-.field input[type='tel'] + label,
-.field textarea + label {
-	order: 1;
-	margin-bottom: 0.5em;
-	opacity: 0.75;
-	font-size: 1rem;
-
-	@media (min-width: 48rem) {
-		font-size: 1.25rem;
+	& label {
+		display: block;
+		font-size: 0.75em;
 	}
-}
 
-.field input[type='email']:focus + label,
-.field input[type='text']:focus + label,
-.field input[type='tel']:focus + label,
-.field textarea:focus + label {
-	opacity: 1;
-}
+	& input[type='email'] + label,
+	& input[type='text'] + label,
+	& input[type='tel'] + label,
+	& textarea + label {
+		order: 1;
+		margin-bottom: 0.5em;
+		opacity: 0.75;
+		font-size: 1rem;
 
-.field input[type='email'],
-.field input[type='text'],
-.field input[type='tel'] {
-	padding: 0.25em 0.5em;
-}
-
-.field input[type='email'],
-.field input[type='text'],
-.field input[type='tel'],
-.field textarea {
-	order: 2;
-	appearance: none;
-	@supports (font-variation-settings: normal) {
-		font-family: 'Roboto SlabVariable';
-		font-variation-settings: 'wght' 444;
+		@media (min-width: 48rem) {
+			font-size: 1.25rem;
+		}
 	}
-	color: var(--ink);
-	font-size: 1.125em;
-	text-align: center;
-	font-family: var(--text);
-	background: var(--paper);
-	border-radius: var(--bevel);
-	border: 2px solid var(--glow);
-	transition-property: outline, border-color, background-color, color;
-	transition-duration: var(--beat);
-	transition-timing-function: var(--ease-out-quad);
-}
 
-.field textarea {
-	width: 100%;
-	resize: none;
-	padding: 0.5em;
-	/* margin-bottom: 1em; */
-	line-height: 1.375;
-}
+	& input[type='email']:focus + label,
+	& input[type='text']:focus + label,
+	& input[type='tel']:focus + label,
+	& textarea:focus + label {
+		opacity: 1;
+	}
 
-.field input,
-.field textarea {
-	transition-duration: 100ms !important;
-}
+	& input[type='email'],
+	& input[type='text'],
+	& input[type='tel'] {
+		padding: 0.25em 0.5em;
+	}
 
-.field input[type='email']:hover,
-.field input[type='email']:focus,
-.field input[type='text']:hover,
-.field input[type='text']:focus,
-.field input[type='tel']:hover,
-.field input[type='tel']:focus,
-.field textarea:hover,
-.field textarea:focus {
-	outline: 1px var(--border-style) var(--flair);
-	outline-offset: -4px;
-	border-color: var(--flair);
-}
+	& input[type='email'],
+	& input[type='text'],
+	& input[type='tel'],
+	& textarea {
+		order: 2;
+		appearance: none;
+		@supports (font-variation-settings: normal) {
+			font-family: 'Roboto SlabVariable';
+			font-variation-settings: 'wght' 444;
+		}
+		color: var(--ink);
+		font-size: 1.125em;
+		text-align: center;
+		font-family: var(--text);
+		background: var(--paper);
+		border-radius: var(--bevel);
+		border: 2px solid var(--glow);
+		transition-property: outline, border-color, background-color, color;
+		transition-duration: var(--beat);
+		transition-timing-function: var(--ease-out-quad);
+	}
 
-.field input[type='email']:valid,
-.field input[type='text']:valid,
-.field input[type='tel']:valid,
-.field textarea:valid {
-	border-color: var(--good);
-}
+	& textarea {
+		width: 100%;
+		resize: none;
+		padding: 0.5em;
+		/* margin-bottom: 1em; */
+		line-height: 1.375;
+	}
 
-.field input[type='email']:invalid,
-.field input[type='text']:invalid,
-.field input[type='tel']:invalid,
-.field textarea:invalid {
-	border-color: var(--bad);
+	& input,
+	& textarea {
+		transition-duration: 100ms !important;
+	}
+
+	& input[type='email']:hover,
+	& input[type='email']:focus,
+	& input[type='text']:hover,
+	& input[type='text']:focus,
+	& input[type='tel']:hover,
+	& input[type='tel']:focus,
+	& textarea:hover,
+	& textarea:focus {
+		outline: 1px var(--border-style) var(--flair);
+		outline-offset: -4px;
+		border-color: var(--flair);
+	}
+
+	& input[type='email']:valid,
+	& input[type='text']:valid,
+	& input[type='tel']:valid,
+	& textarea:valid {
+		border-color: var(--good);
+	}
+
+	& input[type='email']:invalid,
+	& input[type='text']:invalid,
+	& input[type='tel']:invalid,
+	& textarea:invalid {
+		border-color: var(--bad);
+	}
+
+	&.inert {
+		opacity: 0.5;
+		cursor: default;
+		pointer-events: none;
+	}
 }
 
 input[type='radio'] {

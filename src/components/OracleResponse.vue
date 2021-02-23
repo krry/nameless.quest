@@ -4,7 +4,7 @@
 		h2 {{cached.query.trim()}}
 	h1.whole The Oracle Responds
 	h2 {{ cached.toss }}
-	.lines.whole.font.center.font
+	.lines.whole.font.alcenter.font
 		IconBase.line(
 			v-for="char in cached.toss"
 			:key="$symbolize(char)"
@@ -13,14 +13,14 @@
 			size="48"
 			)
 			component( :is="`Icon${char}`" )
-	section.col.half.mrg.x(
+	section.col.half.dyn.align-start.mrg.x(
 		v-for="(hex, index) in hexs"
 		:key="$symbolize(hex.binary)"
 		)
 		h3
 			| {{ index === 0 ? "𐡷 Being 𐡸" : "𐡸 Becoming 𐡷" }}
 			hr.divider
-			router-link.btn.outline(:to="'/change/'+hex.kingwen")
+			router-link.btn.outline(:to="'/changes/'+hex.kingwen")
 				span {{ cfg.wenny ? hex.kingwen : hex.octal }}
 				span {{ " " + hex.names.english }}
 		.flex.mid

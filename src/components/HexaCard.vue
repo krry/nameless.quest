@@ -13,7 +13,7 @@
 				tabindex="-1"
 				)
 				template(#top)
-					.mark(v-if="mark") {{mark}}
+					router-link.mark(to="/" v-if="mark") {{mark}}
 					HexaNames(
 						:names="hex.names"
 						:kingwen="hex.kingwen"
@@ -24,13 +24,13 @@
 					.images.left
 						pre.image.text.sd.fine {{ hex.images }}
 					.cross.horiz.flex
-						.flex.col.mid
+						.flex.col.mid.less
 							LineGlyph( :glyph="hex.hexagram" size="x6l" )
 							.binary.font.sm(v-show="cfg.turny") {{ hex.binary.slice(2) }}
 							.decimal.font.sm(v-show="cfg.turny") {{ parseInt(hex.binary.slice(2), 2) + ' of 64' }}
 							.kingwen.font.sm(v-show="!cfg.turny")
 								span King Wen 
-								span \#{{ hex.kingwen }}
+								span {{ hex.kingwen }}
 							.octal.font.sm(v-show="!cfg.turny")
 								span Octal 
 								span {{ hex.octal }}
@@ -57,7 +57,7 @@
 				tabindex="-1"
 				)
 				template(#top)
-					.mark(v-if="mark") {{mark}}
+					router-link.mark(to="/" v-if="mark") {{mark}}
 					Spinnable
 						LineGlyph(
 							:glyph="hex.hexagram"
@@ -67,6 +67,20 @@
 					h2.yingyu.head.x2l {{ hex.names.english }}
 					pre.judgment.text.sd.fine {{ hex.judgment }}
 				template(#bottom)
+					h3.mrg.y.font.head.xl The Lines
+					.lines.pad.y
+						IconBase.line(
+							v-for="digit in hex.binary.slice(2)"
+							:key="$symbolize(digit)"
+							size="36"
+							width="20"
+							)
+							component(
+								v-if="digit === '0'"
+								:is="`Icon6`")
+							component(
+								v-if="digit === '1'"
+								:is="`Icon9`")
 					ChangingLines(
 						:hex="hex"
 						:liney="liney")
@@ -77,9 +91,15 @@ import {defHex, Quad, defQuad, Hexagram} from '../schema'
 import {useSwipeable} from '../composables/swipeable'
 import {cfg, tog} from '../store'
 import OneGua from './OneGua.vue'
+import Icon6 from '../icons/Icon6.vue'
+import Icon7 from '../icons/Icon7.vue'
+import Icon8 from '../icons/Icon8.vue'
+import Icon9 from '../icons/Icon9.vue'
+import IconBase from '../icons/IconBase.vue'
 import HexaFace from './HexaFace.vue'
 import HanziChar from './HanziChar.vue'
 import LineGlyph from './LineGlyph.vue'
+import Turnable from './Turnable.vue'
 import Spinnable from './Spinnable.vue'
 import HexaNames from './HexaNames.vue'
 import ChangingLines from './ChangingLines.vue'
@@ -87,10 +107,16 @@ import ChangingLines from './ChangingLines.vue'
 export default defineComponent({
 	name: 'HexaCard',
 	components: {
+		Icon6,
+		Icon7,
+		Icon8,
+		Icon9,
 		OneGua,
+		IconBase,
 		HexaFace,
 		HanziChar,
 		LineGlyph,
+		Turnable,
 		Spinnable,
 		HexaNames,
 		ChangingLines,
@@ -143,9 +169,16 @@ export default defineComponent({
 	}
 	border-radius: 100%;
 	padding: 0.25em;
-	color: var(--glow);
+	color: var(--flair);
 	margin-top: -2.75em;
 	text-align: center;
+	text-decoration: none;
+	transition-property: color, text-decoration;
+	transition-duration: var(--beat);
+	&:hover {
+		color: var(--link);
+		text-decoration: dotted underline;
+	}
 }
 
 .card .hexaglyph.font {

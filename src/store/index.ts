@@ -4,6 +4,7 @@ export const cfg: {[key: string]: boolean} = reactive({
 	wenny: lsd('wenny'), // prefer king wen order
 	texty: lsd('texty'), // prefer text over glyphs
 	pinny: lsd('pinny'), // prefer pinyin visible
+	liney: lsd('liney'), // show all changing lines
 	hermy: lsd('hermy'), // prefer ungendered text
 	turny: lsd('turny'), // prefer vertical lines
 	navvy: lsd('navvy'), // prefer no more hints

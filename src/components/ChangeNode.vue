@@ -1,6 +1,6 @@
 <template lang="pug">
 article.change-node(
-  :class="{active: isActive}, {active: isBecoming}"
+  :class="{active: isActive || isBeing || isBecoming}"
   @keydown.esc="clearLots()"
   )
   transition(name="deal" mode="out-in" appear)
@@ -41,6 +41,8 @@ import {
 import {defHex, Hexagram, defQuad, Quad} from '../schema'
 import {determineQuadrant} from '../utils/cards'
 import {cfg} from '../store'
+import {cached} from '../store/cache'
+import {parseTossToBinary} from '../utils/tosses'
 import {activeLots, saveLot, removeLot, clearLots} from '../store/lots'
 import HexaCard from './HexaCard.vue'
 import HexaTile from './HexaTile.vue'
@@ -69,6 +71,7 @@ export default defineComponent({
 	},
 	setup(props) {
 		const hex = toRef(props, 'hex')
+		const rolledLots = parseTossToBinary(cached.toss)
 
 		const rx = reactive({
 			card: ref(),
@@ -80,7 +83,8 @@ export default defineComponent({
 			id: toRef(props, 'hexId'),
 			wenny: cfg.wenny,
 			isActive: computed(() => activeLots.value?.indexOf(hex.value.binary) === 0),
-			isBecoming: computed(() => activeLots.value?.indexOf(hex.value.binary) === 1),
+			isBeing: computed(() => rolledLots?.indexOf(hex.value.binary) === 0),
+			isBecoming: computed(() => rolledLots?.indexOf(hex.value.binary) === 1),
 		})
 
 		function setQuadrant(e: Event): Quad {
@@ -92,11 +96,6 @@ export default defineComponent({
 			return determineQuadrant(bounds)
 		}
 
-		function notSolo(arr: string[]): boolean {
-			// TODO: avoid queueing lots which breaks this check
-			return typeof arr[0] !== 'undefined' && typeof arr[1] !== 'undefined' && arr[1] !== ''
-		}
-
 		function swapLot(id: string): void {
 			clearLots()
 			saveLot(id)
@@ -104,13 +103,12 @@ export default defineComponent({
 
 		onMounted(() => {
 			watchEffect(() => {
-				// only show marks when two cards
-				// only show changing lines on first card
-				if (rx.isActive && notSolo(activeLots.value)) {
+				if (rx.isBeing) {
+					// only show changing lines on first card
 					rx.liney = true
 					rx.mark = '𐡷 Being 𐡸'
 					if (!rx.card || !rx.card.$el) return
-					rx.card.$el.focus()
+					// rx.card.$el.focus()
 				}
 				// TODO: make marks link together, showing each other's cards
 				if (rx.isBecoming) {
@@ -148,17 +146,27 @@ export default defineComponent({
 	background-color: var(--silk);
 	min-width: 9em;
 	min-height: 6.67em;
-}
 
-.change-node:hover {
-	transition-duration: 100ms;
-}
+	&:hover {
+		transition-duration: 100ms;
+	}
 
-.change-node:hover,
-.change-node:focus-within {
-	color: var(--ground);
-	border-color: var(--ground);
-	background-color: var(--flair);
+	&.active,
+	&:hover,
+	&:focus-within {
+		color: var(--ground);
+		border-color: var(--ground);
+	}
+
+	&.active {
+		background-color: var(--link);
+	}
+
+	&:hover,
+	&:hover.active,
+	&:focus-within {
+		background-color: var(--flair);
+	}
 }
 
 /*

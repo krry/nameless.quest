@@ -2,42 +2,70 @@
 nav.flex.col.pad.y
 	ul.site-nav
 		li
-			router-link.btn.outline(:to="{ name: 'oracle' }" tabindex="0")
+			router-link.btn.outline(
+				:to="{ name: 'oracle' }" 
+				@click="set('consulted', true)"
+				tabindex="0"
+				)
 				IconBase(size="40" viewBox="0 0 100 125")
 					IconMiracle
 				span(v-if="!cfg.consulted") Ask the 
 				span Oracle
 		li
-			router-link.btn.naked(:to="{ name: 'changes' }" tabindex="0")
+			router-link.btn.naked(
+				:to="{ name: 'changes' }"
+				@click="set('perused', true)"
+				tabindex="0"
+				)
 				IconBase(size="40" viewBox="0 0 1000 1250")
 					IconOpenBook
 				span(v-if="!cfg.perused") See the 
 				span Changes
 		li
-			router-link.btn.naked(:to="{ name: 'journal' }" tabindex="0")
+			router-link.btn.naked(
+				:to="{ name: 'journal' }"
+				@click="set('journaled', true)"
+				tabindex="0"
+				)
 				IconBase(size="40" viewBox="0 0 1000 1250")
 					IconSpellBook
 				span(v-if="!cfg.journaled") Start a 
 				span Journal
 		li
-			router-link.btn.naked(:to="{ name: 'config' }" tabindex="0")
+			router-link.btn.naked(
+				:to="{ name: 'config' }"
+				@click="set('configured', true)"
+				tabindex="0"
+				)
 				IconBase(size="40" viewBox="0 0 1000 1250")
 					IconCauldron
 				| Config
 				span(v-if="!cfg.configured") ure
 		li
-			router-link.btn.naked(:to="{ name: 'about' }" tabindex="0")
+			router-link.btn.naked(
+				:to="{ name: 'about' }"
+				@click="set('metafied', true)"
+				tabindex="0"
+				)
 				IconBase(size="40" viewBox="0 0 1000 1250")
 					IconCrystalBall
 				| About 
 				span(v-if="!cfg.metafied") This
 		//- li
-		//- 	router-link.btn.naked(:to="{ name: 'source' }" tabindex="0")
+		//- 	router-link.btn.naked(
+			:to="{ name: 'source' }"
+				@click="set('consulted', true)"
+			tabindex="0"
+			)
 		//- 		IconBase(size="40" viewBox="0 0 100 125")
 		//- 			IconMiracle
 		//- 		| Source
 		li
-			router-link.btn.naked(:to="{ name: 'gratitude' }" tabindex="0")
+			router-link.btn.naked(
+				:to="{ name: 'gratitude' }"
+				@click="set('thanked', true)"
+				tabindex="0"
+				)
 				IconBase(size="40" viewBox="0 0 1000 1250")
 					IconCandles
 				span(v-if="!cfg.thanked") Gratitude
@@ -51,8 +79,8 @@ nav.flex.col.pad.y
 				)
 				IconBase(size="36" viewBox="0 0 17 21")
 					IconConversation
-				span(v-if="!cfg.fedback") Questions or Feedback?
-				span(v-if="cfg.fedback") Feedback?
+				span(v-if="!cfg.fedback")  Send Feedback
+				span(v-if="cfg.fedback")  Feedback?
 		li(v-if="cached.uid")
 			a.btn.md.naked.signout(
 				@click.stop="$logout"

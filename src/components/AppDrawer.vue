@@ -62,7 +62,7 @@ export default defineComponent({
 	overflow-y: auto;
 	overflow-x: hidden;
 
-	@media (min-width: 36rem) {
+	@media (min-width: 27rem) {
 		width: var(--drawer-dim);
 	}
 }
@@ -140,7 +140,7 @@ header {
 	border-bottom-right-radius: 0;
 	transform: translateX(calc(100vw - 6rem));
 
-	@media (min-width: 36rem) {
+	@media (min-width: 27rem) {
 		transform: translateX(16.9rem);
 	}
 }

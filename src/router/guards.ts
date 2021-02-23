@@ -41,6 +41,7 @@ export function beforeEach(to: RouteLocationNormalized): RouteLocationRaw | bool
 				if (cachedRoll.value) {
 					addRoll(cachedRoll.value)
 				}
+				console.log('redirecting to journal')
 				return {name: 'journal', replace: true}
 			})
 			.catch((error) => {
@@ -50,6 +51,9 @@ export function beforeEach(to: RouteLocationNormalized): RouteLocationRaw | bool
 				)
 				return false
 			})
+	}
+	if (cached.uid && to.path === '/login') {
+		return '/journal'
 	}
 	// no auth needed
 	return true
@@ -75,7 +79,7 @@ export function afterEach(): void {
 	let active = false
 
 	function relax() {
-		console.log('relaxing')
+		// console.log('relaxing')
 		document.removeEventListener('touchstart', activate)
 		document.removeEventListener('mousemove', activate)
 		document.removeEventListener('keydown', activate)
@@ -83,7 +87,7 @@ export function afterEach(): void {
 	}
 
 	function activate() {
-		console.log('activated')
+		// console.log('activated')
 		active = true
 		relax()
 	}
@@ -94,7 +98,7 @@ export function afterEach(): void {
 	document.addEventListener('scroll', activate)
 
 	setTimeout(() => {
-		console.log('activated', active)
+		// console.log('activated', active)
 		cfg.drawer && !active && drawer.close()
 	}, 1500)
 }

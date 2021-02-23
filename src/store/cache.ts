@@ -1,4 +1,4 @@
-import {ref, reactive} from 'vue'
+import {reactive} from 'vue'
 import {set} from '.'
 
 /** a simple reactive store
@@ -19,13 +19,15 @@ export const cached: {[key: string]: string} = reactive({
 	newRoll: lsd('newRoll'),
 })
 
-export const cache = (nym: string, val: string): void => {
+export const cache = (nym: string | undefined, val: string | null | undefined): void => {
+	if (!nym || !val) throw new Error("can't cache nada. nym: " + nym + ', val: ' + val)
 	console.log('setting user data', nym, 'from', cached[nym], 'to', val)
 	localStorage.setItem(nym, val)
 	cached[nym] = val
 }
 
-export const uncache = (nym: string): void => {
+export const uncache = (nym: string | undefined): void => {
+	if (!nym) throw new Error("can't uncache nada. nym: " + nym)
 	console.log('clearing user data for', nym)
 	localStorage.removeItem(nym)
 	cached[nym] = ''
@@ -43,4 +45,4 @@ export function cacheUser(user: firebase.default.User): void {
 	if (user.emailVerified) set('emailVerified', user.emailVerified)
 }
 
-export const activeUser = ref()
+// export const activeUser = ref()

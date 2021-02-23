@@ -113,15 +113,15 @@
 		margin: 0.25em 0;
 		line-height: var(--hleading);
 	}
-	&.left {
+	&.alleft {
 		text-align: left;
 	}
 
-	&.center {
+	&.alcenter {
 		text-align: center;
 	}
 
-	&.right {
+	&.alright {
 		text-align: right;
 	}
 

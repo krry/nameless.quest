@@ -142,9 +142,10 @@ export default defineComponent({
 	/* font-size: 125%; */
 }
 
-.char.side.ib .pinyin {
+.char.side.ib .pinyin.side {
 	font-size: var(--unit);
 	padding: 0;
+	right: unset;
 	font-size: inherit;
 	line-height: calc(var(--unit) * 1.5);
 }
@@ -214,18 +215,36 @@ export default defineComponent({
 	/* padding: 0 0 calc(var(--unit) * 0.25); */
 }
 
-.md .pinyin.side,
-.md .pinyin.side.slide-fade-enter-to,
-.md .pinyin.side.slide-fade-leave-from {
-	transform: translateX(calc(var(--unit) * 1.75)) translateY(-50%);
+.char.md .pinyin {
+	&.side,
+	&.side.slide-fade-enter-to,
+	&.side.slide-fade-leave-from {
+		transform: translateX(calc(var(--unit) * 1.75)) translateY(-50%);
+	}
+}
+.char.md:not(.ib) .pinyin.side {
 	padding: 0 0 calc(var(--unit) * 1.75);
 }
 
-.sm .pinyin.side,
-.sm .pinyin.side.slide-fade-enter-to,
-.sm .pinyin.side.slide-fade-leave-from {
-	transform: translateX(calc(var(--unit) * 1.375)) translateY(-50%);
+.char.sm .pinyin {
+	&.side,
+	&.side.slide-fade-enter-to,
+	&.side.slide-fade-leave-from {
+		transform: translateX(calc(var(--unit) * 1.375)) translateY(-50%);
+	}
+}
+.char.sm:not(.ib) .pinyin.side {
 	padding: 0 0 calc(var(--unit) * 1.375);
+}
+
+.pinyin.side.slide-fade-leave-to,
+.pinyin.side.slide-fade-enter-from {
+	transform: translateX(50%) translateY(-50%);
+}
+
+.char.ib .pinyin.side.slide-fade-leave-to,
+.char.ib .pinyin.side.slide-fade-enter-from {
+	transform: translateX(0%) translateY(-50%);
 }
 
 .pinyin.side.slide-fade-leave-to,

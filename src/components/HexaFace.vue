@@ -1,7 +1,15 @@
 <template lang="pug">
-.face(v-focus @click.stop="tog('texty')" )
-  router-link.moar.btn.naked.md.abs.t.l.no-underline.clickable(:to="'/change/' + kingwen")
-    IconBase(viewBox="0 0 1000 1250" size="24")
+.face(
+	v-autofocus
+	@click.stop="tog('texty')"
+	)
+  router-link.moar.btn.naked.md.abs.t.l.no-underline.clickable(
+		:to="'/changes/' + kingwen"
+		)
+    IconBase(
+			size="24"
+			viewBox="0 0 1000 1250"
+			)
       IconScroll
     | More
   slot(name="top")

@@ -25,13 +25,13 @@ Page.login(
     LoginEmail.left(v-if="method === 'email'")
     LoginPhone.right(v-else-if="method === 'phone'")
   transition(name="slide-fade" mode="out-in" appear)
-    h3.font.center.right(v-if="explained")
+    h3.font.alcenter.right(v-if="explained")
       | Frankly 
       AppLink(to="https://medium.com/@ninjudd/passwords-are-obsolete-9ed56d483eb") passwords are obsolete
       | .
       br
       | Signing in passwordlessly is easier and more secure.
-    h3.font.center.left(v-else @click="explained = !explained")
+    h3.font.alcenter.left(v-else @click="explained = !explained")
       a It's passwordless!?
 </template>
 
@@ -62,14 +62,6 @@ export default defineComponent({
 })
 </script>
 
-<style lang="postcss">
-.grecaptcha-badge,
-.grecaptcha-logo {
-	visibility: hidden !important;
-	opacity: 0 !important;
-	transform: scale(0) !important;
-}
-</style>
 <style lang="postcss" scoped>
 .login h1 {
 	margin: 1rem 0 0;

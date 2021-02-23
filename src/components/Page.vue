@@ -40,7 +40,7 @@ export default defineComponent({
 </script>
 
 <style lang="postcss">
-.desk {
+main {
 	position: relative;
 	z-index: 10;
 	background-color: var(--paper);
@@ -52,22 +52,30 @@ export default defineComponent({
 	pointer-events: auto;
 	margin-left: var(--drawer-buffer);
 	box-shadow: 0 0 0.5rem var(--glow);
-	border-left: var(--frame) solid var(--glow);
 	scroll-snap-align: start;
 	min-width: calc(100vw - var(--drawer-dim));
-	width: 100vw;
-	max-width: 100vw;
 	min-height: calc(100vh + 1px);
 
-	@media (min-width: 36rem) {
+	@media (min-width: 27rem) {
 		margin-left: var(--drawer-dim);
+	}
+	@media (min-width: 36rem) and (min-height: 36rem) {
+		min-height: 100vh;
+	}
+}
+
+.desk {
+	border-left: var(--frame) solid var(--glow);
+	width: 100vw;
+	max-width: 100vw;
+
+	@media (min-width: 27rem) {
 		padding-left: 2rem;
 		padding-right: 2rem;
 	}
 
 	@media (min-width: 36rem) and (min-height: 36rem) {
 		padding: 3rem;
-		min-height: 100vh;
 	}
 
 	@media (min-width: 48rem) and (min-height: 48rem) {

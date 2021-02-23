@@ -9,13 +9,13 @@ Page.journal
 			v-for="roll in rolls"
 			:key="$symbolize(roll.moment)"
 			)
-			time.moment.mono.thicc.right(
+			time.moment.mono.thicc.alright(
 				:datetime="roll.moment"
 				) {{ roll.moment.toDate().toDateString() }}
 			blockquote.query.mrg0
 				h2 {{ roll.query }}
 				h3.x2l.font {{ roll.toss }}
-				.lines.whole.font.center.font.mrg.t
+				.lines.whole.font.alcenter.mrg.t
 					IconBase.line(
 						v-for="char in roll.toss"
 						:key="$symbolize(char)"
@@ -28,7 +28,7 @@ Page.journal
 					router-link.btn.naked.mrg.x.y.skinny.block(
 						v-for="bin in parseTossToBinary(roll.toss)"
 						:key="$symbolize(bin)"
-						:to="'/change/' + getWenByBin(bin)"
+						:to="'/changes/' + getWenByBin(bin)"
 						) {{ getWenByBin(bin) + '. ' + getEnglishNameByBin(bin) }}
 	h3.head.lg Want to fuel development?
 	AppLink.outline.btn(to="https://ko-fi.com/kerrbear") Feed the Bears 🍕
@@ -37,7 +37,6 @@ Page.journal
 <script lang="ts">
 import {defineComponent, ref, watchEffect} from 'vue'
 import {cached} from '../store/cache'
-import {set} from '../store'
 import {Roll} from '../schema'
 import {activeRolls, getRolls} from '../store/rolls'
 import {parseTossToBinary} from '../utils/tosses'
@@ -85,9 +84,6 @@ export default defineComponent({
 			parseTossToBinary,
 			getEnglishNameByBin,
 		}
-	},
-	mounted() {
-		set('journaled', true)
 	},
 })
 </script>

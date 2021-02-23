@@ -27,7 +27,7 @@ export function clearLots(): void {
 }
 
 export function removeLot(lot: string): void {
-	// console.log('removing lot', lot)
+	console.log('removing lot', lot)
 	clearLots()
 	if (activeLots.value?.indexOf(lot) !== -1)
 		setLots(activeLots.value.filter((l: string) => l !== lot))

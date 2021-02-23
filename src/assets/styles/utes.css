@@ -10,115 +10,6 @@
 	display: inline-block;
 }
 
-.flex {
-	display: flex;
-}
-
-.flex.col {
-	flex-direction: column;
-}
-
-.flex.wrap {
-	flex-wrap: wrap;
-}
-
-.flex.mid {
-	justify-content: center;
-	align-items: center;
-}
-
-.flex.begin {
-	justify-content: flex-start;
-}
-
-.flex.start {
-	align-items: flex-start;
-}
-
-.flex.finish {
-	justify-content: flex-end;
-}
-
-.flex .spread {
-	flex-grow: 1;
-}
-
-.flex .dyn {
-	flex: 1 0 auto;
-}
-
-.flex .whole {
-	flex-basis: 100%;
-}
-
-.flex .half {
-	flex-basis: 100%;
-	@media (min-width: 36rem) {
-		flex: 1 0 calc(50% - 2rem);
-	}
-}
-
-.flex.more,
-.flex .more {
-	flex-basis: 40%;
-}
-
-.flex.less,
-.flex .less {
-	flex-basis: 30%;
-}
-
-.flex .begin {
-	align-self: flex-start;
-}
-
-.flex .middle {
-	align-self: center;
-}
-
-.flex .finish {
-	align-self: flex-end;
-}
-
-.flex.end {
-	justify-content: center;
-	align-items: flex-end;
-}
-
-.flex.string {
-	justify-content: space-evenly;
-	align-items: center;
-}
-
-.flex.btw {
-	justify-content: space-between;
-}
-
-.flex.even {
-	justify-content: space-evenly;
-}
-
-.flex.around {
-	justify-content: space-around;
-}
-
-.flex.space {
-	justify-content: space-evenly;
-	align-items: flex-start;
-}
-
-.flex .first {
-	order: 1;
-}
-
-.flex .second {
-	order: 2;
-}
-
-.flex .third {
-	order: 3;
-}
-
 .rel {
 	position: relative;
 }
@@ -436,10 +327,6 @@ hr.dinkus.asterism::after {
 	transform: scaleX(-1);
 }
 
-.flex.align-start {
-	align-items: flex-start;
-}
-
 .invert.y {
 	transform: scaleY(-1);
 }
@@ -458,9 +345,6 @@ hr.dinkus.asterism::after {
 	text-decoration: dotted underline;
 }
 
-.stack {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	text-align: center;
+.z12 {
+	z-index: 12;
 }

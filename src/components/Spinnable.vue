@@ -12,13 +12,20 @@ import {useSpinnable} from '../composables/spinnable'
 
 export default defineComponent({
 	name: 'Spinnable',
-	setup() {
+	props: {
+		running: Boolean,
+		zip: {
+			type: Number,
+			default: 2,
+		},
+	},
+	setup(props) {
 		const el = ref<HTMLElement>()
-		const isSpinning = ref(false)
+		const isSpinning = ref(props.running)
 
 		onMounted(() => {
 			if (el.value) {
-				const {getSpinning, setSpinning} = useSpinnable(el.value)
+				const {getSpinning, setSpinning} = useSpinnable(el.value, props.running, props.zip)
 
 				isSpinning.value = getSpinning()
 

@@ -100,34 +100,13 @@ export default defineComponent({
 
 <style scoped lang="postcss">
 .hexagrid {
-	position: relative;
-	z-index: 10;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-	background-color: var(--paper);
-	background-repeat: no-repeat;
-	background-position: right center;
-	background-attachment: fixed;
-	background-size: cover;
-	font-size: var(--font-clamp);
-	min-width: 100vw;
-	box-shadow: 0 0 0.5rem var(--glow);
+	transition: var(--bea2);
 	border: var(--frame) solid var(--glow);
+
 	@media (min-width: 36rem) and (min-height: 36rem) {
 		border: var(--bevel) solid var(--shade);
-	}
-	pointer-events: auto;
-	margin-left: var(--drawer-buffer);
-	transition: var(--bea2);
-	scroll-snap-align: start;
-	min-height: calc(100vh + 1px);
-
-	@media (min-width: 36rem) and (min-height: 36rem) {
-		min-height: 100vh;
-	}
-
-	@media (min-width: 36rem) {
-		margin-left: var(--drawer-dim);
 	}
 }
 </style>

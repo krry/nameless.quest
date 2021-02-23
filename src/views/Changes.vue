@@ -5,9 +5,7 @@ HexaGrid
 <script lang="ts">
 import {defineComponent} from 'vue'
 import HexaGrid from '../components/HexaGrid.vue'
-import {set} from '../store'
 import {clearLots} from '../store/lots'
-import * as drawer from '../utils/drawer'
 
 export default defineComponent({
 	name: 'Home',
@@ -18,8 +16,6 @@ export default defineComponent({
 		window.addEventListener('keydown', (e) => {
 			if (e.key === 'Escape') clearLots()
 		})
-		drawer.close()
-		set('perused', true)
 	},
 	unmounted() {
 		window.removeEventListener('keydown', (e) => {

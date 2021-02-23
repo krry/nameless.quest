@@ -1,5 +1,5 @@
 <template lang="pug">
-.interp
+.interp(v-if="liney || !cached.toss")
 	.line(
 		v-for="gram in hex.lines"
 		:key="$symbolize(hex.binary)"

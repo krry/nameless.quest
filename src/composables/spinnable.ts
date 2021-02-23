@@ -6,9 +6,9 @@ interface SpinParams {
 	setSpinning: (state: boolean) => void
 }
 
-export const useSpinnable = (element: HTMLElement): SpinParams => {
+export const useSpinnable = (element: HTMLElement, running = false, zip = 2): SpinParams => {
 	const moveEvent = ref('')
-	const spinning = ref(false)
+	const spinning = ref(running)
 	// console.log('making element spinnable', element)
 
 	function measureDistance(mX: number, mY: number): number {
@@ -51,11 +51,11 @@ export const useSpinnable = (element: HTMLElement): SpinParams => {
 		// get position of mouse or finger
 		// calculate distance between these points every interval
 		if (me) {
-			element.style.animationDuration = `${0.5 * measureDistance(me.clientX, me.clientY)}ms`
+			element.style.animationDuration = `${measureDistance(me.clientX, me.clientY) / zip}ms`
 			// console.log('element.style.animationDuration', element.style.animationDuration)
 		} else if (te) {
 			element.style.animationDuration = `${
-				0.5 * measureDistance(te.touches[0].clientX, te.touches[0].clientY)
+				measureDistance(te.touches[0].clientX, te.touches[0].clientY) / zip
 			}ms`
 			// console.log('element.style.animationDuration', element.style.animationDuration)
 		}
