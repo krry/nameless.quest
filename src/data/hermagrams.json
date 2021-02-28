@@ -8,7 +8,7 @@
       "pinyin": "qián",
       "english": "The Creative (Heaven)"
     },
-    "octal": "77",
+    "octal": "077",
     "trigramPair": {
       "above": 7,
       "below": 7
@@ -51,7 +51,7 @@
       "pinyin": "kūn",
       "english": "The Receptive (Earth)"
     },
-    "octal": "00",
+    "octal": "000",
     "trigramPair": {
       "above": 0,
       "below": 0
@@ -94,7 +94,7 @@
       "pinyin": "zhūn",
       "english": "Difficulty at the Beginning"
     },
-    "octal": "21",
+    "octal": "021",
     "trigramPair": {
       "above": 2,
       "below": 1
@@ -137,7 +137,7 @@
       "pinyin": "méng",
       "english": "Youthful Folly"
     },
-    "octal": "42",
+    "octal": "042",
     "trigramPair": {
       "above": 4,
       "below": 2
@@ -180,7 +180,7 @@
       "pinyin": "xū",
       "english": "Waiting"
     },
-    "octal": "27",
+    "octal": "027",
     "trigramPair": {
       "above": 2,
       "below": 7
@@ -223,7 +223,7 @@
       "pinyin": "sòng",
       "english": "Conflict"
     },
-    "octal": "72",
+    "octal": "072",
     "trigramPair": {
       "above": 7,
       "below": 2
@@ -266,7 +266,7 @@
       "pinyin": "shī",
       "english": "The Army"
     },
-    "octal": "02",
+    "octal": "002",
     "trigramPair": {
       "above": 0,
       "below": 2
@@ -309,7 +309,7 @@
       "pinyin": "bǐ",
       "english": "Holding Together"
     },
-    "octal": "20",
+    "octal": "020",
     "trigramPair": {
       "above": 2,
       "below": 0
@@ -352,7 +352,7 @@
       "pinyin": "xiǎo chù",
       "english": "Small Taming"
     },
-    "octal": "67",
+    "octal": "067",
     "trigramPair": {
       "above": 6,
       "below": 7
@@ -395,7 +395,7 @@
       "pinyin": "lǚ",
       "english": "Treading"
     },
-    "octal": "73",
+    "octal": "073",
     "trigramPair": {
       "above": 7,
       "below": 3
@@ -438,7 +438,7 @@
       "pinyin": "tài",
       "english": "Peace"
     },
-    "octal": "07",
+    "octal": "007",
     "trigramPair": {
       "above": 0,
       "below": 7
@@ -481,7 +481,7 @@
       "pinyin": "pǐ",
       "english": "Standstill"
     },
-    "octal": "70",
+    "octal": "070",
     "trigramPair": {
       "above": 7,
       "below": 0
@@ -524,7 +524,7 @@
       "pinyin": "tóng rén",
       "english": "Fellowship"
     },
-    "octal": "75",
+    "octal": "075",
     "trigramPair": {
       "above": 7,
       "below": 5
@@ -567,7 +567,7 @@
       "pinyin": "dà yǒu",
       "english": "Great Possession"
     },
-    "octal": "57",
+    "octal": "057",
     "trigramPair": {
       "above": 5,
       "below": 7
@@ -610,7 +610,7 @@
       "pinyin": "qiān",
       "english": "Modesty"
     },
-    "octal": "04",
+    "octal": "004",
     "trigramPair": {
       "above": 0,
       "below": 4
@@ -653,7 +653,7 @@
       "pinyin": "yù",
       "english": "Enthusiasm"
     },
-    "octal": "10",
+    "octal": "010",
     "trigramPair": {
       "above": 1,
       "below": 0
@@ -696,7 +696,7 @@
       "pinyin": "suí",
       "english": "Following"
     },
-    "octal": "31",
+    "octal": "031",
     "trigramPair": {
       "above": 3,
       "below": 1
@@ -739,7 +739,7 @@
       "pinyin": "gŭ",
       "english": "Work on the Decayed"
     },
-    "octal": "46",
+    "octal": "046",
     "trigramPair": {
       "above": 4,
       "below": 6
@@ -782,7 +782,7 @@
       "pinyin": "lín",
       "english": "Approach"
     },
-    "octal": "03",
+    "octal": "003",
     "trigramPair": {
       "above": 0,
       "below": 3
@@ -825,7 +825,7 @@
       "pinyin": "guān",
       "english": "Contemplation"
     },
-    "octal": "60",
+    "octal": "060",
     "trigramPair": {
       "above": 6,
       "below": 0
@@ -868,7 +868,7 @@
       "pinyin": "shì kè",
       "english": "Biting Through"
     },
-    "octal": "51",
+    "octal": "051",
     "trigramPair": {
       "above": 5,
       "below": 1
@@ -911,7 +911,7 @@
       "pinyin": "bì",
       "english": "Grace"
     },
-    "octal": "45",
+    "octal": "045",
     "trigramPair": {
       "above": 4,
       "below": 5
@@ -954,7 +954,7 @@
       "pinyin": "bō",
       "english": "Splitting Apart"
     },
-    "octal": "40",
+    "octal": "040",
     "trigramPair": {
       "above": 4,
       "below": 0
@@ -997,7 +997,7 @@
       "pinyin": "fù",
       "english": "Return"
     },
-    "octal": "01",
+    "octal": "001",
     "trigramPair": {
       "above": 0,
       "below": 1
@@ -1040,7 +1040,7 @@
       "pinyin": "wú wàng",
       "english": "Innocence"
     },
-    "octal": "71",
+    "octal": "071",
     "trigramPair": {
       "above": 7,
       "below": 1
@@ -1083,7 +1083,7 @@
       "pinyin": "dà chù",
       "english": "Great Taming"
     },
-    "octal": "47",
+    "octal": "047",
     "trigramPair": {
       "above": 4,
       "below": 7
@@ -1126,7 +1126,7 @@
       "pinyin": "yí",
       "english": "The Corners of the Mouth"
     },
-    "octal": "41",
+    "octal": "041",
     "trigramPair": {
       "above": 4,
       "below": 1
@@ -1169,7 +1169,7 @@
       "pinyin": "dà guò",
       "english": "Great Preponderance"
     },
-    "octal": "36",
+    "octal": "036",
     "trigramPair": {
       "above": 3,
       "below": 6
@@ -1212,7 +1212,7 @@
       "pinyin": "kǎn",
       "english": "The Abysmal (Water)"
     },
-    "octal": "22",
+    "octal": "022",
     "trigramPair": {
       "above": 2,
       "below": 2
@@ -1255,7 +1255,7 @@
       "pinyin": "lí",
       "english": "The Clinging (Fire)"
     },
-    "octal": "55",
+    "octal": "055",
     "trigramPair": {
       "above": 5,
       "below": 5
@@ -1298,7 +1298,7 @@
       "pinyin": "xián",
       "english": "Influence"
     },
-    "octal": "34",
+    "octal": "034",
     "trigramPair": {
       "above": 3,
       "below": 4
@@ -1341,7 +1341,7 @@
       "pinyin": "héng",
       "english": "Duration"
     },
-    "octal": "16",
+    "octal": "016",
     "trigramPair": {
       "above": 1,
       "below": 6
@@ -1384,7 +1384,7 @@
       "pinyin": "dùn",
       "english": "Retreat"
     },
-    "octal": "74",
+    "octal": "074",
     "trigramPair": {
       "above": 7,
       "below": 4
@@ -1427,7 +1427,7 @@
       "pinyin": "dà zhuàng",
       "english": "Great Power"
     },
-    "octal": "17",
+    "octal": "017",
     "trigramPair": {
       "above": 1,
       "below": 7
@@ -1470,7 +1470,7 @@
       "pinyin": "jìn",
       "english": "Progress"
     },
-    "octal": "50",
+    "octal": "050",
     "trigramPair": {
       "above": 5,
       "below": 0
@@ -1513,7 +1513,7 @@
       "pinyin": "míng yí",
       "english": "Darkening of the Light"
     },
-    "octal": "05",
+    "octal": "005",
     "trigramPair": {
       "above": 0,
       "below": 5
@@ -1556,7 +1556,7 @@
       "pinyin": "jiā rén",
       "english": "The Family"
     },
-    "octal": "65",
+    "octal": "065",
     "trigramPair": {
       "above": 6,
       "below": 5
@@ -1599,7 +1599,7 @@
       "pinyin": "kuí",
       "english": "Opposition"
     },
-    "octal": "53",
+    "octal": "053",
     "trigramPair": {
       "above": 5,
       "below": 3
@@ -1642,7 +1642,7 @@
       "pinyin": "jiǎn",
       "english": "Obstruction"
     },
-    "octal": "24",
+    "octal": "024",
     "trigramPair": {
       "above": 2,
       "below": 4
@@ -1685,7 +1685,7 @@
       "pinyin": "xiè",
       "english": "Deliverance"
     },
-    "octal": "12",
+    "octal": "012",
     "trigramPair": {
       "above": 1,
       "below": 2
@@ -1728,7 +1728,7 @@
       "pinyin": "sǔn",
       "english": "Decrease"
     },
-    "octal": "43",
+    "octal": "043",
     "trigramPair": {
       "above": 4,
       "below": 3
@@ -1771,7 +1771,7 @@
       "pinyin": "yì",
       "english": "Increase"
     },
-    "octal": "61",
+    "octal": "061",
     "trigramPair": {
       "above": 6,
       "below": 1
@@ -1814,7 +1814,7 @@
       "pinyin": "guài",
       "english": "Breakthrough"
     },
-    "octal": "37",
+    "octal": "037",
     "trigramPair": {
       "above": 3,
       "below": 7
@@ -1857,7 +1857,7 @@
       "pinyin": "gòu",
       "english": "Coming to Meet"
     },
-    "octal": "76",
+    "octal": "076",
     "trigramPair": {
       "above": 7,
       "below": 6
@@ -1900,7 +1900,7 @@
       "pinyin": "cuì",
       "english": "Gathering Together"
     },
-    "octal": "30",
+    "octal": "030",
     "trigramPair": {
       "above": 3,
       "below": 0
@@ -1943,7 +1943,7 @@
       "pinyin": "shēng",
       "english": "Pushing Upward"
     },
-    "octal": "06",
+    "octal": "006",
     "trigramPair": {
       "above": 0,
       "below": 6
@@ -1986,7 +1986,7 @@
       "pinyin": "kùn",
       "english": "Oppression"
     },
-    "octal": "32",
+    "octal": "032",
     "trigramPair": {
       "above": 3,
       "below": 2
@@ -2029,7 +2029,7 @@
       "pinyin": "jǐng",
       "english": "The Well"
     },
-    "octal": "26",
+    "octal": "026",
     "trigramPair": {
       "above": 2,
       "below": 6
@@ -2072,7 +2072,7 @@
       "pinyin": "gé",
       "english": "Revolution"
     },
-    "octal": "35",
+    "octal": "035",
     "trigramPair": {
       "above": 3,
       "below": 5
@@ -2115,7 +2115,7 @@
       "pinyin": "dǐng",
       "english": "The Cauldron"
     },
-    "octal": "56",
+    "octal": "056",
     "trigramPair": {
       "above": 5,
       "below": 6
@@ -2158,7 +2158,7 @@
       "pinyin": "zhèn",
       "english": "The Arousing (Thunder)"
     },
-    "octal": "11",
+    "octal": "011",
     "trigramPair": {
       "above": 1,
       "below": 1
@@ -2201,7 +2201,7 @@
       "pinyin": "gèn",
       "english": "The Still (Mountain)"
     },
-    "octal": "44",
+    "octal": "044",
     "trigramPair": {
       "above": 4,
       "below": 4
@@ -2244,7 +2244,7 @@
       "pinyin": "jiàn",
       "english": "Development"
     },
-    "octal": "64",
+    "octal": "064",
     "trigramPair": {
       "above": 6,
       "below": 4
@@ -2287,7 +2287,7 @@
       "pinyin": "guī mèi",
       "english": "The Marrying Virgin"
     },
-    "octal": "13",
+    "octal": "013",
     "trigramPair": {
       "above": 1,
       "below": 3
@@ -2330,7 +2330,7 @@
       "pinyin": "fēng",
       "english": "Abundance"
     },
-    "octal": "15",
+    "octal": "015",
     "trigramPair": {
       "above": 1,
       "below": 5
@@ -2373,7 +2373,7 @@
       "pinyin": "lǚ",
       "english": "The Wanderer"
     },
-    "octal": "54",
+    "octal": "054",
     "trigramPair": {
       "above": 5,
       "below": 4
@@ -2416,7 +2416,7 @@
       "pinyin": "xùn",
       "english": "The Gentle (Wind)"
     },
-    "octal": "66",
+    "octal": "066",
     "trigramPair": {
       "above": 6,
       "below": 6
@@ -2459,7 +2459,7 @@
       "pinyin": "duì",
       "english": "The Joyous (Lake)"
     },
-    "octal": "33",
+    "octal": "033",
     "trigramPair": {
       "above": 3,
       "below": 3
@@ -2502,7 +2502,7 @@
       "pinyin": "huàn",
       "english": "Dispersion"
     },
-    "octal": "62",
+    "octal": "062",
     "trigramPair": {
       "above": 6,
       "below": 2
@@ -2545,7 +2545,7 @@
       "pinyin": "jié",
       "english": "Limitation"
     },
-    "octal": "23",
+    "octal": "023",
     "trigramPair": {
       "above": 2,
       "below": 3
@@ -2588,7 +2588,7 @@
       "pinyin": "zhōng fú",
       "english": "Inner Truth"
     },
-    "octal": "63",
+    "octal": "063",
     "trigramPair": {
       "above": 6,
       "below": 3
@@ -2631,7 +2631,7 @@
       "pinyin": "xiǎo guò",
       "english": "Small Preponderance"
     },
-    "octal": "14",
+    "octal": "014",
     "trigramPair": {
       "above": 1,
       "below": 4
@@ -2674,7 +2674,7 @@
       "pinyin": "jì jì",
       "english": "After Completion"
     },
-    "octal": "25",
+    "octal": "025",
     "trigramPair": {
       "above": 2,
       "below": 5
@@ -2717,7 +2717,7 @@
       "pinyin": "wèi jì",
       "english": "Before Completion"
     },
-    "octal": "52",
+    "octal": "052",
     "trigramPair": {
       "above": 5,
       "below": 2

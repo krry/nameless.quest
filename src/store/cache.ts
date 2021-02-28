@@ -21,14 +21,14 @@ export const cached: {[key: string]: string} = reactive({
 
 export const cache = (nym: string | undefined, val: string | null | undefined): void => {
 	if (!nym || !val) throw new Error("can't cache nada. nym: " + nym + ', val: ' + val)
-	console.log('setting user data', nym, 'from', cached[nym], 'to', val)
+	// console.log('setting user data', nym, 'from', cached[nym], 'to', val)
 	localStorage.setItem(nym, val)
 	cached[nym] = val
 }
 
 export const uncache = (nym: string | undefined): void => {
 	if (!nym) throw new Error("can't uncache nada. nym: " + nym)
-	console.log('clearing user data for', nym)
+	// console.log('clearing user data for', nym)
 	localStorage.removeItem(nym)
 	cached[nym] = ''
 }

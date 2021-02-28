@@ -1,34 +1,36 @@
+j
 <template lang="pug">
 h2 Help and FAQs
 .flex.pads.y.wrap.mid
 	button.btn.md.mrg.x.outline(
-		@click="cache('help', 'yijing')"
+		@click="showHelp('yijing')"
 		:class="{active: cached.help === 'yijing'}"
 		) What is the Yijing?
 	button.btn.md.mrg.x.outline(
-		@click="cache('help', 'oracle')"
+		@click="showHelp('oracle')"
 		:class="{active: cached.help === 'oracle'}"
 		) What is the Oracle?
 	button.btn.md.mrg.x.outline(
-		@click="cache('help', 'query')"
+		@click="showHelp('query')"
 		:class="{active: cached.help === 'query'}"
 		) What do I ask?
 	button.btn.md.mrg.x.outline#method4(
-		@click="cache('help', '4coin')"
+		@click="showHelp('4coin')"
 		:class="{active: cached.help === '4coin'}"
 		) The recommended 4-coin method
 	button.btn.md.mrg.x.outline#method3(
-		@click="cache('help', '3coin')"
+		@click="showHelp('3coin')"
 		:class="{active: cached.help === '3coin'}"
 		) The traditional 3-coin method
 	button.btn.md.mrg.x.outline#method4b(
-		@click="cache('help', '4bcoin')"
+		@click="showHelp('4bcoin')"
 		:class="{active: cached.help === '4bcoin'}"
 		) The faithful 4-coin method
 	button.btn.md.mrg.x.outline(
-		@click="cache('help', 'yarrow')"
+		@click="showHelp('yarrow')"
 		:class="{active: cached.help === 'yarrow'}"
 		) How to use yarrow stalks?
+#helpLine
 transition(name="slide-fade" appear mode="out-in")
 	aside#helpQuery.help.font.alcenter.pads.y.below(
 		v-if="cached.help === 'query'"
@@ -394,6 +396,7 @@ AppLink.btn.naked.pip(to="https://ko-fi.com/kerrbear")  I love this, please make
 <script lang="ts">
 import {defineComponent} from 'vue'
 import {cfg} from '../store'
+import VueScrollTo from 'vue-scrollto'
 import {cached, cache} from '../store/cache'
 import IconBase from '../icons/IconBase.vue'
 import AppLink from './AppLink.vue'
@@ -445,10 +448,15 @@ export default defineComponent({
 		IconPenroseTriangle,
 	},
 	setup() {
+		function showAndJumpToHelp(topic: string) {
+			cache('help', topic)
+			VueScrollTo.scrollTo('#helpLine')
+		}
 		return {
 			cfg,
 			cache,
 			cached,
+			showHelp: showAndJumpToHelp,
 		}
 	},
 })

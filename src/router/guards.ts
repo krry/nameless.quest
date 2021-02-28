@@ -8,15 +8,15 @@ import * as drawer from '../utils/drawer'
 export function beforeEach(to: RouteLocationNormalized): RouteLocationRaw | boolean {
 	const requiresAuth = to.matched.some((x) => x.meta.requiresAuth)
 	// console.log('before this route', to)
-	console.log('user authd?', cached.uid)
+	// console.log('user authd?', cached.uid)
 	if (requiresAuth && !cached.uid) {
-		console.log('need auth and no user signed in')
+		// console.log('need auth and no user signed in')
 		return {name: 'login'}
 	}
 
 	if (auth.isSignInWithEmailLink(window.location.href)) {
-		console.log('coming in from a magic link')
-		console.log('checking for cached email', cached.email)
+		// console.log('coming in from a magic link')
+		// console.log('checking for cached email', cached.email)
 		if (!cached.email) {
 			console.warn('different device than last sign-in,  need to sign in here.')
 			return {
@@ -29,19 +29,19 @@ export function beforeEach(to: RouteLocationNormalized): RouteLocationRaw | bool
 			.signInWithEmailLink(cached.email, window.location.href)
 			.then((result) => {
 				if (result.user) {
-					console.log('user signed in!', result.user)
+					// console.log('user signed in!', result.user)
 					cacheUser(result.user)
 				}
 				if (result.additionalUserInfo) {
-					console.log('user is new', result.additionalUserInfo.isNewUser)
+					// console.log('user is new', result.additionalUserInfo.isNewUser)
 					// can trigger onboarding flow here
 					set('beeny', false)
 				}
-				console.log('logged in successfully to', to)
+				// console.log('logged in successfully to', to)
 				if (cachedRoll.value) {
 					addRoll(cachedRoll.value)
 				}
-				console.log('redirecting to journal')
+				// console.log('redirecting to journal')
 				return {name: 'journal', replace: true}
 			})
 			.catch((error) => {
@@ -60,7 +60,7 @@ export function beforeEach(to: RouteLocationNormalized): RouteLocationRaw | bool
 }
 
 export function oracleGuard(): RouteLocationRaw {
-	console.log('guarding the oracle')
+	// console.log('guarding the oracle')
 	if (cached.query) return {name: 'cast'}
 	else return {name: 'query'}
 }

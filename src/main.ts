@@ -29,7 +29,7 @@ app
 
 auth.onAuthStateChanged((user) => {
 	if (user) {
-		console.log('user detected', user.uid)
+		// console.log('user detected', user.uid)
 		cache('uid', user.uid)
 		// activeUser.value = user.uid
 		if (cachedRoll.value) {
@@ -38,7 +38,7 @@ auth.onAuthStateChanged((user) => {
 			cachedRoll.value = null
 		}
 	} else {
-		console.warn('user lost 😞')
+		// console.warn('user lost 😞')
 		uncache('uid')
 		// activeUser.value = null
 		// No user is signed in.

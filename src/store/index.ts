@@ -23,7 +23,7 @@ export const cfg: {[key: string]: boolean} = reactive({
 })
 
 export function set(nym: string, val: boolean): void {
-	console.log('set', nym, 'to', val)
+	// console.log('set', nym, 'to', val)
 	localStorage.setItem(nym, JSON.stringify(val))
 	cfg[nym] = val
 }
