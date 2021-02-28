@@ -1,6 +1,6 @@
 {
   "name": "nameless-yi-jing",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "An interactive, graphic resource for and paean to 易經 (Yìjīng, and often I Ching) the Classic Book of Changes, wherein one can see the glorious symmetries of the perfect Octals, decode the binary of the hexagrams, pronounce the Pinyin, and peruse scholarly interpretations.",
   "license": "CC-BY-NC-SA-4.0",
   "main": "main.ts",
@@ -30,12 +30,9 @@
     "firebase": "^8.2.3",
     "vue": "^3.0.5",
     "vue-router": "4",
-    "vue-sanity": "^1.0.0-beta.0",
     "vue-scrollto": "^2.20.0"
   },
   "devDependencies": {
-    "@codesee/babel-plugin-instrument": "^0.10.1",
-    "@codesee/tracker": "^0.10.1",
     "@types/node": "^14.14.21",
     "@typescript-eslint/eslint-plugin": "^4.4.0",
     "@typescript-eslint/parser": "^4.4.0",

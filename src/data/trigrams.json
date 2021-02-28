@@ -5,7 +5,8 @@
       "en": "earth",
       "zh": "坤",
       "pn": "kūn"
-    }
+    },
+    "animal": "ox"
   },
   {
     "trigram": "☳",
@@ -13,7 +14,8 @@
       "en": "thunder",
       "zh": "震",
       "pn": "zhèn"
-    }
+    },
+    "animal": "dragon"
   },
   {
     "trigram": "☵",
@@ -21,7 +23,8 @@
       "en": "water",
       "zh": "坎",
       "pn": "kǎn"
-    }
+    },
+    "animal": "pig"
   },
   {
     "trigram": "☱",
@@ -29,7 +32,8 @@
       "en": "lake",
       "zh": "兌",
       "pn": "duì"
-    }
+    },
+    "animal": "sheep"
   },
   {
     "trigram": "☶",
@@ -37,7 +41,8 @@
       "en": "mountain",
       "zh": "艮",
       "pn": "gèn"
-    }
+    },
+    "animal": "dog"
   },
   {
     "trigram": "☲",
@@ -45,7 +50,8 @@
       "en": "fire",
       "zh": "離",
       "pn": "lí"
-    }
+    },
+    "animal": "pheasant"
   },
   {
     "trigram": "☴",
@@ -53,7 +59,8 @@
       "en": "wind",
       "zh": "巽",
       "pn": "xùn"
-    }
+    },
+    "animal": "cock"
   },
   {
     "trigram": "☰",
@@ -61,6 +68,7 @@
       "en": "heaven",
       "zh": "乾",
       "pn": "qián"
-    }
+    },
+    "animal": "horse"
   }
 ]

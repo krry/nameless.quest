@@ -2,6 +2,10 @@
 h2 Help and FAQs
 .flex.pads.y.wrap.mid
 	button.btn.md.mrg.x.outline(
+		@click="cache('help', 'yijing')"
+		:class="{active: cached.help === 'yijing'}"
+		) What is the Yijing?
+	button.btn.md.mrg.x.outline(
 		@click="cache('help', 'oracle')"
 		:class="{active: cached.help === 'oracle'}"
 		) What is the Oracle?
@@ -9,18 +13,22 @@ h2 Help and FAQs
 		@click="cache('help', 'query')"
 		:class="{active: cached.help === 'query'}"
 		) What do I ask?
-	button.btn.md.mrg.x.outline(
-		@click="cache('help', 'yijing')"
-		:class="{active: cached.help === 'yijing'}"
-		) What is the Yijing?
-	button.btn.md.mrg.x.outline(
-		@click="cache('help', 'coins')"
-		:class="{active: cached.help === 'coins'}"
-		) How to count the coins?
+	button.btn.md.mrg.x.outline#method4(
+		@click="cache('help', '4coin')"
+		:class="{active: cached.help === '4coin'}"
+		) The recommended 4-coin method
+	button.btn.md.mrg.x.outline#method3(
+		@click="cache('help', '3coin')"
+		:class="{active: cached.help === '3coin'}"
+		) The traditional 3-coin method
+	button.btn.md.mrg.x.outline#method4b(
+		@click="cache('help', '4bcoin')"
+		:class="{active: cached.help === '4bcoin'}"
+		) The faithful 4-coin method
 	button.btn.md.mrg.x.outline(
 		@click="cache('help', 'yarrow')"
 		:class="{active: cached.help === 'yarrow'}"
-		) How to split yarrow stalks?
+		) How to use yarrow stalks?
 transition(name="slide-fade" appear mode="out-in")
 	aside#helpQuery.help.font.alcenter.pads.y.below(
 		v-if="cached.help === 'query'"
@@ -112,7 +120,7 @@ transition(name="slide-fade" appear mode="out-in")
 		Spinnable
 			IconBase(size="80" viewBox="0 0 100 125" iconColor="var(--flair)").invert.y
 				IconLooptyLoop
-	aside#helpYijing.help.font.alcenter.pads.x.y.right( v-else-if="cached.help === 'yijing'" )
+	aside#helpYijing.help.font.alcenter.pads.x.y.right(v-else-if="cached.help === 'yijing'")
 		Spinnable
 			IconBase(size="80" viewBox="0 0 1000 1250" iconColor="var(--flair)")
 				IconSpellBook
@@ -137,17 +145,122 @@ transition(name="slide-fade" appear mode="out-in")
 		Spinnable
 			IconBase(size="80" viewBox="0 0 1000 1250" iconColor="var(--flair)")
 				IconOpenBook
-	aside#helpCoins.help.font.alcenter.pad3.y.left(v-else ref="helpCoins")
+	aside#help4Coins.help.font.alcenter.pad3.y.left(v-else-if="cached.help === '4coin'")
 		Spinnable
 			IconBase(size="80" viewBox="0 0 512 640" iconColor="var(--flair)")
 				IconCarnivalCoin
-		h2 How to Count the Coins
+		h2 The Easy 4-coin Method
+		dl.ls.text.md.fine.pad.y.alleft
+			dt We toss six rounds of four coins.
+			dt Step 1
+			dd Toss 1 coin.
+			dd Heads means firm, tails means open.
+			dd Leave the coin where you tossed it.
+			dt Step 2
+			dd Toss 3 more coins next to the first one.
+			dd If you see exactly 3 heads among all 4 coins,
+			dd then the line is changing;
+			dd otherwise it is unchanging.
+			dt Enter the corresponding 6s, 7s, 8s, and 9s above.
+		.coin-legend-4.grid.font.sm.thicc.pad.y
+			span open
+			span changing
+			span 6
+			span.ib
+				Turnable(ortho)
+					IconBase
+						Icon6
+			span yin ⤐ yang
+			span firm
+			span unchanging
+			span 7
+			span.ib
+				Turnable(ortho)
+					IconBase
+						Icon7
+			span yang
+			span open
+			span unchanging
+			span 8
+			span.ib
+				Turnable(ortho)
+					IconBase
+						Icon8
+			span yin
+			span firm
+			span changing
+			span 9
+			span.ib
+				Turnable(ortho)
+					IconBase
+						Icon9
+			span yang ⤐ yin
+	aside#help4bCoins.help.font.alcenter.pad3.y.left(v-else-if="cached.help === '4bcoin'")
+		Spinnable
+			IconBase(size="80" viewBox="0 0 512 640" iconColor="var(--flair)")
+				IconCarnivalCoin
+		h2
+			| The Faithful 4-coin Method
+			sup
+				AppLink(to="http://www.russellcottrell.com/VirtualYarrowStalks/downloads/4coinmethod.pdf" download)
+		dl.ls.text.md.fine.pad.y.alleft
+			dt We toss six rounds of four coins.
+			dt Step 1
+			dd Toss two coins.
+			dd If both are heads, write 2; otherwise 3.
+			dt Step 2
+			dd Toss two coins.
+			dd Each head is worth 2, each tail 3.
+			dt Step 3
+			dd Add up the results, to find a number between 6 and 9.
+			dd Enter the number above for each round.
+		.coin-legend.grid.font.sm.thicc.pad.y
+			span 👸 👸 👸 = 6
+			span yin ⤐ yang
+			span.ib
+				Turnable(ortho)
+					IconBase
+						Icon6
+			span firming
+			span 👸 👸 🦚 = 7
+			span yang
+			span.ib
+				Turnable(ortho)
+					IconBase
+						Icon7
+			span firm
+			span 👸 🦚 🦚 = 8
+			span yin
+			span.ib
+				Turnable(ortho)
+					IconBase
+						Icon8
+			span open
+			span 🦚 🦚 🦚 = 9
+			span yang ⤐ yin
+			span.ib
+				Turnable(ortho)
+					IconBase
+						Icon9
+			span opening
+		ul.ls.text.md.fine.pad.y
+			li Each round sums to 6, 7, 8, or 9
+			li determining a line in the hexagram
+			li
+				| starting with the 
+				span {{ cfg.turny ? 'right' : 'bottom' }}
+				|  line.
+	aside#help3Coins.help.font.alcenter.pad3.y.left(v-else-if="cached.help === '3coin'")
+		Spinnable
+			IconBase(size="80" viewBox="0 0 512 640" iconColor="var(--flair)")
+				IconCarnivalCoin
+		h2 The Traditional 3-coin Method
 		ul.ls.text.md.fine.pad.y
 			li We toss six rounds of three coins.
 			br
 			li A head 👸 counts as 3 
 			li A tail 🦚 counts as 2
-		.line-legend.grid.font.sm.thicc.pad.y
+		.coin-legend.grid.font.sm.thicc.pad.y
 			span 🦚 🦚 🦚 = 6
 			span yin ⤐ yang
 			span.ib
@@ -347,13 +460,18 @@ export default defineComponent({
 	list-style: none;
 	display: grid;
 	width: 100%;
-}
-
-.line-legend {
-	grid-template-columns: 5fr 4fr 1fr 3fr;
-	grid-template-rows: 1fr 1fr 1fr 1fr;
 	row-gap: 1em;
 	column-gap: 0.5em;
+}
+
+.coin-legend {
+	grid-template-columns: 3fr 3fr 1fr 3fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+.coin-legend-4 {
+	grid-template-columns: 2fr 3fr 1fr 1fr 3fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 
 .example-toss {
@@ -364,16 +482,21 @@ export default defineComponent({
 }
 
 .grid svg {
-	height: 1.5em;
 	color: var(--flair);
+	height: 1.5em;
 }
 
-.line-legend span {
-	height: 1.5em;
+.coin-legend span,
+.coin-legend-4 span {
 	line-height: 1.5em;
+	height: 1.5em;
 }
 
 .ls li {
+	@supports (font-variation-settings: normal) {
+		font-family: 'QuicksandVariable';
+		font-variation-settings: 'wght' 555;
+	}
 	margin: 0;
 }
 
@@ -385,11 +508,11 @@ export default defineComponent({
 	padding: 2rem 0;
 }
 
-.help h3,
-.ls li {
+.help h3 {
 	@supports (font-variation-settings: normal) {
 		font-family: 'QuicksandVariable';
-		font-variation-settings: 'wght' 555;
+		font-style: italic;
+		font-variation-settings: 'wght' 667;
 	}
 }
 

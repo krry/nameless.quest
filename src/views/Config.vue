@@ -6,7 +6,7 @@ Page.config.col
     .setting.half
       ToggleSwitch(
         label="Pinyin begins"
-        v-model:checked="cfg.pinny"
+        v-model:checked="pinny"
         tabindex="0"
         dis="Hidden"
         dat="Visible"
@@ -29,13 +29,13 @@ Page.config.col
     .setting.half
       ToggleSwitch(
         label="Cards begin showing"
-        v-model:checked="cfg.texty"
+        v-model:checked="texty"
         tabindex="0"
         dis="Glyphs"
         dat="Text"
       )
       transition.pads.y(name="slide-fade" mode="out-in" appear)
-        .right(v-if="cfg.texty")
+        .right(v-if="texty")
           router-link(to="/changes/62")
             h4 Preponderance of the Small
           HanziChar.pad.x(char="小" reveal size="md" pinyin="xiǎo")
@@ -45,7 +45,7 @@ Page.config.col
     .setting.half
       ToggleSwitch(
         label="Line orientation"
-        v-model:checked="cfg.turny"
+        v-model:checked="turny"
         tabindex="0"
         dis="Horizontal"
         dat="Vertical"
@@ -68,13 +68,13 @@ Page.config.col
     .setting.half
       ToggleSwitch(
         label="Show hotkey hints"
-        v-model:checked="cfg.navvy"
+        v-model:checked="navvy"
         tabindex="0"
         dis="No, thanks"
         dat="Yes, please"
       )
       transition.over(name="slide-fade")
-        h5.example.pads.y(v-if="cfg.navvy")
+        h5.example.pads.y(v-if="navvy")
           | You can 
           kbd tab
           |  among the switches.
@@ -83,7 +83,15 @@ Page.config.col
         label="Default Order"
         dis="Octal"
         dat="King Wen"
-        v-model:checked="cfg.wenny"
+        v-model:checked="wenny"
+        tabindex="0"
+        )
+    .setting.half
+      ToggleSwitch(
+        label="Text Format"
+        dis="Genderless"
+        dat="Genderful"
+        v-model:checked="gendy"
         tabindex="0"
         )
     .setting.half
@@ -91,7 +99,7 @@ Page.config.col
         label="Bagua Doors"
         dis="Open"
         dat="Closed"
-        v-model:checked="cfg.baguy"
+        v-model:checked="baguy"
         tabindex="0"
         )
       ChangeNode.example
@@ -102,9 +110,8 @@ Page.config.col
   AppLink.btn(to="https://ko-fi.com/kerrbear") Gift our baby some diapers 🐻
 </template>
 <script lang="ts">
-import {defineComponent} from 'vue'
+import {defineComponent, reactive, toRefs, watchEffect} from 'vue'
 import {cfg, set} from '../store'
-import {defHex} from '../schema'
 import Page from '../components/Page.vue'
 import AppLink from '../components/AppLink.vue'
 import ComingSoon from '../components/ComingSoon.vue'
@@ -129,10 +136,28 @@ export default defineComponent({
 		HexaCard,
 	},
 	setup() {
+		const rx = reactive({
+			pinny: cfg.pinny,
+			texty: cfg.texty,
+			turny: cfg.turny,
+			navvy: cfg.navvy,
+			wenny: cfg.wenny,
+			gendy: cfg.gendy,
+			baguy: cfg.baguy,
+		})
+
+		watchEffect(() => {
+			set('pinny', rx.pinny)
+			set('texty', rx.texty)
+			set('turny', rx.turny)
+			set('navvy', rx.navvy)
+			set('wenny', rx.wenny)
+			set('gendy', rx.gendy)
+			set('baguy', rx.baguy)
+		})
+
 		return {
-			cfg,
-			set,
-			defHex,
+			...toRefs(rx),
 		}
 	},
 })

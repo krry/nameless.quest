@@ -12,7 +12,6 @@ The Taiji is a map of changing light as seasons cycle
 易 change, ease, sun over moon
 經 book, classic, profound book
 
-## Hermagrams Done
+The animals applied to the trigrams come from Richard Rutt's _Zhouyi_ [courtesy of Hilary Barrett](https://www.onlineclarity.co.uk/answers/category/interpret/) at onlineclarity.co.uk.
 
-2 Earth
-59 Dispersion
+For an in-depth treatment of the unknown reasoning behind the King Wen sequence, one might [read this paper](https://kingwen.net/wp-content/uploads/2018/03/The_King_Wen_Groups_short-z.pdf)

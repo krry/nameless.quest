@@ -1,6 +1,8 @@
 import {reactive} from 'vue'
+import {cfg} from '../store'
 import {Hexagram} from '../schema'
 import hexagrams from '../data/hexagrams.json'
+import hermagrams from '../data/hermagrams.json'
 
 export const useHexagrams = (): {
 	getHexagrams: (wenny: boolean) => Map<symbol, Hexagram>
@@ -11,7 +13,7 @@ export const useHexagrams = (): {
 	getWenByBin: (bin: string) => string
 } => {
 	const rx = reactive({
-		hexagrams: hexagrams,
+		hexagrams: cfg.gendy ? hexagrams : hermagrams,
 	})
 
 	function getHexagrams(wenny: boolean) {
