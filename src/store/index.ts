@@ -5,7 +5,7 @@ export const cfg: {[key: string]: boolean} = reactive({
 	texty: lsd('texty'), // prefer text over glyphs
 	pinny: lsd('pinny'), // prefer pinyin visible
 	liney: lsd('liney'), // show all changing lines
-	hermy: lsd('hermy'), // prefer ungendered text
+	gendy: lsd('gendy'), // prefer ungendered text
 	turny: lsd('turny'), // prefer vertical lines
 	navvy: lsd('navvy'), // prefer no more hints
 	beeny: lsd('beeny'), // seen the intro pane
@@ -23,7 +23,7 @@ export const cfg: {[key: string]: boolean} = reactive({
 })
 
 export function set(nym: string, val: boolean): void {
-	// console.log('set', nym, 'to', val)
+	console.log('set', nym, 'to', val)
 	localStorage.setItem(nym, JSON.stringify(val))
 	cfg[nym] = val
 }

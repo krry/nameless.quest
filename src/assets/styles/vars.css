@@ -7,6 +7,7 @@
 	--text: 'Roboto Slab', serif;
 	--mono: 'Inconsolata', monospace;
 	--heading: 'MuseoModerno', system-ui, sans-serif;
+	--unit: 1rem;
 	--hleading: 1.25;
 	--leading: 1.375;
 	--pleading: 1.425;

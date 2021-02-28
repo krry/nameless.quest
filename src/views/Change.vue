@@ -41,6 +41,9 @@ Page.font.center(
 	h1 {{ hex.names.english }}
 	section.numbers
 		.flex.space.string
+			.datum.kingwen
+				dd {{ hex.kingwen }}
+				dt King Wen
 			.datum.binary
 				dd {{ hex.binary.slice(2) }}
 				dt Binary
@@ -50,20 +53,17 @@ Page.font.center(
 			.datum.octal
 				dd {{ parseInt(hex.binary.slice(2), 2) }}
 				dt Decimal
-			.datum.kingwen
-				dd {{ hex.kingwen }}
-				dt King Wen
 	.flex.mid.col.string
 		pre.judgment.text.md(v-html="adoptOrphans(hex.judgment)")
-	.flex.mid.col.string
+	.flex.mid.col.string.images
 		.flex.space
 			.flex.string.col.dyn
 				.datum.trigram.flex.string.laze.btw(
 					v-for="(tri, index) in trigrams"
 					:key="$symbolize(tri.name.en)"
 					)
-					.flex.col.mid.more
-						dt The {{ $titlize(tri.name.en) }}
+					.flex.col.end.more.trivert
+						dt {{ $titlize(tri.name.en) }}
 						dt {{ index === 0 ? "Above" : "Below" }}
 					.flex.col.mid.less
 						HanziChar(
@@ -78,7 +78,7 @@ Page.font.center(
 							trigram
 							:glyph="tri.trigram"
 							size="x5l")
-			LineGlyph.datum.middle.dyn(
+			LineGlyph.datum.middle.dyn.alcenter.font(
 				:glyph="hex.hexagram"
 				size="x6l")
 		pre.image.text.md(v-html="adoptOrphans(hex.images)")
@@ -102,6 +102,24 @@ Page.font.center(
 					component(:is="'Icon' + getChangingLine(line.position).is")
 			h5.text.md.em(v-if="line.ruler") The {{ $titlize(line.ruler) }} Ruler
 			pre.text.md.line {{line.meaning}}
+	hr.dinkus.fleur
+	h3
+		| All Changes by
+		a.btn.naked.lg.skinny(@click="tog('wenny')") {{ cfg.wenny ? "King Wen Sequence" : "Octal Index"}}
+	.grid8(v-if="cfg.wenny")
+		AppLink.btn.md(
+			v-for="h in getHexagrams(true)"
+			:key="$symbolize(h[1].kingwen)"
+			:class="{naked: h[1].kingwen !== hex.kingwen}"
+			:to="'/changes/'+h[1].kingwen"
+			) {{ h[1].kingwen + " " + h[1].hexagram }}
+	.grid8(v-else)
+		AppLink.btn.md(
+			v-for="h in getHexagrams(false)"
+			:key="$symbolize(h[1].octal)"
+			:class="{naked: h[1].octal !== hex.octal}"
+			:to="'/changes/'+h[1].kingwen"
+			) {{ h[1].octal + " " + h[1].hexagram }}
 </template>
 
 <script lang="ts">
@@ -112,6 +130,7 @@ import {parseTossToBinary} from '../utils/tosses'
 import {useHexagrams} from '../composables/hexagrams'
 import {useTrigrams} from '../composables/trigrams'
 import Page from '../components/Page.vue'
+import AppLink from '../components/AppLink.vue'
 import HanziChar from '../components/HanziChar.vue'
 import LineGlyph from '../components/LineGlyph.vue'
 import Spinnable from '../components/Spinnable.vue'
@@ -143,6 +162,7 @@ export default defineComponent({
 	name: 'Change',
 	components: {
 		Page,
+		AppLink,
 		LineGram,
 		LineGlyph,
 		HanziChar,
@@ -161,7 +181,7 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
-		const {getHexagramByWen, getWenByBin} = useHexagrams()
+		const {getHexagrams, getHexagramByWen, getWenByBin} = useHexagrams()
 		const {getTrigram} = useTrigrams()
 
 		const hex = ref(getHexagramByWen(props.id))
@@ -175,6 +195,7 @@ export default defineComponent({
 			prev: getPrevHex(props.id),
 			next: getNextHex(props.id),
 			pinyin: computed(() => hex.value.names.pinyin.split(' ')),
+			// allHex: computed(() => getHexagrams(true)),
 		})
 
 		function lineIsChanging(lineNo: number) {
@@ -226,6 +247,7 @@ export default defineComponent({
 			cached,
 			trigrams,
 			getWenByBin,
+			getHexagrams,
 			lineIsChanging,
 			getHexagramByWen,
 			...toRefs(rx),
@@ -364,5 +386,20 @@ dl + dl::before {
 
 h5 {
 	margin: 1em 0;
+}
+
+.images .trivert {
+	margin: 0.5em 0.5em 0;
+}
+.images .trigram {
+	margin-bottom: 0.25rem;
+}
+
+.grid8 {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	row-gap: 0.5em;
+	column-gap: 0.5em;
 }
 </style>

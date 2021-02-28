@@ -91,6 +91,18 @@ ul.ls {
 	padding: 0;
 }
 
+dl.ls dt {
+	@supports (font-variation-settings: normal) {
+		font-family: inherit;
+		font-variation-settings: 'wght' 567;
+	}
+}
+
+dt + dt,
+dd + dt {
+	margin-top: 1em;
+}
+
 .ls li {
 	line-height: var(--leading);
 	margin-bottom: 0.5em;
@@ -182,6 +194,11 @@ hr.dinkus.asterism::after {
 .pad-50.x {
 	padding-left: var(--pad-50);
 	padding-right: var(--pad-50);
+}
+
+.mrg-50.x {
+	margin-left: var(--pad-50);
+	margin-right: var(--pad-50);
 }
 
 .pad.x {

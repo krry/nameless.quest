@@ -139,8 +139,8 @@ export default defineComponent({
 		}
 
 		function showCoinsHelp() {
-			cache('help', 'coins')
-			setTimeout(() => VueScrollTo.scrollTo('#helpCoins'), 1000)
+			cache('help', '4coin')
+			VueScrollTo.scrollTo('#method3')
 		}
 
 		return {

@@ -17,7 +17,6 @@ Page.query
 </template>
 <script lang="ts">
 import {defineComponent, ref} from 'vue'
-import {set} from '../store'
 import {cached, uncache} from '../store/cache'
 import Page from './Page.vue'
 import Spinnable from './Spinnable.vue'

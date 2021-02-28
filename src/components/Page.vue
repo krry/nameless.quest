@@ -27,7 +27,7 @@ export default defineComponent({
 		}
 
 		watchEffect(() => {
-			backdrop.value = 'url(/' + sizeBg() + activeTheme.value + getRandTo(3) + '.jpg)'
+			backdrop.value = 'url(/' + sizeBg() + activeTheme.value + getRandTo(5) + '.jpg)'
 		})
 
 		onMounted(() => drawer.close())

@@ -13,7 +13,7 @@
   h3.yingyu.head.x2l {{ names.english }}
   .orders(@click.stop="reorder")
     .kingwen(v-if="wenny") King Wen \#{{ kingwen }}
-    .octal(v-if="!wenny") Octal \#{{ octal.slice(1) }}
+    .octal(v-if="!wenny") Octal \#{{ octal }}
 </template>
 
 <script lang="ts">

@@ -62,12 +62,26 @@ export const parseTossToBinary = (toss: string): string[] => {
 	return lots
 }
 
+const yarrowOdds = {
+	6: 0.0625,
+	7: 0.3125,
+	8: 0.4375,
+	9: 0.1875,
+}
+
+// const threeCoinOdds = {
+// 	6: 0.125,
+// 	7: 0.375,
+// 	8: 0.375,
+// 	9: 0.125,
+// }
+
 export const generateRandomToss = (): number => {
 	return parseInt(
 		Array(6)
 			.fill(0)
 			.map(() => {
-				return randomFlip({6: 0.125, 7: 0.375, 8: 0.375, 9: 0.125})
+				return randomFlip(yarrowOdds)
 			})
 			.join(''),
 		10,

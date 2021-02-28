@@ -48,7 +48,7 @@ export default defineComponent({
 		const rx = reactive({
 			hexagrams: computed(() => getHexagrams(cfg.wenny)),
 			backdrop: computed(
-				() => refreshBg && 'url(/' + sizeBg() + theme.value + getRandTo(3) + '.jpg)',
+				() => refreshBg && 'url(/' + sizeBg() + theme.value + getRandTo(5) + '.jpg)',
 			),
 		})
 
