@@ -104,17 +104,20 @@ Page.font.center(
 			pre.text.md.line {{line.meaning}}
 	hr.dinkus.fleur
 	h3
-		| All Changes by
-		a.btn.naked.lg.skinny(@click="tog('wenny')") {{ cfg.wenny ? "King Wen Sequence" : "Octal Index"}}
+		| All Changes
+		br
+		small
+			| by
+			a.btn.naked.md.skinny(@click="tog('wenny')") {{ cfg.wenny ? "King Wen Sequence" : "Octal Index"}}
 	.grid8(v-if="cfg.wenny")
-		AppLink.btn.md(
+		AppLink.btn(
 			v-for="h in getHexagrams(true)"
 			:key="$symbolize(h[1].kingwen)"
 			:class="{naked: h[1].kingwen !== hex.kingwen}"
 			:to="'/changes/'+h[1].kingwen"
 			) {{ h[1].kingwen + " " + h[1].hexagram }}
 	.grid8(v-else)
-		AppLink.btn.md(
+		AppLink.btn(
 			v-for="h in getHexagrams(false)"
 			:key="$symbolize(h[1].octal)"
 			:class="{naked: h[1].octal !== hex.octal}"
@@ -396,10 +399,17 @@ h5 {
 }
 
 .grid8 {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-	row-gap: 0.5em;
-	column-gap: 0.5em;
+	display: flex;
+	flex-flow: row wrap;
+}
+
+@media (min-width: 36rem) {
+	.grid8 {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+		grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+		row-gap: 0.5em;
+		column-gap: 0.5em;
+	}
 }
 </style>
