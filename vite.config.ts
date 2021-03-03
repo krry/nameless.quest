@@ -4,7 +4,7 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
 	plugins: [vue()],
 	optimizeDeps: {
-		include: ['firebase/app', 'firebase/auth', 'firebase/database'],
+		include: ['firebase/app', 'firebase/auth', 'firebase/firestore'],
 		exclude: ['path'],
 	},
 })
