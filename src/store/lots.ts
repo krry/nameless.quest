@@ -2,7 +2,7 @@ import {ref} from 'vue'
 // a reference to the activeLots
 export const activeLots = ref()
 
-export function setLots(lots: string[]): void {
+export function setLots(lots: string[] | undefined): void {
 	if (lots) {
 		// console.log('setting lots', lots)
 		activeLots.value = lots

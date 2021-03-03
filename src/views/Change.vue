@@ -1,5 +1,5 @@
 <template lang="pug">
-Page.font.center(
+Page.font.center#change(
 	ref="desk"
 	@keydown.left.prevent.exact="navTo(prev)"
 	@keydown.right.prevent.exact="navTo(next)"
@@ -8,7 +8,7 @@ Page.font.center(
 	transition.under(name="slide-fade" appear)
 		.hint.vapor.abs.t.r.l.alcenter.font.sm(v-if="!cfg.navvy") ⬅️ Did you try 😁 arrow keys? ➡️
 	router-link.page-nav.btn.naked.next.clickable.abs.t.r(:to="next") {{ next }} 𐡸
-	.mark(v-if="lots")
+	.mark(v-if="lots[0]")
 		.btn.naked.md.ib.skinny.static(v-if="lots[0] === hex.binary") Being 
 		router-link.font.md(
 			v-if="lots[0] === hex.binary"
@@ -25,7 +25,7 @@ Page.font.center(
 			v-if="lots[1] === hex.binary"
 			:to="{name: 'oracle'}") ⇠
 		.btn.naked.md.ib.skinny.static(v-if="lots[1] === hex.binary") Becoming
-	h1.font.x2l.flex.mid.mrg0.t
+	h1.font.x2l.flex.mid.mrg0
 		Spinnable
 			LineGlyph(:glyph="hex.hexagram" noturn inline size="x8l")
 		.flex.col.mid
@@ -102,33 +102,28 @@ Page.font.center(
 					component(:is="'Icon' + getChangingLine(line.position).is")
 			h5.text.md.em(v-if="line.ruler") The {{ $titlize(line.ruler) }} Ruler
 			pre.text.md.line {{line.meaning}}
-	hr.dinkus.fleur
+	hr.dinkus.fleur.x3l
 	h3
 		| All Changes
 		br
 		small
 			| by
 			a.btn.naked.md.skinny(@click="tog('wenny')") {{ cfg.wenny ? "King Wen Sequence" : "Octal Index"}}
-	.grid8(v-if="cfg.wenny")
-		AppLink.btn(
-			v-for="h in getHexagrams(true)"
+	.grid8
+		AppLink.btn.naked(
+			v-for="h in getHexagrams(cfg.wenny)"
 			:key="$symbolize(h[1].kingwen)"
-			:class="{naked: h[1].kingwen !== hex.kingwen}"
+			@click="scrollTo('#change')"
+			:class="{static: h[1].kingwen === hex.kingwen}, {outline: h[1].kingwen.toString() === getWenByBin(lots[0])}, {outline: h[1].kingwen.toString() === getWenByBin(lots[1])}"
 			:to="'/changes/'+h[1].kingwen"
-			) {{ h[1].kingwen + " " + h[1].hexagram }}
-	.grid8(v-else)
-		AppLink.btn(
-			v-for="h in getHexagrams(false)"
-			:key="$symbolize(h[1].octal)"
-			:class="{naked: h[1].octal !== hex.octal}"
-			:to="'/changes/'+h[1].kingwen"
-			) {{ h[1].octal + " " + h[1].hexagram }}
+			) {{ (cfg.wenny ? h[1].kingwen : h[1].octal.slice(1)) + " " + h[1].hexagram }}
 </template>
 
 <script lang="ts">
 import {defineComponent, ref, toRefs, reactive, watchEffect, onMounted, computed} from 'vue'
 import {cfg, set, tog} from '../store'
 import {cached} from '../store/cache'
+import VueScrollTo from 'vue-scrollto'
 import {parseTossToBinary} from '../utils/tosses'
 import {useHexagrams} from '../composables/hexagrams'
 import {useTrigrams} from '../composables/trigrams'
@@ -188,22 +183,22 @@ export default defineComponent({
 		const {getTrigram} = useTrigrams()
 
 		const hex = ref(getHexagramByWen(props.id))
+		const lots = ref(parseTossToBinary(cached.toss))
 
 		const rx = reactive({
 			hex,
+			lots,
 			desk: ref(),
-			lots: parseTossToBinary(cached.toss),
 			mousePresent: false,
 			touchPresent: false,
 			prev: getPrevHex(props.id),
 			next: getNextHex(props.id),
 			pinyin: computed(() => hex.value.names.pinyin.split(' ')),
-			// allHex: computed(() => getHexagrams(true)),
 		})
 
 		function lineIsChanging(lineNo: number) {
 			const lineCode = cached.toss.split('')[lineNo - 1]
-			const tossedThisLot = rx.lots[0] === rx.hex.binary
+			const tossedThisLot = lots.value && lots.value[0] === rx.hex.binary
 			const activeLines = tossedThisLot && (lineCode === '6' || lineCode === '9')
 			return activeLines || !cached.toss || cfg.liney
 		}
@@ -235,8 +230,6 @@ export default defineComponent({
 				set('navvy', true)
 			})
 
-			// console.log('getWenByBin(lots[0])', getWenByBin(rx.lots[0]))
-			// console.log('getWenByBin(lots[1])', getWenByBin(rx.lots[1]))
 			// const gestureZone = rx.desk
 			// console.log('gesureZone', gestureZone)
 			// if (!gestureZone) return
@@ -252,6 +245,7 @@ export default defineComponent({
 			getWenByBin,
 			getHexagrams,
 			lineIsChanging,
+			scrollTo: VueScrollTo.scrollTo,
 			getHexagramByWen,
 			...toRefs(rx),
 		}

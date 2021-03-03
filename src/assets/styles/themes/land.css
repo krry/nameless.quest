@@ -6,7 +6,7 @@ $jung-shadow: hsla(157, 33%, 5%, 0.77);
 $silk-land: hsla(157, 67%, 11%, 0.77);
 $canopy-dusk: hsl(157, 87%, 11%);
 $spore-print: hsla(37, 12%, 22%, 0.6);
-$dirt-trail: hsl(37, 39%, 37%);
+$dirt-trail: hsla(37, 39%, 46%, 0.7);
 $vine-green: hsl(157, 87%, 61%);
 $plumage-teal: hsl(187, 87%, 46%);
 $chlorophyll: hsl(127, 87%, 61%);
@@ -28,7 +28,7 @@ $sunglow: 0 0 0.125vw 0.0625vw $frog-paint, 0 0 0.25vw 0.125vw $blood-froth,
 	--link: $plumage-teal;
 	--flair: $blood-froth;
 	--pencil: $spore-print;
-	--dust: $spore-print;
+	--dust: $dirt-trail;
 	--good: $chlorophyll;
 	--bad: $frog-paint;
 	--glow: $glow-land;

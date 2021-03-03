@@ -13,7 +13,7 @@
 			size="48"
 			)
 			component( :is="`Icon${char}`" )
-	section.col.half.dyn.align-start.mrg.x(
+	section.col.half.dyn.align-start.mrg.mrg1.x(
 		v-for="(hex, index) in hexs"
 		:key="$symbolize(hex.binary)"
 		)
@@ -24,7 +24,7 @@
 				span {{ cfg.wenny ? hex.kingwen : hex.octal }}
 				span {{ " " + hex.names.english }}
 		.flex.mid
-			.col.dyn.more.flex.mid.mrg2.r
+			.col.dyn.more.flex.mid.mrg.mrg2.r
 				h3.font.x2l
 					HanziChar(
 						v-for="(char, i) in hex.names.chinese.split('')"
@@ -34,7 +34,7 @@
 						size="lg"
 						place="side"
 						reveal)
-			.col.dyn.less.flex.mid.mrg.r
+			.col.dyn.less.flex.mid.mrg.mrg1.r
 				LineGlyph(
 					:glyph="hex.hexagram"
 					size="x5l"

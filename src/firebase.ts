@@ -19,6 +19,8 @@ const db = firebase.firestore()
 const auth = firebase.auth()
 auth.useDeviceLanguage()
 export type UserCredential = firebase.auth.UserCredential
+export type DocRef = firebase.firestore.DocumentReference
+export type Transaction = firebase.firestore.Transaction
 // export type fbDbRef = firebase.database.Reference
 // const userz = db.collection('users')
 // const rollz = db.collection('rolls')

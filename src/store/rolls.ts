@@ -1,7 +1,7 @@
 import {ref} from 'vue'
 import {Roll} from '../schema'
 import {cached} from './cache'
-import {db} from '../firebase'
+import {db, DocRef, Transaction} from '../firebase'
 
 export const cachedRoll = ref<Roll | null>()
 export const activeRolls = ref<Roll[]>([])
@@ -34,27 +34,54 @@ export const saveRoll = (roll: Roll): void => {
 */
 
 /* if using Firestore */
+const userRollsPath = 'users/' + cached.uid + '/rolls'
+
 export function getRolls(): void {
-	db.collection('users/' + cached.uid + '/rolls')
+	db.collection(userRollsPath)
 		.get()
 		.then((querySnapshot) => {
 			querySnapshot.forEach((doc) => {
 				// doc.data() is never undefined for query doc snapshots
 				// console.log('roll doc', doc.id, '=>', doc.data())
-				activeRolls.value.push(doc.data() as Roll)
+				console.log('{id: doc.id, ...doc.data()} as Roll', {id: doc.id, ...doc.data()} as Roll)
+				activeRolls.value.push({id: doc.id, ...doc.data()} as Roll)
 			})
 		})
 		.catch((error) => console.error("couldn't retrieve rolls", error))
 }
 
-export function addRoll(roll: Roll): void {
+export function addRoll(roll: Roll): DocRef | void {
 	console.log('roll to save', roll)
-	db.collection('users/' + cached.uid + '/rolls')
+	db.collection(userRollsPath)
 		.add(roll)
 		.then((docRef) => {
 			console.log('roll added to firestore', docRef)
+			return docRef
 		})
 		.catch((error) => console.error("couldn't add roll", error))
+}
+
+export function updateRoll(roll: Roll): Promise<void> {
+	console.log('updating roll', roll)
+	const rollRef = db.collection(userRollsPath).doc(roll.id)
+	return db
+		.runTransaction((transaction: Transaction) => {
+			return transaction.get(rollRef).then((r) => {
+				if (!r.exists) throw new Error("ain't no rolls like dat-a")
+				transaction.update(rollRef, roll)
+			})
+		})
+		.then(() => console.log('able to update roll', roll.id))
+		.catch((error) => console.error('struggled to update roll', roll, error))
+}
+
+export function deleteRoll(id: string): void {
+	// tell firebase to wipe this roll from the books
+	db.collection(userRollsPath)
+		.doc(id)
+		.delete()
+		.then(() => console.log('deleted roll', id))
+		.catch((error) => console.error('struggled to delete roll', id, error))
 }
 
 // export function saveRoll(id: string, roll: Roll): void {

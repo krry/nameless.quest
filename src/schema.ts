@@ -73,8 +73,8 @@ export interface Roll {
 	query: string
 	toss: string
 	moment: Date
-	// id?: string
-	// notes?: string
+	id?: string
+	notes?: string
 }
 
 export const defRoll: Roll = {

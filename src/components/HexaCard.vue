@@ -20,7 +20,7 @@
 						:octal="hex.octal"
 						)
 				template(#bottom)
-					h3.mrg.y.font.head.xl The Image
+					h3.mrg.mrg1.y.font.head.xl The Image
 					.images.left
 						pre.image.text.sd.fine {{ hex.images }}
 					.cross.horiz.flex
@@ -67,8 +67,8 @@
 					h2.yingyu.head.x2l {{ hex.names.english }}
 					pre.judgment.text.sd.fine {{ hex.judgment }}
 				template(#bottom)
-					h3.mrg.y.font.head.xl The Lines
-					.lines.pad.y
+					h3.mrg.mrg1.y.font.head.xl The Lines
+					.lines.pad.pad1.y
 						IconBase.line(
 							v-for="digit in hex.binary.slice(2)"
 							:key="$symbolize(digit)"

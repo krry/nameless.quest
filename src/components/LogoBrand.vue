@@ -7,7 +7,7 @@
 	transition(name="popup" appear)
 		Spinnable
 			.logo
-	.stack.reveal
+	.stack.reveal(v-if="!noname")
 		router-link(to="/")
 			h1.nameless#llamo {{ title }}
 			slot(name="tagline")
@@ -30,9 +30,10 @@ export default defineComponent({
 		},
 		size: {
 			type: String,
-			default: 'md',
+			default: 'lg',
 		},
 		grows: Boolean,
+		noname: Boolean,
 	},
 	setup() {
 		return {
@@ -81,8 +82,32 @@ export default defineComponent({
 	transition: inherit;
 }
 
-.brand {
-	--logo-dim: clamp(4rem, 4rem + 3vh + 3vw, 7.5rem);
+.brand.sm {
+	--logo-dim: clamp(2rem, 2rem + 3vh + 3vw, 5rem);
+}
+
+.brand.md {
+	--logo-dim: clamp(3rem, 3rem + 3vh + 3vw, 6rem);
+}
+
+.brand.lg {
+	--logo-dim: clamp(4rem, 4rem + 3vh + 3vw, 7rem);
+}
+
+.brand.xl {
+	--logo-dim: clamp(5rem, 5rem + 3vh + 3vw, 8rem);
+}
+
+.brand.xxl {
+	--logo-dim: clamp(6rem, 6rem + 3vh + 3vw, 9rem);
+}
+
+.brand.x3l {
+	--logo-dim: clamp(8rem, 8rem + 3vh + 3vw, 12rem);
+}
+
+.brand.x4l {
+	--logo-dim: clamp(12rem, 12rem + 3vh + 3vw, 24rem);
 }
 
 h1.nameless#llamo {

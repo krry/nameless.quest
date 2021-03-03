@@ -99,10 +99,16 @@ button.btn {
 	&.static {
 		cursor: default;
 		color: var(--ink);
+		&.outline {
+			border-color: inherit;
+		}
 		/* text-decoration: underline; */
 		&:hover {
 			color: var(--ink);
 			outline: none;
+			&.outline {
+				border-color: inherit;
+			}
 		}
 	}
 

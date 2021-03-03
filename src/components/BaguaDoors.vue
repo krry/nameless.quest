@@ -17,12 +17,11 @@
 				.flex.string
 					.char.font.lg.mrg0 {{trigrams[val].name.zh}}&nbsp;
 					.pinyin {{trigrams[val].name.pn}}
-				.translation.pad-50.x {{trigrams[val].name.en}}
+				.translation.pad.pad-50.x {{trigrams[val].name.en}}
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType, watchEffect, ref} from 'vue'
-import {cfg} from '../store'
+import {defineComponent, PropType} from 'vue'
 import HanziChar from '../components/HanziChar.vue'
 import LineGlyph from '../components/LineGlyph.vue'
 import trigramData from '../data/trigrams.json'

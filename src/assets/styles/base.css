@@ -72,7 +72,7 @@ a {
 	cursor: pointer;
 	@supports (font-variation-settings: normal) {
 		font-family: inherit;
-		font-variation-settings: 'wght' 567;
+		font-variation-settings: 'wght' 454;
 	}
 }
 
@@ -128,6 +128,13 @@ blockquote {
 	}
 }
 
+blockquote.poem {
+	border-right: 3px dotted var(--glow);
+	& pre {
+		margin-right: 1rem;
+	}
+}
+
 code {
 	background: var(--silk);
 	color: var(--flair);
@@ -175,4 +182,13 @@ strong {
 		font-family: inherit;
 		font-variation-settings: 'wght' 667;
 	}
+}
+
+[contenteditable] br {
+	display: none;
+}
+
+[contenteditable]:focus {
+	outline: 2px var(--border-style) var(--flair);
+	outline-offset: 2px;
 }

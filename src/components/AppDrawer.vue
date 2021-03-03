@@ -2,11 +2,11 @@
 .drawer.fixed.abs-0.fs.flex.begin(
 	@click.stop="drawer.close"
 	)
+	SiteNav
 	header#header.flex.mid
-		LogoBrand(direction="vert" size="md" )
+		LogoBrand.mrg.mrg2.y(direction="vert" size="md" )
 			template(#tagline)
 				Taglinez
-	SiteNav
 	ThemeSwitch.tab.fixed.b.themes(size="md")
 transition( name="flag" appear mode="out-in" )
 	button.btn.naked.tab.surf.fixed.b.l.ride(
@@ -82,7 +82,7 @@ export default defineComponent({
 	border-bottom-left-radius: 0;
 	box-shadow: 0 0 0.25rem var(--glow);
 	transform-origin: bottom center;
-	left: 4%;
+	left: calc(var(--drawer-dim) / 2) - 50%;
 	bottom: 0;
 
 	&:hover {
@@ -94,9 +94,9 @@ export default defineComponent({
 
 header {
 	flex: 0.5 0 auto;
-	margin-bottom: 1rem;
+	margin: 1rem 0;
 	@media (min-height: 36rem) {
-		margin-bottom: 2rem;
+		margin: 2rem 0;
 	}
 }
 
@@ -125,11 +125,8 @@ header {
 
 	&:hover {
 		outline: none;
+		background-color: var(--ground);
 		box-shadow: 0 0 0.5rem 0.125rem var(--glow);
-	}
-
-	&:hover::after {
-		background-color: var(--dust);
 	}
 }
 

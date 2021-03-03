@@ -7,11 +7,13 @@
 				h2 {{cached.query.trim()}}
 			transition(name="slide-fade" mode="out-in")
 				h3.center(v-if="cached.toss.length === 0")
-					| Holding this question gently in mind
+					| Holding this question
 					br
-					a.tute(
+					| gently in mind
+					br
+					a.tute#flip(
 						@click="showCoinsHelp"
-						) flip three coins
+						) let the coins flip
 				.glyphs.left.rtl(v-else)
 					IconBase.line(
 						v-for="char in cached.toss"
@@ -27,17 +29,17 @@
 					iconColor="var(--ink)"
 					viewBox="0 0 50000 62500")
 					IconCoinFlip
-				input.rtl.ib(
+				input#toss.rtl.ib.mrg.mrg3.x(
 					type="tel"
 					v-model="cached.toss"
-					id="roll"
 					maxlength="6"
 					min="666666"
 					max="999999"
 					autofocus
 					pattern="[6-9]{1,6}"
 					placeholder="678789"
-					@keyup.ctrl.enter="saveToss"
+					@keydown.meta.enter="saveToss"
+					@focus="scrollTo('#flip')"
 				)
 				IconBase.abs.r(
 					size="48"
@@ -59,7 +61,7 @@
 							v-else
 							ref="flipper"
 							@click="fakeCoins"
-							) 🤸 Fake my flips 🩴
+							) 🤸 Flip Coins Virtually 🪙
 </template>
 
 <script lang="ts">
@@ -140,7 +142,7 @@ export default defineComponent({
 
 		function showCoinsHelp() {
 			cache('help', '4coin')
-			VueScrollTo.scrollTo('#method3')
+			setTimeout(() => VueScrollTo.scrollTo('#help4Coins'), 777)
 		}
 
 		return {
@@ -152,6 +154,7 @@ export default defineComponent({
 			fakeCoins,
 			getLineName,
 			showCoinsHelp,
+			scrollTo: VueScrollTo.scrollTo,
 			validToss,
 		}
 	},

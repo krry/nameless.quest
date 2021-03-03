@@ -78,8 +78,12 @@
 	&.md,
 	&.lg,
 	&.xl {
-		margin: 1rem 0;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
 		line-height: var(--leading);
+	}
+	&.slant {
+		font-style: italic;
 	}
 	&.flair {
 		color: var(--flair);
@@ -110,7 +114,8 @@
 	&.x6l,
 	&.x7l,
 	&.x8l {
-		margin: 0.25em 0;
+		margin-top: 0.25em;
+		margin-bottom: 0.25em;
 		line-height: var(--hleading);
 	}
 	&.alleft {

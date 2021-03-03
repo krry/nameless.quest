@@ -1,11 +1,14 @@
 <template lang="pug">
 Page.query
+	Spinnable.mrg.mrg2.t
+		IconBase(size="128" viewBox="0 0 100 125" iconColor="var(--ink)")
+			IconMiracle
 	transition(name="slide-fade" appear mode="out-in")
 		OracleCast(v-if="cached.step === 'cast'")
 		OracleResponse(v-else-if="cached.step === 'response'" @clear="clearBoth")
 		OracleQuery(v-else)
 	Spinnable
-		IconBase.mrgs.y(size="96" viewBox="0 0 100 125" iconColor="var(--glow)")
+		IconBase.mrg.mrgs.y(size="96" viewBox="0 0 100 125" iconColor="var(--glow)")
 			IconThreeLegs
 	OracleInfo(ref="help")
 	button.btn.back.naked.abs.t.l(
@@ -25,6 +28,7 @@ import OracleCast from './OracleCast.vue'
 import OracleQuery from './OracleQuery.vue'
 import OracleResponse from './OracleResponse.vue'
 import IconBase from '../icons/IconBase.vue'
+import IconMiracle from '../icons/IconMiracle.vue'
 import IconThreeLegs from '../icons/IconThreeLegs.vue'
 
 export default defineComponent({
@@ -37,20 +41,26 @@ export default defineComponent({
 		OracleQuery,
 		OracleResponse,
 		IconBase,
+		IconMiracle,
 		IconThreeLegs,
 	},
-	setup() {
+	props: {
+		fresh: Boolean,
+	},
+	setup(props) {
 		const help = ref()
-		function clearBoth() {
-			const clearAffirmed = confirm(
-				"Are you sure you want to start over? This will clear today's question and answer.",
-			)
+
+		function clearBoth(confirmed = false) {
+			const clearAffirmed =
+				confirmed ?? confirm("Are you sure you want to start over? This will clear today's entry.")
 			if (clearAffirmed) {
 				uncache('query')
 				uncache('toss')
 				uncache('step')
 			}
 		}
+		console.log('props.fresh', props)
+		if (props.fresh) clearBoth(true)
 
 		return {
 			help,

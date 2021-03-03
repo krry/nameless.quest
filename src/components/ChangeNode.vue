@@ -78,6 +78,7 @@ export default defineComponent({
 			tile: ref(),
 			mark: '',
 			liney: false,
+			lots: rolledLots,
 			hex,
 			quadrant: ref<Quad>(),
 			id: toRef(props, 'hexId'),

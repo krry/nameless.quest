@@ -70,7 +70,8 @@ export default defineComponent({
 	animation-duration: var(--beat);
 	pointer-events: none;
 	cursor: progress;
-	box-shadow: inset 0 0 5em 5em var(--glow), 0 0 5em 5em var(--glow);
+	box-shadow: inset 0 0 6em 6em var(--glow), inset 0 0 6em 6em var(--shade),
+		0 0 2.5em 2.5em var(--glow), 0 0 2.5em 2.5em var(--shade);
 	width: 100%;
 	height: 100%;
 	border-radius: 100%;

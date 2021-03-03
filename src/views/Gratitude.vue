@@ -1,5 +1,8 @@
 <template lang="pug">
 Page.gratitude
+	Spinnable.mrg.mrg2.t
+		IconBase(viewBox="0 0 1000 1250" size="128" iconColor="var(--ink)")
+			IconCandles
 	h1.head.x3l Gratitude
 	h3.font.lg
 		| Bottomless thanks to all those
@@ -93,7 +96,7 @@ Page.gratitude
 			| And thanks to 
 			AppLink._blank(to="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText") Unsplash
 			|  for declaring open season on stock photography.
-	section.pads.y
+	section.pad.pads.y
 		h3.head.xxl Thanks 
 		h4.font.lg
 			| to the I Ching scholars, enthusiasts, and custodians 
@@ -101,19 +104,31 @@ Page.gratitude
 			| throughout the ages, especially…
 		ul.ls
 			li
-				p.text-left
+				p.font.alleft
+					| Stuart M. Anderson, whose efforts at 
+					AppLink._blank(to="http://www.russellcottrell.com/VirtualYarrowStalks/downloads/4coinmethod.pdf") Bringing the Yarrow and Coin Methods into Agreement
+					|  provide the lion's share of the probability engine here in Nameless.
+					| And thanks to Russell Cottrell for hosting that paper, and for the myriad explorations, links, and perspectives on the I Ching; gems like
+					AppLink._blank(to="http://www.russellcottrell.com/VirtualYarrowStalks/VirtualYarrowStalks.htm") Virtual Yarrow Stalks
+					| , 
+					AppLink._blank(to="http://www.russellcottrell.com/VirtualYarrowStalks/anotherFractalIChing.htm") Fractal I Ching maps
+					| , and 
+					AppLink._blank(to="http://www.russellcottrell.com/VirtualYarrowStalks/TakashimaEkidan.htm") the Takashima Ekidan translation
+					| .
+			li
+				p.font.alleft
 					| Hilary Barrett, whose 
 					AppLink._blank(to="https://www.onlineclarity.co.uk/") Online Clarity
 					|  I've only just discovered, and from whom I shall learn multitudes about the ways of 
 					strong Yì
 					| .
 			li
-				p.text-left
+				p.font.alleft
 					| Zelda Hessler (@Velfi) who provides 
 					AppLink._blank(to="https://github.com/Velfi/i-ching") the I Ching as a Rust library
 					| , which entertained my daily practice in the early days. It was then that I first wished for cards and tiles and what you see here.
 			li
-				p.text-left
+				p.font.alleft
 					| Steve VanDevender who has 
 					AppLink._blank(to="http://hexadecimal.uoregon.edu/ching/src.html") sourced the Wilhelm-Baynes translation/interpretation of the I Ching
 					|  and provided it to the WWW.
@@ -125,7 +140,7 @@ Page.gratitude
 				AppLink._blank(to="https://thenounproject.com/LSEdesigns/") LSE Designs
 				|  for 
 				AppLink._blank(to="https://thenounproject.com/LSEdesigns/collection/a-wizards-world/") A Wizard's World
-			dd.flex.string.mid.pads.y.wrap
+			dd.flex.string.mid.pad.pads.y.wrap
 				IconBase(viewBox="0 0 1000 1250" size="84")
 					IconCauldron
 				IconBase(viewBox="0 0 1000 1250" size="84")
@@ -149,7 +164,7 @@ Page.gratitude
 				AppLink._blank(to="https://thenounproject.com/jeremy.j.bristol/") Jeremy J Bristol
 				|  for 
 				AppLink._blank(to="https://thenounproject.com/jeremy.j.bristol/uploads/") Assorted Drawrings
-			dd.flex.string.mid.pads.y
+			dd.flex.string.mid.pad.pads.y
 				IconBase(viewBox="0 0 100 125" size="64")
 					IconPeaceSign
 				IconBase(viewBox="0 0 100 125" size="64")
@@ -162,28 +177,28 @@ Page.gratitude
 				AppLink._blank(to="https://thenounproject.com/microdotgraphic/") Jino
 				|  for 
 				AppLink._blank(to="https://thenounproject.com/microdotgraphic/collection/business-finance/") Coin
-			dd.flex.string.mid.pads.y
+			dd.flex.string.mid.pad.pads.y
 				IconBase(viewBox="0 0 512 640" size="84")
 					IconCoin
 			dt
 				AppLink._blank(to="https://thenounproject.com/Flatart/") Flatart
 				|  for 
 				AppLink._blank(to="https://thenounproject.com/Flatart/collection/mardi-gras-bold-line/?i=3167086") Carnival Coin
-			dd.flex.string.mid.pads.y
+			dd.flex.string.mid.pad.pads.y
 				IconBase(viewBox="0 0 520 650" size="84")
 					IconCarnivalCoin
 			dt
 				AppLink._blank(to="https://thenounproject.com/andydoane/") Andy Doane
 				|  for 
 				AppLink._blank(to="https://thenounproject.com/andydoane/collection/miracle/") Miracle
-			dd.flex.string.mid.pads.y
+			dd.flex.string.mid.pad.pads.y
 				IconBase(viewBox="0 0 100 125" size="84")
 					IconMiracle
 			dt
 				AppLink._blank(to="https://thenounproject.com/andydoane/") Alexandre Panasovskyi
 				|  for 
 				AppLink._blank(to="https://thenounproject.com/term/coin-flipping/2307580/") Coin Flip
-			dd.flex.string.mid.pads.y
+			dd.flex.string.mid.pad.pads.y
 				IconBase(viewBox="0 0 50000 62500" size="192")
 					IconCoinFlip
 		p.text.center
@@ -195,8 +210,8 @@ Page.gratitude
 	section
 		h3.head.xl And last but most of all, thanks
 		.flex
-			h4.mrg.x.y.half.font.lg To Elysa and Zephyr
-			p.mrg.x.y.text-left.half Your smiles and wiggles make my dreams come true every day.
+			h4.mrg.mrg1.x.y.half.font.lg To Elysa and Zephyr
+			h4.mrg.mrg1.x.y.text.md.alleft.half Your smiles and wiggles make my dreams come true every day.
 	section
 		h2.head.x2l Feeling grateful too?
 		h3.font.md
@@ -219,6 +234,7 @@ Page.gratitude
 import {defineComponent} from 'vue'
 import Page from '../components/Page.vue'
 import AppLink from '../components/AppLink.vue'
+import Spinnable from '../components/Spinnable.vue'
 import IconBase from '../icons/IconBase.vue'
 import IconCoin from '../icons/IconCoin.vue'
 import IconScroll from '../icons/IconScroll.vue'
@@ -242,6 +258,7 @@ export default defineComponent({
 	components: {
 		Page,
 		AppLink,
+		Spinnable,
 		IconBase,
 		IconCauldron,
 		IconMiracle,

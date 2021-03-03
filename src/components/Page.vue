@@ -124,7 +124,7 @@ main {
 .page h1:first-of-type,
 .page h1:first-child,
 .page h2:first-child {
-	margin-top: 1em;
+	/* margin-top: 1em; */
 	@supports (font-variation-settings: normal) {
 		font-family: 'MuseoModernoVariable';
 		font-variation-settings: 'wght' 666;

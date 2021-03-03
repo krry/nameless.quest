@@ -10,7 +10,7 @@ export const useHexagrams = (): {
 	getHexagramByWen: (wen: string) => Hexagram
 	getHexagramByBin: (bin: string) => Hexagram
 	getEnglishNameByBin: (bin: string) => string
-	getWenByBin: (bin: string) => string
+	getWenByBin: (bin: string | undefined) => string
 } => {
 	const rx = reactive({
 		hexagrams: cfg.gendy ? hexagrams : hermagrams,
@@ -53,7 +53,7 @@ export const useHexagrams = (): {
 	}
 
 	function binaryToOctal(bin: string) {
-		// console.log('binaryToOctal', bin)
+		console.log('binaryToOctal', bin)
 		// takes a binary string like 0b010110
 		// converts it to a decimal number with parseInt
 		// then converts this into an octal string with toString(8)
@@ -65,9 +65,11 @@ export const useHexagrams = (): {
 		return getHexagramByOctal(binaryToOctal(bin))?.names.english ?? ''
 	}
 
-	function getWenByBin(bin: string) {
-		// console.log('getWenByBin', bin)
-		return getHexagramByOctal(binaryToOctal(bin))?.kingwen.toString() ?? '0'
+	function getWenByBin(bin: string | undefined) {
+		if (bin) {
+			console.log('getWenByBin', bin)
+			return getHexagramByBin(bin)?.kingwen.toString()
+		} else return '0'
 	}
 
 	return {

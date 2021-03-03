@@ -1,5 +1,5 @@
 <template lang="pug">
-nav.flex.col.pad.y
+nav.flex.col.pad.pad1.y
 	ul.site-nav
 		li
 			router-link.btn.outline(

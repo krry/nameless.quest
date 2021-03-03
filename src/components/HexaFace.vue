@@ -55,7 +55,9 @@ export default defineComponent({
 		border-right-color: var(--flair);
 	}
 }
+</style>
 
+<style lang="postcss">
 .close {
 	font-size: 1.5rem;
 	opacity: 0.5;

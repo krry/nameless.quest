@@ -40,8 +40,8 @@ function lsd(nym: string): string {
 export function cacheUser(user: firebase.default.User): void {
 	if (user.uid) cache('uid', user.uid)
 	if (user.email) cache('email', user.email)
-	if (user.phoneNumber) cache('phoneNumber', user.phoneNumber)
-	if (user.displayName) cache('displayName', user.displayName)
+	if (user.phoneNumber) cache('phone', user.phoneNumber)
+	if (user.displayName) cache('name', user.displayName)
 	if (user.emailVerified) set('emailVerified', user.emailVerified)
 }
 

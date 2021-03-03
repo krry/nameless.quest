@@ -1,3 +1,4 @@
+import {RouteLocationNormalized} from 'vue-router'
 import {changeGuard} from './guards'
 import Changes from '../views/Changes.vue'
 import Oracle from '../components/Oracle.vue'
@@ -14,6 +15,9 @@ const routes = [
 		path: '/',
 		name: 'oracle',
 		component: Oracle,
+		props: (route: RouteLocationNormalized): {fresh: boolean} => ({
+			fresh: route.params.reset === 'true',
+		}),
 	},
 	{
 		path: '/changes',

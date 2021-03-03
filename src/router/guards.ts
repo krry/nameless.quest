@@ -6,6 +6,7 @@ import {cached, cacheUser} from '../store/cache'
 import * as drawer from '../utils/drawer'
 
 export function beforeEach(to: RouteLocationNormalized): RouteLocationRaw | boolean {
+	// console.log('going to params', to.params)
 	const requiresAuth = to.matched.some((x) => x.meta.requiresAuth)
 	// console.log('before this route', to)
 	// console.log('user authd?', cached.uid)
@@ -100,5 +101,5 @@ export function afterEach(): void {
 	setTimeout(() => {
 		// console.log('activated', active)
 		cfg.drawer && !active && drawer.close()
-	}, 1500)
+	}, 777)
 }
