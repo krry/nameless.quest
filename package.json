@@ -4,6 +4,10 @@
   "description": "An interactive, graphic resource for and paean to 易經 (Yìjīng, and often I Ching) the Classic Book of Changes, wherein one can see the glorious symmetries of the perfect Octals, decode the binary of the hexagrams, pronounce the Pinyin, and peruse scholarly interpretations.",
   "license": "CC-BY-NC-SA-4.0",
   "main": "main.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Atmanautica/nameless.git"
+  },
   "scripts": {
     "dev": "vite --port 2021",
     "lint": "eslint --fix",
