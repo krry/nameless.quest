@@ -53,7 +53,7 @@ export const useHexagrams = (): {
 	}
 
 	function binaryToOctal(bin: string) {
-		console.log('binaryToOctal', bin)
+		// console.log('binaryToOctal', bin)
 		// takes a binary string like 0b010110
 		// converts it to a decimal number with parseInt
 		// then converts this into an octal string with toString(8)
@@ -67,7 +67,7 @@ export const useHexagrams = (): {
 
 	function getWenByBin(bin: string | undefined) {
 		if (bin) {
-			console.log('getWenByBin', bin)
+			// console.log('getWenByBin', bin)
 			return getHexagramByBin(bin)?.kingwen.toString()
 		} else return '0'
 	}

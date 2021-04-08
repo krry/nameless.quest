@@ -29,7 +29,7 @@ function secondHexMatch(char: string): string {
 }
 
 export const parseTossToBinary = (toss: string): string[] => {
-	console.log('parsing toss to binary', toss)
+	// console.log('parsing toss to binary', toss)
 	if (toss.length !== 6 || !toss) return ['']
 
 	// const properlyOrderedToss = toss.split('').reverse().join('')

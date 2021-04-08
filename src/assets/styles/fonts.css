@@ -85,6 +85,9 @@
 	&.slant {
 		font-style: italic;
 	}
+	&.muted {
+		opacity: 0.425;
+	}
 	&.flair {
 		color: var(--flair);
 	}

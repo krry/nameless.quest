@@ -45,7 +45,7 @@
 			title="Start Over"
 			@click="$emit('clear')"
 			) ♽ Start Over
-		button.btn(@click="saveToJournal") Save to Journal
+		button.btn(@click="saveToJournal") Save to your Journal
 </template>
 
 <script lang="ts">
@@ -92,6 +92,7 @@ export default defineComponent({
 					toss: cached.toss,
 					uid: cached.uid,
 				})
+				cachedRoll.value = null
 			} else {
 				cachedRoll.value = {
 					moment: new Date(),

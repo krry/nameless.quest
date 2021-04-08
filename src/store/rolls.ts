@@ -37,12 +37,13 @@ export const saveRoll = (roll: Roll): void => {
 const userRollsPath = 'users/' + cached.uid + '/rolls'
 
 export function getRolls(): void {
+	console.log('getting rolls')
 	db.collection(userRollsPath)
 		.get()
 		.then((querySnapshot) => {
 			querySnapshot.forEach((doc) => {
 				// doc.data() is never undefined for query doc snapshots
-				// console.log('roll doc', doc.id, '=>', doc.data())
+				console.log('roll doc', doc.id, '=>', doc.data())
 				console.log('{id: doc.id, ...doc.data()} as Roll', {id: doc.id, ...doc.data()} as Roll)
 				activeRolls.value.push({id: doc.id, ...doc.data()} as Roll)
 			})
@@ -52,6 +53,12 @@ export function getRolls(): void {
 
 export function addRoll(roll: Roll): DocRef | void {
 	console.log('roll to save', roll)
+	// TODO: first check the collection for a roll with the same query and toss
+	const queryIndex = activeRolls.value.map((roll) => roll.query).indexOf(roll.query)
+	const tossIndex = activeRolls.value.map((roll) => roll.toss).indexOf(roll.toss)
+	if ((queryIndex !== -1 || tossIndex !== -1) && queryIndex === tossIndex) {
+		return
+	}
 	db.collection(userRollsPath)
 		.add(roll)
 		.then((docRef) => {
@@ -80,7 +87,11 @@ export function deleteRoll(id: string): void {
 	db.collection(userRollsPath)
 		.doc(id)
 		.delete()
-		.then(() => console.log('deleted roll', id))
+		.then(() => {
+			console.log('deleted roll', id)
+			// TODO: How can we refresh the journal entries after delete?
+			// getRolls()
+		})
 		.catch((error) => console.error('struggled to delete roll', id, error))
 }
 

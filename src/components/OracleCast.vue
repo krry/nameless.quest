@@ -3,7 +3,7 @@
 	h2 Divining the Answer…
 	section.cast
 		.dyn.holding(v-if="cached.query")
-			blockquote
+			blockquote#query
 				h2 {{cached.query.trim()}}
 			transition(name="slide-fade" mode="out-in")
 				h3.center(v-if="cached.toss.length === 0")
@@ -39,7 +39,7 @@
 					pattern="[6-9]{1,6}"
 					placeholder="678789"
 					@keydown.meta.enter="saveToss"
-					@focus="scrollTo('#flip')"
+					@focus="scrollTo('#query')"
 				)
 				IconBase.abs.r(
 					size="48"
@@ -47,7 +47,7 @@
 					viewBox="0 0 512 640")
 					IconCoin
 			transition(name="slide-fade" mode="out-in" appear)
-				button.btn.right.go(
+				button.btn.over.go(
 					v-if="validToss"
 					@click="saveToss"
 					) Let's 卦 Gua

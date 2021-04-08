@@ -1,15 +1,15 @@
 <template lang="pug">
-nav.flex.col.pad.pad1.y
+nav.flex.col
 	ul.site-nav
 		li
 			router-link.btn.outline(
-				:to="{ name: 'oracle' }" 
+				:to="{ name: 'oracle' }"
 				@click="set('consulted', true)"
 				tabindex="0"
 				)
 				IconBase(size="40" viewBox="0 0 100 125")
 					IconMiracle
-				span(v-if="!cfg.consulted") Ask the 
+				span(v-if="!cfg.consulted") Ask the{{' '}}
 				span Oracle
 		li
 			router-link.btn.naked(
@@ -19,7 +19,7 @@ nav.flex.col.pad.pad1.y
 				)
 				IconBase(size="40" viewBox="0 0 1000 1250")
 					IconOpenBook
-				span(v-if="!cfg.perused") See the 
+				span(v-if="!cfg.perused") See the{{' '}}
 				span Changes
 		li
 			router-link.btn.naked(
@@ -29,7 +29,7 @@ nav.flex.col.pad.pad1.y
 				)
 				IconBase(size="40" viewBox="0 0 1000 1250")
 					IconSpellBook
-				span(v-if="!cfg.journaled") Start a 
+				span(v-if="!cfg.journaled") Start a
 				span Journal
 		li
 			router-link.btn.naked(
@@ -49,7 +49,7 @@ nav.flex.col.pad.pad1.y
 				)
 				IconBase(size="40" viewBox="0 0 1000 1250")
 					IconCrystalBall
-				| About 
+				| About{{' '}}
 				span(v-if="!cfg.metafied") This
 		//- li
 		//- 	router-link.btn.naked(
@@ -141,7 +141,6 @@ export default defineComponent({
 nav {
 	flex: 4 0 auto;
 	text-align: left;
-	padding-bottom: 2rem;
 }
 
 nav ul,
