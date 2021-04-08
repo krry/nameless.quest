@@ -1,9 +1,11 @@
 <template lang="pug">
 .above
-	h1.mrgb0
+	h1.mrgb0.rel.clickable(
+		@click="curious = true"
+	)
 		| Welcome to the Oracle
 		br
-		small aka 
+		small aka
 			HanziChar(
 				char="易"
 				pinyin="Yì"
@@ -18,9 +20,31 @@
 				place="under"
 				reveal
 				)
-
+		transition.under(name="popup")
+			aside.exposition.abs.b.r.l.pad.pad2.y.x.font.sm.bevel(
+				v-if="curious"
+			)
+				.close.tr(@click.stop="curious = false") ⓧ
+				h3
+					| The Yìjīng is perhaps the longest
+					br
+					| continuous wisdom tradition of humanity.
+				p
+					| Each day we may approach the Yìjīng
+					br
+					| (aka the I Ching, or the Classic Book of Change)
+					br
+					| to give ourselves a moment of pause
+					br
+					| to peer down deep inside,
+					br
+					| into the well of being
+					br
+					| that silent pool of peace and certainty
+					br
+					| seated at the root of heart center.
 	section.dyn.flex.col
-		//- h2 What is your question?
+		h2 What is your question for the Oracle today?
 		.field.dyn
 			textarea#query.query(
 				v-autoresize
@@ -33,10 +57,10 @@
 				:class="{invalid: invalidQuery}"
 				)
 			transition(name="slide-fade" appear)
-				.lbl.font.md.phat.above.intro(for="query" v-if="cached.query.length < 9")
+				.lbl.font.md.phat.above.intro.muted(for="query" v-if="cached.query.length < 9")
 					| What does your heart wonder?
 			transition(name="slide-fade" appear)
-				.lbl.font.md.phat.below.outro(for="query" v-if="cached.query.length < 9")
+				.lbl.font.md.phat.below.outro.muted(for="query" v-if="cached.query.length < 9")
 					| What is the burning question?
 			button.btn.lg.action(type="button" @click="askTheOracle")
 				IconBase(size="36" viewBox="0 0 1000 1125")
@@ -72,6 +96,7 @@ export default defineComponent({
 	setup() {
 		const rx = reactive({
 			invalidQuery: false,
+			curious: false,
 		})
 
 		function askTheOracle() {
@@ -144,5 +169,11 @@ export default defineComponent({
 
 .field textarea.invalid {
 	margin-bottom: 0;
+}
+
+.exposition {
+	background: var(--paper);
+	border: 0px solid var(--glow);
+	box-shadow: var(--focus-glow);
 }
 </style>

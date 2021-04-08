@@ -6,7 +6,7 @@ Page.journal
 	.test
 		button.btn(@click="getRolls") get rolls
 	h1.head.xxl
-		| The Journal of 
+		| The Journal of{{' '}}
 		contenteditable(
 			tag="span"
 			v-model="cached.name"
@@ -15,12 +15,12 @@ Page.journal
 			@focus="clearName"
 			) {{ cached.name }}
 	h2 Conversations with the Oracle
-	.section(v-if="rolls.length < 3")
+	.section(v-if="rolls.length < 10")
 		router-link.btn.lg.outline(:to="{name: 'oracle', params: {reset: 'true'}}") Start a new entry
 	.flex.row.wrap.mid.string(v-if="rolls.length > 0")
 		section.roll.rel(
 			v-for="roll in rolls"
-			:key="$symbolize(roll.moment)"
+			:key="roll.id"
 			)
 			time.moment.mono.thicc.alright(
 				:datetime="roll.moment"
@@ -77,6 +77,8 @@ import Icon9 from '../icons/Icon9.vue'
 import AppLink from '../components/AppLink.vue'
 import ComingSoon from '../components/ComingSoon.vue'
 
+const laterDatesFirst = (a, b) => b.moment.seconds - a.moment.seconds
+
 export default defineComponent({
 	name: 'Journal',
 	components: {
@@ -109,9 +111,11 @@ export default defineComponent({
 
 		watchEffect(() => {
 			console.log('hydrating with rolls from firebase', activeRolls.value)
-			rolls.value = activeRolls.value.sort((a: Roll, b: Roll) => {
-				return Number(a.moment) - Number(b.moment)
-			})
+			// rolls.value = activeRolls.value.sort((a: Roll, b: Roll) => {
+			// 	return Number(a.moment) - Number(b.moment)
+			// })
+			rolls.value = [...new Set(activeRolls.value.sort(laterDatesFirst))]
+			// console.log('rolls.value', rolls.value)
 		})
 
 		function saveName(llamo: string) {
@@ -131,8 +135,19 @@ export default defineComponent({
 
 		function doubleCheckBeforeDeleteRoll(id: string): void {
 			const deleteConfirmed = confirm('Are you sure you want to delete this journal entry?')
-			if (deleteConfirmed) deleteRoll(id)
-			getRolls()
+			if (deleteConfirmed) {
+				deleteRoll(id)
+				removeDeletedRoll(id)
+			}
+		}
+
+		function removeDeletedRoll(id: string): void {
+			// remove the deleted roll from the array of rolls
+			console.log('deleting id', id)
+			const deletedRollIndex = rolls.value.map((roll) => roll.id).indexOf(id)
+			console.log('deletedRollIndex', deletedRollIndex)
+			rolls.value = rolls.value.splice(deletedRollIndex, 1)
+			console.log('rolls.value after delete', rolls.value)
 		}
 
 		return {

@@ -322,3 +322,7 @@ hr.dinkus::after {
 .z12 {
 	z-index: 12;
 }
+
+.bevel {
+	border-radius: var(--bevel);
+}

@@ -9,12 +9,6 @@ export function beforeEach(to: RouteLocationNormalized): RouteLocationRaw | bool
 	// console.log('going to params', to.params)
 	const requiresAuth = to.matched.some((x) => x.meta.requiresAuth)
 	// console.log('before this route', to)
-	// console.log('user authd?', cached.uid)
-	if (requiresAuth && !cached.uid) {
-		// console.log('need auth and no user signed in')
-		return {name: 'login'}
-	}
-
 	if (auth.isSignInWithEmailLink(window.location.href)) {
 		// console.log('coming in from a magic link')
 		// console.log('checking for cached email', cached.email)
@@ -34,16 +28,20 @@ export function beforeEach(to: RouteLocationNormalized): RouteLocationRaw | bool
 					cacheUser(result.user)
 				}
 				if (result.additionalUserInfo) {
-					// console.log('user is new', result.additionalUserInfo.isNewUser)
+					console.log('user is new', result.additionalUserInfo.isNewUser)
 					// can trigger onboarding flow here
 					set('beeny', false)
 				}
-				// console.log('logged in successfully to', to)
+				console.log('logged in successfully to', to)
 				if (cachedRoll.value) {
 					addRoll(cachedRoll.value)
 				}
-				// console.log('redirecting to journal')
-				return {name: 'journal', replace: true}
+				const next = 'journal'
+				// console.log(`redirecting to ${next}`)
+				return {
+					name: next,
+					replace: true,
+				}
 			})
 			.catch((error) => {
 				console.error(
@@ -53,10 +51,16 @@ export function beforeEach(to: RouteLocationNormalized): RouteLocationRaw | bool
 				return false
 			})
 	}
-	if (cached.uid && to.path === '/login') {
+	if (cached.uid && to?.path === '/login') {
 		return '/journal'
+		// no auth needed
 	}
-	// no auth needed
+	// console.log('user authd?', cached.uid)
+	if (requiresAuth && !cached.uid) {
+		// console.log('need auth and no user signed in')
+		return {name: 'login'}
+	}
+
 	return true
 }
 

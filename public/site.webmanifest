@@ -1,35 +1,35 @@
 {
-  "lang": "en",
-  "name": "Nameless ☯ I Ching",
-  "short_name": "Nameless",
-  "start_url": "https://nameless.easeness.biz",
-  "description": "An interactive, graphic resource for and paean to 易經 (Yìjīng, and often I Ching) the Classic Book of Changes) wherein you can see the glorious symmetries of the perfect Octals, decode the binary of the hexagrams, pronounce the Pinyin, and peruse scholarly interpretations.",
-  "icons": [
-    {
-      "src": "/nameless-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/nameless-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
-  "theme_color": "#B0177A",
-  "background_color": "#151B1E",
-  "display": "standalone",
-  "categories": ["oracle", "divination", "wellness", "spirituality", "wisdom"],
-  "screenshots": [
-    {
-      "src": "screenshot1.webp",
-      "sizes": "1280x720",
-      "type": "image/webp"
-    },
-    {
-      "src": "screenshot2.webp",
-      "sizes": "1280x720",
-      "type": "image/webp"
-    }
-  ]
+	"lang": "en",
+	"name": "Nameless ☯ I Ching",
+	"short_name": "Nameless",
+	"start_url": "https://nameless.easeness.biz",
+	"description": "An interactive, graphic resource for and paean to 易經 (Yìjīng, and often I Ching) the Classic Book of Changes) wherein you can see the glorious symmetries of the perfect Octals, decode the binary of the hexagrams, pronounce the Pinyin, and peruse scholarly interpretations.",
+	"icons": [
+		{
+			"src": "/nameless-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/nameless-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	],
+	"background_color": "#B0177A",
+	"theme_color": "#B0177A",
+	"display": "standalone",
+	"categories": ["oracle", "divination", "wellness", "spirituality", "wisdom"],
+	"screenshots": [
+		{
+			"src": "screenshot1.webp",
+			"sizes": "1280x720",
+			"type": "image/webp"
+		},
+		{
+			"src": "screenshot2.webp",
+			"sizes": "1280x720",
+			"type": "image/webp"
+		}
+	]
 }

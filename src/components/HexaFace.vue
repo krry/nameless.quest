@@ -3,19 +3,19 @@
 	v-autofocus
 	@click.stop="tog('texty')"
 	)
-  router-link.moar.btn.naked.md.abs.t.l.no-underline.clickable(
+	router-link.moar.btn.naked.md.abs.t.l.no-underline.clickable(
 		:to="'/changes/' + kingwen"
 		)
-    IconBase(
+		IconBase(
 			size="24"
 			viewBox="0 0 1000 1250"
 			)
-      IconScroll
-    | More
-  slot(name="top")
-  hr.divider.abs-0
-  slot(name="bottom")
-  .close.tr(@click.stop="$emit('close')") ⓧ
+			IconScroll
+		| More
+	slot(name="top")
+	hr.divider.abs-0
+	slot(name="bottom")
+	.close.tr(@click.stop="$emit('close')") ⓧ
 </template>
 
 <script lang="ts">

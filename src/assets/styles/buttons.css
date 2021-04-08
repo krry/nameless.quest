@@ -3,7 +3,7 @@ a.btn,
 button.btn {
 	display: inline-block;
 	appearance: none;
-	background: var(--link);
+	background: var(--brand);
 	color: var(--paper);
 	font-size: var(--unit);
 	font-family: var(--heading);

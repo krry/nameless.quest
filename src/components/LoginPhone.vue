@@ -11,6 +11,8 @@ form.flex.space.spread.wrap(@submit.prevent="acceptingCode ? acceptConfirmationC
 				input#phone.phone-input.large(
 					type="tel"
 					v-model="phone"
+					autocomplete="tel"
+					name="mobile phone number"
 					placeholder="First the country code"
 					pattern="[0-9]{10,14}"
 					maxlength="14"

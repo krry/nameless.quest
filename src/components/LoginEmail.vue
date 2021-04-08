@@ -6,7 +6,9 @@ form.flex.space.spread.wrap(@submit.prevent="emailLinkSend")
 		.field
 			input#email.email-input.large(
 				type="email"
+				name="email"
 				v-model="email"
+				autocomplete="email"
 				:class="{sent: emailSuccessMsg}"
 				tabindex="0"
 				maxlength="50"

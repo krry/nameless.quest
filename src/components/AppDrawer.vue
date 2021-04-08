@@ -12,11 +12,12 @@ transition( name="flag" appear mode="out-in" )
 		)
 .drawer.fixed.abs-0.fs.flex.begin(
 	@click.stop="drawer.close"
+	@keydown.escape.prevent.exact="drawer.close"
 	:class="{compact: allGone}"
 	)
 	SiteNav
-	header#header.flex.mid
-		LogoBrand.mrg.mrg2.y(direction="vert" size="md" )
+	header#header.flex.mid.pad.pad2.b
+		LogoBrand(direction="vert" size="md" )
 			template(#tagline)
 				Taglinez
 	ThemeSwitch.tab.fixed.b.themes(size="md")
