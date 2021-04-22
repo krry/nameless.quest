@@ -142,6 +142,7 @@ export default defineComponent({
 }
 
 .query {
+	max-width: 40ch;
 	order: 2;
 }
 
