@@ -94,11 +94,11 @@ export default defineComponent({
 }
 
 .slip-enter-active {
-	transition: var(--beat) var(--ease-out-quad);
+	transition: var(--beat) var(--ease-out-circ);
 }
 
 .slip-leave-active {
-	transition: var(--beat) var(--ease-in-quad);
+	transition: var(--beat) var(--ease-in-circ);
 }
 
 .slip-enter-to,

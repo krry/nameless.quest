@@ -1,59 +1,62 @@
 <template lang="pug">
-Page.journal
-	Spinnable.mrg.mrg2.t
-		IconBase(viewBox="0 0 1000 1250" size="128" iconColor="var(--ink)")
-			IconSpellBook
-	.test
-		button.btn(@click="getRolls") get rolls
-	h1.head.xxl
-		| The Journal of{{' '}}
-		contenteditable(
-			tag="span"
-			v-model="cached.name"
-			:noNL="true"
-			@blur="saveName(cached.name)"
-			@focus="clearName"
-			) {{ cached.name }}
-	h2 Conversations with the Oracle
-	.section(v-if="rolls.length < 10")
-		router-link.btn.lg.outline(:to="{name: 'oracle', params: {reset: 'true'}}") Start a new entry
-	.flex.row.wrap.mid.string(v-if="rolls.length > 0")
-		section.roll.rel(
-			v-for="roll in rolls"
-			:key="roll.id"
-			)
-			time.moment.mono.thicc.alright(
-				:datetime="roll.moment"
-				) {{ roll.moment.toDate().toDateString() }}
-			blockquote.query.mrg0
-				h2 {{ roll.query }}
-				h3.x2l.font {{ roll.toss }}
-				.lines.whole.font.alcenter.mrg.mrgs.y
-					IconBase.line(
-						v-for="char in roll.toss"
-						:key="$symbolize(char)"
-						height="36"
-						width="20"
-						size="48"
-						)
-						component( :is="`Icon${char}`" )
-				.flex.wrap.mid.string(v-if="roll.toss")
-					router-link.btn.naked.mrg.mrg1.x.y.skinny.block(
-						v-for="bin in parseTossToBinary(roll.toss)"
-						:key="$symbolize(bin)"
-						:to="'/changes/' + getWenByBin(bin)"
-						) {{ getWenByBin(bin) + '. ' + getEnglishNameByBin(bin) }}
-			.field
-				label.font.lg(for="notes") Context/Notes/Insight
-				textarea#notes(
-					autoresize
-					v-model.lazy="roll.notes"
-					@blur="updateRoll(roll)"
+transition(name="fade")
+	Login(
+		v-if="!cached.uid"
+	)
+	Page.journal(v-else)
+		Spinnable.mrg.mrg2.t
+			IconBase(viewBox="0 0 1000 1250" size="128" iconColor="var(--ink)")
+				IconSpellBook
+		h1.head.xxl
+			| The Journal of{{' '}}
+			contenteditable(
+				tag="span"
+				v-model="cached.name"
+				:noNL="true"
+				class="username"
+				@blur="saveName(cached.name)"
+				@focus="clearName"
+				) {{ cached.name }}
+		h2 Conversations with the Oracle
+		.section(v-if="rolls.length < 10")
+			router-link.btn.lg.outline(:to="{name: 'oracle', params: {reset: 'true'}}") Start a new entry
+		.flex.row.wrap.mid.string(v-if="rolls.length > 0")
+			section.roll.rel(
+				v-for="roll in rolls"
+				:key="roll.id"
 				)
-			.close.tr(@click.stop="doubleCheckBeforeDeleteRoll(roll.id)") ⓧ
-	hr.dinkus.fleur.xxl
-	h3.head.lg Want to fuel development?
-	AppLink.outline.btn(to="https://ko-fi.com/kerrbear") Feed the Bears 🍕
+				time.moment.mono.thicc.alright(
+					:datetime="roll.moment"
+					) {{ roll.moment.toDate().toDateString() }}
+				blockquote.query.mrg0
+					h2 {{ roll.query }}
+					h3.x2l.font {{ roll.toss }}
+					.lines.whole.font.alcenter.mrg.mrgs.y
+						IconBase.line(
+							v-for="char in roll.toss"
+							:key="$symbolize(char)"
+							height="36"
+							width="20"
+							size="48"
+							)
+							component( :is="`Icon${char}`" )
+					.flex.wrap.mid.string(v-if="roll.toss")
+						router-link.btn.naked.mrg.mrg1.x.y.skinny.block(
+							v-for="bin in parseTossToBinary(roll.toss)"
+							:key="$symbolize(bin)"
+							:to="'/changes/' + getWenByBin(bin)"
+							) {{ getWenByBin(bin) + '. ' + getEnglishNameByBin(bin) }}
+				.field
+					label.font.lg(for="notes") Context/Notes/Insight
+					textarea#notes(
+						autoresize
+						v-model.lazy="roll.notes"
+						@blur="updateRoll(roll)"
+					)
+				.close.tr(@click.stop="doubleCheckBeforeDeleteRoll(roll.id)") ⓧ
+		hr.dinkus.fleur.xxl
+		h3.head.lg Want to fuel development?
+		AppLink.outline.btn(to="https://ko-fi.com/kerrbear") Feed the Bears 🍕
 </template>
 
 <script lang="ts">
@@ -67,6 +70,7 @@ import {activeRolls, getRolls, deleteRoll, updateRoll} from '../store/rolls'
 import {parseTossToBinary} from '../utils/tosses'
 import {useHexagrams} from '../composables/hexagrams'
 import Page from '../components/Page.vue'
+import Login from './Login.vue'
 import IconBase from '../icons/IconBase.vue'
 import IconSpellBook from '../icons/IconSpellBook.vue'
 import Spinnable from '../components/Spinnable.vue'
@@ -91,6 +95,7 @@ export default defineComponent({
 		Icon8,
 		Icon9,
 		Page,
+		Login,
 		AppLink,
 		ComingSoon,
 	},
@@ -99,18 +104,21 @@ export default defineComponent({
 		const rolls = ref<Roll[]>()
 
 		// when journal page loads, check if there is a logged in user, which should be true because the router handles this
-		if (cached.uid) {
-			// call getRolls to update the activeRolls
-			getRolls()
-			set('journaled', true)
-		}
-
 		if (!cached.name) {
 			cache('name', 'Your Name')
 		}
 
+		// TODO: when Journal view shows, make sure to run getRolls again
 		watchEffect(() => {
-			console.log('hydrating with rolls from firebase', activeRolls.value)
+			if (cached.uid) {
+				// console.log('calling getRolls to update the activeRolls')
+				getRolls()
+				set('journaled', true)
+			}
+		})
+
+		watchEffect(() => {
+			// console.log('hydrating with rolls from firebase', activeRolls.value)
 			// rolls.value = activeRolls.value.sort((a: Roll, b: Roll) => {
 			// 	return Number(a.moment) - Number(b.moment)
 			// })
@@ -143,11 +151,11 @@ export default defineComponent({
 
 		function removeDeletedRoll(id: string): void {
 			// remove the deleted roll from the array of rolls
-			console.log('deleting id', id)
+			// console.log('deleting id', id)
 			const deletedRollIndex = rolls.value.map((roll) => roll.id).indexOf(id)
-			console.log('deletedRollIndex', deletedRollIndex)
+			// console.log('deletedRollIndex', deletedRollIndex)
 			rolls.value = rolls.value.splice(deletedRollIndex, 1)
-			console.log('rolls.value after delete', rolls.value)
+			// console.log('rolls.value after delete', rolls.value)
 		}
 
 		return {
@@ -171,5 +179,12 @@ export default defineComponent({
 <style lang="postcss" scoped>
 .page.journal {
 	background-color: var(--silk);
+}
+
+.username {
+	@supports (font-variation-settings: normal) {
+		font-family: 'Roboto SlabVariable';
+		font-variation-settings: 'wght' 367;
+	}
 }
 </style>

@@ -80,7 +80,7 @@ export default defineComponent({
 	right: auto; /* to counter the abs-0 ute */
 	width: var(--drawer-buffer);
 	background: var(--ground);
-	transition: var(--bea2) var(--ease-in-out-quad);
+	transition: var(--bea2) var(--ease-in-out-quart);
 	overflow-y: auto;
 	overflow-x: hidden;
 
@@ -177,7 +177,7 @@ header {
 
 .flag-enter-active,
 .flag-leave-active {
-	transition: all var(--bea2) var(--ease-in-out-quad);
+	transition: all var(--bea2) var(--ease-in-out-quart);
 }
 
 .flag-leave-to,

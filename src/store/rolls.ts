@@ -37,14 +37,14 @@ export const saveRoll = (roll: Roll): void => {
 const userRollsPath = cached.uid ? 'users/' + cached.uid + '/rolls' : 'rolls'
 
 export function getRolls(): void {
+	activeRolls.value = []
 	console.log('getting rolls')
 	db.collection(userRollsPath)
 		.get()
 		.then((querySnapshot) => {
 			querySnapshot.forEach((doc) => {
 				// doc.data() is never undefined for query doc snapshots
-				console.log('roll doc', doc.id, '=>', doc.data())
-				console.log('{id: doc.id, ...doc.data()} as Roll', {id: doc.id, ...doc.data()} as Roll)
+				// console.log('roll doc', doc.id, '=>', doc.data())
 				activeRolls.value.push({ id: doc.id, ...doc.data() } as Roll)
 			})
 		})
@@ -69,7 +69,7 @@ export function addRoll(roll: Roll): DocRef | void {
 }
 
 export function updateRoll(roll: Roll): Promise<void> {
-	console.log('updating roll', roll)
+	// console.log('updating roll', roll)
 	const rollRef = db.collection(userRollsPath).doc(roll.id)
 	return db
 		.runTransaction((transaction: Transaction) => {
@@ -88,9 +88,9 @@ export function deleteRoll(id: string): void {
 		.doc(id)
 		.delete()
 		.then(() => {
-			console.log('deleted roll', id)
+			// console.log('deleted roll', id)
 			// TODO: How can we refresh the journal entries after delete?
-			// getRolls()
+			getRolls()
 		})
 		.catch((error) => console.error('struggled to delete roll', id, error))
 }

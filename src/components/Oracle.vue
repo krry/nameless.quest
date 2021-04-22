@@ -21,6 +21,7 @@ Page.query
 <script lang="ts">
 import {defineComponent, ref} from 'vue'
 import {cached, uncache} from '../store/cache'
+import {cfg} from '../store'
 import Page from './Page.vue'
 import Spinnable from './Spinnable.vue'
 import OracleInfo from './OracleInfo.vue'
@@ -54,6 +55,7 @@ export default defineComponent({
 			const clearAffirmed =
 				confirmed ?? confirm("Are you sure you want to start over? This will clear today's entry.")
 			if (clearAffirmed) {
+				cfg.saved = false
 				uncache('query')
 				uncache('toss')
 				uncache('step')

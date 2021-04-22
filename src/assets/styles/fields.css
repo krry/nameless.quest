@@ -57,7 +57,7 @@
 		border: 2px solid var(--glow);
 		transition-property: outline, border-color, background-color, color;
 		transition-duration: var(--beat);
-		transition-timing-function: var(--ease-out-quad);
+		transition-timing-function: var(--ease-out-circ);
 	}
 
 	& textarea {
@@ -122,7 +122,7 @@ input[type='radio'] {
 	border: 0.25rem solid var(--glow);
 	transition-property: all;
 	transition-duration: var(--beat);
-	transition-timing-function: var(--ease-out-quad);
+	transition-timing-function: var(--ease-out-circ);
 }
 
 input[type='radio'],

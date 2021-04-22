@@ -1,4 +1,4 @@
-/** 
+/**
  * fade transition
  *
  */
@@ -10,7 +10,7 @@
 }
 
 .fade-enter-active {
-	transition-timing-function: var(--ease-out-quad);
+	transition-timing-function: var(--ease-out-circ);
 }
 
 .fade-leave-active {
@@ -27,7 +27,7 @@
 	opacity: 0;
 }
 
-/** 
+/**
  * page transition
  *
  */
@@ -39,7 +39,7 @@
 }
 
 .page-enter-active {
-	transition-timing-function: var(--ease-out-quad);
+	transition-timing-function: var(--ease-out-circ);
 }
 
 .page-leave-active {
@@ -62,7 +62,7 @@
 	/* transform: translateX(-100vw); */
 }
 
-/** 
+/**
  * slide-fade transition
  *
  */
@@ -75,7 +75,7 @@
 }
 
 .slide-fade-enter-active {
-	transition-timing-function: var(--ease-out-quad);
+	transition-timing-function: var(--ease-out-circ);
 }
 
 .slide-fade-leave-active {
@@ -134,7 +134,7 @@
 	opacity: 1;
 }
 
-/** 
+/**
  * popup transition
  *
  */
@@ -145,7 +145,7 @@
 }
 
 .popup-enter-active {
-	transition-timing-function: var(--ease-out-quad);
+	transition-timing-function: var(--ease-out-circ);
 }
 
 .popup-leave-active {
@@ -164,7 +164,7 @@
 	transform: scale(1);
 }
 
-/** 
+/**
  * land transition
  *
  */
@@ -179,7 +179,7 @@
 }
 
 .land-leave-active {
-	transition-timing-function: var(--ease-out-quad);
+	transition-timing-function: var(--ease-out-circ);
 }
 
 .land-enter-from,
@@ -206,7 +206,7 @@
 }
 
 .deal-enter-active {
-	transition-timing-function: var(--ease-out-quad);
+	transition-timing-function: var(--ease-out-circ);
 }
 
 .deal-leave-active {

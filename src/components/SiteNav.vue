@@ -28,7 +28,7 @@ nav.flex.col
 				)
 				IconBase(size="40" viewBox="0 0 1000 1250")
 					IconSpellBook
-				span(v-if="!cfg.journaled") Start a
+				span(v-if="!cfg.journaled") Start a{{' '}}
 				span Journal
 		li
 			router-link.btn.naked(

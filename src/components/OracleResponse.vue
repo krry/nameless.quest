@@ -43,9 +43,12 @@
 		button.btn.naked(
 			type="button"
 			title="Start Over"
-			@click="$emit('clear')"
+			@click="clearBoth"
 			) ♽ Start Over
-		button.btn(@click="saveToJournal") Save to your Journal
+		button.btn(
+			v-if="!cfg.saved"
+			@click="saveToJournal"
+			) Save to your Journal
 </template>
 
 <script lang="ts">
@@ -59,7 +62,7 @@ import Icon9 from '../icons/Icon9.vue'
 import LineGlyph from './LineGlyph.vue'
 import HanziChar from './HanziChar.vue'
 import {cfg} from '../store'
-import {cached} from '../store/cache'
+import {cached, uncache} from '../store/cache'
 import {addRoll, cachedRoll} from '../store/rolls'
 import {activeLots, setLots} from '../store/lots'
 import {parseTossToBinary} from '../utils/tosses'
@@ -76,7 +79,6 @@ export default defineComponent({
 		LineGlyph,
 		HanziChar,
 	},
-	emits: ['clear'],
 	setup() {
 		setLots(parseTossToBinary(cached.toss))
 		const router = useRouter()
@@ -84,6 +86,20 @@ export default defineComponent({
 		const hexs = computed(() => activeLots.value.map((l: string) => getHexagramByBin(l)))
 		// console.log('hexs', hexs.value)
 
+		function clearBoth(confirmed = false) {
+			const clearAffirmed =
+				confirmed ?? confirm("Are you sure you want to start over? This will clear today's entry.")
+			if (clearAffirmed) {
+				cfg.saved = false
+				uncache('query')
+				uncache('toss')
+				uncache('step')
+			}
+		}
+		if (cached.uid) {
+			saveToJournal()
+			cfg.saved = true;
+		}
 		function saveToJournal() {
 			if (cached.uid) {
 				addRoll({
@@ -106,6 +122,7 @@ export default defineComponent({
 
 		return {
 			cached,
+			clearBoth,
 			cfg,
 			hexs,
 			saveToJournal,

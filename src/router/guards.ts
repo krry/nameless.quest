@@ -2,18 +2,48 @@ import {RouteLocationRaw, RouteLocationNormalized} from 'vue-router'
 import {auth} from '../firebase'
 import {cfg, set} from '../store'
 import {addRoll, cachedRoll} from '../store/rolls'
-import {cached, cacheUser} from '../store/cache'
+import {cache, uncache, cached, cacheUser} from '../store/cache'
+import {getRolls} from '../store/rolls'
 import * as drawer from '../utils/drawer'
 
-export function beforeEach(to: RouteLocationNormalized): RouteLocationRaw | boolean {
+auth.onAuthStateChanged((user) => {
+	if (user) {
+		// console.info('user detected', user.uid)
+		cache('uid', user.uid)
+		// activeUser.value = user.uid
+		if (cachedRoll.value) {
+			cachedRoll.value.uid = user.uid
+			addRoll(cachedRoll.value)
+			cachedRoll.value = null
+		}
+	} else {
+		console.warn('user lost 😞')
+		uncache('uid')
+		// activeUser.value = null
+		// No user is signed in.
+	}
+})
+
+export function beforeEach(to: RouteLocationNormalized): RouteLocationRaw | undefined {
 	// console.log('going to params', to.params)
-	const requiresAuth = to.matched.some((x) => x.meta.requiresAuth)
+	// const requiresAuth = to.matched.some((x) => x.meta.requiresAuth)
 	// console.log('before this route', to)
+	// console.log('checking for cached user id:', cached.uid)
+	// console.log('router pointed toward', to.path)
+	// console.log('requiresAuth is', requiresAuth)
+	// console.log('cached.uid is missing?', !cached.uid)
+	// console.log('we have a cached uid and are going to /login', (!!cached.uid && to.path === '/login'))
+	// if (!!cached.uid && to.path === '/login') {
+		// console.log('going to journal instead')
+		// return '/journal'
+		// no auth needed
+	// }
+
 	if (auth.isSignInWithEmailLink(window.location.href)) {
 		// console.log('coming in from a magic link')
 		// console.log('checking for cached email', cached.email)
 		if (!cached.email) {
-			console.warn('different device than last sign-in,  need to sign in here.')
+			// console.warn('different device than last sign-in,  need to sign in here.')
 			return {
 				name: 'login',
 				query: {from: to.path},
@@ -23,45 +53,33 @@ export function beforeEach(to: RouteLocationNormalized): RouteLocationRaw | bool
 		auth
 			.signInWithEmailLink(cached.email, window.location.href)
 			.then((result) => {
+				// console.log('result from firebase auth', result)
 				if (result.user) {
-					// console.log('user signed in!', result.user)
+					// console.log('valid firebase user', result.user)
 					cacheUser(result.user)
-				}
-				if (result.additionalUserInfo) {
-					console.log('user is new', result.additionalUserInfo.isNewUser)
-					// can trigger onboarding flow here
-					set('beeny', false)
-				}
-				console.log('logged in successfully to', to)
-				if (cachedRoll.value) {
-					addRoll(cachedRoll.value)
-				}
-				const next = 'journal'
-				// console.log(`redirecting to ${next}`)
-				return {
-					name: next,
-					replace: true,
+					if (result.additionalUserInfo) {
+						// console.log('new user?', result.additionalUserInfo.isNewUser)
+						// can trigger onboarding flow here
+						set('beeny', false)
+					}
+					// console.log('logged in successfully to', to.path)
+					if (cachedRoll.value) {
+						addRoll(cachedRoll.value)
+					}
+					// console.log('proceeding to journal')
+					getRolls()
+					return {
+						name: 'journal',
+						query: {},
+						replace: true,
+					}
 				}
 			})
 			.catch((error) => {
-				console.error(
-					"couldn't complete email link sign-in due to invalid email and invalid or expired OTPs",
-					error,
-				)
+				console.error(error.message)
 				return false
 			})
 	}
-	if (cached.uid && to?.path === '/login') {
-		return '/journal'
-		// no auth needed
-	}
-	// console.log('user authd?', cached.uid)
-	if (requiresAuth && !cached.uid) {
-		// console.log('need auth and no user signed in')
-		return {name: 'login'}
-	}
-
-	return true
 }
 
 export function oracleGuard(): RouteLocationRaw {

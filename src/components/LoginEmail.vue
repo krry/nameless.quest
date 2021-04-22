@@ -16,7 +16,9 @@ form.flex.space.spread.wrap(@submit.prevent="emailLinkSend")
 				)
 			transition.msg.between(name="slide-fade" mode="out-in" appear)
 				label.right.between.font.alert(for="email_login" v-if="emailSuccessMsg")
-					| We've sent the magic link to your email.
+					| We've emailed you a magic link.
+					br
+					| You can close this window.
 				label.left.between(for="email_login" v-else)
 					| 🪄 We'll send you a magic link 🔗
 			button.btn.lg.outline#email_butt(

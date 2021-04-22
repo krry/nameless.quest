@@ -15,8 +15,8 @@ export default defineComponent({
 	props: {
 		running: Boolean,
 		zip: {
-			type: Number,
-			default: 2,
+			type: String,
+			default: "2",
 		},
 	},
 	setup(props) {
@@ -25,7 +25,7 @@ export default defineComponent({
 
 		onMounted(() => {
 			if (el.value) {
-				const {getSpinning, setSpinning} = useSpinnable(el.value, props.running, props.zip)
+				const {getSpinning, setSpinning} = useSpinnable(el.value, props.running, Number(props.zip))
 
 				isSpinning.value = getSpinning()
 
