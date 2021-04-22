@@ -54,7 +54,7 @@ export default defineComponent({
 	justify-content: center;
 	flex-flow: column nowrap;
 	align-items: center;
-	padding: 2rem 1rem;
+	padding: 1rem 1rem;
 	z-index: 0;
 	right: auto; /* to counter the abs-0 ute */
 	width: var(--drawer-buffer);
@@ -65,6 +65,10 @@ export default defineComponent({
 
 	@media (min-width: 27rem) {
 		width: var(--drawer-dim);
+	}
+	@media (min-height: 36rem) {
+		padding-top: 2rem;
+		padding-bottom: 2rem;
 	}
 }
 

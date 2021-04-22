@@ -44,7 +44,7 @@ export function setTheme(title: string): void {
 	// if the title argument is one of the theme titles,
 	if (titles.indexOf(title) !== -1) {
 		applyTheme(title)
-		// saves the arg as the active theme
+		// console.log('saves the arg as the active theme',)
 		activeTheme.value = title
 	}
 }

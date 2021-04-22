@@ -1,6 +1,6 @@
 {
   "name": "nameless-yi-jing",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "description": "An interactive, graphic resource for and paean to 易經 (Yìjīng, and often I Ching) the Classic Book of Changes, wherein one can see the glorious symmetries of the perfect Octals, decode the binary of the hexagrams, pronounce the Pinyin, and peruse scholarly interpretations.",
   "license": "CC-BY-NC-SA-4.0",
   "main": "main.ts",
@@ -10,17 +10,11 @@
   },
   "scripts": {
     "dev": "vite --port 2021",
-    "lint": "eslint --fix",
+    "lint": "eslint --fix -ext ts,tsx",
     "build": "npm run lint && vite build",
     "deploy": "npm run build && netlify deploy",
     "deprod": "npm run build && netlify deploy --prod",
     "release": "npm run build && npm version && git push && git tag && git push --tag"
-  },
-  "xo": {
-    "fix": true,
-    "no-semicolon": true,
-    "open": true,
-    "prettier": true
   },
   "dependencies": {
     "@feedback-fish/vue": "https://github.com/Atmanautica/feedback-fish-vue",
