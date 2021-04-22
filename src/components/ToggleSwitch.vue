@@ -94,7 +94,7 @@ export default {
 	border-radius: var(--switch-size);
 	margin: 0 0.75rem;
 	background-color: var(--pencil);
-	transition: background-color var(--beat) var(--ease-out-quad);
+	transition: background-color var(--beat) var(--ease-out-circ);
 }
 
 .switch::before {
@@ -108,7 +108,7 @@ export default {
 	border-radius: 100%;
 	border: 2px solid var(--pencil);
 	background-color: var(--ground);
-	transition: transform var(--beat) var(--ease-out-quad);
+	transition: transform var(--beat) var(--ease-out-circ);
 }
 
 .container:hover + .switch,

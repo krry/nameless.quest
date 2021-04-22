@@ -26,7 +26,7 @@ Page.login(
     LoginPhone.right(v-else-if="method === 'phone'")
   transition(name="slide-fade" mode="out-in" appear)
     h3.font.alcenter.right(v-if="explained")
-      | Frankly 
+      | Frankly!{' '}
       AppLink(to="https://medium.com/@ninjudd/passwords-are-obsolete-9ed56d483eb") passwords are obsolete
       | .
       br
@@ -52,7 +52,6 @@ export default defineComponent({
 		LoginEmail,
 		LoginPhone,
 	},
-	emits: ['drawer'],
 	data() {
 		return {
 			method: '',

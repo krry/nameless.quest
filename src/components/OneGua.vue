@@ -6,7 +6,7 @@
 		:size="size"
 		)
 	HanziChar(
-		:char="trigrams[gua].name.zh"  
+		:char="trigrams[gua].name.zh"
 		:pinyin="trigrams[gua].name.pn"
 		:translation="$titlize(trigrams[gua].name.en)"
 		place="side"
@@ -68,6 +68,6 @@ export default defineComponent({
 	font-size: 2.5rem;
 	line-height: 1;
 	transform-origin: center center;
-	transition: transform var(--beat) var(--ease-out-quad);
+	transition: transform var(--beat) var(--ease-out-circ);
 }
 </style>

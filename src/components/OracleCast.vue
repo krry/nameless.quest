@@ -205,7 +205,7 @@ h2 {
 .flip-leave-active {
 	transition-property: transform, opacity;
 	transition-duration: var(--beat);
-	transition-timing-function: var(--ease-out-quad);
+	transition-timing-function: var(--ease-out-circ);
 	transform-origin: center;
 }
 

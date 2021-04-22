@@ -4,7 +4,7 @@
     HanziChar(
       v-for="(char, index) in names.chinese"
       :key="$symbolize(char)"
-      :char="char"  
+      :char="char"
       :pinyin="pinyin[index]"
       size="x2l"
 			place="over"
@@ -81,7 +81,7 @@ export default defineComponent({
 	text-align: center;
 	cursor: pointer;
 	position: relative;
-	transition: color var(--bea2) var(--ease-in-out-quad);
+	transition: color var(--bea2) var(--ease-in-out-circ);
 }
 
 .glyphs .char {

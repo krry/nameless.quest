@@ -59,7 +59,7 @@
 	border: 2px solid var(--glow);
 	transition-property: all;
 	transition-duration: var(--bea2);
-	transition-timing-function: var(--ease-out-quad);
+	transition-timing-function: var(--ease-out-circ);
 }
 
 .oracle .face,
@@ -80,7 +80,7 @@
 .flip-enter-active,
 .flip-leave-active {
 	transition-duration: var(--b3at);
-	transition-timing-function: var(--ease-out-quad);
+	transition-timing-function: var(--ease-out-circ);
 }
 
 .flip-leave-to,

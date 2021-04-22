@@ -40,7 +40,7 @@ transition(name="slide-fade" appear mode="out-in")
 				IconCrystalBall
 		h2 How to Query the Oracle
 		ul.ls
-			li 
+			li
 				IconBase(size="24" iconColor="var(--good)")
 					Icon7
 				span.text.md.tip Open questions resolve readily
@@ -52,7 +52,7 @@ transition(name="slide-fade" appear mode="out-in")
 				span.text.md.tip "How might we …?"
 				IconBase(size="24" iconColor="var(--good)")
 					Icon9
-			li 
+			li
 				IconBase(size="24" iconColor="var(--bad)")
 					Icon8
 				span.text.md.tip Binary judgments stay opaque
@@ -90,9 +90,9 @@ transition(name="slide-fade" appear mode="out-in")
 				IconWizardsHat
 		h2 How to Divine with Yarrow Stalks
 		iframe(
-			width="560" 
-			height="315" 
-			src="https://www.youtube.com/embed/LIBi8T2KI8E" frameborder="0" 
+			width="560"
+			height="315"
+			src="https://www.youtube.com/embed/LIBi8T2KI8E" frameborder="0"
 			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
 			)
 		br
@@ -127,7 +127,7 @@ transition(name="slide-fade" appear mode="out-in")
 				IconSpellBook
 		h2 What is the Yìjīng?
 		pre.font.md.alleft
-			| An ancient wisdom tradition 
+			| An ancient wisdom tradition
 			| tracing back beyond the
 			HanziChar(
 				char="周"
@@ -248,7 +248,7 @@ transition(name="slide-fade" appear mode="out-in")
 			li Each round sums to 6, 7, 8, or 9
 			li determining a line in the hexagram
 			li
-				| starting with the 
+				| starting with the
 				span {{ cfg.turny ? 'right' : 'bottom' }}
 				|  line.
 	aside#help3Coins.help.font.alcenter.pad.pad3.y.left(v-else-if="cached.help === '3coin'")
@@ -259,7 +259,7 @@ transition(name="slide-fade" appear mode="out-in")
 		ul.ls.text.md.fine.pad.pad1.y
 			li We toss six rounds of three coins.
 			br
-			li A head 👸 counts as 3 
+			li A head 👸 counts as 3
 			li A tail 🦚 counts as 2
 		.coin-legend.grid.font.sm.thicc.mrg.mrg1.y
 			span 🦚 🦚 🦚 = 6
@@ -294,7 +294,7 @@ transition(name="slide-fade" appear mode="out-in")
 			li Each round sums to 6, 7, 8, or 9
 			li determining a line in the hexagram
 			li
-				| starting with the 
+				| starting with the
 				span {{ cfg.turny ? 'right' : 'bottom' }}
 				|  line.
 		section
@@ -365,7 +365,7 @@ transition(name="slide-fade" appear mode="out-in")
 				LineGlyph(glyph="䷿" size="x4l")
 				LineGlyph(glyph="䷼" size="x4l")
 			h5.font.md
-				| Remember, the first line is on the 
+				| Remember, the first line is on the
 				span {{ cfg.turny ? 'right' : 'bottom' }}
 				| .
 		Spinnable.mrg.mrgs.y.x.ib
@@ -553,7 +553,7 @@ export default defineComponent({
 }
 
 .turner {
-	transition: transform var(--beat) var(--ease-out-quad);
+	transition: transform var(--beat) var(--ease-out-circ);
 	transform-origin: center;
 }
 

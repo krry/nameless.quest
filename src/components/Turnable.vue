@@ -26,7 +26,7 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .turner {
-	transition: transform var(--beat) var(--ease-out-quad);
+	transition: transform var(--beat) var(--ease-out-circ);
 	transform-origin: center;
 }
 
