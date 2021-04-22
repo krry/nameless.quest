@@ -24,7 +24,6 @@ nav.flex.col.pad.pad1.y
 		li
 			router-link.btn.naked(
 				:to="{ name: 'journal' }"
-				@click="set('journaled', true)"
 				tabindex="0"
 				)
 				IconBase(size="40" viewBox="0 0 1000 1250")

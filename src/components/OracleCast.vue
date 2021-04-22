@@ -39,7 +39,7 @@
 					pattern="[6-9]{1,6}"
 					placeholder="678789"
 					@keydown.meta.enter="saveToss"
-					@focus="scrollTo('#flip')"
+					@focus="scrollTo('.cast')"
 				)
 				IconBase.abs.r(
 					size="48"
@@ -65,7 +65,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, computed} from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 import Icon6 from '../icons/Icon6.vue'
 import Icon7 from '../icons/Icon7.vue'
 import Icon8 from '../icons/Icon8.vue'
@@ -73,8 +73,8 @@ import Icon9 from '../icons/Icon9.vue'
 import IconBase from '../icons/IconBase.vue'
 import IconCoin from '../icons/IconCoin.vue'
 import IconCoinFlip from '../icons/IconCoinFlip.vue'
-import {generateRandomToss} from '../utils/tosses'
-import {cached, cache} from '../store/cache'
+import { generateRandomToss } from '../utils/tosses'
+import { cached, cache } from '../store/cache'
 import VueScrollTo from 'vue-scrollto'
 
 export default defineComponent({

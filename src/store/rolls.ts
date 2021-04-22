@@ -1,7 +1,7 @@
-import {ref} from 'vue'
-import {Roll} from '../schema'
-import {cached} from './cache'
-import {db, DocRef, Transaction} from '../firebase'
+import { ref } from 'vue'
+import { Roll } from '../schema'
+import { cached } from './cache'
+import { db, DocRef, Transaction } from '../firebase'
 
 export const cachedRoll = ref<Roll | null>()
 export const activeRolls = ref<Roll[]>([])
@@ -34,7 +34,7 @@ export const saveRoll = (roll: Roll): void => {
 */
 
 /* if using Firestore */
-const userRollsPath = 'users/' + cached.uid + '/rolls'
+const userRollsPath = cached.uid ? 'users/' + cached.uid + '/rolls' : 'rolls'
 
 export function getRolls(): void {
 	db.collection(userRollsPath)
@@ -43,8 +43,8 @@ export function getRolls(): void {
 			querySnapshot.forEach((doc) => {
 				// doc.data() is never undefined for query doc snapshots
 				// console.log('roll doc', doc.id, '=>', doc.data())
-				console.log('{id: doc.id, ...doc.data()} as Roll', {id: doc.id, ...doc.data()} as Roll)
-				activeRolls.value.push({id: doc.id, ...doc.data()} as Roll)
+				console.log('{id: doc.id, ...doc.data()} as Roll', { id: doc.id, ...doc.data() } as Roll)
+				activeRolls.value.push({ id: doc.id, ...doc.data() } as Roll)
 			})
 		})
 		.catch((error) => console.error("couldn't retrieve rolls", error))

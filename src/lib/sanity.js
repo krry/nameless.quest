@@ -1,3 +1,30 @@
+import sanityClient from '@sanity/client'
+
+const proj =
+	typeof import.meta.env.VITE_SANITY_PROJECT_ID === 'string'
+		? import.meta.env.VITE_SANITY_PROJECT_ID
+		: undefined
+export const client = sanityClient({
+	projectId: proj,
+	dataset: 'production',
+	token: import.meta.env.VITE_SANITY_RW_KEY, // or leave blank to be anonymous user
+	useCdn: true, // `false` if you want to ensure fresh data
+})
+
+export const useSanity = () => {
+	function fetch(query, params) {
+		client.fetch(query, params).then((nodes) => {
+			nodes.forEach((node) => {
+				console.log('node fetched', node)
+			})
+		})
+	}
+
+	return {
+		fetch,
+	}
+}
+
 /** FOR App.vue */
 // import {useSanityClient} from 'vue-sanity'
 
