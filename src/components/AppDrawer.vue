@@ -1,14 +1,4 @@
 <template lang="pug">
-.drawer.fixed.abs-0.fs.flex.begin(
-	@click.stop="drawer.close"
-	@keydown.escape.prevent.exact="drawer.close"
-	)
-	SiteNav
-	header#header.flex.mid.pad.pad2.b
-		LogoBrand(direction="vert" size="md" )
-			template(#tagline)
-				Taglinez
-	ThemeSwitch.tab.fixed.b.themes(size="md")
 transition( name="flag" appear mode="out-in" )
 	button.btn.naked.tab.surf.fixed.b.l.ride(
 		v-if="cfg.drawer"
@@ -20,10 +10,21 @@ transition( name="flag" appear mode="out-in" )
 		@click.stop="drawer.open"
 		tabindex="0"
 		)
+.drawer.fixed.abs-0.fs.flex.begin(
+	@click.stop="drawer.close"
+	@keydown.escape.prevent.exact="drawer.close"
+	:class="{compact: allGone}"
+	)
+	SiteNav
+	header#header.flex.mid.pad.pad2.b
+		LogoBrand(direction="vert" size="md" )
+			template(#tagline)
+				Taglinez
+	ThemeSwitch.tab.fixed.b.themes(size="md")
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
+import {defineComponent, computed} from 'vue'
 import {cfg} from '../store'
 import SiteNav from './SiteNav.vue'
 import LogoBrand from './LogoBrand.vue'
@@ -40,13 +41,33 @@ export default defineComponent({
 		Taglinez,
 	},
 	setup() {
+		const allGone = computed(
+			() =>
+				cfg.consulted &&
+				cfg.perused &&
+				cfg.journaled &&
+				cfg.configured &&
+				cfg.metafied &&
+				cfg.consulted &&
+				cfg.thanked &&
+				cfg.fedback,
+		)
+
 		return {
 			cfg,
 			drawer,
+			allGone,
 		}
 	},
 })
 </script>
+
+<style lang="postcss">
+.drawer.compact,
+.drawer.compact + .app > main {
+	--drawer-dim: 16rem;
+}
+</style>
 
 <style lang="postcss" scoped>
 .drawer {

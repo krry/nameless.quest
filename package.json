@@ -18,6 +18,9 @@
   },
   "dependencies": {
     "@feedback-fish/vue": "https://github.com/Atmanautica/feedback-fish-vue",
+    "@sanity/block-content-to-html": "^1.3.8",
+    "@sanity/client": "^2.1.0",
+    "@sanity/image-url": "^0.140.19",
     "firebase": "^8.2.3",
     "vue": "^3.0.5",
     "vue-contenteditable": "^3.0.4",
@@ -40,7 +43,8 @@
     "browserslist": "^4",
     "eslint": "^7.15.0",
     "eslint-config-prettier": "^7.0.0",
-    "eslint-plugin-vue": "^7.0.0-alpha.0",
+    "eslint-config-xo-vue": "^3.1.23",
+    "eslint-plugin-vue": "^7.7.0",
     "husky": "^5.0.6",
     "postcss": "^8.2.1",
     "postcss-advanced-variables": "^3.0.1",
@@ -55,7 +59,8 @@
     "stylelint": "^13.8.0",
     "stylelint-config-standard": "^20.0.0",
     "typescript": "^4.1.3",
-    "vite": "^2.0.0-beta.70"
+    "vite": "^2.0.0-beta.70",
+    "xo": "^0.38.2"
   },
   "browserslist": [
     "defaults"

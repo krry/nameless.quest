@@ -3,6 +3,8 @@ Page.journal
 	Spinnable.mrg.mrg2.t
 		IconBase(viewBox="0 0 1000 1250" size="128" iconColor="var(--ink)")
 			IconSpellBook
+	.test
+		button.btn(@click="getRolls") get rolls
 	h1.head.xxl
 		| The Journal of{{' '}}
 		contenteditable(
@@ -10,6 +12,7 @@ Page.journal
 			v-model="cached.name"
 			:noNL="true"
 			@blur="saveName(cached.name)"
+			@focus="clearName"
 			) {{ cached.name }}
 	h2 Conversations with the Oracle
 	.section(v-if="rolls.length < 10")
@@ -57,6 +60,7 @@ Page.journal
 import {defineComponent, ref, watchEffect} from 'vue'
 import contenteditable from 'vue-contenteditable'
 import {auth} from '../firebase'
+import {set} from '../store'
 import {cache, cached} from '../store/cache'
 import {Roll} from '../schema'
 import {activeRolls, getRolls, deleteRoll, updateRoll} from '../store/rolls'
@@ -93,10 +97,12 @@ export default defineComponent({
 	setup() {
 		const {getHexagramByOctal, getWenByBin, getEnglishNameByBin} = useHexagrams()
 		const rolls = ref<Roll[]>()
+
 		// when journal page loads, check if there is a logged in user, which should be true because the router handles this
 		if (cached.uid) {
 			// call getRolls to update the activeRolls
 			getRolls()
+			set('journaled', true)
 		}
 
 		if (!cached.name) {
@@ -104,7 +110,10 @@ export default defineComponent({
 		}
 
 		watchEffect(() => {
-			// console.log('hydrating with rolls from firebase', activeRolls.value)
+			console.log('hydrating with rolls from firebase', activeRolls.value)
+			// rolls.value = activeRolls.value.sort((a: Roll, b: Roll) => {
+			// 	return Number(a.moment) - Number(b.moment)
+			// })
 			rolls.value = [...new Set(activeRolls.value.sort(laterDatesFirst))]
 			// console.log('rolls.value', rolls.value)
 		})
@@ -115,6 +124,13 @@ export default defineComponent({
 				displayName: llamo,
 			})
 			// console.log('auth.currentUser now has name', auth.currentUser, llamo)
+		}
+
+		function clearName(event: Event) {
+			const target = event.target as HTMLInputElement
+			if (!cached.name || cached.name === 'Your Name') {
+				target.value = ''
+			}
 		}
 
 		function doubleCheckBeforeDeleteRoll(id: string): void {
@@ -138,7 +154,9 @@ export default defineComponent({
 			// then return activeRolls to the template as rolls
 			rolls,
 			cached,
+			getRolls,
 			saveName,
+			clearName,
 			updateRoll,
 			doubleCheckBeforeDeleteRoll,
 			getWenByBin,
