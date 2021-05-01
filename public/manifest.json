@@ -1,0 +1,61 @@
+{
+	"lang": "en",
+	"name": "Nameless ✵ Yìjīng ✵ A Paean to 易經 ✵ The Classic of Changes",
+	"short_name": "Nameless",
+	"start_url": "https://nameless.quest/?source=pwa",
+	"description": "An interactive, graphic resource for and paean to 易經 (Yìjīng, and often I Ching) the Classic Book of Changes) wherein you can see the glorious symmetries of the perfect Octals, decode the binary of the hexagrams, pronounce the Pinyin, and peruse scholarly interpretations.",
+	"icons": [
+		{
+			"src": "/favicon-72x72.png",
+			"type": "image/png",
+			"sizes": "72x72",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "/favicon-96x96.png",
+			"type": "image/png",
+			"sizes": "96x96",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "/favicon-128x128.png",
+			"type": "image/png",
+			"sizes": "128x128",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "/favicon-144x144.png",
+			"type": "image/png",
+			"sizes": "144x144",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "/favicon-152x152.png",
+			"type": "image/png",
+			"sizes": "152x152",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "/favicon-192x192.png",
+			"type": "image/png",
+			"sizes": "192x192",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "/favicon-384x384.png",
+			"type": "image/png",
+			"sizes": "384x384",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "/favicon-512x512.png",
+			"type": "image/png",
+			"sizes": "512x512",
+			"purpose": "any maskable"
+		}
+	],
+	"scope": "/",
+	"display": "standalone",
+	"theme_color": "#D7F0F2",
+	"background_color": "#D7F0F2"
+}
