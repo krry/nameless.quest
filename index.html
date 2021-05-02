@@ -65,8 +65,8 @@
 		<link rel="icon" type="image/x-icon" href="favs/favicon.ico" />
 		<meta name="msapplication-TileColor" content="#D7F0F2" />
 		<meta name="msapplication-TileImage" content="favs/favicon-144x144.png" />
-		<meta name="msapplication-config" content="/browserconfig.xml" />
-		<link rel="manifest" href="/manifest.json" />
+		<meta name="msapplication-config" content="browserconfig.xml" />
+		<link rel="manifest" href="manifest.json" />
 		<meta name="theme-color" content="#D7F0F2" />
 		<link rel="mask-icon" href="favs/favicon.svg" color="#D7F0F2" />
 		<meta name="apple-mobile-web-app-title" content="Nameless" />
@@ -84,11 +84,14 @@
 			property="og:description"
 			content="An interactive, graphic resource for and paean to 易經 (Yìjīng, and often I Ching, or the Classic Book of Changes) wherein you can see the glorious symmetries of the perfect Octals, decode the binary of the hexagrams, pronounce the Pinyin, and peruse scholarly interpretations."
 		/>
-		<meta property="og:type" content="metaphysical oracle/divination tool" />
+		<meta
+			property="og:type"
+			content="metaphysical oracle and divination tool"
+		/>
 		<meta property="og:url" content="https://nameless.quest" />
 		<meta
 			property="og:image"
-			content="https://og.easeness.biz/Nameless%20%E2%80%A2%20I%20Ching.png?theme=dark&md=1&fontSize=125px&images=https%3A%2F%2Fatmanaut.sirv.com%2F_images%2Fbagua.svg&widths=450&heights=450"
+			content="https://og.easeness.biz/Nameless%20%E2%80%A2%20I%20Ching.png?theme=dark&md=1&fontSize=125px&images=https%3A%2F%2Fatmanaut.sirv.com%2Flogos%2Fbagua-white-mono.svg&widths=450&heights=450"
 		/>
 	</head>
 	<body>
@@ -100,14 +103,5 @@
 		</noscript>
 		<div id="bollard" class="bollard"></div>
 		<script type="module" src="/src/main.ts"></script>
-		<!-- <script>
-			// Check that service workers are registered
-			if ('serviceWorker' in navigator) {
-				// Use the window load event to keep the page load performant
-				window.addEventListener('load', () => {
-					navigator.serviceWorker.register('/service-worker.js')
-				})
-			}
-		</script> -->
 	</body>
 </html>
