@@ -38,12 +38,12 @@ import {
 	computed,
 } from 'vue'
 
-import {defHex, Hexagram, defQuad, Quad} from '../schema'
-import {determineQuadrant} from '../utils/cards'
-import {cfg} from '../store'
-import {cached} from '../store/cache'
-import {parseTossToBinary} from '../utils/tosses'
-import {activeLots, saveLot, removeLot, clearLots} from '../store/lots'
+import { defHex, Hexagram, defQuad, Quad } from '../schema'
+import { determineQuadrant } from '../utils/cards'
+import { cfg } from '../store'
+import { cached } from '../store/cache'
+import { parseTossToBinary } from '../utils/tosses'
+import { activeLots, saveLot, removeLot, clearLots } from '../store/lots'
 import HexaCard from './HexaCard.vue'
 import HexaTile from './HexaTile.vue'
 import HexaFrame from './HexaFrame.vue'
@@ -83,7 +83,9 @@ export default defineComponent({
 			quadrant: ref<Quad>(),
 			id: toRef(props, 'hexId'),
 			wenny: cfg.wenny,
-			isActive: computed(() => activeLots.value?.indexOf(hex.value.binary) === 0),
+			isActive: computed(
+				() => activeLots.value?.indexOf(hex.value.binary) === 0
+			),
 			isBeing: computed(() => rolledLots?.indexOf(hex.value.binary) === 0),
 			isBecoming: computed(() => rolledLots?.indexOf(hex.value.binary) === 1),
 		})
@@ -185,35 +187,43 @@ export default defineComponent({
 	}
 
 	.change-node:nth-of-type(8n) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(180deg) rotateZ(-180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(180deg)
+			rotateZ(-180deg);
 	}
 
 	.change-node:nth-of-type(8n-1) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(-180deg) rotateZ(180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(-180deg)
+			rotateZ(180deg);
 	}
 
 	.change-node:nth-of-type(8n-2) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(-180deg) rotateZ(-180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(-180deg)
+			rotateZ(-180deg);
 	}
 
 	.change-node:nth-of-type(8n-3) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(-180deg) rotateZ(180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(-180deg)
+			rotateZ(180deg);
 	}
 
 	.change-node:nth-of-type(8n-4) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(180deg) rotateZ(-180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(180deg)
+			rotateZ(-180deg);
 	}
 
 	.change-node:nth-of-type(8n-5) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(-180deg) rotateZ(-180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(-180deg)
+			rotateZ(-180deg);
 	}
 
 	.change-node:nth-of-type(8n-6) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(180deg) rotateZ(180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(180deg)
+			rotateZ(180deg);
 	}
 
 	.change-node:nth-of-type(8n-7) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(180deg) rotateZ(180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(180deg)
+			rotateZ(180deg);
 	}
 }
 </style>

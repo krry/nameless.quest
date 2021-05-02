@@ -6,11 +6,11 @@
   .binary(hidden) {{ hex.binary }}
   .order(@click.stop="reorder")
     .octal(
-      v-if="!wenny"
+      v-if="!cfg.wenny"
       :title="`Octal No. ${hex.octal}`"
     ) {{ hex.octal }}
     .kingwen(
-      v-if="wenny"
+      v-if="cfg.wenny"
       :title="`King Wen No. ${hex.kingwen}`"
     ) {{ hex.kingwen }}
   BaguaDoors(
@@ -21,12 +21,12 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType, ref, inject, watchEffect} from 'vue'
-import {defHex, Hexagram} from '../schema'
-import {cfg} from '../store'
+import { defineComponent, PropType, ref, inject, watchEffect } from 'vue'
+import { defHex, Hexagram } from '../schema'
+import { cfg } from '../store'
 import BaguaDoors from './BaguaDoors.vue'
-import {reorderKey} from './HexaGrid.vue'
-import {setQuadrantKey} from './ChangeNode.vue'
+import { reorderKey } from './HexaGrid.vue'
+import { setQuadrantKey } from './ChangeNode.vue'
 
 export default defineComponent({
 	name: 'HexaFrame',
@@ -45,7 +45,8 @@ export default defineComponent({
 		const setQuadrant = inject(setQuadrantKey)
 
 		function reorder() {
-			if (!reorderTiles || !setQuadrant) throw new Error("can't reorder tiles atm 🤨")
+			if (!reorderTiles || !setQuadrant)
+				throw new Error("can't reorder tiles atm 🤨")
 			reorderTiles()
 			setQuadrant()
 		}
@@ -53,9 +54,9 @@ export default defineComponent({
 		watchEffect(() => (baguad.value = cfg.baguy))
 
 		return {
-			baguad,
 			reorder,
-			wenny: cfg.wenny,
+			baguad,
+			cfg,
 		}
 	},
 })
@@ -78,6 +79,7 @@ export default defineComponent({
 .hexagram:hover,
 .hexagram:focus {
 	color: var(--silk);
+	background: var(--glow);
 }
 
 .order {
@@ -85,5 +87,8 @@ export default defineComponent({
 	top: var(--frame);
 	right: var(--frame);
 	cursor: pointer;
+	padding: 0.25em;
+	margin: -0.25em;
+	z-index: 2;
 }
 </style>

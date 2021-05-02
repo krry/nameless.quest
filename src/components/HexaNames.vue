@@ -12,17 +12,24 @@
       )
   h3.yingyu.head.x2l {{ names.english }}
   .orders(@click.stop="reorder")
-    .kingwen(v-if="wenny") King Wen \#{{ kingwen }}
-    .octal(v-if="!wenny") Octal \#{{ octal }}
+    .kingwen(v-if="cfg.wenny") King Wen \#{{ kingwen }}
+    .octal(v-if="!cfg.wenny") Octal \#{{ octal }}
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType, reactive, toRefs, computed, inject} from 'vue'
-import {defHex, Hexaname} from '../schema'
-import {cfg} from '../store'
+import {
+	defineComponent,
+	PropType,
+	reactive,
+	toRefs,
+	computed,
+	inject,
+} from 'vue'
+import { defHex, Hexaname } from '../schema'
+import { cfg } from '../store'
 import HanziChar from './HanziChar.vue'
-import {reorderKey} from './HexaGrid.vue'
-import {setQuadrantKey} from './ChangeNode.vue'
+import { reorderKey } from './HexaGrid.vue'
+import { setQuadrantKey } from './ChangeNode.vue'
 
 export default defineComponent({
 	name: 'HexaNames',
@@ -47,8 +54,7 @@ export default defineComponent({
 	setup(props) {
 		const setQuadrant = inject(setQuadrantKey)
 		const reorderTiles = inject(reorderKey)
-		const hanziData = reactive({
-			wenny: cfg.wenny,
+		const rx = reactive({
 			pinyin: computed(() => props.names.pinyin.split(' ')),
 			arrayedHanzi: computed((): string[] => {
 				if (!props.names.chinese) {
@@ -66,7 +72,8 @@ export default defineComponent({
 
 		return {
 			reorder,
-			...toRefs(hanziData),
+			cfg,
+			...toRefs(rx),
 		}
 	},
 })

@@ -9,12 +9,12 @@ Turnable(v-else :class="{trigram}")
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 import Turnable from './Turnable.vue'
 
 export default defineComponent({
 	name: 'LineGlyph',
-	components: {Turnable},
+	components: { Turnable },
 	props: {
 		glyph: {
 			type: String,
@@ -46,7 +46,9 @@ export default defineComponent({
 
 .trigram {
 	line-height: 1;
-	transform-origin: center 60%;
+	@media (min-width: 36rem) and (min-height: 36rem) {
+		transform-origin: center 56%;
+	}
 }
 
 .trigram.font {
