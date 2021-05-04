@@ -41,31 +41,33 @@ export function getRolls(): void {
 	console.log('getting rolls')
 	db.collection(userRollsPath)
 		.get()
-		.then((querySnapshot) => {
-			querySnapshot.forEach((doc) => {
+		.then(querySnapshot => {
+			querySnapshot.forEach(doc => {
 				// doc.data() is never undefined for query doc snapshots
 				// console.log('roll doc', doc.id, '=>', doc.data())
 				activeRolls.value.push({ id: doc.id, ...doc.data() } as Roll)
 			})
 		})
-		.catch((error) => console.error("couldn't retrieve rolls", error))
+		.catch(error => console.error("couldn't retrieve rolls", error))
 }
 
 export function addRoll(roll: Roll): DocRef | void {
 	console.log('roll to save', roll)
 	// TODO: first check the collection for a roll with the same query and toss
-	const queryIndex = activeRolls.value.map((roll) => roll.query).indexOf(roll.query)
-	const tossIndex = activeRolls.value.map((roll) => roll.toss).indexOf(roll.toss)
+	const queryIndex = activeRolls.value
+		.map(roll => roll.query)
+		.indexOf(roll.query)
+	const tossIndex = activeRolls.value.map(roll => roll.toss).indexOf(roll.toss)
 	if ((queryIndex !== -1 || tossIndex !== -1) && queryIndex === tossIndex) {
 		return
 	}
 	db.collection(userRollsPath)
 		.add(roll)
-		.then((docRef) => {
+		.then(docRef => {
 			console.log('roll added to firestore', docRef)
 			return docRef
 		})
-		.catch((error) => console.error("couldn't add roll", error))
+		.catch(error => console.error("couldn't add roll", error))
 }
 
 export function updateRoll(roll: Roll): Promise<void> {
@@ -73,13 +75,13 @@ export function updateRoll(roll: Roll): Promise<void> {
 	const rollRef = db.collection(userRollsPath).doc(roll.id)
 	return db
 		.runTransaction((transaction: Transaction) => {
-			return transaction.get(rollRef).then((r) => {
+			return transaction.get(rollRef).then(r => {
 				if (!r.exists) throw new Error("ain't no rolls like dat-a")
 				transaction.update(rollRef, roll)
 			})
 		})
 		.then(() => console.log('able to update roll', roll.id))
-		.catch((error) => console.error('struggled to update roll', roll, error))
+		.catch(error => console.error('struggled to update roll', roll, error))
 }
 
 export function deleteRoll(id: string): void {
@@ -92,7 +94,7 @@ export function deleteRoll(id: string): void {
 			// TODO: How can we refresh the journal entries after delete?
 			getRolls()
 		})
-		.catch((error) => console.error('struggled to delete roll', id, error))
+		.catch(error => console.error('struggled to delete roll', id, error))
 }
 
 // export function saveRoll(id: string, roll: Roll): void {

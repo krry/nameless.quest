@@ -10,6 +10,10 @@
 	flex-wrap: wrap;
 }
 
+.flex.nowrap {
+	flex-wrap: nowrap;
+}
+
 .flex.mid {
 	justify-content: center;
 	align-items: center;

@@ -1,26 +1,31 @@
-import {reactive} from 'vue'
-import {set} from '.'
+import { reactive } from 'vue'
+import { set } from '.'
 
 /** a simple reactive store
  * drawing on a concept I forked
  * https://codesandbox.io/s/vue-3-global-stores-forked-5iscw
  */
 
-export const cached: {[key: string]: string} = reactive({
+export const cached: { [key: string]: string } = reactive({
 	uid: lsd('uid'),
 	name: lsd('name'),
+	toss: lsd('toss'),
+	step: lsd('step'),
+	help: lsd('help'),
 	email: lsd('email'),
 	phone: lsd('phone'),
 	theme: lsd('theme'),
 	query: lsd('query'),
-	toss: lsd('toss'),
-	step: lsd('step'),
-	help: lsd('help'),
+	token: lsd('token'),
 	newRoll: lsd('newRoll'),
 })
 
-export const cache = (nym: string | undefined, val: string | null | undefined): void => {
-	if (!nym || !val) throw new Error("can't cache nada. nym: " + nym + ', val: ' + val)
+export const cache = (
+	nym: string | undefined,
+	val: string | null | undefined
+): void => {
+	if (!nym || !val)
+		throw new Error("can't cache nada. nym: " + nym + ', val: ' + val)
 	// console.log('setting user data', nym, 'from', cached[nym], 'to', val)
 	cached[nym] = val
 	localStorage.setItem(nym, val)

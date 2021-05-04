@@ -29,14 +29,14 @@ form.flex.space.spread.wrap(@submit.prevent="emailLinkSend")
 </template>
 
 <script lang="ts">
-import {defineComponent, reactive, toRefs} from 'vue'
-import {auth} from '../firebase'
-import {cache, uncache} from '../store/cache'
+import { defineComponent, reactive, toRefs } from 'vue'
+import { auth } from '../firebase'
+import { cache, uncache } from '../store/cache'
 import Waiter from './Waiter.vue'
 
 export default defineComponent({
 	name: 'LoginEmail',
-	components: {Waiter},
+	components: { Waiter },
 	setup() {
 		const rx = reactive({
 			email: '',
@@ -60,7 +60,7 @@ export default defineComponent({
 					// Save the email locally so you don't need to ask the user for it again if they open the link on the same device
 					cache('email', rx.email)
 				})
-				.catch((error) => {
+				.catch(error => {
 					const errorCode = error.code
 					const errorMessage = error.message
 					rx.awaiting = false

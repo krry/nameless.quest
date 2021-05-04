@@ -1,6 +1,5 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
-// import 'firebase/database'
 import 'firebase/firestore'
 
 // Your web app's Firebase configuration
@@ -21,8 +20,5 @@ auth.useDeviceLanguage()
 export type UserCredential = firebase.auth.UserCredential
 export type DocRef = firebase.firestore.DocumentReference
 export type Transaction = firebase.firestore.Transaction
-// export type fbDbRef = firebase.database.Reference
-// const userz = db.collection('users')
-// const rollz = db.collection('rolls')
 
-export {db, auth}
+export { db, auth }
