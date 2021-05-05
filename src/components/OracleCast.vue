@@ -65,7 +65,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue'
+import {defineComponent, ref, computed} from 'vue'
 import Icon6 from '../icons/Icon6.vue'
 import Icon7 from '../icons/Icon7.vue'
 import Icon8 from '../icons/Icon8.vue'
@@ -73,8 +73,8 @@ import Icon9 from '../icons/Icon9.vue'
 import IconBase from '../icons/IconBase.vue'
 import IconCoin from '../icons/IconCoin.vue'
 import IconCoinFlip from '../icons/IconCoinFlip.vue'
-import { generateRandomToss } from '../utils/tosses'
-import { cached, cache } from '../store/cache'
+import {generateRandomToss} from '../utils/tosses'
+import {cached, cache} from '../store/cache'
 import VueScrollTo from 'vue-scrollto'
 
 export default defineComponent({
@@ -122,7 +122,7 @@ export default defineComponent({
 					flipFlipper(false)
 					clearInterval(typer)
 				}
-			}, 1332)
+			}, 2220)
 		}
 
 		function getLineName(char: string): string {

@@ -30,7 +30,7 @@
 	--bevel: 0.5rem;
 	--bevels: 1rem;
 	--bumper: 3em 2em; /* keeps stuff off the interior walls */
-	--beat: 333ms; /* default transition duration */
+	--beat: 555ms; /* default transition duration */
 	--bea2: calc(var(--beat) * 2); /* twice as long as a beat */
 	--b3at: calc(var(--beat) * 3); /* twice as long as a beat */
 	--be4t: calc(var(--beat) * 4); /* twice as long as a beat */

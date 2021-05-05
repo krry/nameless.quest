@@ -202,7 +202,7 @@
 .deal-leave-active {
 	transition-property: transform, opacity;
 	transform-origin: center center;
-	transition-duration: 444ms;
+	transition-duration: var(--beat);
 }
 
 .deal-enter-active {
