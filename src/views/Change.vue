@@ -9,7 +9,7 @@ Page.font.center#change(
 		.hint.vapor.abs.t.r.l.alcenter.font.sm(v-if="!cfg.navvy") ⬅️ Did you try 😁 arrow keys? ➡️
 	router-link.page-nav.btn.naked.next.clickable.abs.t.r(:to="next") {{ next }} 𐡸
 	.mark(v-if="lots[0]")
-		.btn.naked.md.ib.skinny.static(v-if="lots[0] === hex.binary") Being 
+		.btn.naked.md.ib.skinny.static(v-if="lots[0] === hex.binary") Being
 		router-link.font.md(
 			v-if="lots[0] === hex.binary"
 			:to="{name: 'oracle'}")
@@ -94,7 +94,7 @@ Page.font.center#change(
 					component(:is="'Icon' + getChangingLine(line.position).icon")
 			h4.font.lg Line {{line.position + ': ' + getChangingLine(line.position).desc }}
 			.flex.mid
-				.icon.font.x3l   
+				.icon.font.x3l
 				IconBase(size="36")
 					component(:is="'Icon' + getChangingLine(line.position).was")
 				.icon.font.x3l ⇢
@@ -263,9 +263,11 @@ export default defineComponent({
 	},
 	methods: {
 		getChangingLine(pos: number) {
-			return this.hex.binary.slice(2).split('').reverse()[pos - 1] === '0'
-				? {icon: '6', was: '8', is: '7', desc: 'Yin Firming'}
-				: {icon: '9', was: '7', is: '8', desc: 'Yang Opening'}
+			if (this.hex?.binary) {
+				return this.hex.binary.slice(2).split('').reverse()[pos - 1] === '0'
+					? {icon: '6', was: '8', is: '7', desc: 'Yin Firming'}
+					: {icon: '9', was: '7', is: '8', desc: 'Yang Opening'}
+			} else return
 		},
 		navTo(route: string) {
 			if (cfg.justCast) return
