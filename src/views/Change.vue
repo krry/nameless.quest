@@ -204,7 +204,7 @@ export default defineComponent({
 		}
 
 		const trigrams = computed(() => {
-			return Object.values(rx.hex.trigramPair).map((t) => getTrigram(t))
+			return Object.values(rx.hex.trigramPair).map(t => getTrigram(t))
 		})
 
 		watchEffect(() => {
@@ -220,7 +220,7 @@ export default defineComponent({
 					document.removeEventListener('mousemove', onMouseMove, false)
 					rx.mousePresent = true
 				},
-				false,
+				false
 			)
 
 			document.addEventListener('touchmove', function onTouchMove() {

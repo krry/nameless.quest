@@ -24,7 +24,10 @@ export default defineComponent({
 			setTheme(activeTheme.value)
 			drawer.bound()
 			window.addEventListener('scroll', drawer.bound)
-			window.addEventListener('touchstart', () => set('navvy', true), true)
+			window.addEventListener('touchstart', () => set('navvy', true), {
+				capture: true,
+				passive: true,
+			})
 		})
 
 		onUnmounted(() => {

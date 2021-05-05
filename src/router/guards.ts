@@ -1,12 +1,13 @@
-import { RouteLocationRaw, RouteLocationNormalized } from 'vue-router'
-import { auth } from '../firebase'
-import { cfg, set } from '../store'
-import { addRoll, cachedRoll } from '../store/rolls'
-import { cache, uncache, cached, cacheUser } from '../store/cache'
-import { getRolls } from '../store/rolls'
+import {RouteLocationRaw, RouteLocationNormalized} from 'vue-router'
+import {User} from 'firebase/auth'
+import {auth} from '../firebase'
+import {cfg, set} from '../store'
+import {addRoll, cachedRoll} from '../store/rolls'
+import {cache, uncache, cached, cacheUser} from '../store/cache'
+import {getRolls} from '../store/rolls'
 import * as drawer from '../utils/drawer'
 
-auth.onAuthStateChanged(user => {
+auth.onAuthStateChanged((user: User) => {
 	if (user) {
 		// console.info('user detected', user.uid)
 		cache('uid', user.uid)
@@ -24,9 +25,7 @@ auth.onAuthStateChanged(user => {
 	}
 })
 
-export function beforeEach(
-	to: RouteLocationNormalized
-): RouteLocationRaw | undefined {
+export function beforeEach(to: RouteLocationNormalized): RouteLocationRaw | undefined {
 	// console.log('going to params', to.params)
 	// const requiresAuth = to.matched.some((x) => x.meta.requiresAuth)
 	// console.log('before this route', to)
@@ -48,13 +47,13 @@ export function beforeEach(
 			// console.warn('different device than last sign-in,  need to sign in here.')
 			return {
 				name: 'login',
-				query: { from: to.path },
+				query: {from: to.path},
 				replace: true,
 			}
 		}
 		auth
 			.signInWithEmailLink(cached.email, window.location.href)
-			.then(result => {
+			.then((result: {user: User; additionalUserInfo: {isNewUser: boolean}}) => {
 				// console.log('result from firebase auth', result)
 				if (result.user) {
 					// console.log('valid firebase user', result.user)
@@ -77,7 +76,7 @@ export function beforeEach(
 					}
 				}
 			})
-			.catch(error => {
+			.catch((error: {message: string}) => {
 				console.error(error.message)
 				return false
 			})
@@ -86,19 +85,17 @@ export function beforeEach(
 
 export function oracleGuard(): RouteLocationRaw {
 	// console.log('guarding the oracle')
-	if (cached.query) return { name: 'cast' }
-	else return { name: 'query' }
+	if (cached.query) return {name: 'cast'}
+	else return {name: 'query'}
 }
 
-export function changeGuard(
-	to: RouteLocationNormalized
-): RouteLocationRaw | boolean {
+export function changeGuard(to: RouteLocationNormalized): RouteLocationRaw | boolean {
 	const id =
 		typeof to.params.id === 'string'
 			? parseInt(to.params.id, 10)
 			: parseInt(to.params.id.join(''), 10)
 	if (id < 1 || id > 64) {
-		return { name: 'not-found' }
+		return {name: 'not-found'}
 	} else return true
 }
 
@@ -119,7 +116,7 @@ export function afterEach(): void {
 		relax()
 	}
 
-	document.addEventListener('touchstart', activate)
+	document.addEventListener('touchstart', activate, {passive: true})
 	document.addEventListener('mousemove', activate)
 	document.addEventListener('keydown', activate)
 	// document.addEventListener('scroll', activate)

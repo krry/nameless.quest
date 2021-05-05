@@ -23,8 +23,8 @@ export const useSpinnable = (element: HTMLElement, running = false, zip = 2): Sp
 		const dist = Math.floor(
 			Math.sqrt(
 				Math.pow(mX - (rect.left + element.offsetWidth / 2), 2) +
-					Math.pow(mY - (rect.top + element.offsetHeight / 2), 2),
-			),
+					Math.pow(mY - (rect.top + element.offsetHeight / 2), 2)
+			)
 		)
 		// console.log('measuring distance', dist)
 		return dist
@@ -90,7 +90,7 @@ export const useSpinnable = (element: HTMLElement, running = false, zip = 2): Sp
 		// to allow :active styles to work in CSS on mobile safari
 		// capture touchstart events for a tick and do nothing
 		// prettier-ignore
-		document.addEventListener('touchstart', ()=>{/**/}, true)
+		document.addEventListener('touchstart', ()=>{/**/}, {passive: true, capture: true})
 		// sniff out whether we have a toucher or a clicker
 		document.addEventListener('mousemove', onMouseMove, {once: true})
 		document.addEventListener('touchmove', onTouchMove, {once: true})
