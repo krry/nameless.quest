@@ -1,9 +1,7 @@
 {
-	"lang": "en",
-	"name": "Nameless ✵ Yìjīng ✵ A Paean to 易經 ✵ The Classic of Changes",
-	"short_name": "Nameless",
-	"start_url": "/?source=pwa",
+	"background_color": "#D7F0F2",
 	"description": "An interactive, graphic resource for and paean to 易經 (Yìjīng, and often I Ching) the Classic Book of Changes) wherein you can see the glorious symmetries of the perfect Octals, decode the binary of the hexagrams, pronounce the Pinyin, and peruse scholarly interpretations.",
+	"display": "standalone",
 	"icons": [
 		{
 			"src": "favs/favicon-72x72.png",
@@ -54,8 +52,10 @@
 			"purpose": "any maskable"
 		}
 	],
+	"lang": "en",
+	"name": "Nameless Quest ✵ Yìjīng Oracle",
 	"scope": "/",
-	"display": "standalone",
-	"theme_color": "#D7F0F2",
-	"background_color": "#D7F0F2"
+	"short_name": "Nameless",
+	"start_url": "/?source=pwa",
+	"theme_color": "#D7F0F2"
 }
