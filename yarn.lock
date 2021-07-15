@@ -1023,9 +1023,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@feedback-fish/vue@https://github.com/Atmanautica/feedback-fish-vue":
-  version "1.0.0"
-  resolved "git+ssh://git@github.com/Atmanautica/feedback-fish-vue.git#42f7a54d126d09c48823421132a6f25c8cc40a99"
+"@feedback-fish/vue@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@feedback-fish/vue/-/vue-1.0.1.tgz#27ab8b04591dcd347b35411ed03616e7e833ad76"
+  integrity sha512-j50djPdr8pUuiQDSgzSpSZGFHcGBYL0pMvipuRsMjN7/tm57mE477N4TRRFvsU09F1mvOlmUGcVm124j7e/3IA==
 
 "@firebase/analytics-types@0.4.0":
   version "0.4.0"
