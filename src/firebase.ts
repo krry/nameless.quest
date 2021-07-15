@@ -21,4 +21,4 @@ export type UserCredential = firebase.auth.UserCredential
 export type DocRef = firebase.firestore.DocumentReference
 export type Transaction = firebase.firestore.Transaction
 
-export { db, auth }
+export {db, auth}

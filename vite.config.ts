@@ -1,12 +1,17 @@
-import { defineConfig } from 'vite'
+import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { VitePWA } from 'vite-plugin-pwa'
+import {VitePWA} from 'vite-plugin-pwa'
+import manifestContents from './manifest.config'
+import workboxConfig from './workbox.config'
 
 // prettier-ignore
 export default defineConfig({
 	plugins: [
 		vue(),
-		VitePWA()
+		VitePWA({
+			manifest: manifestContents,
+			workbox: workboxConfig,
+		})
 	],
 	optimizeDeps: {
 		include: [
