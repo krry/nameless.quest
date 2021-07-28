@@ -132,13 +132,13 @@ Page.gratitude
 					| Steve VanDevender who has&nbsp;
 					AppLink._blank(to="http://hexadecimal.uoregon.edu/ching/src.html") sourced the Wilhelm-Baynes translation/interpretation of the I Ching
 					|  and provided it to the WWW.
-	section
+	section.flex.col.string
 		h3.head.xxl Thanks
 		h4.font.lg to the vector artists who made these rad icons…
 		dl
 			dt
 				AppLink._blank(to="https://thenounproject.com/LSEdesigns/") LSE Designs
-				|  for
+				|  for&nbsp;
 				AppLink._blank(to="https://thenounproject.com/LSEdesigns/collection/a-wizards-world/") A Wizard's World
 			dd.flex.string.mid.pad.pads.y.wrap
 				IconBase(viewBox="0 0 1000 1250" size="84")
@@ -212,30 +212,7 @@ Page.gratitude
 		.flex
 			h4.mrg.mrg1.x.y.half.font.lg To Elysa and Zephyr
 			h4.mrg.mrg1.x.y.text.md.alleft.half Your smiles and wiggles make my dreams come true every day.
-	section
-		h2.head.x2l Feeling grateful too?
-		p.font.md
-			| I welcome your feedback and your support.
-			br
-		h3 About the Artist
-		p.text.md
-			| Friends and fram call me&nbsp;
-			AppLink._blank(to="https://krry.dev") Kerrbear
-			| .
-			br
-			| I made Nameless Quest because I love the profound and humbling insight that&nbsp;
-			span
-				HanziChar(
-					char="易"
-					pinyin="Yì"
-					size="sm"
-					place="side"
-					inline
-					reveal
-					)
-			| offers me, and I want to share that experience with you.
-		p
-		AppLink.btn(to="https://ko-fi.com/kerrbear") Give what feels good
+	Busking
 </template>
 
 <script lang="ts">
@@ -243,7 +220,7 @@ import {defineComponent} from 'vue'
 import Page from '../components/Page.vue'
 import AppLink from '../components/AppLink.vue'
 import Spinnable from '../components/Spinnable.vue'
-import HanziChar from '../components/HanziChar.vue'
+import Busking from '../components/Busking.vue'
 import IconBase from '../icons/IconBase.vue'
 import IconCoin from '../icons/IconCoin.vue'
 import IconScroll from '../icons/IconScroll.vue'
@@ -268,7 +245,7 @@ export default defineComponent({
 		Page,
 		AppLink,
 		Spinnable,
-		HanziChar,
+		Busking,
 		IconBase,
 		IconCauldron,
 		IconMiracle,

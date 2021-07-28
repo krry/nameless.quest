@@ -180,6 +180,12 @@ strong {
 	--font-weight: 667;
 }
 
+em {
+	--font-slant: -14;
+	--font-weight: 456;
+	--font-mono: 0;
+}
+
 [contenteditable] br {
 	display: none;
 }
@@ -187,4 +193,13 @@ strong {
 [contenteditable]:focus {
 	outline: 2px var(--border-style) var(--flair);
 	outline-offset: 2px;
+}
+
+hr {
+	background-image: linear-gradient(to right, var(--pencil), var(--ink));
+	height: var(--bev);
+	border: 0;
+	border-radius: var(--bev);
+	width: 61%;
+	margin: 2rem auto;
 }
