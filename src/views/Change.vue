@@ -307,10 +307,9 @@ export default defineComponent({
 }
 
 dt {
-	@supports (font-variation-settings: normal) {
-		font-family: 'QuicksandVariable';
-		font-variation-settings: 'wght' 555;
-	}
+	--font-casual: 0.75;
+	--font-mono: 0;
+	--font-weight: 555;
 	font-size: 0.925em;
 	margin-top: 0.125em;
 }

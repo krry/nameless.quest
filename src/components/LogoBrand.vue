@@ -114,22 +114,20 @@ h1.nameless#llamo {
 	font-size: calc(var(--logo-dim) / 4);
 	color: var(--brand);
 	font-family: var(--heading);
-	@supports (font-variation-settings: normal) {
-		font-family: 'MuseoModernoVariable';
-		font-variation-settings: 'wght' 777;
-	}
+	--font-casual: 1;
+	--font-mono: 0;
+	--font-weight: 888;
 	text-transform: uppercase;
-	letter-spacing: 3.25px;
+	letter-spacing: 2px;
 	margin: 0;
 }
 
 h2.tagline {
 	font-size: calc(var(--logo-dim) / 6);
 	font-family: var(--font);
-	@supports (font-variation-settings: normal) {
-		font-family: 'QuicksandVariable';
-		font-variation-settings: 'wght' 555;
-	}
+	--font-casual: 0.75;
+	--font-mono: 0;
+	--font-weight: 555;
 	margin-bottom: 0;
 }
 

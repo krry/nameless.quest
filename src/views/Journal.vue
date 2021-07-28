@@ -60,15 +60,15 @@ transition(name="fade")
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watchEffect } from 'vue'
+import {defineComponent, ref, watchEffect} from 'vue'
 import contenteditable from 'vue-contenteditable'
-import { auth } from '../firebase'
-import { set } from '../store'
-import { cache, cached } from '../store/cache'
-import { Roll } from '../schema'
-import { activeRolls, getRolls, deleteRoll, updateRoll } from '../store/rolls'
-import { parseTossToBinary } from '../utils/tosses'
-import { useHexagrams } from '../composables/hexagrams'
+import {auth} from '../firebase'
+import {set} from '../store'
+import {cache, cached} from '../store/cache'
+import {Roll} from '../schema'
+import {activeRolls, getRolls, deleteRoll, updateRoll} from '../store/rolls'
+import {parseTossToBinary} from '../utils/tosses'
+import {useHexagrams} from '../composables/hexagrams'
 import Page from '../components/Page.vue'
 import Login from './Login.vue'
 import IconBase from '../icons/IconBase.vue'
@@ -100,11 +100,7 @@ export default defineComponent({
 		ComingSoon,
 	},
 	setup() {
-		const {
-			getHexagramByOctal,
-			getWenByBin,
-			getEnglishNameByBin,
-		} = useHexagrams()
+		const {getHexagramByOctal, getWenByBin, getEnglishNameByBin} = useHexagrams()
 		const rolls = ref<Roll[]>()
 
 		// when journal page loads, check if there is a logged in user, which should be true because the router handles this
@@ -146,9 +142,7 @@ export default defineComponent({
 		}
 
 		function doubleCheckBeforeDeleteRoll(id: string): void {
-			const deleteConfirmed = confirm(
-				'Are you sure you want to delete this journal entry?'
-			)
+			const deleteConfirmed = confirm('Are you sure you want to delete this journal entry?')
 			if (deleteConfirmed) {
 				deleteRoll(id)
 				removeDeletedRoll(id)
@@ -188,9 +182,8 @@ export default defineComponent({
 }
 
 .username {
-	@supports (font-variation-settings: normal) {
-		font-family: 'Roboto SlabVariable';
-		font-variation-settings: 'wght' 367;
-	}
+	--font-mono: 0.5;
+	--font-casual: 0.75;
+	--font-weight: 367;
 }
 </style>

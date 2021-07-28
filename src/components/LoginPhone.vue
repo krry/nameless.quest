@@ -48,11 +48,11 @@ form.flex.space.spread.wrap(@submit.prevent="acceptingCode ? acceptConfirmationC
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs, onMounted } from 'vue'
+import {defineComponent, reactive, toRefs, onMounted} from 'vue'
 import firebase from 'firebase/app'
-import { auth } from '../firebase'
-import { useRouter } from 'vue-router'
-import { cache, uncache } from '../store/cache'
+import {auth} from '../firebase'
+import {useRouter} from 'vue-router'
+import {cache, uncache} from '../store/cache'
 import Waiter from './Waiter.vue'
 
 let confirmResult: firebase.auth.ConfirmationResult
@@ -62,18 +62,15 @@ let recaptchaResponse: Response
 function prevalidatePhoneNumber(phone: string) {
 	const numberized = phone.replace(/[^0-9]/g, '')
 	const countrified =
-		numberized.length <= 10 && numberized.substr(0, 1) !== '1'
-			? '1' + numberized
-			: numberized
-	const validPhone =
-		countrified.substr(0, 1) === '+' ? countrified : '+' + countrified
+		numberized.length <= 10 && numberized.substr(0, 1) !== '1' ? '1' + numberized : numberized
+	const validPhone = countrified.substr(0, 1) === '+' ? countrified : '+' + countrified
 	console.log('validPhone', validPhone)
 	return validPhone
 }
 
 export default defineComponent({
 	name: 'LoginPhone',
-	components: { Waiter },
+	components: {Waiter},
 	setup() {
 		const router = useRouter()
 		const rx = reactive({
@@ -181,11 +178,10 @@ export default defineComponent({
 
 <style lang="postcss">
 label.between {
+	--font-casual: 0.75;
+	--font-mono: 0;
+	--font-weight: 555;
 	margin: 0.75rem 0 0.25rem;
-	@supports (font-variation-settings: normal) {
-		font-family: 'QuicksandVariable';
-		font-variation-settings: 'wght' 555;
-	}
 }
 
 .login .field {

@@ -48,7 +48,7 @@ export default defineComponent({
 		const rx = reactive({
 			hexagrams: computed(() => getHexagrams(cfg.wenny)),
 			backdrop: computed(
-				() => refreshBg && 'url(/' + sizeBg() + theme.value + getRandTo(5) + '.jpg)',
+				() => (refreshBg && 'url(/' + sizeBg() + theme.value + getRandTo(5) + '.jpg)') || ''
 			),
 		})
 
@@ -104,6 +104,7 @@ export default defineComponent({
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 	transition: var(--bea2);
 	border: var(--frame) solid var(--glow);
+	overflow: hidden;
 
 	@media (min-width: 36rem) and (min-height: 36rem) {
 		border: var(--bevel) solid var(--shade);

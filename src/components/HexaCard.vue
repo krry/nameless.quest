@@ -22,17 +22,17 @@
 				template(#bottom)
 					h3.mrg.mrg1.y.font.head.xl The Image
 					.images.left
-						pre.image.text.sd.fine {{ hex.images }}
+						pre.image.text.sm.fine {{ hex.images }}
 					.cross.horiz.flex
 						.flex.col.mid.less
 							LineGlyph( :glyph="hex.hexagram" size="x6l" )
 							.binary.font.sm(v-show="cfg.turny") {{ hex.binary.slice(2) }}
 							.decimal.font.sm(v-show="cfg.turny") {{ parseInt(hex.binary.slice(2), 2) + ' of 64' }}
 							.kingwen.font.sm(v-show="!cfg.turny")
-								span King Wen 
+								span KingWen {{ }}
 								span {{ hex.kingwen }}
 							.octal.font.sm(v-show="!cfg.turny")
-								span Octal 
+								span Octal {{ }}
 								span {{ hex.octal }}
 						.liangua.spread.flex.col.even
 							OneGua(
@@ -65,7 +65,7 @@
 							noturn
 							)
 					h2.yingyu.head.x2l {{ hex.names.english }}
-					pre.judgment.text.sd.fine {{ hex.judgment }}
+					pre.judgment.text.sm.fine {{ hex.judgment }}
 				template(#bottom)
 					h3.mrg.mrg1.y.font.head.xl The Lines
 					.lines.pad.pad1.y
@@ -163,10 +163,9 @@ export default defineComponent({
 <style lang="postcss" scoped>
 .mark {
 	font-size: 1rem;
-	@supports (font-variation-settings: normal) {
-		font-family: 'QuicksandVariable';
-		font-variation-settings: 'wght' 666;
-	}
+	--font-casual: 0.75;
+	--font-mono: 0;
+	--font-weight: 666;
 	border-radius: 100%;
 	padding: 0.25em;
 	color: var(--flair);
@@ -215,6 +214,7 @@ export default defineComponent({
 
 	@media (min-height: 36rem) {
 		height: 32rem;
+		max-height: 75vh;
 	}
 
 	@media (min-width: 48rem) and (min-height: 36rem) {

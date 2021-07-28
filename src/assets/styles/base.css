@@ -1,3 +1,14 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+* {
+	font-variation-settings: 'wght' var(--font-weight), 'slnt' var(--font-slant),
+		'CASL' var(--font-casual), 'MONO' var(--font-mono);
+}
+
 html {
 	font-size: 100%;
 	font-size: 1rem;
@@ -32,6 +43,7 @@ h5,
 h6 {
 	line-height: 1.25;
 	margin: 0 auto 0.75em;
+	--font-weight: 666;
 }
 
 h1,
@@ -50,17 +62,15 @@ p {
 	margin: 0 auto 1em;
 	line-height: var(--leading);
 	font-family: var(--text);
-	@supports (font-variation-settings: normal) {
-		font-family: 'Roboto SlabVariable';
-		font-variation-settings: 'wght' 333;
-	}
+	--font-mono: 0.5;
+	--font-casual: 0.25;
+	--font-weight: 333;
 }
 
 .theme-day p {
-	@supports (font-variation-settings: normal) {
-		font-family: 'Roboto SlabVariable';
-		font-variation-settings: 'wght' 367;
-	}
+	--font-weight: 367;
+	--font-mono: 0.5;
+	--font-casual: 0.25;
 }
 
 pre {
@@ -70,10 +80,9 @@ pre {
 
 a {
 	cursor: pointer;
-	@supports (font-variation-settings: normal) {
-		font-family: inherit;
-		font-variation-settings: 'wght' 454;
-	}
+	--font-mono: 0;
+	--font-casual: 0.75;
+	--font-weight: 454;
 }
 
 a:link {
@@ -102,10 +111,8 @@ a:visited {
 	color: var(--glow);
 }
 
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
+a:visited:hover {
+	color: var(--flair);
 }
 
 ::selection {
@@ -122,10 +129,7 @@ blockquote {
 	font-size: 1.25rem;
 	line-height: var(--pleading);
 	border-left: 3px dotted var(--glow);
-	@supports (font-variation-settings: normal) {
-		font-family: 'Roboto SlabVariable';
-		font-variation-settings: 'wght' 444;
-	}
+	--font-weight: 444;
 }
 
 blockquote.poem {
@@ -137,29 +141,24 @@ blockquote.poem {
 
 code {
 	background: var(--silk);
-	color: var(--flair);
-	padding: 0px 0.5ch;
-	display: inline-block;
-	@supports (font-variation-settings: normal) {
-		font-family: 'InconsolataVariable';
-		font-variation-settings: 'wght' 633;
-	}
 	border-radius: var(--bev);
+	color: var(--flair);
+	display: inline-block;
+	padding: 0px 0.5ch;
+	--font-mono: 1;
+	--font-weight: 633;
 }
 
 kbd {
 	background: var(--silk);
 	color: var(--ink);
-	@supports (font-variation-settings: normal) {
-		font-family: 'InconsolataVariable';
-		font-variation-settings: 'wght' 555;
-	}
+	--font-weight: 555;
+	--font-mono: 1;
 	padding: var(--frame);
 	font-size: 112.5%;
 	margin: 0 1px;
 	border: 1px solid var(--glow);
 	border-radius: 3px;
-	/* vertical-align: baseline; */
 }
 
 p svg {
@@ -178,10 +177,7 @@ video {
 }
 
 strong {
-	@supports (font-variation-settings: normal) {
-		font-family: inherit;
-		font-variation-settings: 'wght' 667;
-	}
+	--font-weight: 667;
 }
 
 [contenteditable] br {

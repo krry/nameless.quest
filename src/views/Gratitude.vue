@@ -93,43 +93,43 @@ Page.gratitude
 				AppLink(to="https://unsplash.com/photos/SCvlb1FWeuY")
 					img.thumb(src="/bg-sm/night5.jpg")
 		h3
-			| And thanks to 
+			| And thanks to&nbsp;
 			AppLink._blank(to="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText") Unsplash
 			|  for declaring open season on stock photography.
 	section.pad.pads.y
-		h3.head.xxl Thanks 
+		h3.head.xxl Thanks
 		h4.font.lg
-			| to the I Ching scholars, enthusiasts, and custodians 
+			| to the I Ching scholars, enthusiasts, and custodians
 			br
 			| throughout the ages, especially…
 		ul.ls
 			li
 				p.font.alleft
-					| Stuart M. Anderson, whose efforts at 
+					| Stuart M. Anderson, whose efforts at&nbsp;
 					AppLink._blank(to="http://www.russellcottrell.com/VirtualYarrowStalks/downloads/4coinmethod.pdf") Bringing the Yarrow and Coin Methods into Agreement
 					|  provide the lion's share of the probability engine here in Nameless.
-					| And thanks to Russell Cottrell for hosting that paper, and for the myriad explorations, links, and perspectives on the I Ching; gems like
+					| And thanks to Russell Cottrell for hosting that paper, and for the myriad explorations, links, and perspectives on the I Ching; gems like&nbsp;
 					AppLink._blank(to="http://www.russellcottrell.com/VirtualYarrowStalks/VirtualYarrowStalks.htm") Virtual Yarrow Stalks
-					| , 
+					| ,&nbsp;
 					AppLink._blank(to="http://www.russellcottrell.com/VirtualYarrowStalks/anotherFractalIChing.htm") Fractal I Ching maps
-					| , and 
+					| , and&nbsp;
 					AppLink._blank(to="http://www.russellcottrell.com/VirtualYarrowStalks/TakashimaEkidan.htm") the Takashima Ekidan translation
 					| .
 			li
 				p.font.alleft
-					| Hilary Barrett, whose 
+					| Hilary Barrett, whose&nbsp;
 					AppLink._blank(to="https://www.onlineclarity.co.uk/") Online Clarity
-					|  I've only just discovered, and from whom I shall learn multitudes about the ways of 
+					|  I've only just discovered, and from whom I shall learn multitudes about the ways of&nbsp;
 					strong Yì
 					| .
 			li
 				p.font.alleft
-					| Zelda Hessler (@Velfi) who provides 
+					| Zelda Hessler (@Velfi) who provides&nbsp;
 					AppLink._blank(to="https://github.com/Velfi/i-ching") the I Ching as a Rust library
 					| , which entertained my daily practice in the early days. It was then that I first wished for cards and tiles and what you see here.
 			li
 				p.font.alleft
-					| Steve VanDevender who has 
+					| Steve VanDevender who has&nbsp;
 					AppLink._blank(to="http://hexadecimal.uoregon.edu/ching/src.html") sourced the Wilhelm-Baynes translation/interpretation of the I Ching
 					|  and provided it to the WWW.
 	section
@@ -138,7 +138,7 @@ Page.gratitude
 		dl
 			dt
 				AppLink._blank(to="https://thenounproject.com/LSEdesigns/") LSE Designs
-				|  for 
+				|  for
 				AppLink._blank(to="https://thenounproject.com/LSEdesigns/collection/a-wizards-world/") A Wizard's World
 			dd.flex.string.mid.pad.pads.y.wrap
 				IconBase(viewBox="0 0 1000 1250" size="84")
@@ -162,7 +162,7 @@ Page.gratitude
 					//- IconMagicWand
 			dt
 				AppLink._blank(to="https://thenounproject.com/jeremy.j.bristol/") Jeremy J Bristol
-				|  for 
+				|  for&nbsp;
 				AppLink._blank(to="https://thenounproject.com/jeremy.j.bristol/uploads/") Assorted Drawrings
 			dd.flex.string.mid.pad.pads.y
 				IconBase(viewBox="0 0 100 125" size="64")
@@ -175,34 +175,34 @@ Page.gratitude
 					IconLooptyLoop
 			dt
 				AppLink._blank(to="https://thenounproject.com/microdotgraphic/") Jino
-				|  for 
+				|  for&nbsp;
 				AppLink._blank(to="https://thenounproject.com/microdotgraphic/collection/business-finance/") Coin
 			dd.flex.string.mid.pad.pads.y
 				IconBase(viewBox="0 0 512 640" size="84")
 					IconCoin
 			dt
 				AppLink._blank(to="https://thenounproject.com/Flatart/") Flatart
-				|  for 
+				|  for&nbsp;
 				AppLink._blank(to="https://thenounproject.com/Flatart/collection/mardi-gras-bold-line/?i=3167086") Carnival Coin
 			dd.flex.string.mid.pad.pads.y
 				IconBase(viewBox="0 0 520 650" size="84")
 					IconCarnivalCoin
 			dt
 				AppLink._blank(to="https://thenounproject.com/andydoane/") Andy Doane
-				|  for 
+				|  for&nbsp;
 				AppLink._blank(to="https://thenounproject.com/andydoane/collection/miracle/") Miracle
 			dd.flex.string.mid.pad.pads.y
 				IconBase(viewBox="0 0 100 125" size="84")
 					IconMiracle
 			dt
 				AppLink._blank(to="https://thenounproject.com/andydoane/") Alexandre Panasovskyi
-				|  for 
+				|  for&nbsp;
 				AppLink._blank(to="https://thenounproject.com/term/coin-flipping/2307580/") Coin Flip
 			dd.flex.string.mid.pad.pads.y
 				IconBase(viewBox="0 0 50000 62500" size="192")
 					IconCoinFlip
 		p.text.center
-			| And thanks to 
+			| And thanks to&nbsp;
 			AppLink._blank(to="https://thenounproject.com/") the Noun Project
 			|  for helping us
 			br
@@ -214,20 +214,28 @@ Page.gratitude
 			h4.mrg.mrg1.x.y.text.md.alleft.half Your smiles and wiggles make my dreams come true every day.
 	section
 		h2.head.x2l Feeling grateful too?
-		h3.font.md
-			| Support 
-			AppLink._blank(to="https://atmanautica.com") Kerrbear
+		p.font.md
+			| I welcome your feedback and your support.
 			br
-			| the artist/creator/devsigner of 
-			strong Nameless
+		h3 About the Artist
+		p.text.md
+			| Friends and fram call me&nbsp;
+			AppLink._blank(to="https://krry.dev") Kerrbear
+			| .
 			br
-			|  and 
-			AppLink._blank(to="https://easeness.business") other
-			| 
-			AppLink._blank(to="https://passage.atmanaut.us") zany
-			| 
-			AppLink._blank(to="https://atmanaut.me") experiences
-		AppLink.btn(to="https://ko-fi.com/kerrbear") I don't even notice when $5 goes missing 🍕
+			| I made Nameless Quest because I love the profound and humbling insight that&nbsp;
+			span
+				HanziChar(
+					char="易"
+					pinyin="Yì"
+					size="sm"
+					place="side"
+					inline
+					reveal
+					)
+			| offers me, and I want to share that experience with you.
+		p
+		AppLink.btn(to="https://ko-fi.com/kerrbear") Give what feels good
 </template>
 
 <script lang="ts">
@@ -235,6 +243,7 @@ import {defineComponent} from 'vue'
 import Page from '../components/Page.vue'
 import AppLink from '../components/AppLink.vue'
 import Spinnable from '../components/Spinnable.vue'
+import HanziChar from '../components/HanziChar.vue'
 import IconBase from '../icons/IconBase.vue'
 import IconCoin from '../icons/IconCoin.vue'
 import IconScroll from '../icons/IconScroll.vue'
@@ -259,6 +268,7 @@ export default defineComponent({
 		Page,
 		AppLink,
 		Spinnable,
+		HanziChar,
 		IconBase,
 		IconCauldron,
 		IconMiracle,
@@ -297,10 +307,9 @@ dd {
 .photos dt {
 	text-align: center;
 	margin: 2.5rem 0 0.5rem;
-	@supports (font-variation-settings: normal) {
-		font-family: 'QuicksandVariable';
-		font-variation-settings: 'wght' 666;
-	}
+	--font-casual: 0.75;
+	--font-mono: 0;
+	--font-weight: 666;
 	font-size: 1.25em;
 }
 

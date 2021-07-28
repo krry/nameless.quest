@@ -123,10 +123,9 @@ export default defineComponent({
 .validation {
 	order: 4;
 	color: var(--brand);
-	@supports (font-variation-settings: normal) {
-		font-family: 'QuicksandVariable';
-		font-variation-settings: 'wght' 555;
-	}
+	--font-casual: 0.75;
+	--font-mono: 0;
+	--font-weight: 555;
 }
 
 .feedback {
@@ -162,10 +161,9 @@ export default defineComponent({
 .lbl {
 	margin: 0.5rem 0;
 	opacity: 0.75;
-	@supports (font-variation-settings: normal) {
-		font-family: 'QuicksandVariable';
-		font-variation-settings: 'wght' 555;
-	}
+	--font-casual: 0.75;
+	--font-mono: 0;
+	--font-weight: 555;
 }
 
 .field textarea.invalid {

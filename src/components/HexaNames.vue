@@ -17,19 +17,12 @@
 </template>
 
 <script lang="ts">
-import {
-	defineComponent,
-	PropType,
-	reactive,
-	toRefs,
-	computed,
-	inject,
-} from 'vue'
-import { defHex, Hexaname } from '../schema'
-import { cfg } from '../store'
+import {defineComponent, PropType, reactive, toRefs, computed, inject} from 'vue'
+import {defHex, Hexaname} from '../schema'
+import {cfg} from '../store'
 import HanziChar from './HanziChar.vue'
-import { reorderKey } from './HexaGrid.vue'
-import { setQuadrantKey } from './ChangeNode.vue'
+import {reorderKey} from './HexaGrid.vue'
+import {setQuadrantKey} from './ChangeNode.vue'
 
 export default defineComponent({
 	name: 'HexaNames',

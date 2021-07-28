@@ -504,10 +504,9 @@ export default defineComponent({
 }
 
 .ls li {
-	@supports (font-variation-settings: normal) {
-		font-family: 'QuicksandVariable';
-		font-variation-settings: 'wght' 555;
-	}
+	--font-casual: 0.75;
+	--font-mono: 0;
+	--font-weight: 555;
 	margin: 0;
 }
 
@@ -520,11 +519,10 @@ export default defineComponent({
 }
 
 .help h3 {
-	@supports (font-variation-settings: normal) {
-		font-family: 'QuicksandVariable';
-		font-style: italic;
-		font-variation-settings: 'wght' 667;
-	}
+	--font-casual: 0.75;
+	--font-mono: 0;
+	--font-weight: 667;
+	--font-slant: -14;
 }
 
 .tip.md {

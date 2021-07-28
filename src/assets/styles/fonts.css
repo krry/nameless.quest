@@ -1,38 +1,31 @@
 .font {
-	@supports (font-variation-settings: normal) {
-		font-family: 'QuicksandVariable';
-		font-variation-settings: 'wght' 555;
-	}
+	/* --font-weight: 555; */
+	--font-casual: 0.75;
+	--font-mono: 0;
 }
 
 .text {
-	@supports (font-variation-settings: normal) {
-		font-family: 'Roboto SlabVariable';
-		font-variation-settings: 'wght' 367;
-	}
+	/* --font-weight: 367; */
+	--font-mono: 0.25;
+	--font-casual: 0.25;
 }
 
 .mono {
-	@supports (font-variation-settings: normal) {
-		font-family: 'InconsolataVariable';
-		font-variation-settings: 'wght' 420;
-	}
+	--font-weight: 420;
+	--font-mono: 1;
+	--font-casual: 0;
 }
 
 .head {
-	@supports (font-variation-settings: normal) {
-		font-family: 'MuseoModernoVariable';
-		font-variation-settings: 'wght' 666;
-	}
+	--font-weight: 666;
+	--font-casual: 1;
+	--font-mono: 0;
 }
 
 .alert {
 	color: var(--flair);
 	font-style: italic;
-	@supports (font-variation-settings: normal) {
-		font-family: 'QuicksandVariable';
-		font-variation-settings: 'wght' 533;
-	}
+	--font-weight: 533;
 }
 
 .head,
@@ -41,39 +34,27 @@
 .text {
 	&.thin,
 	&.fw3 {
-		@supports (font-variation-settings: normal) {
-			font-variation-settings: 'wght' 222;
-		}
+		--font-weight: 222;
 	}
 	&.fine,
 	&.fw3 {
-		@supports (font-variation-settings: normal) {
-			font-variation-settings: 'wght' 333;
-		}
+		--font-weight: 333;
 	}
 	&.normal,
 	&.fw4 {
-		@supports (font-variation-settings: normal) {
-			font-variation-settings: 'wght' 444;
-		}
+		--font-weight: 444;
 	}
 	&.thicc,
 	&.fw5 {
-		@supports (font-variation-settings: normal) {
-			font-variation-settings: 'wght' 555;
-		}
+		--font-weight: 555;
 	}
 	&.thick,
 	&.fw6 {
-		@supports (font-variation-settings: normal) {
-			font-variation-settings: 'wght' 666;
-		}
+		--font-weight: 666;
 	}
 	&.phat,
 	&.fw7 {
-		@supports (font-variation-settings: normal) {
-			font-variation-settings: 'wght' 777;
-		}
+		--font-weight: 777;
 	}
 	&.md,
 	&.lg,

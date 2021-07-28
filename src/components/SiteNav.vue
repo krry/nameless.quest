@@ -159,10 +159,9 @@ nav a {
 nav a {
 	text-decoration: none;
 	font-size: 2ch;
-	@supports (font-variation-settings: normal) {
-		font-family: 'QuicksandVariable';
-		font-variation-settings: 'wght' 555;
-	}
+	--font-casual: 0.75;
+	--font-mono: 0;
+	--font-weight: 555;
 	padding: 0.5em 1em;
 
 	@media (min-width: 36rem) {

@@ -4,7 +4,7 @@ Page.config.col
 		IconBase(viewBox="0 0 1000 1250" size="128" iconColor="var(--ink)")
 			IconCauldron
 	h1.font.x3l Configure the Oracle
-	p.text.lg Arrange the altar, hone the ritual
+	h3.font.lg Arrange the altar, hone the ritual
 	section.flex.wrap.btw.even
 		.setting.half
 			ToggleSwitch(
@@ -78,7 +78,7 @@ Page.config.col
 			)
 			transition.over(name="slide-fade")
 				h5.example.pad.pads.y(v-if="navvy")
-					| You can 
+					| You can&nbsp;
 					kbd tab
 					|  among the switches.
 		.setting.half

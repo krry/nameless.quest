@@ -29,14 +29,14 @@ form.flex.space.spread.wrap(@submit.prevent="emailLinkSend")
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue'
-import { auth } from '../firebase'
-import { cache, uncache } from '../store/cache'
+import {defineComponent, reactive, toRefs} from 'vue'
+import {auth} from '../firebase'
+import {cache, uncache} from '../store/cache'
 import Waiter from './Waiter.vue'
 
 export default defineComponent({
 	name: 'LoginEmail',
-	components: { Waiter },
+	components: {Waiter},
 	setup() {
 		const rx = reactive({
 			email: '',
@@ -80,11 +80,10 @@ export default defineComponent({
 
 <style lang="postcss">
 label.between {
+	--font-casual: 0.75;
+	--font-mono: 0;
+	--font-weight: 555;
 	margin: 0.75rem 0 0.25rem;
-	@supports (font-variation-settings: normal) {
-		font-family: 'QuicksandVariable';
-		font-variation-settings: 'wght' 555;
-	}
 }
 
 .login .field {

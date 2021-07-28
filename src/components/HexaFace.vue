@@ -3,19 +3,19 @@
 	v-autofocus
 	@click.stop="tog('texty')"
 	)
-	router-link.moar.btn.naked.md.abs.t.l.no-underline.clickable(
+	router-link.moar.btn.naked.md.abs.t.r.no-underline.clickable(
 		:to="'/changes/' + kingwen"
 		)
 		IconBase(
-			size="24"
-			viewBox="0 0 1000 1250"
+			size="32"
+			viewBox="0 0 1000 1100"
 			)
 			IconScroll
 		| More
 	slot(name="top")
 	hr.divider.abs-0
 	slot(name="bottom")
-	.close.tr(@click.stop="$emit('close')") ⓧ
+	.close.abs.t.l(@click.stop="$emit('close')") ⓧ
 </template>
 
 <script lang="ts">
@@ -48,11 +48,11 @@ export default defineComponent({
 	margin: 0;
 	padding: var(--frame) var(--bevel) var(--frame) var(--frame);
 	border-style: dotted;
-	border-radius: 0 0 var(--bevel) 0;
+	border-radius: 0 0 0 var(--bevel);
 	&:hover {
 		outline: none;
 		border-bottom-color: var(--flair);
-		border-right-color: var(--flair);
+		border-left-color: var(--flair);
 	}
 }
 </style>
@@ -61,15 +61,10 @@ export default defineComponent({
 .close {
 	font-size: 1.5rem;
 	opacity: 0.5;
-	padding: 0.25rem 0.5rem;
+	padding: 0.125rem 0.45rem;
 	position: absolute;
 	cursor: pointer;
 	z-index: 21;
-}
-
-.close.tr {
-	top: 0;
-	right: 0;
 }
 
 .close:hover,

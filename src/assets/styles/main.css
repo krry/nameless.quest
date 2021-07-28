@@ -1,8 +1,4 @@
-@import '@fontsource/inconsolata/latin-400.css';
-@import '@fontsource/museomoderno/latin-400.css';
-@import '@fontsource/quicksand/latin-400.css';
-@import '@fontsource/roboto-slab/latin-400.css';
-@import './fontsource.css';
+@import '../fonts/recursive-font.css';
 @import './vars.css';
 @import './themes/sea.css';
 @import './themes/day.css';

@@ -3,14 +3,22 @@
 */
 
 :root {
-	--font: 'Quicksand', system-ui, sans-serif;
-	--text: 'Roboto Slab', serif;
-	--mono: 'Inconsolata', monospace;
-	--heading: 'MuseoModerno', system-ui, sans-serif;
+	/* --font: 'Quicksand', system-ui, sans-serif; */
+	/* --text: 'Roboto Slab', serif; */
+	/* --mono: 'Inconsolata', monospace; */
+	/* --heading: 'MuseoModerno', system-ui, sans-serif; */
+	--font: 'Recursive', system-ui, sans-serif;
+	--text: 'Recursive', serif;
+	--mono: 'Recursive', monospace;
+	--heading: 'Recursive', sans-serif;
+	--font-weight: 400;
+	--font-slant: 0;
+	--font-casual: 0;
+	--font-mono: 0;
 	--unit: 1rem;
-	--hleading: 1.25;
-	--leading: 1.375;
-	--pleading: 1.425;
+	--hleading: 1.162;
+	--leading: 1.309;
+	--pleading: 1.618;
 	--font-clamp: clamp(10px, 10px + 0.167vw + 0.167vh, 24px);
 	--brand: hsl(321, 77%, 50%); /* #E21D9D */
 	--brand-ish: hsl(321, 77%, 33%);

@@ -92,10 +92,7 @@ ul.ls {
 }
 
 dl.ls dt {
-	@supports (font-variation-settings: normal) {
-		font-family: inherit;
-		font-variation-settings: 'wght' 567;
-	}
+	--font-weight: 567;
 }
 
 dt + dt,
@@ -175,9 +172,7 @@ hr.dinkus::after {
 }
 
 .bold {
-	@supports (font-variation-settings: normal) {
-		font-variation-settings: 'wght' 666;
-	}
+	--font-weight: 666;
 }
 
 .mrg0 {

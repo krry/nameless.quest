@@ -44,10 +44,9 @@
 	& textarea {
 		order: 2;
 		appearance: none;
-		@supports (font-variation-settings: normal) {
-			font-family: 'Roboto SlabVariable';
-			font-variation-settings: 'wght' 444;
-		}
+		--font-mono: 0.5;
+		--font-casual: 0.75;
+		--font-weight: 444;
 		color: var(--ink);
 		font-size: 1.125em;
 		text-align: center;
@@ -136,25 +135,22 @@ input[type='radio'] + label,
 }
 
 input[type='radio'] + label {
-	@supports (font-variation-settings: normal) {
-		font-family: 'QuicksandVariable';
-		font-variation-settings: 'wght' 444;
-	}
+	--font-casual: 0.75;
+	--font-mono: 0;
+	--font-weight: 444;
 }
 
 input[type='radio'] + label:hover {
-	@supports (font-variation-settings: normal) {
-		font-family: 'QuicksandVariable';
-		font-variation-settings: 'wght' 666;
-	}
+	--font-casual: 0.75;
+	--font-mono: 0;
+	--font-weight: 666;
 	color: var(--link);
 }
 
 input[type='radio']:checked + label {
-	@supports (font-variation-settings: normal) {
-		font-family: 'QuicksandVariable';
-		font-variation-settings: 'wght' 666;
-	}
+	--font-casual: 0.75;
+	--font-mono: 0;
+	--font-weight: 666;
 	color: var(--flair);
 }
 

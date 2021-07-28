@@ -1,7 +1,7 @@
 <template lang="pug">
 .char(
 	@click.passive="showPinny"
-	:class="size, place, {ib: inline}, {reveal}"
+	:class="size, place, {ib: inline}, {reveal: reveal}"
 	:title="pinyin"
 	)
 	.hanzi {{ char }}
@@ -148,6 +148,9 @@ export default defineComponent({
 	right: unset;
 	font-size: inherit;
 	line-height: calc(var(--unit) * 1.5);
+	display: inline-block;
+	position: relative;
+	transform: none;
 }
 
 .char.none {
@@ -179,10 +182,9 @@ export default defineComponent({
 	position: absolute;
 	font-family: var(--font);
 	font-size: 1rem;
-	@supports (font-variation-settings: normal) {
-		font-family: 'QuicksandVariable';
-		font-variation-settings: 'wght' 555;
-	}
+	--font-casual: 0.75;
+	--font-mono: 0;
+	--font-weight: 555;
 }
 
 .pinyin.over {
@@ -214,7 +216,6 @@ export default defineComponent({
 	transform: translateX(calc(var(--unit) * 2.25)) translateY(-50%);
 	/* padding: 0 0 calc(var(--unit) * 0.25); */
 }
-
 .char.md .pinyin {
 	&.side,
 	&.side.slide-fade-enter-to,

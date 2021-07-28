@@ -61,10 +61,9 @@ export default defineComponent({
 .yingyu {
 	padding-top: 0.25em;
 	color: var(--ink);
-	@supports (font-variation-settings: normal) {
-		font-family: 'QuicksandVariable';
-		font-variation-settings: 'wght' 666;
-	}
+	--font-casual: 0.75;
+	--font-mono: 0;
+	--font-weight: 666;
 }
 </style>
 <style lang="postcss">

@@ -124,11 +124,9 @@ main {
 .page h1:first-of-type,
 .page h1:first-child,
 .page h2:first-child {
-	/* margin-top: 1em; */
-	@supports (font-variation-settings: normal) {
-		font-family: 'MuseoModernoVariable';
-		font-variation-settings: 'wght' 666;
-	}
+	--font-casual: 1;
+	--font-mono: 0;
+	--font-weight: 888;
 }
 
 .page h2,
@@ -152,10 +150,9 @@ main {
 	background-color: var(--ground);
 	box-shadow: inset 0 0 0.25rem 0 var(--ink);
 	border-radius: var(--bevel);
-	@supports (font-variation-settings: normal) {
-		font-family: 'QuicksandVariable';
-		font-variation-settings: 'wght' 444;
-	}
+	--font-casual: 0.75;
+	--font-mono: 0;
+	--font-weight: 444;
 }
 
 .callout strong {
@@ -164,10 +161,9 @@ main {
 
 .callout p {
 	text-align: left;
-	@supports (font-variation-settings: normal) {
-		font-family: 'QuicksandVariable';
-		font-variation-settings: 'wght' 444;
-	}
+	--font-casual: 0.75;
+	--font-mono: 0;
+	--font-weight: 444;
 }
 
 .callout h4 {
@@ -186,10 +182,9 @@ main {
 	position: relative;
 	font-size: 1.125em;
 	font-variant: small-caps;
-	@supports (font-variation-settings: normal) {
-		font-family: 'QuicksandVariable';
-		font-variation-settings: 'wght' 666;
-	}
+	--font-casual: 0.75;
+	--font-mono: 0;
+	--font-weight: 666;
 
 	@media (min-width: 48rem) {
 		padding: 0 0.5rem;
