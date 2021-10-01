@@ -52,8 +52,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import { useRouter } from 'vue-router'
+import {defineComponent, computed} from 'vue'
+import {useRouter} from 'vue-router'
 import IconBase from '../icons/IconBase.vue'
 import Icon6 from '../icons/Icon6.vue'
 import Icon7 from '../icons/Icon7.vue'
@@ -61,12 +61,12 @@ import Icon8 from '../icons/Icon8.vue'
 import Icon9 from '../icons/Icon9.vue'
 import LineGlyph from './LineGlyph.vue'
 import HanziChar from './HanziChar.vue'
-import { cfg } from '../store'
-import { cached, uncache } from '../store/cache'
-import { addRoll, cachedRoll } from '../store/rolls'
-import { activeLots, setLots } from '../store/lots'
-import { parseTossToBinary } from '../utils/tosses'
-import { useHexagrams } from '../composables/hexagrams'
+import {cfg} from '../store'
+import {cached, uncache} from '../store/cache'
+import {addRoll, cachedRoll} from '../store/rolls'
+import {activeLots, setLots} from '../store/lots'
+import {parseTossToBinary} from '../utils/tosses'
+import {useHexagrams} from '../composables/hexagrams'
 
 export default defineComponent({
 	name: 'OracleResponse',
@@ -82,18 +82,13 @@ export default defineComponent({
 	setup() {
 		setLots(parseTossToBinary(cached.toss))
 		const router = useRouter()
-		const { getHexagramByBin } = useHexagrams()
-		const hexs = computed(() =>
-			activeLots.value.map((l: string) => getHexagramByBin(l))
-		)
+		const {getHexagramByBin} = useHexagrams()
+		const hexs = computed(() => activeLots.value.map((l: string) => getHexagramByBin(l)))
 		// console.log('hexs', hexs.value)
 
 		function clearBoth(confirmed = false) {
 			const clearAffirmed =
-				confirmed ??
-				confirm(
-					"Are you sure you want to start over? This will clear today's entry."
-				)
+				confirmed ?? confirm("Are you sure you want to start over? This will clear today's entry.")
 			if (clearAffirmed) {
 				cfg.saved = false
 				uncache('query')
@@ -145,7 +140,7 @@ export default defineComponent({
 	border-color: var(--flair);
 }
 
-.response blockquote {
+.response blockquote h2 {
 	margin-bottom: 0;
 }
 
