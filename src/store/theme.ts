@@ -40,11 +40,11 @@ function applyTheme(theme: string) {
 
 export function setTheme(title: string): void {
 	// console.log('setting theme to', title)
-	const titles = THEMES.map((t) => t.title)
+	const titles = THEMES.map(t => t.title)
 	// if the title argument is one of the theme titles,
 	if (titles.indexOf(title) !== -1) {
 		applyTheme(title)
-		// console.log('saves the arg as the active theme',)
+		// console.log('saves the arg as the active theme:', title)
 		activeTheme.value = title
 	}
 }
@@ -52,7 +52,7 @@ export function setTheme(title: string): void {
 export function nextTheme(): void {
 	// determines index of current active themes
 	// console.log('activeTheme.value', activeTheme.value)
-	const currentIndex = THEMES.map((t) => t.title).indexOf(activeTheme.value)
+	const currentIndex = THEMES.map(t => t.title).indexOf(activeTheme.value)
 	// console.log('currentIndex', currentIndex)
 	const nextIndex = currentIndex + 1 >= THEMES.length ? 0 : currentIndex + 1
 	// console.log('advancing theme to', THEMES[nextIndex].title)

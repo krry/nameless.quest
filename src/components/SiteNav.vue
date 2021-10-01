@@ -80,6 +80,11 @@ nav.flex.col
 					IconConversation
 				span(v-if="!cfg.fedback")  Send Feedback
 				span(v-if="cfg.fedback")  Feedback?
+		li
+			AppLink.btn.naked.mrg.mrg3.y(to="https://ko-fi.com/kerrbear")
+				IconBase(size="36" viewBox="0 0 512 640")
+					IconCoin
+				span  I love this
 		li(v-if="cached.uid")
 			a.btn.md.naked.signout(
 				@click.stop="$logout"
@@ -94,7 +99,9 @@ nav.flex.col
 import {defineComponent} from 'vue'
 import {cfg, set} from '../store'
 import {cached} from '../store/cache'
+import AppLink from './AppLink.vue'
 import IconBase from '../icons/IconBase.vue'
+import IconCoin from '../icons/IconCoin.vue'
 import IconScroll from '../icons/IconScroll.vue'
 import IconCandles from '../icons/IconCandles.vue'
 import IconMiracle from '../icons/IconMiracle.vue'
@@ -109,7 +116,9 @@ import IconConversation from '../icons/IconConversation.vue'
 export default defineComponent({
 	name: 'SiteNav',
 	components: {
+		AppLink,
 		IconBase,
+		IconCoin,
 		IconScroll,
 		IconMiracle,
 		IconJournal,

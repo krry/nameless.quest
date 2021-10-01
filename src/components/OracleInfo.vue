@@ -390,7 +390,6 @@ transition(name="slide-fade" appear mode="out-in")
 				)
 				IconOpenBook
 hr.dinkus.fleur.x3l
-AppLink.btn.naked.pip.mrg.mrg3.y(to="https://ko-fi.com/kerrbear")  I love this, please make more
 LogoBrand.mrg.mrg3.y(direction="vert" size="x3l" noname)
 </template>
 

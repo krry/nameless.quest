@@ -4,29 +4,31 @@
 		@click="curious = true"
 	)
 		| Welcome to the Oracle
-		br
-		small aka
-			HanziChar(
-				char="易"
-				pinyin="Yì"
-				size="lg"
-				place="under"
-				reveal
-				)
-			HanziChar(
-				char="經"
-				pinyin="Jīng"
-				size="lg"
-				place="under"
-				reveal
-				)
 		transition.under(name="popup")
-			aside.exposition.abs.b.r.l.pad.pad2.y.x.font.sm.bevel(
+			aside.exposition.abs.r.l.pad.pad2.y.x.font.sm.bevel(
 				v-if="curious"
 			)
-				.close.tr(@click.stop="curious = false") ⓧ
-				h3
-					| The Yìjīng is perhaps the longest
+				.close.abs.t.r(@click.stop="curious = false") ⓧ
+				h2
+					span.big The Yìjīng
+					br
+					small aka
+						HanziChar(
+							char="易"
+							pinyin="Yì"
+							size="lg"
+							place="over"
+							reveal
+							)
+						HanziChar(
+							char="經"
+							pinyin="Jīng"
+							size="lg"
+							place="over"
+							reveal
+							)
+					br
+					| is perhaps the longest
 					br
 					| continuous wisdom tradition of humanity.
 				p
@@ -44,34 +46,35 @@
 					br
 					| seated at the root of heart center.
 	section.dyn.flex.col
-		h2 What is your question for the Oracle today?
+		h2.oracle-question What is your question?
 		.field.dyn
 			textarea#query.query(
 				v-autoresize
 				v-model="cached.query"
-				placeholder="What…to…do?"
-				autofocus
+				placeholder='"How do I choose?"'
 				rows="1"
 				pattern="\?$"
 				@keydown.ctrl.enter="askTheOracle"
 				:class="{invalid: invalidQuery}"
+				@focus="queryFocused = true"
 				)
-			transition(name="slide-fade" appear)
-				.lbl.font.md.phat.above.intro.muted(for="query" v-if="cached.query.length < 9")
+			//- transition(name="slide-fade" appear v-if="queryFocused")
+				.lbl.font.sm.phat.below.intro.muted(for="query" v-if="cached.query.length < 9")
 					| What does your heart wonder?
-			transition(name="slide-fade" appear)
-				.lbl.font.md.phat.below.outro.muted(for="query" v-if="cached.query.length < 9")
-					| What is the burning question?
-			button.btn.lg.action(type="button" @click="askTheOracle")
-				IconBase(size="36" viewBox="0 0 1000 1125")
-					IconCrystalBall
-				|  Ask the Oracle
+			transition(name="slide-fade" appear v-if="queryFocused")
+				.lbl.font.sm.phat.above.outro.muted(for="query" v-if="cached.query.length < 9")
+					| What does your heart wonder?
+			transition(name="slide-fade" appear v-if="queryFocused")
+				button.btn.action.right(type="button" @click="askTheOracle")
+					IconBase(size="36" viewBox="0 0 1000 1125")
+						IconCrystalBall
+					|  Ask the Oracle
 			transition(name="slide-fade" appear)
 				label.validation.mrg.mrg1.t(
 					v-if="invalidQuery"
 					) Is that a question?
-			transition(name="slide-fade" appear)
-				label.feedback(v-if="!cfg.navvy")
+			transition(name="slide-fade" appear v-if="!cfg.navvy && queryFocused")
+				label.feedback.right
 					kbd(title="ctrl+enter") ⌃⏎
 					span  to send
 </template>
@@ -97,14 +100,17 @@ export default defineComponent({
 		const rx = reactive({
 			invalidQuery: false,
 			curious: false,
+			queryFocused: false,
 		})
 
 		function askTheOracle() {
 			if (cached.query.length > 0 && cached.query.substr(-2).includes('?')) {
 				cache('query', cached.query)
 				cache('step', 'cast')
+				rx.queryFocused = true
 			} else {
 				rx.invalidQuery = true
+				// TODO: focus the query again
 				console.warn('Non-question detected!')
 			}
 		}
@@ -143,10 +149,15 @@ export default defineComponent({
 .query {
 	max-width: 40ch;
 	order: 2;
+	/* TODO: make this font bigger with the fancy placeholder */
 }
 
 .intro {
 	order: 1;
+}
+
+.lbl.intro {
+	margin-top: -1em;
 }
 
 .brand,
@@ -174,5 +185,11 @@ export default defineComponent({
 	background: var(--paper);
 	border: 0px solid var(--glow);
 	box-shadow: var(--focus-glow);
+	overflow-y: auto;
+	z-index: 15;
+}
+
+.big {
+	font-size: 1.5em;
 }
 </style>

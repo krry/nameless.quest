@@ -110,7 +110,7 @@ Page.config.col
 			h4.font.md.thicc Switch the Theme
 			.flex
 				ThemeSwitch(size="xl")
-	AppLink.btn(to="https://ko-fi.com/kerrbear") Gift our baby some diapers 🐻
+	//- AppLink.btn(to="https://ko-fi.com/kerrbear") Gift our baby some diapers 🐻
 </template>
 <script lang="ts">
 import {defineComponent, reactive, toRefs, watchEffect} from 'vue'

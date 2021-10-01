@@ -7,7 +7,7 @@ Page.query
 		OracleCast(v-if="cached.step === 'cast'")
 		OracleResponse(v-else-if="cached.step === 'response'" @clear="clearBoth")
 		OracleQuery(v-else)
-	Spinnable
+	Spinnable.mrg.mrg4.t
 		IconBase.mrg.mrgs.y(size="96" viewBox="0 0 100 125" iconColor="var(--glow)")
 			IconThreeLegs
 	OracleInfo(ref="help")

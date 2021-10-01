@@ -53,10 +53,10 @@ transition(name="fade")
 						v-model.lazy="roll.notes"
 						@blur="updateRoll(roll)"
 					)
-				.close.tr(@click.stop="doubleCheckBeforeDeleteRoll(roll.id)") ⓧ
+				.close.abs.t.r(@click.stop="doubleCheckBeforeDeleteRoll(roll.id)") ⓧ
 		hr.dinkus.fleur.xxl
 		h3.head.lg Want to fuel development?
-		AppLink.outline.btn(to="https://ko-fi.com/kerrbear") Feed the Bears 🍕
+		AppLink.outline.btn(to="https://ko-fi.com/kerrbear") 🍕 Feed the Devs 🐻
 </template>
 
 <script lang="ts">
@@ -185,5 +185,6 @@ export default defineComponent({
 	--font-mono: 0.5;
 	--font-casual: 0.75;
 	--font-weight: 367;
+	margin-left: 0.25ch;
 }
 </style>
