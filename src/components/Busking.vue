@@ -15,7 +15,7 @@ section.flex.col.string
 		| . I love to devsign. Here is my&nbsp;
 		AppLink._blank(to="https://krry.dev") folio
 		| .
-	p.text.md(style={"margin-bottom": 0})
+	p.text.md.mrg.b0
 		| I made Nameless Quest to share the profound and humbling insight that&nbsp;
 		span
 			HanziChar(

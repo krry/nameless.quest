@@ -7,7 +7,7 @@
 	.lines.whole.font.alcenter.font
 		IconBase.line(
 			v-for="char in cached.toss"
-			:key="$symbolize(char)"
+			:key="$symbolize(char).toString()"
 			height="36"
 			width="20"
 			size="48"
@@ -15,7 +15,7 @@
 			component( :is="`Icon${char}`" )
 	section.col.half.dyn.align-start.mrg.mrg1.x(
 		v-for="(hex, index) in hexs"
-		:key="$symbolize(hex.binary)"
+		:key="$symbolize(hex.binary).toString()"
 		)
 		h3
 			| {{ index === 0 ? "𐡷 Being 𐡸" : "𐡸 Becoming 𐡷" }}
@@ -28,7 +28,7 @@
 				h3.font.x2l
 					HanziChar(
 						v-for="(char, i) in hex.names.chinese.split('')"
-						:key="$symbolize(char)"
+						:key="$symbolize(char).toString()"
 						:char="char"
 						:pinyin="hex.names.pinyin.split(' ')[i]"
 						size="lg"

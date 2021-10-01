@@ -18,23 +18,23 @@ transition(name="fade")
 				@focus="clearName"
 				) {{ cached.name }}
 		h2 Conversations with the Oracle
-		.section(v-if="rolls.length < 10")
+		.section(v-if="rolls && rolls.length < 10")
 			router-link.btn.lg.outline(:to="{name: 'oracle', params: {reset: 'true'}}") Start a new entry
-		.flex.row.wrap.mid.string(v-if="rolls.length > 0")
+		.flex.row.wrap.mid.string(v-if="rolls && rolls.length > 0")
 			section.roll.rel(
 				v-for="roll in rolls"
 				:key="roll.id"
 				)
 				time.moment.mono.thicc.alright(
-					:datetime="roll.moment"
-					) {{ roll.moment.toDate().toDateString() }}
+					:datetime="roll.moment.toDateString()"
+					) {{ roll.moment.toDateString() }}
 				blockquote.query.mrg0
 					h2 {{ roll.query }}
 					h3.x2l.font {{ roll.toss }}
 					.lines.whole.font.alcenter.mrg.mrgs.y
 						IconBase.line(
 							v-for="char in roll.toss"
-							:key="$symbolize(char)"
+							:key="$symbolize(char).toString()"
 							height="36"
 							width="20"
 							size="48"
@@ -151,11 +151,13 @@ export default defineComponent({
 
 		function removeDeletedRoll(id: string): void {
 			// remove the deleted roll from the array of rolls
-			// console.log('deleting id', id)
-			const deletedRollIndex = rolls.value.map(roll => roll.id).indexOf(id)
-			// console.log('deletedRollIndex', deletedRollIndex)
-			rolls.value = rolls.value.splice(deletedRollIndex, 1)
-			// console.log('rolls.value after delete', rolls.value)
+			if (rolls.value) {
+				// console.log('deleting id', id)
+				const deletedRollIndex = rolls.value.map(roll => roll.id).indexOf(id)
+				// console.log('deletedRollIndex', deletedRollIndex)
+				rolls.value = rolls.value.splice(deletedRollIndex, 1)
+				// console.log('rolls.value after delete', rolls.value)
+			}
 		}
 
 		return {

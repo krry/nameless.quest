@@ -52,7 +52,7 @@
 				v-autoresize
 				v-model="cached.query"
 				placeholder='"How do I choose?"'
-				rows="1"
+				:rows="1"
 				pattern="\?$"
 				@keydown.ctrl.enter="askTheOracle"
 				:class="{invalid: invalidQuery}"

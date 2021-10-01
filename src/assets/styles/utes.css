@@ -265,6 +265,10 @@ hr.dinkus::after {
 	margin-bottom: var(--mrg);
 }
 
+.mrg.b0 {
+	margin-bottom: 0;
+}
+
 .pad.y {
 	padding-top: var(--pad);
 	padding-bottom: var(--pad);

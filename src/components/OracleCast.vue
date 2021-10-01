@@ -17,7 +17,7 @@
 				.glyphs.left.rtl(v-else)
 					IconBase.line(
 						v-for="char in cached.toss"
-						:key="$symbolize(char)"
+						:key="$symbolize(char).toString()"
 						:class="{valid: validToss}"
 						:iconName="getLineName(char)"
 						)
@@ -32,7 +32,7 @@
 				input#toss.rtl.ib.mrg.mrg3.x(
 					type="tel"
 					v-model="cached.toss"
-					maxlength="6"
+					:maxlength="6"
 					min="666666"
 					max="999999"
 					autofocus
