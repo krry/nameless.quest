@@ -1,5 +1,6 @@
 @import '../fonts/recursive-font.css';
 @import './vars.css';
+@import './easing.css';
 @import './themes/sea.css';
 @import './themes/day.css';
 @import './themes/night.css';
