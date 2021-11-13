@@ -31,10 +31,13 @@ export async function addRoll(roll: Roll): Promise<void> {
 // READ
 export async function getRolls(): Promise<void> {
 	console.log('getting rolls');
+
 	if (!userRollsPath.value) {
 		console.error('no userRollsPath to get rolls');
 		return;
 	}
+
+	cfg.loading = true;
 	const querySnapshot = await getDocs(collection(db, userRollsPath.value));
 	console.log(
 		'got rolls',
@@ -67,12 +70,12 @@ export async function updateRoll(roll: Roll): Promise<void> {
 		if (rollData) {
 			const rollDataWithNotes = { ...rollData, notes: roll.notes };
 			await updateDoc(rollRef, rollDataWithNotes);
-			cfg.loading = false;
 			console.log('updated roll', roll.id);
 		}
 	} else {
 		console.error('roll not found', roll.id);
 	}
+	cfg.loading = false;
 }
 
 export async function deleteRoll(docId: string): Promise<void> {

@@ -42,7 +42,6 @@ export async function beforeEach(/*to: RouteLocationNormalized*/): Promise<
 				// if (cachedRoll.value) {
 				// addRoll(cachedRoll.value);
 				// }
-				cfg.loading = true;
 				await getRolls();
 				return {
 					name: 'journal',

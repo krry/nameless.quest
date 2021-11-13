@@ -1,38 +1,39 @@
 <template lang="pug">
-Spinnable(
-	running
-	zip="1"
-	).spinning
-	//- IconBase.ozhorse(
-	//- 	size="144"
-	//- 	viewBox="0 0 1000 1250"
-	//- 	)
-	//- 	IconCauldron
-	//- IconBase.ozhorse(
-	//- 	size="144"
-	//- 	viewBox="0 0 100 125"
-	//- 	)
-	//- 	IconMiracle
-	//- IconBase.ozhorse(
-	//- 	size="144"
-	//- 	viewBox="0 0 1000 1250"
-	//- 	)
-	//- 	IconWizardsHat
-	IconBase.ozhorse(
-		size="144"
-		viewBox="0 0 39028.39 45618.424999999996"
-		)
-		IconInfinitySign
-	IconBase.ozhorse.second(
-		size="144"
-		viewBox="0 0 39028.39 45618.424999999996"
-		)
-		IconInfinitySign
-	IconBase.ozhorse.third(
-		size="144"
-		viewBox="0 0 39028.39 45618.424999999996"
-		)
-		IconInfinitySign
+.abs.abs-0.flex.spread
+	Spinnable(
+		running
+		zip="1"
+		).spinning
+		//- IconBase.ozhorse(
+		//- 	size="144"
+		//- 	viewBox="0 0 1000 1250"
+		//- 	)
+		//- 	IconCauldron
+		//- IconBase.ozhorse(
+		//- 	size="144"
+		//- 	viewBox="0 0 100 125"
+		//- 	)
+		//- 	IconMiracle
+		//- IconBase.ozhorse(
+		//- 	size="144"
+		//- 	viewBox="0 0 1000 1250"
+		//- 	)
+		//- 	IconWizardsHat
+		IconBase.ozhorse(
+			size="144"
+			viewBox="0 0 39028.39 45618.424999999996"
+			)
+			IconInfinitySign
+		IconBase.ozhorse.second(
+			size="144"
+			viewBox="0 0 39028.39 45618.424999999996"
+			)
+			IconInfinitySign
+		IconBase.ozhorse.third(
+			size="144"
+			viewBox="0 0 39028.39 45618.424999999996"
+			)
+			IconInfinitySign
 </template>
 
 <script lang="ts">

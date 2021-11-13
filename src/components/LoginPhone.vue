@@ -21,7 +21,9 @@ form.flex.space.spread.wrap(@submit.prevent="acceptingCode ? acceptConfirmationC
 					label.between(v-if="msg.phone.success")
 						| We've texted the secret code to your phone.
 					label.between(v-else-if="msg.phone.error")
-						| We couldn't send an SMS to this number. You could retry, reload the page, or use email.
+						| We couldn't send an SMS to this number.
+						br
+						| You could retry, reload the page, or use email.
 					label.between(v-else-if="msg.confirm.error")
 						| Oops, we need to send you a fresh code. Please try again.
 					label.between(v-else for="email_login")
