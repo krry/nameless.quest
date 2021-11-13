@@ -7,8 +7,8 @@ AppDrawer
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, onUnmounted } from 'vue';
-import { set } from './store';
+import { defineComponent, onMounted, onUnmounted, watchEffect } from 'vue';
+import { cfg, set } from './store';
 import { FeedbackFish } from '@feedback-fish/vue';
 import AppDrawer from './components/AppDrawer.vue';
 import { useTimeAgo } from '@vueuse/core';
@@ -41,14 +41,13 @@ export default defineComponent({
 			console.log('Built', timeAgo.value);
 		});
 
+		watchEffect(() => {
+			console.log('loading is now', cfg.loading);
+		});
+
 		onUnmounted(() => {
 			window.removeEventListener('scroll', drawer.bound);
 		});
-
-		return {
-			// set,
-			// drawer,
-		};
 	},
 });
 </script>

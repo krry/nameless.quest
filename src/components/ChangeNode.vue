@@ -83,9 +83,9 @@ export default defineComponent({
 			quadrant: ref<Quad>(),
 			id: toRef(props, 'hexId'),
 			wenny: cfg.wenny,
-			isActive: computed(() => activeLots.value?.indexOf(hex.value.binary) === 0),
 			isBeing: computed(() => rolledLots?.indexOf(hex.value.binary) === 0),
 			isBecoming: computed(() => rolledLots?.indexOf(hex.value.binary) === 1),
+			isActive: computed(() => activeLots.value?.indexOf(hex.value.binary) === 0),
 		});
 
 		function setQuadrant(e: Event): Quad {

@@ -9,7 +9,7 @@ import * as drawer from '../utils/drawer';
 
 onAuthStateChanged(auth, user => {
 	if (user) {
-		// console.info('user detected', user.uid)
+		console.info('user detected', user.uid);
 		cache('uid', user.uid);
 		// activeUser.value = user.uid
 		if (!cachedRoll.value) return;
@@ -17,34 +17,33 @@ onAuthStateChanged(auth, user => {
 		addRoll(cachedRoll.value);
 		cachedRoll.value = null;
 	} else {
-		console.warn('👋 welcome, guest');
+		// console.warn('👋 welcome, guest');
 		uncache('uid');
 	}
 });
 
-export async function beforeEach(
-	to: RouteLocationNormalized
-): Promise<RouteLocationRaw | undefined> {
-	console.log('beforeEach', to);
+export async function beforeEach(/*to: RouteLocationNormalized*/): Promise<
+	RouteLocationRaw | undefined
+> {
+	// console.log('beforeEach', to);
 	if (cached.uid) {
-		console.log('uid cached', cached.uid);
-		await getRolls();
+		// console.log('uid cached', cached.uid);
 		return;
-	}
-	if (isSignInWithEmailLink(auth, window.location.href)) {
-		console.log('is a sign in link');
+	} else if (isSignInWithEmailLink(auth, window.location.href)) {
+		// console.log('is a sign in link');
 
 		if (cached.email) {
-			console.log('email cached', cached.email);
+			// console.log('email cached', cached.email);
 			const signInResult = await signInWithEmailLink(auth, cached.email, window.location.href);
+			// console.log('signInResult', signInResult);
 			if (signInResult.user) {
-				// console.log('valid firebase user', result.user)
+				// console.log('valid firebase user', signInResult.user);
 				cacheUser(signInResult.user);
-				if (cachedRoll.value) {
-					addRoll(cachedRoll.value);
-				}
-				// console.log('proceeding to journal')
-				getRolls();
+				// if (cachedRoll.value) {
+				// addRoll(cachedRoll.value);
+				// }
+				cfg.loading = true;
+				await getRolls();
 				return {
 					name: 'journal',
 					query: {},
@@ -55,16 +54,16 @@ export async function beforeEach(
 				return;
 			}
 		} else {
-			console.error('no cached email');
-			return;
+			// console.error('no cached email');
+			// console.log('proceeding to login');
+			return {
+				name: 'login',
+				query: {},
+				replace: true,
+			};
 		}
 	} else {
-		console.log('proceeding to login');
-		return {
-			name: 'login',
-			query: {},
-			replace: true,
-		};
+		console.log('not a sign in link, and no uid');
 	}
 }
 

@@ -29,6 +29,7 @@
 					iconColor="var(--ink)"
 					viewBox="0 0 50000 62500")
 					IconCoinFlip
+				//- TODO: on change, style non-allowed characters red
 				input#toss.rtl.ib.mrg.mrg3.x(
 					type="tel"
 					v-model="cached.toss"

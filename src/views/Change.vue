@@ -1,4 +1,6 @@
 <template lang="pug">
+transition(name="fade")
+	Waiter(v-if="cfg.loading")
 Page.font.center#change(
 	ref="desk"
 	@keydown.left.prevent.exact="navTo(prev)"
@@ -128,6 +130,7 @@ import { parseTossToBinary } from '../utils/tosses';
 import { useHexagrams } from '../composables/hexagrams';
 import { useTrigrams } from '../composables/trigrams';
 import Page from '../components/Page.vue';
+import Waiter from '../components/Waiter.vue';
 import AppLink from '../components/AppLink.vue';
 import HanziChar from '../components/HanziChar.vue';
 import LineGlyph from '../components/LineGlyph.vue';
@@ -162,6 +165,7 @@ export default defineComponent({
 	components: {
 		Page,
 		AppLink,
+		Waiter,
 		LineGram,
 		LineGlyph,
 		HanziChar,

@@ -1,5 +1,7 @@
 <template lang="pug">
 transition(name="fade")
+	Waiter(v-if="cfg.loading")
+transition(name="fade")
 	Login(
 		v-if="!cached.uid"
 	)
@@ -65,22 +67,23 @@ import contenteditable from 'vue-contenteditable';
 import { updateProfile } from 'firebase/auth';
 import { auth } from '../firebase';
 import { Roll } from '../schema';
-import { set } from '../store';
+import { cfg, set } from '../store';
 import { cache, cached } from '../store/cache';
 import { activeRolls, getRolls, deleteRoll, updateRoll } from '../store/rolls';
 import { parseTossToBinary } from '../utils/tosses';
 import { useHexagrams } from '../composables/hexagrams';
 import Page from '../components/Page.vue';
 import Login from './Login.vue';
-import IconBase from '../icons/IconBase.vue';
-import IconSpellBook from '../icons/IconSpellBook.vue';
+import Waiter from '../components/Waiter.vue';
+import AppLink from '../components/AppLink.vue';
 import Spinnable from '../components/Spinnable.vue';
+import ComingSoon from '../components/ComingSoon.vue';
+import IconBase from '../icons/IconBase.vue';
 import IconSix from '../icons/IconSix.vue';
 import IconSeven from '../icons/IconSeven.vue';
 import IconEight from '../icons/IconEight.vue';
 import IconNine from '../icons/IconNine.vue';
-import AppLink from '../components/AppLink.vue';
-import ComingSoon from '../components/ComingSoon.vue';
+import IconSpellBook from '../icons/IconSpellBook.vue';
 import { symbolize, lineIconByNumber } from '../plugins/utils';
 
 const laterDatesFirst = (a: Roll, b: Roll): number => {
@@ -111,8 +114,15 @@ export default defineComponent({
 		IconNine,
 		Page,
 		Login,
+		Waiter,
 		AppLink,
 		ComingSoon,
+	},
+	props: {
+		loading: {
+			type: Boolean,
+			default: true,
+		},
 	},
 	setup() {
 		const {
@@ -129,11 +139,9 @@ export default defineComponent({
 
 		// TODO: when Journal view shows, make sure to run getRolls again
 		watchEffect(() => {
-			if (cached.uid) {
-				// console.log('calling getRolls to update the activeRolls')
-				getRolls();
-				set('journaled', true);
-			}
+			console.log('cached.uid', cached.uid);
+			getRolls();
+			set('journaled', true);
 		});
 
 		watchEffect(
@@ -182,10 +190,9 @@ export default defineComponent({
 		}
 
 		return {
-			// then return activeRolls to the template as rolls
+			cfg,
 			rolls,
 			cached,
-			// getRolls,
 			saveName,
 			clearName,
 			symbolize,
@@ -195,7 +202,6 @@ export default defineComponent({
 			lineIconByNumber,
 			rollMomentToDate,
 			parseTossToBinary,
-			// getHexagramByOctal,
 			getEnglishNameByBin,
 		};
 	},

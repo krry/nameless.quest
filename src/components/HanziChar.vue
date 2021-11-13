@@ -127,7 +127,7 @@ export default defineComponent({
 .char.side {
 	margin: 0 1rem;
 	display: block;
-	width: 1em;
+	min-width: 4em;
 	padding-right: 0.25em;
 }
 

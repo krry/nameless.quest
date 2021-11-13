@@ -18,7 +18,7 @@ export const titlize = (str: string): string => {
 	// then join the array into a string and return
 };
 
-export const lineIconByNumber = (char?: string): string => {
+export const lineIconByNumber = (char?: string): string | undefined => {
 	switch (char) {
 		case '6':
 			return 'IconSix';
@@ -29,6 +29,6 @@ export const lineIconByNumber = (char?: string): string => {
 		case '9':
 			return 'IconNine';
 		default:
-			return '';
+			return;
 	}
 };

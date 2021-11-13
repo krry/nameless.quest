@@ -1,4 +1,6 @@
 <template lang="pug">
+transition(name="fade")
+	Waiter(v-if="cfg.loading")
 Page.query
 	Spinnable.mrg.mrg2.t
 		IconBase(size="128" viewBox="0 0 100 125" iconColor="var(--ink)")
@@ -23,6 +25,7 @@ import { defineComponent, ref } from 'vue';
 import { cached, uncache } from '../store/cache';
 import { cfg } from '../store';
 import Page from './Page.vue';
+import Waiter from './Waiter.vue';
 import Spinnable from './Spinnable.vue';
 import OracleInfo from './OracleInfo.vue';
 import OracleCast from './OracleCast.vue';
@@ -36,6 +39,7 @@ export default defineComponent({
 	name: 'OraclePage',
 	components: {
 		Page,
+		Waiter,
 		Spinnable,
 		OracleInfo,
 		OracleCast,
@@ -67,6 +71,7 @@ export default defineComponent({
 		if (props.fresh) clearBoth(undefined, true);
 
 		return {
+			cfg,
 			help,
 			cached,
 			clearBoth,
