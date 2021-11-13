@@ -7,10 +7,8 @@ module.exports = {
 		'eslint:recommended',
 		'plugin:vue/vue3-recommended',
 		'prettier',
-		'prettier/vue',
 		'plugin:@typescript-eslint/recommended',
 		'plugin:@typescript-eslint/eslint-recommended',
-		'prettier/@typescript-eslint',
 		'@vue/typescript',
 	],
 	parser: 'vue-eslint-parser',
@@ -26,15 +24,16 @@ module.exports = {
 	},
 	rules: {
 		// disable the rule for all files
-		'@typescript-eslint/explicit-module-boundary-types': 'off',
+		'@typescript-eslint/explicit-module-boundary-types': 0,
+		'vue/multi-word-component-names': 1,
 	},
 	overrides: [
 		{
 			// enable the rule specifically for TypeScript files
-			files: ['*.ts', '*.tsx'],
+			files: ['*.ts', '*.tsx', '*.vue'],
 			rules: {
 				'@typescript-eslint/explicit-module-boundary-types': ['error'],
 			},
 		},
 	],
-}
+};

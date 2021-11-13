@@ -6,15 +6,21 @@
 	"main": "main.ts",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Atmanautica/nameless.git"
+		"url": "https://github.com/krry/nameless.quest.git"
 	},
 	"scripts": {
-		"dev": "vite --port 2021",
-		"lint": "eslint ./ --fix --ext ts,tsx",
-		"build": "npm run lint && vite build",
+		"build": "npm run clean && npm run lint && vite build",
+		"clean": "rimraf dist && npm run clean:sw",
+		"clean:sw": "rimraf public/sw* public/workbox-*",
 		"deploy": "npm run build && netlify deploy",
 		"deprod": "npm run build && netlify deploy --prod",
-		"release": "npm run build && npm version && git push && git tag && git push --tag"
+		"dev": "vite --port 2022",
+		"https-preview": "npm run build && serve dist",
+		"lint": "eslint src --ext vue,ts",
+		"prepush": "bump && git tag -s -a && git push --tags",
+		"preview": "npm run build && npm run serve",
+		"release": "npm run build && git push && git tag && git push --tag",
+		"serve": "vite preview --port 2021"
 	},
 	"dependencies": {
 		"@feedback-fish/vue": "^1.0.1",
@@ -24,27 +30,26 @@
 		"firebase": "^8.10.0",
 		"vue": "^3.2.21",
 		"vue-contenteditable": "^3.0.4",
-		"vue-router": "^4.0.12",
+		"vue-router": "4",
 		"vue-scrollto": "^2.20.0"
 	},
 	"devDependencies": {
-		"@fontsource/inconsolata": "^4.5.0",
-		"@fontsource/museomoderno": "^4.5.1",
-		"@fontsource/quicksand": "^4.5.1",
-		"@fontsource/roboto-slab": "^4.5.1",
-		"@types/node": "^14.17.33",
-		"@typescript-eslint/eslint-plugin": "^4.33.0",
-		"@typescript-eslint/parser": "^4.33.0",
+		"@types/node": "^16.11.7",
+		"@typescript-eslint/eslint-plugin": "^5.3.1",
+		"@typescript-eslint/parser": "^5.3.1",
 		"@vitejs/plugin-vue": "^1.9.4",
-		"@vue/compiler-sfc": "^3.2.21",
-		"@vue/eslint-config-typescript": "^7.0.0",
-		"@vuedx/typecheck": "^0.4.1",
-		"@vuedx/typescript-plugin-vue": "^0.4.1",
+		"@vue/eslint-config-typescript": "^9.0.1",
+		"@vuedx/compiler-sfc": "^0.7.1",
+		"@vuedx/typecheck": "^0.7.4",
+		"@vuedx/typescript-plugin-vue": "^0.7.4",
+		"@vueuse/core": "^6.8.0",
+		"@vueuse/head": "^0.6.0",
 		"browserslist": "^4.17.6",
-		"eslint": "^7.32.0",
-		"eslint-config-prettier": "^7.2.0",
-		"eslint-plugin-vue": "^7.20.0",
-		"husky": "^5.2.0",
+		"eslint": "^8.2.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-vue": "^8.0.3",
+		"https-localhost": "^4.7.0",
+		"husky": "7.0.4",
 		"postcss": "^8.3.11",
 		"postcss-advanced-variables": "^3.0.1",
 		"postcss-font-magician": "^3.0.0",
@@ -55,13 +60,27 @@
 		"precss": "^4.0.0",
 		"prettier": "^2.4.1",
 		"pug": "^3.0.2",
+		"rimraf": "^3.0.2",
+		"rollup": "^2.60.0",
+		"sanitize.css": "12.0.1",
 		"stylelint": "^13.13.1",
 		"stylelint-config-standard": "^20.0.0",
 		"typescript": "^4.4.4",
 		"vite": "^2.6.14",
-		"vite-plugin-pwa": "^0.7.3"
+		"vite-plugin-pwa": "^0.11.3",
+		"vite-plugin-replace": "^0.1.1",
+		"workbox-build": "^6.3.0",
+		"workbox-window": "^6.3.0"
 	},
 	"browserslist": [
 		"defaults"
-	]
+	],
+	"peerDependencies": {
+		"rollup": "^2.59.0",
+		"workbox-build": "^6.3.0",
+		"workbox-window": "^6.3.0"
+	},
+	"resolutions": {
+		"sanitize.css": "12.0.1"
+	}
 }

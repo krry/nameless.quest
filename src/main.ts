@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import router from './router';
 import App from './App.vue';
+import { createHead } from '@vueuse/head';
 import VueScrollTo from 'vue-scrollto';
 
 import logout from './plugins/logout';
@@ -11,6 +12,7 @@ import { titlize, symbolize, cruiseTo } from './plugins/utils';
 import './assets/styles/main.css';
 
 const app = createApp(App);
+const head = createHead();
 app.directive('scroll-to', VueScrollTo);
 app.directive('autoresize', AutoResize);
 app.directive('autofocus', AutoFocus);
@@ -22,4 +24,5 @@ app
 	.use(symbolize)
 	.use(titlize)
 	.use(cruiseTo)
+	.use(head)
 	.mount('#bollard');
