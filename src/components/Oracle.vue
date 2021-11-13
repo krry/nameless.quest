@@ -6,7 +6,7 @@ Page.query
 	transition(name="slide-fade" appear mode="out-in")
 		OracleCast(v-if="cached.step === 'cast'")
 		OracleResponse(v-else-if="cached.step === 'response'" @clear="clearBoth")
-		OracleQuery(v-else)
+		OracleQuery(v-else @clear="clearBoth")
 	Spinnable.mrg.mrg4.t
 		IconBase.mrg.mrgs.y(size="96" viewBox="0 0 100 125" iconColor="var(--glow)")
 			IconThreeLegs
@@ -52,9 +52,10 @@ export default defineComponent({
 		const help = ref();
 
 		function clearBoth(event?: MouseEvent, confirmed = false) {
-			if (event) event.preventDefault();
 			const clearAffirmed =
-				confirmed ?? confirm("Are you sure you want to start over? This will clear today's entry.");
+				confirmed ||
+				confirm('Are you sure you want to start over? This will clear the latest entry.');
+
 			if (clearAffirmed) {
 				cfg.saved = false;
 				uncache('query');
@@ -62,7 +63,7 @@ export default defineComponent({
 				uncache('step');
 			}
 		}
-		console.log('props.fresh', props);
+
 		if (props.fresh) clearBoth(undefined, true);
 
 		return {

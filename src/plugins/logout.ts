@@ -1,24 +1,25 @@
-import { App } from 'vue'
-import { auth } from '../firebase'
-import router from '../router'
-import { uncache } from '../store/cache'
+import { App } from 'vue';
+import { auth } from '../firebase';
+import { signOut } from 'firebase/auth';
+import router from '../router';
+import { uncache } from '../store/cache';
 
 const logout = {
 	install: (app: App): void => {
 		app.config.globalProperties.$logout = () => {
-			auth
-				.signOut()
+			const user = auth.currentUser;
+			signOut(auth)
 				.then(() => {
-					console.log('logging out', auth.currentUser)
-					return router.push('/')
+					console.log('logging out', user);
+					return router.push('/');
 				})
 				.catch(error => {
-					console.error("couldn't log out", error)
-					return router.push('/login')
-				})
-			uncache('uid')
-		}
+					console.error("couldn't log out", error);
+					return router.push('/login');
+				});
+			uncache('uid');
+		};
 	},
-}
+};
 
-export default logout
+export default logout;

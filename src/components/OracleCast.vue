@@ -38,7 +38,9 @@
 					autofocus
 					pattern="[6-9]{1,6}"
 					placeholder="678789"
-					@keydown.ctrl.enter="saveToss"
+					@keydown.meta.enter.exact="saveToss"
+					@keydown.ctrl.enter.exact="saveToss"
+					@keyup.enter.exact="saveToss"
 					@focus="scrollTo('.cast')"
 				)
 				IconBase.abs.r(

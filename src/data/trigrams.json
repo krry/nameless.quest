@@ -1,74 +1,74 @@
 [
-  {
-    "trigram": "☷",
-    "name": {
-      "en": "earth",
-      "zh": "坤",
-      "pn": "kūn"
-    },
-    "animal": "ox"
-  },
-  {
-    "trigram": "☳",
-    "name": {
-      "en": "thunder",
-      "zh": "震",
-      "pn": "zhèn"
-    },
-    "animal": "dragon"
-  },
-  {
-    "trigram": "☵",
-    "name": {
-      "en": "water",
-      "zh": "坎",
-      "pn": "kǎn"
-    },
-    "animal": "pig"
-  },
-  {
-    "trigram": "☱",
-    "name": {
-      "en": "lake",
-      "zh": "兌",
-      "pn": "duì"
-    },
-    "animal": "sheep"
-  },
-  {
-    "trigram": "☶",
-    "name": {
-      "en": "mountain",
-      "zh": "艮",
-      "pn": "gèn"
-    },
-    "animal": "dog"
-  },
-  {
-    "trigram": "☲",
-    "name": {
-      "en": "fire",
-      "zh": "離",
-      "pn": "lí"
-    },
-    "animal": "pheasant"
-  },
-  {
-    "trigram": "☴",
-    "name": {
-      "en": "wind",
-      "zh": "巽",
-      "pn": "xùn"
-    },
-    "animal": "cock"
-  },
-  {
-    "trigram": "☰",
-    "name": {
-      "en": "heaven",
-      "zh": "乾",
-      "pn": "qián"
-    },
-    "animal": "horse"
-  }
+	{
+		"trigram": "☷",
+		"name": {
+			"en": "earth",
+			"zh": "坤",
+			"pn": "kūn"
+		},
+		"animal": "ox"
+	},
+	{
+		"trigram": "☳",
+		"name": {
+			"en": "thunder",
+			"zh": "震",
+			"pn": "zhèn"
+		},
+		"animal": "dragon"
+	},
+	{
+		"trigram": "☵",
+		"name": {
+			"en": "water",
+			"zh": "坎",
+			"pn": "kǎn"
+		},
+		"animal": "pig"
+	},
+	{
+		"trigram": "☱",
+		"name": {
+			"en": "lake",
+			"zh": "兌",
+			"pn": "duì"
+		},
+		"animal": "sheep"
+	},
+	{
+		"trigram": "☶",
+		"name": {
+			"en": "mountain",
+			"zh": "艮",
+			"pn": "gèn"
+		},
+		"animal": "dog"
+	},
+	{
+		"trigram": "☲",
+		"name": {
+			"en": "fire",
+			"zh": "離",
+			"pn": "lí"
+		},
+		"animal": "pheasant"
+	},
+	{
+		"trigram": "☴",
+		"name": {
+			"en": "wind",
+			"zh": "巽",
+			"pn": "xùn"
+		},
+		"animal": "cock"
+	},
+	{
+		"trigram": "☰",
+		"name": {
+			"en": "heaven",
+			"zh": "乾",
+			"pn": "qián"
+		},
+		"animal": "horse"
+	}
 ]

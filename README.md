@@ -1,10 +1,10 @@
-# nameless
+# nameless quest
 
 ## An Oracle for the Sovereign
 
 Here you will find an interactive I Ching
 built in Vue 3 and Vite and PostCSS
-soon with a backend made of Sanity?
+someday with a backend made of Sanity?
 ready to reveal the future
 you can already remember
 but may have forgotten.
@@ -21,4 +21,4 @@ but may have forgotten.
 `npm run release`: Bumps the version, does a push, makes a tag
 
 This Nameless Project is managed in Roam:
-https://roamresearch.com/#/app/Atmanaut/page/NlObqEwCG
+<https://roamresearch.com/#/app/Atmanaut/page/NlObqEwCG>

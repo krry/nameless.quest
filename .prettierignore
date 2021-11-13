@@ -1,0 +1,5 @@
+dist
+public
+.netlify
+# .husky
+node_modules

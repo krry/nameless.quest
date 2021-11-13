@@ -5,35 +5,35 @@
  * had to build this because popper.js ain't work with Vue 3 yet
  */
 
-import {Bounds, Quad} from '../schema'
+import { Bounds, Quad } from '../schema';
 
 export const determineQuadrant = (bounds: Bounds): Quad => {
-	const fullWidth = document.body.offsetWidth
-	const fullHeight = document.body.offsetHeight
-	const xHalf = fullWidth / 2 > bounds.left ? 'left' : 'right'
-	const yHalf = fullHeight / 2 > bounds.top ? 'top' : 'bottom'
-	let edge = ''
+	const fullWidth = document.body.offsetWidth;
+	const fullHeight = document.body.offsetHeight;
+	const xHalf = fullWidth / 2 > bounds.left ? 'left' : 'right';
+	const yHalf = fullHeight / 2 > bounds.top ? 'top' : 'bottom';
+	let edge = '';
 	if (bounds.left < 240 || fullWidth - bounds.right < 240) {
-		edge = 'edge'
+		edge = 'edge';
 	}
 	if (bounds.left < 120 || fullWidth - bounds.right < 120) {
-		edge = 'extreme'
+		edge = 'extreme';
 	}
 
 	const middle =
 		// in the middle third of the vertical window space
-		bounds.top > fullHeight * 0.25 && bounds.bottom < fullHeight * 0.75 ? 'middle' : ''
+		bounds.top > fullHeight * 0.25 && bounds.bottom < fullHeight * 0.75 ? 'middle' : '';
 
 	const quadrant = {
 		yPos: yHalf,
 		xPos: xHalf,
 		edge: edge,
 		middle: middle,
-	}
+	};
 	// console.log('bounds of tile', bounds)
 	// console.log('card to quadrant', quadrant)
-	return quadrant
-}
+	return quadrant;
+};
 /*
 Result: {
   yPos: "top",

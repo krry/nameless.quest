@@ -1,36 +1,36 @@
 function firstHexMatch(char: string): string {
 	switch (char) {
 		case '6':
-			return '0'
+			return '0';
 		case '7':
-			return '1'
+			return '1';
 		case '8':
-			return '0'
+			return '0';
 		case '9':
-			return '1'
+			return '1';
 		default:
-			return 'x'
+			return 'x';
 	}
 }
 
 function secondHexMatch(char: string): string {
 	switch (char) {
 		case '6':
-			return '1'
+			return '1';
 		case '7':
-			return '1'
+			return '1';
 		case '8':
-			return '0'
+			return '0';
 		case '9':
-			return '0'
+			return '0';
 		default:
-			return 'x'
+			return 'x';
 	}
 }
 
 export const parseTossToBinary = (toss: string): string[] => {
 	// console.log('parsing toss to binary', toss)
-	if (toss.length !== 6 || !toss) return ['']
+	if (toss.length !== 6 || !toss) return [''];
 
 	// const properlyOrderedToss = toss.split('').reverse().join('')
 
@@ -39,35 +39,35 @@ export const parseTossToBinary = (toss: string): string[] => {
 		toss
 			.split('')
 			.map((c: string): string => {
-				return firstHexMatch(c)
+				return firstHexMatch(c);
 			})
-			.join('')
+			.join('');
 
 	const secondHex =
 		'0b' +
 		toss
 			.split('')
 			.map((c: string): string => {
-				return secondHexMatch(c)
+				return secondHexMatch(c);
 			})
-			.join('')
+			.join('');
 
 	// console.log('[firstHex, secondHex]', [firstHex, secondHex])
 	if (firstHex === secondHex) {
-		return [firstHex]
+		return [firstHex];
 	}
-	const lots = [firstHex, secondHex]
+	const lots = [firstHex, secondHex];
 
 	// console.log('binary parsed to', lots)
-	return lots
-}
+	return lots;
+};
 
 const yarrowOdds = {
 	6: 0.0625,
 	7: 0.3125,
 	8: 0.4375,
 	9: 0.1875,
-}
+};
 
 // const threeCoinOdds = {
 // 	6: 0.125,
@@ -81,20 +81,20 @@ export const generateRandomToss = (): number => {
 		Array(6)
 			.fill(0)
 			.map(() => {
-				return randomFlip(yarrowOdds)
+				return randomFlip(yarrowOdds);
 			})
 			.join(''),
-		10,
-	)
-}
+		10
+	);
+};
 
-function randomFlip(spec: {[key: number]: number}) {
-	let i
-	let sum = 0
-	const r = Math.random()
+function randomFlip(spec: { [key: number]: number }) {
+	let i;
+	let sum = 0;
+	const r = Math.random();
 
 	for (i in spec) {
-		sum += spec[i]
-		if (r <= sum) return parseInt(i, 10)
+		sum += spec[i];
+		if (r <= sum) return parseInt(i, 10);
 	}
 } // random in distribution...

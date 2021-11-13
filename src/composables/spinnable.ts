@@ -1,14 +1,14 @@
-import {ref} from 'vue'
-import {cfg, set} from '../store'
+import { ref } from 'vue';
+import { cfg, set } from '../store';
 
 interface SpinParams {
-	getSpinning: () => boolean
-	setSpinning: (state: boolean) => void
+	getSpinning: () => boolean;
+	setSpinning: (state: boolean) => void;
 }
 
 export const useSpinnable = (element: HTMLElement, running = false, zip = 2): SpinParams => {
-	const moveEvent = ref('')
-	const spinning = ref(running)
+	const moveEvent = ref('');
+	const spinning = ref(running);
 	// console.log('making element spinnable', element)
 
 	function measureDistance(mX: number, mY: number): number {
@@ -18,71 +18,71 @@ export const useSpinnable = (element: HTMLElement, running = false, zip = 2): Sp
 		// 	element.offsetWidth,
 		// 	element.offsetHeight,
 		// )
-		const rect = element.getBoundingClientRect()
+		const rect = element.getBoundingClientRect();
 		// console.log('rect left top', rect.left, rect.top)
 		const dist = Math.floor(
 			Math.sqrt(
 				Math.pow(mX - (rect.left + element.offsetWidth / 2), 2) +
 					Math.pow(mY - (rect.top + element.offsetHeight / 2), 2)
 			)
-		)
+		);
 		// console.log('measuring distance', dist)
-		return dist
+		return dist;
 	}
 
 	function isMouseEvent(ev: Event): MouseEvent | undefined {
 		if ((ev as MouseEvent).clientX !== undefined) {
-			return ev as MouseEvent
+			return ev as MouseEvent;
 		}
 	}
 
 	function isTouchEvent(ev: Event): TouchEvent | undefined {
 		if ((ev as TouchEvent).touches !== undefined) {
-			return ev as TouchEvent
+			return ev as TouchEvent;
 		}
 	}
 
 	function fluctuateSpinner(ev: Event) {
 		// console.log('fluctuating spinner as move occurs')
 		// test for event type
-		const me = isMouseEvent(ev)
-		const te = isTouchEvent(ev)
+		const me = isMouseEvent(ev);
+		const te = isTouchEvent(ev);
 
 		// get position of mouse or finger
 		// calculate distance between these points every interval
 		if (me) {
-			element.style.animationDuration = `${measureDistance(me.clientX, me.clientY) / zip}ms`
+			element.style.animationDuration = `${measureDistance(me.clientX, me.clientY) / zip}ms`;
 			// console.log('element.style.animationDuration', element.style.animationDuration)
 		} else if (te) {
 			element.style.animationDuration = `${
 				measureDistance(te.touches[0].clientX, te.touches[0].clientY) / zip
-			}ms`
+			}ms`;
 			// console.log('element.style.animationDuration', element.style.animationDuration)
 		}
 	}
 
 	// see if there's a mouse in the house
 	function onMouseMove() {
-		set('mouseDetected', true)
-		trackUser()
+		set('mouseDetected', true);
+		trackUser();
 	}
 
 	// see if anyone's in touch
 	function onTouchMove() {
-		set('touchDetected', true)
-		trackUser()
+		set('touchDetected', true);
+		trackUser();
 	}
 
 	// listen to users' movements
 	function trackUser() {
 		// console.log('tracking user')
 		if (cfg.touchDetected) {
-			moveEvent.value = 'touchmove'
+			moveEvent.value = 'touchmove';
 		} else if (cfg.mouseDetected) {
-			moveEvent.value = 'mousemove'
+			moveEvent.value = 'mousemove';
 		}
 		// console.log('wiring up spinning to', moveEvent.value)
-		document.addEventListener(moveEvent.value, fluctuateSpinner)
+		document.addEventListener(moveEvent.value, fluctuateSpinner);
 	}
 
 	function senseMovement() {
@@ -92,46 +92,46 @@ export const useSpinnable = (element: HTMLElement, running = false, zip = 2): Sp
 		// prettier-ignore
 		document.addEventListener('touchstart', ()=>{/**/}, {passive: true, capture: true})
 		// sniff out whether we have a toucher or a clicker
-		document.addEventListener('mousemove', onMouseMove, {once: true})
-		document.addEventListener('touchmove', onTouchMove, {once: true})
+		document.addEventListener('mousemove', onMouseMove, { once: true });
+		document.addEventListener('touchmove', onTouchMove, { once: true });
 	}
 
 	function ignoreMovement() {
 		// prettier-ignore
 		document.removeEventListener( 'touchstart', ()=>{/**/}, true)
-		document.removeEventListener(moveEvent.value, fluctuateSpinner)
+		document.removeEventListener(moveEvent.value, fluctuateSpinner);
 		// document.removeEventListener('all', fluctuateSpinner)
 	}
 
 	function getSpinning(): boolean {
 		// console.log('getting spinning', spinning.value)
-		return spinning.value
+		return spinning.value;
 	}
 
 	function setSpinning(state: boolean): void {
-		spinning.value = state
+		spinning.value = state;
 		if (state) {
-			senseMovement()
-			element.style.animationPlayState = 'running'
+			senseMovement();
+			element.style.animationPlayState = 'running';
 		} else {
-			ignoreMovement()
-			element.style.animationPlayState = 'paused'
+			ignoreMovement();
+			element.style.animationPlayState = 'paused';
 		}
 		// console.log('spinning set to', spinning.value)
 	}
 
 	function giveItAWhirl(event: KeyboardEvent) {
 		if (event.key === ' ' || event.key === 'Enter') {
-			setSpinning(!getSpinning())
-			element.blur()
+			setSpinning(!getSpinning());
+			element.blur();
 		}
 	}
 
 	// console.log('element to spin', element)
-	element.addEventListener('keydown', giveItAWhirl)
+	element.addEventListener('keydown', giveItAWhirl);
 
 	return {
 		getSpinning,
 		setSpinning,
-	}
-}
+	};
+};

@@ -1,4 +1,5 @@
-export const SITE_TITLE = 'Nameless'
+import website from './website';
+export const SITE_TITLE = website.shortName;
 export const THEMES = [
 	{
 		title: 'sea',
@@ -70,4 +71,4 @@ export const THEMES = [
 			{ filename: 'night3.jpg', cred: 'luca-baggio-eKU3JGNCCMg-unsplash' },
 		],
 	},
-]
+];

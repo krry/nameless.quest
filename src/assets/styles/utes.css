@@ -118,6 +118,8 @@ hr.divider {
 hr.dinkus {
 	border: 0;
 	position: relative;
+	background-clip: text;
+	color: transparent;
 	margin: var(--unit) auto;
 	width: 100%;
 	&.spacey {
@@ -125,8 +127,19 @@ hr.dinkus {
 	}
 }
 
+%gradientext {
+	background-clip: text;
+	background-size: 100%;
+	color: transparent;
+	background-image: linear-gradient(to bottom, var(--glow), var(--flair));
+}
+
 hr.dinkus::after {
-	color: var(--flair);
+	@extend %gradientext;
+	background-clip: text;
+	background-size: 100%;
+	color: transparent;
+	background-image: linear-gradient(to bottom, var(--glow), var(--flair));
 	display: block;
 	font-family: var(--text);
 	font-size: calc(var(--unit));

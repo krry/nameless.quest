@@ -16,7 +16,7 @@ router-link(
 		v-bind="$attrs"
 		:href="href"
 		@click="navigate"
-		:class="isActive ? activeClass : inactiveClass"
+		:class="isActive ? 'active' : 'inactive'"
 		)
 		slot
 </template>
@@ -39,9 +39,10 @@ export default {
 
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-ignore
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	setup(props) {
 		// `props` contains `to` and any other prop that can be passed to <router-link>
-		const { href, route, navigate, isActive, isExactActive } = useLink(props);
+		const { href, navigate, isActive /*, route, isExactActive*/ } = useLink(props);
 
 		const isExternalLink = computed(
 			() => typeof props.to === 'string' && props.to.startsWith('http')
@@ -50,8 +51,8 @@ export default {
 		return {
 			to: props.to,
 			href,
-			activeClass: props.activeClass ?? 'active',
-			inactiveClass: props.inactiveClass ?? 'inactive',
+			navigate,
+			isActive,
 			isExternalLink,
 		};
 	},

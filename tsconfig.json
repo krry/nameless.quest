@@ -14,13 +14,6 @@
 		"plugins": [{ "name": "@vuedx/typescript-plugin-vue" }],
 		"allowSyntheticDefaultImports": true
 	},
-	"include": [
-		"src/**/*.ts",
-		"src/**/*.d.ts",
-		"src/**/*.tsx",
-		"src/**/*.vue",
-		"src/lib/sanity.js",
-		"src/firebase.js"
-	],
+	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
 	"ignore": ["node_modules/**/*.*"]
 }

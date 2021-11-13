@@ -1,5 +1,6 @@
 export const cruiseTo = (el?: HTMLElement): void => {
-	el?.scrollIntoView({ behavior: 'smooth' });
+	console.log(el, 'el to cruise to');
+	if (el) el.scrollIntoView({ behavior: 'smooth' });
 };
 
 export const symbolize = (seed: string | number | undefined): symbol => {

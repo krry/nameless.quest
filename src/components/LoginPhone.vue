@@ -48,31 +48,31 @@ form.flex.space.spread.wrap(@submit.prevent="acceptingCode ? acceptConfirmationC
 </template>
 
 <script lang="ts">
-import {defineComponent, reactive, toRefs, onMounted} from 'vue'
-import firebase from 'firebase/app'
-import {auth} from '../firebase'
-import {useRouter} from 'vue-router'
-import {cache, uncache} from '../store/cache'
-import Waiter from './Waiter.vue'
+import { defineComponent, reactive, toRefs, onMounted } from 'vue';
+import { signInWithPhoneNumber, ConfirmationResult, RecaptchaVerifier } from 'firebase/auth';
+import { auth } from '../firebase';
+import { useRouter } from 'vue-router';
+import { cache, uncache } from '../store/cache';
+import Waiter from './Waiter.vue';
 
-let confirmResult: firebase.auth.ConfirmationResult
-let recaptchaVerifier: firebase.auth.RecaptchaVerifier
-let recaptchaResponse: Response
+let confirmResult: ConfirmationResult;
+let recaptchaVerifier: RecaptchaVerifier;
+let recaptchaResponse: Response;
 
 function prevalidatePhoneNumber(phone: string) {
-	const numberized = phone.replace(/[^0-9]/g, '')
+	const numberized = phone.replace(/[^0-9]/g, '');
 	const countrified =
-		numberized.length <= 10 && numberized.substr(0, 1) !== '1' ? '1' + numberized : numberized
-	const validPhone = countrified.substr(0, 1) === '+' ? countrified : '+' + countrified
-	console.log('validPhone', validPhone)
-	return validPhone
+		numberized.length <= 10 && numberized.substr(0, 1) !== '1' ? '1' + numberized : numberized;
+	const validPhone = countrified.substr(0, 1) === '+' ? countrified : '+' + countrified;
+	console.log('validPhone', validPhone);
+	return validPhone;
 }
 
 export default defineComponent({
 	name: 'LoginPhone',
-	components: {Waiter},
+	components: { Waiter },
 	setup() {
-		const router = useRouter()
+		const router = useRouter();
 		const rx = reactive({
 			msg: {
 				phone: {
@@ -87,93 +87,96 @@ export default defineComponent({
 			confCode: '',
 			acceptingCode: false,
 			awaiting: false,
-		})
+		});
 
 		async function signInWithPhone(response?: Response) {
-			console.log('response', response)
+			console.log('response', response);
 			// reCAPTCHA solved, allow signInWithPhoneNumber
-			const validatedPhone = prevalidatePhoneNumber(rx.phone)
+			const validatedPhone = prevalidatePhoneNumber(rx.phone);
 			// show spinner and ghost the input and button
-			rx.awaiting = true
-			await auth
-				.signInWithPhoneNumber(validatedPhone, recaptchaVerifier)
+			rx.awaiting = true;
+			await signInWithPhoneNumber(auth, validatedPhone, recaptchaVerifier)
 				.then(confirmationResult => {
-					rx.awaiting = false
+					rx.awaiting = false;
 					// hide spinner and unghost
-					rx.acceptingCode = true
-					rx.msg.phone.success = true
-					cache('phone', validatedPhone)
-					confirmResult = confirmationResult
-					return response
+					rx.acceptingCode = true;
+					rx.msg.phone.success = true;
+					cache('phone', validatedPhone);
+					confirmResult = confirmationResult;
+					return response;
 				})
 				.catch(error => {
-					rx.awaiting = false
-					console.error("didn't send SMS", error)
-					rx.msg.phone.error = true
-					recaptchaVerifier.clear()
+					rx.awaiting = false;
+					console.error("didn't send SMS", error);
+					rx.msg.phone.error = true;
+					recaptchaVerifier.clear();
 					// recover from SMS fail by resetting recaptcha
 					recaptchaVerifier.render().then(widgetId => {
-						console.log('widgetId', widgetId)
-					})
-					uncache('phone')
-					rx.phone = ''
-				})
+						console.log('widgetId', widgetId);
+					});
+					uncache('phone');
+					rx.phone = '';
+				});
 		}
 
 		async function acceptConfirmationCode() {
 			if (rx.acceptingCode) {
-				rx.awaiting = true
+				rx.awaiting = true;
 				await confirmResult
 					.confirm(rx.confCode)
 					.then(result => {
-						rx.awaiting = false
-						const user = result.user
-						console.log('user is ', user?.uid, 'with phone', user?.phoneNumber)
-						cache('uid', user?.uid)
-						cache('phone', user?.phoneNumber)
-						router.push('/journal')
+						rx.awaiting = false;
+						const user = result.user;
+						console.log('user is ', user?.uid, 'with phone', user?.phoneNumber);
+						cache('uid', user?.uid);
+						cache('phone', user?.phoneNumber);
+						router.push('/journal');
 					})
 					.catch(error => {
-						rx.awaiting = false
-						console.error('invalid confirmation code', error)
-						rx.msg.confirm.error = true
-						rx.confCode = ''
-						rx.acceptingCode = false
-					})
-			} else throw new Error('not ready to accept a confirmation code')
+						rx.awaiting = false;
+						console.error('invalid confirmation code', error);
+						rx.msg.confirm.error = true;
+						rx.confCode = '';
+						rx.acceptingCode = false;
+					});
+			} else throw new Error('not ready to accept a confirmation code');
 		}
 
 		function signInOrConfirm() {
-			if (rx.acceptingCode) acceptConfirmationCode()
+			if (rx.acceptingCode) acceptConfirmationCode();
 			else {
-				signInWithPhone(recaptchaResponse)
+				signInWithPhone(recaptchaResponse);
 			}
 		}
 
 		onMounted(() => {
-			recaptchaVerifier = new firebase.auth.RecaptchaVerifier('phone_butt', {
-				size: 'invisible',
-				callback: (response: Response) => {
-					console.log('recaptcha callback called with response', response)
-					recaptchaResponse = response
-					signInWithPhone(response)
+			recaptchaVerifier = new RecaptchaVerifier(
+				'phone_butt',
+				{
+					size: 'invisible',
+					callback: (response: Response) => {
+						console.log('recaptcha callback called with response', response);
+						recaptchaResponse = response;
+						signInWithPhone(response);
+					},
+					'expired-callback': () => {
+						console.log('recaptcha callback expired');
+						recaptchaVerifier.clear();
+						recaptchaVerifier.render();
+					},
 				},
-				'expired-callback': () => {
-					console.log('recaptcha callback expired')
-					recaptchaVerifier.clear()
-					recaptchaVerifier.render()
-				},
-			})
-		})
+				auth
+			);
+		});
 
 		return {
 			signInWithPhone,
 			signInOrConfirm,
 			acceptConfirmationCode,
 			...toRefs(rx),
-		}
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss">

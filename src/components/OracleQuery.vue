@@ -54,7 +54,9 @@
 				placeholder='"How do I choose?"'
 				:rows="1"
 				pattern="\?$"
-				@keydown.ctrl.enter="askTheOracle"
+				@keydown.meta.enter.exact="askTheOracle"
+				@keydown.ctrl.enter.exact="askTheOracle"
+				@keyup.enter.exact.prevent.stop.capture="askTheOracle"
 				:class="{invalid: invalidQuery}"
 				@focus="queryFocused = true"
 				)

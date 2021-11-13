@@ -19,10 +19,10 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
-import {tog} from '../store'
-import IconBase from '../icons/IconBase.vue'
-import IconScroll from '../icons/IconScroll.vue'
+import { defineComponent } from 'vue';
+import { tog } from '../store';
+import IconBase from '../icons/IconBase.vue';
+import IconScroll from '../icons/IconScroll.vue';
 
 export default defineComponent({
 	name: 'HexaFace',
@@ -38,9 +38,9 @@ export default defineComponent({
 	},
 	emits: ['close'],
 	setup() {
-		return {tog}
+		return { tog };
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>

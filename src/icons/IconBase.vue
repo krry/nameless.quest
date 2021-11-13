@@ -43,7 +43,7 @@ export default {
 			default: '0 0 130 373',
 		},
 	},
-}
+};
 </script>
 <style lang="postcss" scoped>
 .icon {

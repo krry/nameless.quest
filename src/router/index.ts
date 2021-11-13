@@ -1,6 +1,6 @@
-import {createRouter, createWebHistory} from 'vue-router'
-import {beforeEach, afterEach} from './guards'
-import routes from './routes'
+import { createRouter, createWebHistory } from 'vue-router';
+import { beforeEach, afterEach } from './guards';
+import routes from './routes';
 
 const router = createRouter({
 	routes,
@@ -10,13 +10,13 @@ const router = createRouter({
 			return {
 				selector: to.hash,
 				behavior: 'smooth',
-			}
+			};
 		}
-		return {x: 0, y: 0}
+		return { x: 0, y: 0 };
 	},
-})
+});
 
-router.beforeEach(beforeEach)
-router.afterEach(afterEach)
+router.beforeEach(beforeEach);
+router.afterEach(afterEach);
 
-export default router
+export default router;

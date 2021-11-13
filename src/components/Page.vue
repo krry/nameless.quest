@@ -7,36 +7,36 @@ main.desk.flex.string(
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, watchEffect, onMounted} from 'vue'
-import {activeTheme} from '../store/theme'
-import {getRandTo} from '../utils'
-import * as drawer from '../utils/drawer'
+import { defineComponent, ref, watchEffect, onMounted } from 'vue';
+import { activeTheme } from '../store/theme';
+import { getRandTo } from '../utils';
+import * as drawer from '../utils/drawer';
 
 export default defineComponent({
 	name: 'HexaGrid',
 	setup() {
-		const backdrop = ref('')
+		const backdrop = ref('');
 
 		function sizeBg() {
-			const screenWidth = window.innerWidth
-			const screenHeight = window.innerHeight
-			const smallerDim = screenWidth < screenHeight ? screenWidth : screenHeight
-			if (smallerDim > 1080) return 'bg-lg/'
-			if (smallerDim > 576) return 'bg-md/'
-			else return 'bg-sm/'
+			const screenWidth = window.innerWidth;
+			const screenHeight = window.innerHeight;
+			const smallerDim = screenWidth < screenHeight ? screenWidth : screenHeight;
+			if (smallerDim > 1080) return 'bg-lg/';
+			if (smallerDim > 576) return 'bg-md/';
+			else return 'bg-sm/';
 		}
 
 		watchEffect(() => {
-			backdrop.value = 'url(/' + sizeBg() + activeTheme.value + getRandTo(5) + '.jpg)'
-		})
+			backdrop.value = 'url(/' + sizeBg() + activeTheme.value + getRandTo(5) + '.jpg)';
+		});
 
-		onMounted(() => drawer.close())
+		onMounted(() => drawer.close());
 
 		return {
 			backdrop,
-		}
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss">

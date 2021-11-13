@@ -1,7 +1,6 @@
 <template lang="pug">
 .brand(
 	:class="direction, size, {grows: grows}"
-	@click.stop="isSpinning = !isSpinning"
 	tabindex="0"
 	)
 	transition(name="popup" appear)
@@ -14,9 +13,9 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
-import {SITE_TITLE} from '../constants'
-import Spinnable from './Spinnable.vue'
+import { defineComponent } from 'vue';
+import { SITE_TITLE } from '../constants';
+import Spinnable from './Spinnable.vue';
 
 export default defineComponent({
 	name: 'LogoBrand',
@@ -38,9 +37,9 @@ export default defineComponent({
 	setup() {
 		return {
 			title: SITE_TITLE,
-		}
+		};
 	},
-})
+});
 </script>
 <style lang="postcss">
 .brand {

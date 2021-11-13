@@ -9,8 +9,8 @@ Turnable(v-else :class="{trigram}")
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import Turnable from './Turnable.vue'
+import { defineComponent } from 'vue';
+import Turnable from './Turnable.vue';
 
 export default defineComponent({
 	name: 'LineGlyph',
@@ -32,7 +32,7 @@ export default defineComponent({
 		trigram: Boolean,
 		noturn: Boolean,
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>

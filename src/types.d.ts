@@ -1,1 +1,1 @@
-declare module '@feedback-fish/vue'
+declare module '@feedback-fish/vue';

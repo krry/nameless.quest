@@ -49,7 +49,7 @@ transition(name="fade")
 				.field
 					label.font.lg(for="notes") Context/Notes/Insight
 					textarea#notes(
-						autoresize
+						v-autoresize
 						v-model.lazy="roll.notes"
 						@blur="updateRoll(roll)"
 					)
@@ -62,10 +62,11 @@ transition(name="fade")
 <script lang="ts">
 import { defineComponent, ref, watchEffect } from 'vue';
 import contenteditable from 'vue-contenteditable';
+import { updateProfile } from 'firebase/auth';
 import { auth } from '../firebase';
+import { Roll } from '../schema';
 import { set } from '../store';
 import { cache, cached } from '../store/cache';
-import { Roll } from '../schema';
 import { activeRolls, getRolls, deleteRoll, updateRoll } from '../store/rolls';
 import { parseTossToBinary } from '../utils/tosses';
 import { useHexagrams } from '../composables/hexagrams';
@@ -146,9 +147,11 @@ export default defineComponent({
 
 		function saveName(llamo: string) {
 			cache('name', llamo);
-			auth.currentUser?.updateProfile({
-				displayName: llamo,
-			});
+			const user = auth.currentUser;
+			user &&
+				updateProfile(user, {
+					displayName: llamo,
+				});
 			// console.log('auth.currentUser now has name', auth.currentUser, llamo)
 		}
 

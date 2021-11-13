@@ -22,7 +22,7 @@
 		"pre-deploy": "npm run tidy && npm run build",
 		"prepare": "husky install",
 		"pre-push": "npm run tidy && npm run build",
-		"preview": "npm run build && npm run serve",
+		"preview": "npm run serve",
 		"pre-release": "bump && npm run commit && git push --tags",
 		"release": "netlify deploy --prod",
 		"serve": "vite preview --port 2021",
@@ -38,16 +38,16 @@
 	},
 	"dependencies": {
 		"@feedback-fish/vue": "^1.0.1",
-		"@sanity/block-content-to-html": "^1.3.8",
-		"@sanity/client": "^2.21.10",
-		"@sanity/image-url": "^0.140.22",
-		"firebase": "^8.10.0",
+		"firebase": "9",
 		"vue": "^3.2.21",
 		"vue-contenteditable": "^3.0.4",
 		"vue-router": "4",
 		"vue-scrollto": "^2.20.0"
 	},
 	"devDependencies": {
+		"@commitlint/config-conventional": "^14.1.0",
+		"@commitlint/cz-commitlint": "^14.1.0",
+		"@commitlint/prompt": "^14.1.0",
 		"@types/node": "^16.11.7",
 		"@typescript-eslint/eslint-plugin": "^5.3.1",
 		"@typescript-eslint/parser": "^5.3.1",
@@ -59,11 +59,14 @@
 		"@vueuse/core": "^6.8.0",
 		"@vueuse/head": "^0.6.0",
 		"browserslist": "^4.17.6",
+		"commitizen": "^4.2.4",
+		"cz-conventional-changelog": "^3.3.0",
 		"eslint": "^8.2.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-vue": "^8.0.3",
 		"https-localhost": "^4.7.0",
 		"husky": "7.0.4",
+		"inquirer": "^8.2.0",
 		"postcss": "^8.3.11",
 		"postcss-advanced-variables": "^3.0.1",
 		"postcss-font-magician": "^3.0.0",
@@ -90,6 +93,8 @@
 		"defaults"
 	],
 	"peerDependencies": {
+		"commitizen": "^4.2.4",
+		"inquirer": "^8.2.0",
 		"rollup": "^2.59.0",
 		"workbox-build": "^6.3.0",
 		"workbox-window": "^6.3.0"

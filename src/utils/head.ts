@@ -61,7 +61,12 @@ export const appHeadTags = {
 		{ rel: 'author', href: 'https://kerrbe.ar', undo: false },
 		{ rel: 'icon', type: 'image/svg+xml', href: root + icon },
 		{ rel: 'shortcut icon', type: 'image/x-icon', href: root + favicon },
-		{ rel: 'alternate icon', type: 'image/png', sizes: '16x16', href: root + favicon },
+		{
+			rel: 'alternate icon',
+			type: 'image/png',
+			sizes: '16x16',
+			href: root + favicon,
+		},
 		{ rel: 'mask-icon', type: 'image/svg', href: root + icon },
 		{ rel: 'apple-touch-icon', sizes: '180x180', href: root + appleIcon },
 		// { rel: 'apple-touch-startup-image', href: root + appleStartup },

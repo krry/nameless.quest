@@ -1,6 +1,6 @@
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/firestore'
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -11,14 +11,11 @@ const firebaseConfig = {
 	storageBucket: 'nameless-magic.appspot.com',
 	messagingSenderId: '386380781673',
 	appId: '1:386380781673:web:265412564c620104f4aaf8',
-}
-firebase.initializeApp(firebaseConfig)
+};
 
-const db = firebase.firestore()
-const auth = firebase.auth()
-auth.useDeviceLanguage()
-export type UserCredential = firebase.auth.UserCredential
-export type DocRef = firebase.firestore.DocumentReference
-export type Transaction = firebase.firestore.Transaction
+const firebaseApp = initializeApp(firebaseConfig);
+const db = getFirestore(firebaseApp);
+const auth = getAuth(firebaseApp);
+auth.useDeviceLanguage();
 
-export {db, auth}
+export { db, auth, firebaseApp };

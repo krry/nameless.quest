@@ -7,16 +7,16 @@ Page.not-found
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
-import Page from '../components/Page.vue'
-import LogoBrand from '../components/LogoBrand.vue'
+import { defineComponent } from 'vue';
+import Page from '../components/Page.vue';
+import LogoBrand from '../components/LogoBrand.vue';
 export default defineComponent({
 	name: 'NotFound',
 	components: {
 		Page,
 		LogoBrand,
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>

@@ -14,17 +14,17 @@ transition-group(
 </template>
 
 <script lang="ts">
-import {defineComponent, reactive, computed, toRefs, provide, InjectionKey} from 'vue'
+import { defineComponent, reactive, computed, toRefs, provide, InjectionKey } from 'vue';
 
-import ChangeNode from './ChangeNode.vue'
-import {useHexagrams} from '../composables/hexagrams'
-import {activeTheme} from '../store/theme'
-import {cfg, tog} from '../store'
-import {getRandTo} from '../utils'
-import {activeLots, setLots, clearLots} from '../store/lots'
+import ChangeNode from './ChangeNode.vue';
+import { useHexagrams } from '../composables/hexagrams';
+import { activeTheme } from '../store/theme';
+import { cfg, tog } from '../store';
+import { getRandTo } from '../utils';
+import { activeLots, setLots, clearLots } from '../store/lots';
 
 // TODO: extract reorderTiles to a tiles composable or util
-export const reorderKey = Symbol('reorder') as InjectionKey<() => void>
+export const reorderKey = Symbol('reorder') as InjectionKey<() => void>;
 
 export default defineComponent({
 	name: 'HexaGrid',
@@ -32,17 +32,17 @@ export default defineComponent({
 		ChangeNode,
 	},
 	setup() {
-		let refreshBg = 1
-		const theme = activeTheme
-		const {getHexagrams} = useHexagrams()
+		let refreshBg = 1;
+		const theme = activeTheme;
+		const { getHexagrams } = useHexagrams();
 
 		function sizeBg() {
-			const screenWidth = window.innerWidth
-			const screenHeight = window.innerHeight
-			const smallerDim = screenWidth < screenHeight ? screenWidth : screenHeight
-			if (smallerDim > 1080) return 'bg-lg/'
-			if (smallerDim > 576) return 'bg-md/'
-			else return 'bg-sm/'
+			const screenWidth = window.innerWidth;
+			const screenHeight = window.innerHeight;
+			const smallerDim = screenWidth < screenHeight ? screenWidth : screenHeight;
+			if (smallerDim > 1080) return 'bg-lg/';
+			if (smallerDim > 576) return 'bg-md/';
+			else return 'bg-sm/';
 		}
 
 		const rx = reactive({
@@ -50,52 +50,52 @@ export default defineComponent({
 			backdrop: computed(
 				() => (refreshBg && 'url(/' + sizeBg() + theme.value + getRandTo(5) + '.jpg)') || ''
 			),
-		})
+		});
 
 		function reorderTiles() {
-			const lots = activeLots.value
-			clearLots()
-			refreshBg++
-			tog('wenny')
+			const lots = activeLots.value;
+			clearLots();
+			refreshBg++;
+			tog('wenny');
 			if (lots) {
 				setTimeout(() => {
-					return setLots(lots)
-				}, 1000)
+					return setLots(lots);
+				}, 1000);
 			}
 		}
 
-		provide(reorderKey, reorderTiles)
+		provide(reorderKey, reorderTiles);
 
 		return {
 			clearLots,
 			...toRefs(rx),
-		}
+		};
 	},
 	mounted() {
-		document.addEventListener('keyup', this.onArrows)
+		document.addEventListener('keyup', this.onArrows);
 	},
 	unmounted() {
-		document.removeEventListener('keyup', this.onArrows)
+		document.removeEventListener('keyup', this.onArrows);
 	},
 	methods: {
 		onArrows(e: KeyboardEvent) {
-			const arrows = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown']
-			if (!e.key || arrows.indexOf(e.key) === -1) return
+			const arrows = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
+			if (!e.key || arrows.indexOf(e.key) === -1) return;
 			if (e.key === 'ArrowLeft') {
-				console.log('hit arrow', e.key, e.target)
+				console.log('hit arrow', e.key, e.target);
 			}
 			if (e.key === 'ArrowRight') {
-				console.log('hit arrow', e.key, e.target)
+				console.log('hit arrow', e.key, e.target);
 			}
 			if (e.key === 'ArrowUp') {
-				console.log('hit arrow', e.key, e.target)
+				console.log('hit arrow', e.key, e.target);
 			}
 			if (e.key === 'ArrowDown') {
-				console.log('hit arrow', e.key, e.target)
+				console.log('hit arrow', e.key, e.target);
 			}
 		},
 	},
-})
+});
 </script>
 
 <style scoped lang="postcss">

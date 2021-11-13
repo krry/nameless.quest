@@ -1,21 +1,21 @@
-import {RouteLocationNormalized} from 'vue-router'
-import {changeGuard} from './guards'
-import Changes from '../views/Changes.vue'
-import Oracle from '../components/Oracle.vue'
-import About from '../views/About.vue'
-import Config from '../views/Config.vue'
-import Journal from '../views/Journal.vue'
-import Login from '../views/Login.vue'
-import Gratitude from '../views/Gratitude.vue'
-import Change from '../views/Change.vue'
-import NotFound from '../views/NotFound.vue'
+import { RouteLocationNormalized } from 'vue-router';
+import { changeGuard } from './guards';
+import Changes from '../views/Changes.vue';
+import Oracle from '../components/Oracle.vue';
+import About from '../views/About.vue';
+import Config from '../views/Config.vue';
+import Journal from '../views/Journal.vue';
+import Login from '../views/Login.vue';
+import Gratitude from '../views/Gratitude.vue';
+import Change from '../views/Change.vue';
+import NotFound from '../views/NotFound.vue';
 
 const routes = [
 	{
 		path: '/',
 		name: 'oracle',
 		component: Oracle,
-		props: (route: RouteLocationNormalized): {fresh: boolean} => ({
+		props: (route: RouteLocationNormalized): { fresh: boolean } => ({
 			fresh: route.params.reset === 'true',
 		}),
 	},
@@ -38,7 +38,7 @@ const routes = [
 		path: '/journal',
 		name: 'journal',
 		component: Journal,
-		meta: {requiresAuth: true},
+		meta: { requiresAuth: true },
 	},
 	{
 		path: '/login',
@@ -62,6 +62,6 @@ const routes = [
 		name: 'not-found',
 		component: NotFound,
 	},
-]
+];
 
-export default routes
+export default routes;

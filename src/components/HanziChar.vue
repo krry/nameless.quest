@@ -14,8 +14,8 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, watchEffect} from 'vue'
-import {cfg} from '../store'
+import { defineComponent, ref, watchEffect } from 'vue';
+import { cfg } from '../store';
 
 export default defineComponent({
 	name: 'HanziChar',
@@ -45,24 +45,24 @@ export default defineComponent({
 		inline: Boolean,
 	},
 	setup(props) {
-		const pinny = ref(cfg.pinny)
+		const pinny = ref(cfg.pinny);
 
 		function showPinny(ev: MouseEvent) {
 			if (props.reveal) {
-				ev.stopPropagation()
-				pinny.value = !pinny.value
+				ev.stopPropagation();
+				pinny.value = !pinny.value;
 			}
 		}
 
-		watchEffect(() => (pinny.value = cfg.pinny))
+		watchEffect(() => (pinny.value = cfg.pinny));
 
 		return {
 			pinny,
 			cfg,
 			showPinny,
-		}
+		};
 	},
-})
+});
 </script>
 
 <style scoped lang="postcss">

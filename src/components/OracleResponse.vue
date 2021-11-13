@@ -1,5 +1,5 @@
 <template lang="pug">
-.response.flex.wrap.mid(v-if="hexs")
+#oracle_response.response.flex.wrap.mid(v-if="hexs")
 	blockquote
 		h2 {{cached.query.trim()}}
 	h1.whole The Oracle Responds
@@ -52,7 +52,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import IconBase from '../icons/IconBase.vue';
 import IconSix from '../icons/IconSix.vue';
@@ -68,6 +68,7 @@ import { activeLots, setLots } from '../store/lots';
 import { parseTossToBinary } from '../utils/tosses';
 import { useHexagrams } from '../composables/hexagrams';
 import { symbolize, lineIconByNumber } from '../plugins/utils';
+import VueScrollTo from 'vue-scrollto';
 
 export default defineComponent({
 	name: 'OracleResponse',
@@ -88,9 +89,10 @@ export default defineComponent({
 		// console.log('hexs', hexs.value)
 
 		function clearBoth(event?: MouseEvent, confirmed = false) {
-			if (event) event.preventDefault();
 			const clearAffirmed =
-				confirmed ?? confirm("Are you sure you want to start over? This will clear today's entry.");
+				confirmed ||
+				confirm('Are you sure you want to start over? This will clear the current entry.');
+
 			if (clearAffirmed) {
 				cfg.saved = false;
 				uncache('query');
@@ -98,10 +100,12 @@ export default defineComponent({
 				uncache('step');
 			}
 		}
+
 		if (cached.uid) {
 			cacheRoll();
 			cfg.saved = true;
 		}
+
 		function lilMoments(moment: Date) {
 			return {
 				seconds: moment.getTime() / 1000,
@@ -133,6 +137,13 @@ export default defineComponent({
 			cacheRoll();
 			router.push('/journal');
 		}
+
+		onMounted(() => {
+			if (cached.uid) {
+				cfg.saved = true;
+			}
+			VueScrollTo.scrollTo('#oracle_response', 500);
+		});
 
 		return {
 			cfg,

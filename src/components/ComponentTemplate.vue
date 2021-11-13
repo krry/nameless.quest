@@ -3,28 +3,28 @@ ImportedComponent.scope(:key="key")
 </template>
 
 <script lang="ts">
-import {defineComponent, reactive, toRefs} from 'vue'
-import store from '../store'
-import ImportedComponent from '../components/ImportedComponent.vue'
+import { defineComponent, reactive, toRefs } from 'vue';
+import { cached } from '../store/cache';
+import ImportedComponent from '../components/ImportedComponent.vue';
 
 export default defineComponent({
-  name: 'ComponentName',
-  components: {
-    ImportedComponent,
-  },
-  setup() {
-    const rx = reactive({
-      key: store.get('key'),
-    })
-    return {
-      ...toRefs(rx),
-    }
-  },
-})
+	name: 'ComponentName',
+	components: {
+		ImportedComponent,
+	},
+	setup() {
+		const rx = reactive({
+			key: cached['key'],
+		});
+		return {
+			...toRefs(rx),
+		};
+	},
+});
 </script>
 
 <style lang="postcss" scoped>
 .scope {
-  border: 1px solid yellow;
+	border: 1px solid yellow;
 }
 </style>

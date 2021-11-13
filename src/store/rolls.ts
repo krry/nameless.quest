@@ -1,7 +1,8 @@
 import { ref } from 'vue';
 import { Roll } from '../schema';
 import { cached } from './cache';
-import { db, DocRef, Transaction } from '../firebase';
+import { db } from '../firebase';
+import { doc, getDoc, getDocs, addDoc, updateDoc, deleteDoc, collection } from 'firebase/firestore';
 
 export const cachedRoll = ref<Roll | null>();
 export const activeRolls = ref<Roll[]>([]);
@@ -33,25 +34,11 @@ export const saveRoll = (roll: Roll): void => {
 }
 */
 
-/* if using Firestore */
+/* if using Firestore, here's the path through the data model jungle */
 const userRollsPath = cached.uid ? 'users/' + cached.uid + '/rolls' : 'rolls';
 
-export function getRolls(): void {
-	activeRolls.value = [];
-	// console.log('getting rolls')
-	db.collection(userRollsPath)
-		.get()
-		.then(querySnapshot => {
-			querySnapshot.forEach(doc => {
-				// doc.data() is never undefined for query doc snapshots
-				// console.log('roll doc', doc.id, '=>', doc.data())
-				activeRolls.value.push({ id: doc.id, ...doc.data() } as Roll);
-			});
-		})
-		.catch(error => console.error("couldn't retrieve rolls", error));
-}
-
-export function addRoll(roll: Roll): DocRef | void {
+// CREATE
+export async function addRoll(roll: Roll): Promise<void> {
 	console.log('roll to save', roll);
 	// TODO: first check the collection for a roll with the same query and toss
 	const queryIndex = activeRolls.value.map(roll => roll.query).indexOf(roll.query);
@@ -59,40 +46,50 @@ export function addRoll(roll: Roll): DocRef | void {
 	if ((queryIndex !== -1 || tossIndex !== -1) && queryIndex === tossIndex) {
 		return;
 	}
-	db.collection(userRollsPath)
-		.add(roll)
-		.then(docRef => {
-			console.log('roll added to firestore', docRef);
-			return docRef;
-		})
-		.catch(error => console.error("couldn't add roll", error));
+	const docRef = await addDoc(collection(db, userRollsPath), roll);
+	console.log('added roll', docRef.id);
 }
 
-export function updateRoll(roll: Roll): Promise<void> {
+// READ
+export async function getRolls(): Promise<void> {
+	// console.log('getting rolls')
+	const querySnapshot = await getDocs(collection(db, userRollsPath));
+	if (!querySnapshot) return;
+	activeRolls.value = [];
+	querySnapshot.forEach(doc => {
+		// doc.data() is never undefined for query doc snapshots
+		// console.log('roll doc', doc.id, '=>', doc.data())
+		activeRolls.value.push({ id: doc.id, ...doc.data() } as Roll);
+	});
+}
+
+// UPDATE
+export async function updateRoll(roll: Roll): Promise<void> {
 	// console.log('updating roll', roll)
-	const rollRef = db.collection(userRollsPath).doc(roll.id);
-	return db
-		.runTransaction((transaction: Transaction) => {
-			return transaction.get(rollRef).then(r => {
-				if (!r.exists) throw new Error("ain't no rolls like dat-a");
-				transaction.update(rollRef, roll);
-			});
-		})
-		.then(() => console.log('able to update roll', roll.id))
-		.catch(error => console.error('struggled to update roll', roll, error));
+	if (!roll.id) return;
+	const rollRef = doc(db, userRollsPath, roll.id);
+	const rollSnap = await getDoc(rollRef);
+
+	if (rollSnap.exists()) {
+		const rollData = rollSnap.data();
+		if (rollData) {
+			const rollDataWithNotes = { ...rollData, notes: roll.notes };
+			await updateDoc(rollRef, rollDataWithNotes);
+			console.log('updated roll', roll.id);
+		}
+	} else {
+		console.error('roll not found', roll.id);
+	}
 }
 
-export function deleteRoll(id: string): void {
+export async function deleteRoll(docId: string): Promise<void> {
 	// tell firebase to wipe this roll from the books
-	db.collection(userRollsPath)
-		.doc(id)
-		.delete()
-		.then(() => {
-			// console.log('deleted roll', id)
-			// TODO: How can we refresh the journal entries after delete?
-			getRolls();
-		})
-		.catch(error => console.error('struggled to delete roll', id, error));
+	const docRef = doc(db, userRollsPath, docId);
+	if (!docRef) return;
+	await deleteDoc(doc(db, userRollsPath, docId));
+	console.log('deleted roll', docId);
+	// TODO: How can we refresh the journal entries after delete?
+	getRolls();
 }
 
 // export function saveRoll(id: string, roll: Roll): void {
