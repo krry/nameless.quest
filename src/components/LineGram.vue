@@ -2,37 +2,37 @@
 .gram(v-if="changingLines[content.position-1]")
   .line-side(v-if="changingLines[content.position-1] === '6'")
     IconBase
-      Icon6
+      IconSix
   .line-side(v-else-if="changingLines[content.position-1] === '9'")
     IconBase
-      Icon9
+      IconNine
   .the-rest
     .pos-num
-      span Line {{ content.position }}: 
+      span Line {{ content.position }}:
       span(v-if="changingLines[content.position-1] === '6'")
-        b yin 
-        span ⤐ 
+        b yin
+        span ⤐
         b yang
       span(v-else-if="changingLines[content.position-1] === '9'")
-        b yang 
-        span ⤐ 
+        b yang
+        span ⤐
         b yin
     pre.meaning.font.sm.fine {{ content.meaning }}
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType, computed} from 'vue'
-import {defHex, Gram} from '../schema'
-import IconBase from '../icons/IconBase.vue'
-import Icon6 from '../icons/Icon6.vue'
-import Icon9 from '../icons/Icon9.vue'
+import { defineComponent, PropType, computed } from 'vue';
+import { defHex, Gram } from '../schema';
+import IconBase from '../icons/IconBase.vue';
+import IconSix from '../icons/IconSix.vue';
+import IconNine from '../icons/IconNine.vue';
 
 export default defineComponent({
 	name: 'LineGram',
 	components: {
 		IconBase,
-		Icon6,
-		Icon9,
+		IconSix,
+		IconNine,
 	},
 	props: {
 		content: {
@@ -46,17 +46,17 @@ export default defineComponent({
 	},
 	setup(props) {
 		const changingLines = computed((): string[] => {
-			return props.toss.split('').map((char) => {
-				if (char === '6' || char === '9') return char
-				else return ''
-			})
-		})
+			return props.toss.split('').map(char => {
+				if (char === '6' || char === '9') return char;
+				else return '';
+			});
+		});
 
 		return {
 			changingLines,
-		}
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>

@@ -36,15 +36,15 @@ Spinnable(
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, onMounted} from 'vue'
-import IconBase from '../icons/IconBase.vue'
-import IconCauldron from '../icons/IconCauldron.vue'
-import IconMiracle from '../icons/IconMiracle.vue'
-import IconWizardsHat from '../icons/IconWizardsHat.vue'
-import IconInfinitySign from '../icons/IconInfinitySign.vue'
-import Spinnable from '../components/Spinnable.vue'
+import { defineComponent, ref, onMounted } from 'vue';
+import IconBase from '../icons/IconBase.vue';
+import IconCauldron from '../icons/IconCauldron.vue';
+import IconMiracle from '../icons/IconMiracle.vue';
+import IconWizardsHat from '../icons/IconWizardsHat.vue';
+import IconInfinitySign from '../icons/IconInfinitySign.vue';
+import Spinnable from '../components/Spinnable.vue';
 export default defineComponent({
-	name: 'Waiter',
+	name: 'WaiterSpinner',
 	components: {
 		IconBase,
 		IconCauldron,
@@ -54,15 +54,15 @@ export default defineComponent({
 		Spinnable,
 	},
 	setup() {
-		const waiter = ref<HTMLElement>()
+		const waiter = ref<HTMLElement>();
 		onMounted(() => {
-			if (waiter.value) waiter.value.style.animationPlayState = 'running'
-		})
+			if (waiter.value) waiter.value.style.animationPlayState = 'running';
+		});
 		return {
 			waiter,
-		}
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>

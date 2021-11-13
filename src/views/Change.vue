@@ -30,8 +30,8 @@ Page.font.center#change(
 			LineGlyph(:glyph="hex.hexagram" noturn inline size="x8l")
 		.flex.col.mid
 			HanziChar(
-				v-for="(char, index) in hex.names.chinese"
-				:key="$symbolize(char)"
+				v-for="(char, index) in [...hex.names.chinese]"
+				:key="symbolize(char)"
 				:char="char"
 				:pinyin="pinyin[index]"
 				place="side"
@@ -60,10 +60,10 @@ Page.font.center#change(
 			.flex.string.col.dyn
 				.datum.trigram.flex.string.laze.btw(
 					v-for="(tri, index) in trigrams"
-					:key="$symbolize(tri.name.en)"
+					:key="symbolize(tri.name.en)"
 					)
 					.flex.col.end.more.trivert
-						dt {{ $titlize(tri.name.en) }}
+						dt {{ titlize(tri.name.en) }}
 						dt {{ index === 0 ? "Above" : "Below" }}
 					.flex.col.mid.less
 						HanziChar(
@@ -86,21 +86,21 @@ Page.font.center#change(
 		h2.btn.naked.xl.clickable(@click="tog('liney')") {{ cfg.liney ? 'All Lines' : 'Changing Lines'}}
 		section(
 			v-for="line in hex.lines"
-			:key="$symbolize(line.position)"
+			:key="symbolize(line.position)"
 			v-show="lineIsChanging(line.position)"
 			)
 			Turnable(ortho)
 				IconBase(size="60" iconColor="var(--flair)")
-					component(:is="'Icon' + getChangingLine(line.position).icon")
-			h4.font.lg Line {{line.position + ': ' + getChangingLine(line.position).desc }}
+					component(:is="lineIconByNumber(getChangingLine(line.position)?.icon)")
+			h4.font.lg Line {{line.position + ': ' + getChangingLine(line.position)?.desc }}
 			.flex.mid
 				.icon.font.x3l
 				IconBase(size="36")
-					component(:is="'Icon' + getChangingLine(line.position).was")
+					component(:is="lineIconByNumber(getChangingLine(line.position)?.was)")
 				.icon.font.x3l ⇢
 				IconBase(size="36")
-					component(:is="'Icon' + getChangingLine(line.position).is")
-			h5.text.md.em(v-if="line.ruler") The {{ $titlize(line.ruler) }} Ruler
+					component(:is="lineIconByNumber(getChangingLine(line.position)?.is)")
+			h5.text.md.em(v-if="line.ruler") The {{ titlize(line.ruler) }} Ruler
 			pre.text.md.line {{line.meaning}}
 	hr.dinkus.fleur.x3l
 	h3
@@ -112,7 +112,7 @@ Page.font.center#change(
 	.grid8
 		AppLink.btn.naked(
 			v-for="h in getHexagrams(cfg.wenny)"
-			:key="$symbolize(h[1].kingwen)"
+			:key="symbolize(h[1].kingwen)"
 			@click="scrollTo('#change')"
 			:class="{static: h[1].kingwen === hex.kingwen}, {outline: h[1].kingwen.toString() === getWenByBin(lots[0])}, {outline: h[1].kingwen.toString() === getWenByBin(lots[1])}"
 			:to="'/changes/'+h[1].kingwen"
@@ -120,44 +120,45 @@ Page.font.center#change(
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, toRefs, reactive, watchEffect, onMounted, computed} from 'vue'
-import {cfg, set, tog} from '../store'
-import {cached} from '../store/cache'
-import VueScrollTo from 'vue-scrollto'
-import {parseTossToBinary} from '../utils/tosses'
-import {useHexagrams} from '../composables/hexagrams'
-import {useTrigrams} from '../composables/trigrams'
-import Page from '../components/Page.vue'
-import AppLink from '../components/AppLink.vue'
-import HanziChar from '../components/HanziChar.vue'
-import LineGlyph from '../components/LineGlyph.vue'
-import Spinnable from '../components/Spinnable.vue'
-import Turnable from '../components/Turnable.vue'
-import LineGram from '../components/LineGram.vue'
-import IconBase from '../icons/IconBase.vue'
-import Icon6 from '../icons/Icon6.vue'
-import Icon7 from '../icons/Icon7.vue'
-import Icon8 from '../icons/Icon8.vue'
-import Icon9 from '../icons/Icon9.vue'
+import { defineComponent, ref, toRefs, reactive, watchEffect, onMounted, computed } from 'vue';
+import { cfg, set, tog } from '../store';
+import { cached } from '../store/cache';
+import VueScrollTo from 'vue-scrollto';
+import { parseTossToBinary } from '../utils/tosses';
+import { useHexagrams } from '../composables/hexagrams';
+import { useTrigrams } from '../composables/trigrams';
+import Page from '../components/Page.vue';
+import AppLink from '../components/AppLink.vue';
+import HanziChar from '../components/HanziChar.vue';
+import LineGlyph from '../components/LineGlyph.vue';
+import Spinnable from '../components/Spinnable.vue';
+import Turnable from '../components/Turnable.vue';
+import LineGram from '../components/LineGram.vue';
+import IconBase from '../icons/IconBase.vue';
+import IconSix from '../icons/IconSix.vue';
+import IconSeven from '../icons/IconSeven.vue';
+import IconEight from '../icons/IconEight.vue';
+import IconNine from '../icons/IconNine.vue';
+import { symbolize, titlize, lineIconByNumber } from '../plugins/utils';
 
 function getPrevHex(id: string): string {
 	if (id === '1') {
-		return '64'
+		return '64';
 	} else {
-		return (parseInt(id) - 1).toString()
+		return (parseInt(id) - 1).toString();
 	}
 }
 
 function getNextHex(id: string): string {
 	if (id === '64') {
-		return '1'
+		return '1';
 	} else {
-		return (parseInt(id) + 1).toString()
+		return (parseInt(id) + 1).toString();
 	}
 }
 
 export default defineComponent({
-	name: 'Change',
+	name: 'ChangePage',
 	components: {
 		Page,
 		AppLink,
@@ -167,10 +168,10 @@ export default defineComponent({
 		IconBase,
 		Turnable,
 		Spinnable,
-		Icon6,
-		Icon7,
-		Icon8,
-		Icon9,
+		IconSix,
+		IconSeven,
+		IconEight,
+		IconNine,
 	},
 	props: {
 		id: {
@@ -179,11 +180,11 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
-		const {getHexagrams, getHexagramByWen, getWenByBin} = useHexagrams()
-		const {getTrigram} = useTrigrams()
+		const { getHexagrams, getHexagramByWen, getWenByBin } = useHexagrams();
+		const { getTrigram } = useTrigrams();
 
-		const hex = ref(getHexagramByWen(props.id))
-		const lots = ref(parseTossToBinary(cached.toss))
+		const hex = ref(getHexagramByWen(props.id));
+		const lots = ref(parseTossToBinary(cached.toss));
 
 		const rx = reactive({
 			hex,
@@ -194,110 +195,113 @@ export default defineComponent({
 			prev: getPrevHex(props.id),
 			next: getNextHex(props.id),
 			pinyin: computed(() => hex.value.names.pinyin.split(' ')),
-		})
+		});
 
 		function lineIsChanging(lineNo: number) {
-			const lineCode = cached.toss.split('')[lineNo - 1]
-			const tossedThisLot = lots.value && lots.value[0] === rx.hex.binary
-			const activeLines = tossedThisLot && (lineCode === '6' || lineCode === '9')
-			return activeLines || !cached.toss || cfg.liney
+			const lineCode = cached.toss.split('')[lineNo - 1];
+			const tossedThisLot = lots.value && lots.value[0] === rx.hex.binary;
+			const activeLines = tossedThisLot && (lineCode === '6' || lineCode === '9');
+			return activeLines || !cached.toss || cfg.liney;
 		}
 
 		const trigrams = computed(() => {
-			return Object.values(rx.hex.trigramPair).map(t => getTrigram(t))
-		})
+			return Object.values(rx.hex.trigramPair).map(t => getTrigram(t));
+		});
 
 		watchEffect(() => {
-			rx.prev = getPrevHex(props.id)
-			rx.next = getNextHex(props.id)
-		})
+			rx.prev = getPrevHex(props.id);
+			rx.next = getNextHex(props.id);
+		});
 
 		onMounted(() => {
 			document.addEventListener(
 				'mousemove',
 				function onMouseMove() {
 					// see if there's a mouse in the house
-					document.removeEventListener('mousemove', onMouseMove, false)
-					rx.mousePresent = true
+					document.removeEventListener('mousemove', onMouseMove, false);
+					rx.mousePresent = true;
 				},
 				false
-			)
+			);
 
 			document.addEventListener('touchmove', function onTouchMove() {
 				// see if anyone's in touch
-				document.removeEventListener('touchmove', onTouchMove, false)
-				rx.touchPresent = true
-				set('navvy', true)
-			})
+				document.removeEventListener('touchmove', onTouchMove, false);
+				rx.touchPresent = true;
+				set('navvy', true);
+			});
 
 			// const gestureZone = rx.desk
 			// console.log('gesureZone', gestureZone)
 			// if (!gestureZone) return
 			// gestureZone.addEventListener('touchstart', handleSwipeStart, false)
 			// gestureZone.addEventListener('touchend', handleSwipeEnd, false)
-		})
+		});
 
 		return {
 			cfg,
 			tog,
 			cached,
+			titlize,
 			trigrams,
+			symbolize,
 			getWenByBin,
 			getHexagrams,
 			lineIsChanging,
+			lineIconByNumber,
 			scrollTo: VueScrollTo.scrollTo,
 			getHexagramByWen,
 			...toRefs(rx),
-		}
+		};
 	},
 	watch: {
 		$route(to) {
-			this.hex = this.getHexagramByWen(to.params.id)
+			this.hex = this.getHexagramByWen(to.params.id);
 		},
 	},
 	mounted() {
-		window.addEventListener('keydown', this.handleArrowNav, true)
+		window.addEventListener('keydown', this.handleArrowNav, true);
 	},
 	unmounted() {
-		window.removeEventListener('keydown', this.handleArrowNav, true)
+		window.removeEventListener('keydown', this.handleArrowNav, true);
 	},
 	methods: {
 		getChangingLine(pos: number) {
 			if (this.hex?.binary) {
 				return this.hex.binary.slice(2).split('').reverse()[pos - 1] === '0'
-					? {icon: '6', was: '8', is: '7', desc: 'Yin Firming'}
-					: {icon: '9', was: '7', is: '8', desc: 'Yang Opening'}
-			} else return
+					? { icon: '6', was: '8', is: '7', desc: 'Yin Firming' }
+					: { icon: '9', was: '7', is: '8', desc: 'Yang Opening' };
+			} else return;
 		},
 		navTo(route: string) {
-			if (cfg.justCast) return
-			set('navvy', true)
-			this.$router.push(route)
+			if (cfg.justCast) return;
+			set('navvy', true);
+			this.$router.push(route);
 		},
 		handleArrowNav(e: KeyboardEvent) {
 			if (e.key === 'ArrowLeft') {
-				e.preventDefault()
-				this.$router.push(this.prev)
-				set('navvy', true)
+				e.preventDefault();
+				this.$router.push(this.prev);
+				set('navvy', true);
 			}
 			if (e.key === 'ArrowRight') {
-				e.preventDefault()
-				this.$router.push(this.next)
-				set('navvy', true)
+				e.preventDefault();
+				this.$router.push(this.next);
+				set('navvy', true);
 			}
 		},
 		adoptOrphans(text: string): string {
 			// if there are multiple words in the string
 			// console.log('adopting orphans', text)
 			if (text.split(' ').length > 1) {
-				const words = text.split(' ')
-				const lastWord = words.pop()
+				const words = text.split(' ');
+				const lastWord = words.pop();
 				// replace the space before the last word with &nbsp;
-				return words.join(' ') + '&nbsp;' + lastWord
-			} else return text
+				return words.join(' ') + '&nbsp;' + lastWord;
+			} else return text;
 		},
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>
@@ -353,7 +357,7 @@ pre.line {
 	line-height: var(--pleading);
 }
 
-dl + dl::before {
+dl + dl:before {
 	content: '⤐';
 	margin: 0 0 1em;
 	font-size: 3rem;

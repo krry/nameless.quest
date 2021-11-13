@@ -10,7 +10,7 @@ article.change-node(
       :hex="hex"
       :mark="mark"
       :liney="liney"
-      :quad="setQuadrant()"
+      :quad="setQuadrant"
       @close="removeLot(hexId)"
     )
   HexaFrame(:hex="hex")
@@ -36,20 +36,20 @@ import {
 	InjectionKey,
 	onMounted,
 	computed,
-} from 'vue'
+} from 'vue';
 
-import { defHex, Hexagram, defQuad, Quad } from '../schema'
-import { determineQuadrant } from '../utils/cards'
-import { cfg } from '../store'
-import { cached } from '../store/cache'
-import { parseTossToBinary } from '../utils/tosses'
-import { activeLots, saveLot, removeLot, clearLots } from '../store/lots'
-import HexaCard from './HexaCard.vue'
-import HexaTile from './HexaTile.vue'
-import HexaFrame from './HexaFrame.vue'
+import { defHex, Hexagram, defQuad, Quad } from '../schema';
+import { determineQuadrant } from '../utils/cards';
+import { cfg } from '../store';
+import { cached } from '../store/cache';
+import { parseTossToBinary } from '../utils/tosses';
+import { activeLots, saveLot, removeLot, clearLots } from '../store/lots';
+import HexaCard from './HexaCard.vue';
+import HexaTile from './HexaTile.vue';
+import HexaFrame from './HexaFrame.vue';
 
 // TODO: extract setQuadrant to a tiles composable or util
-export const setQuadrantKey = Symbol('quadrant') as InjectionKey<() => Quad>
+export const setQuadrantKey = Symbol('quadrant') as InjectionKey<() => Quad>;
 
 export default defineComponent({
 	name: 'ChangeNode',
@@ -70,8 +70,8 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
-		const hex = toRef(props, 'hex')
-		const rolledLots = parseTossToBinary(cached.toss)
+		const hex = toRef(props, 'hex');
+		const rolledLots = parseTossToBinary(cached.toss);
 
 		const rx = reactive({
 			card: ref(),
@@ -83,53 +83,52 @@ export default defineComponent({
 			quadrant: ref<Quad>(),
 			id: toRef(props, 'hexId'),
 			wenny: cfg.wenny,
-			isActive: computed(
-				() => activeLots.value?.indexOf(hex.value.binary) === 0
-			),
+			isActive: computed(() => activeLots.value?.indexOf(hex.value.binary) === 0),
 			isBeing: computed(() => rolledLots?.indexOf(hex.value.binary) === 0),
 			isBecoming: computed(() => rolledLots?.indexOf(hex.value.binary) === 1),
-		})
+		});
 
 		function setQuadrant(e: Event): Quad {
-			if (!rx.tile) return defQuad
-			let el = rx.tile.$el || e.target
-			if (!el) return defQuad
-			const bounds = el.getBoundingClientRect()
+			if (!rx.tile) return defQuad;
+			let el = rx.tile.$el || e.target;
+			if (!el) return defQuad;
+			const bounds = el.getBoundingClientRect();
 			// console.log("setting quadrant by tile bounds", bounds);
-			return determineQuadrant(bounds)
+			return determineQuadrant(bounds);
 		}
 
 		function swapLot(id: string): void {
-			clearLots()
-			saveLot(id)
+			clearLots();
+			saveLot(id);
 		}
 
 		onMounted(() => {
 			watchEffect(() => {
 				if (rx.isBeing) {
 					// only show changing lines on first card
-					rx.liney = true
-					rx.mark = '𐡷 Being 𐡸'
-					if (!rx.card || !rx.card.$el) return
+					rx.liney = true;
+					rx.mark = '𐡷 Being 𐡸';
+					if (!rx.card || !rx.card.$el) return;
 				}
 				if (rx.isBecoming) {
-					rx.liney = false
-					rx.mark = '𐡸 Becoming 𐡷'
+					rx.liney = false;
+					rx.mark = '𐡸 Becoming 𐡷';
 				}
-			})
-		})
+			});
+		});
 
-		provide(setQuadrantKey, setQuadrant)
+		provide(setQuadrantKey, setQuadrant);
 
 		return {
 			swapLot,
+			saveLot,
 			removeLot,
 			clearLots,
 			setQuadrant,
 			...toRefs(rx),
-		}
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>
@@ -187,43 +186,35 @@ export default defineComponent({
 	}
 
 	.change-node:nth-of-type(8n) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(180deg)
-			rotateZ(-180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(180deg) rotateZ(-180deg);
 	}
 
 	.change-node:nth-of-type(8n-1) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(-180deg)
-			rotateZ(180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(-180deg) rotateZ(180deg);
 	}
 
 	.change-node:nth-of-type(8n-2) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(-180deg)
-			rotateZ(-180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(-180deg) rotateZ(-180deg);
 	}
 
 	.change-node:nth-of-type(8n-3) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(-180deg)
-			rotateZ(180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(-180deg) rotateZ(180deg);
 	}
 
 	.change-node:nth-of-type(8n-4) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(180deg)
-			rotateZ(-180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(180deg) rotateZ(-180deg);
 	}
 
 	.change-node:nth-of-type(8n-5) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(-180deg)
-			rotateZ(-180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(-180deg) rotateZ(-180deg);
 	}
 
 	.change-node:nth-of-type(8n-6) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(180deg)
-			rotateZ(180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(180deg) rotateZ(180deg);
 	}
 
 	.change-node:nth-of-type(8n-7) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(180deg)
-			rotateZ(180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(180deg) rotateZ(180deg);
 	}
 }
 </style>

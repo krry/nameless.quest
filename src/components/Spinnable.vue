@@ -7,39 +7,43 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, onMounted, watchEffect} from 'vue'
-import {useSpinnable} from '../composables/spinnable'
+import { defineComponent, ref, onMounted, watchEffect } from 'vue';
+import { useSpinnable } from '../composables/spinnable';
 
 export default defineComponent({
-	name: 'Spinnable',
+	name: 'SpinnableComponent',
 	props: {
 		running: Boolean,
 		zip: {
 			type: String,
-			default: "2",
+			default: '2',
 		},
 	},
 	setup(props) {
-		const el = ref<HTMLElement>()
-		const isSpinning = ref(props.running)
+		const el = ref<HTMLElement>();
+		const isSpinning = ref(props.running);
 
 		onMounted(() => {
 			if (el.value) {
-				const {getSpinning, setSpinning} = useSpinnable(el.value, props.running, Number(props.zip))
+				const { getSpinning, setSpinning } = useSpinnable(
+					el.value,
+					props.running,
+					Number(props.zip)
+				);
 
-				isSpinning.value = getSpinning()
+				isSpinning.value = getSpinning();
 
 				watchEffect(() => {
-					setSpinning(isSpinning.value)
-				})
+					setSpinning(isSpinning.value);
+				});
 			}
-		})
+		});
 		return {
 			el,
 			isSpinning,
-		}
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>

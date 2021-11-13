@@ -1,23 +1,28 @@
 <template lang="pug">
-a.link(v-if="isExternalLink" v-bind="$attrs" :href="to" target="_blank")
+a.link(
+	v-if="isExternalLink"
+	v-bind="$attrs"
+	:href="to"
+	target="_blank"
+	)
 	slot
 router-link(
 	v-else
 	v-bind="$props"
 	custom
 	v-slot="{ isActive, href, navigate }"
-)
+	)
 	a.link(
 		v-bind="$attrs"
-		:href="to"
+		:href="href"
 		@click="navigate"
 		:class="isActive ? activeClass : inactiveClass"
-	)
+		)
 		slot
 </template>
 <script lang="ts">
-import {computed} from 'vue'
-import {RouterLink, useLink} from 'vue-router'
+import { computed } from 'vue';
+import { RouterLink, useLink } from 'vue-router';
 
 export default {
 	name: 'AppLink',
@@ -32,26 +37,25 @@ export default {
 		},
 	},
 
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-ignore
 	setup(props) {
 		// `props` contains `to` and any other prop that can be passed to <router-link>
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		const {href, route, navigate, isActive, isExactActive} = useLink(props)
+		const { href, route, navigate, isActive, isExactActive } = useLink(props);
 
 		const isExternalLink = computed(
-			() => typeof props.to === 'string' && props.to.startsWith('http'),
-		)
+			() => typeof props.to === 'string' && props.to.startsWith('http')
+		);
 
 		return {
+			to: props.to,
 			href,
-			route,
-			navigate,
-			isActive,
-			isExactActive,
+			activeClass: props.activeClass ?? 'active',
+			inactiveClass: props.inactiveClass ?? 'inactive',
 			isExternalLink,
-		}
+		};
 	},
-}
+};
 </script>
 <style lang="postcss" scoped>
 ._blank::after {

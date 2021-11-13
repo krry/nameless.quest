@@ -16,12 +16,12 @@
 						) let the coins flip
 				.glyphs.left.rtl(v-else)
 					IconBase.line(
-						v-for="char in cached.toss"
-						:key="$symbolize(char).toString()"
+						v-for="char in [...cached.toss]"
+						:key="symbolize(char).toString()"
 						:class="{valid: validToss}"
 						:iconName="getLineName(char)"
 						)
-						component( :is="`Icon${char}`" )
+						component( :is="lineIconByNumber(char)" )
 		.tossing
 			.field.toss
 				IconBase.abs.l(
@@ -65,100 +65,102 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, computed} from 'vue'
-import Icon6 from '../icons/Icon6.vue'
-import Icon7 from '../icons/Icon7.vue'
-import Icon8 from '../icons/Icon8.vue'
-import Icon9 from '../icons/Icon9.vue'
-import IconBase from '../icons/IconBase.vue'
-import IconCoin from '../icons/IconCoin.vue'
-import IconCoinFlip from '../icons/IconCoinFlip.vue'
-import {generateRandomToss} from '../utils/tosses'
-import {cached, cache} from '../store/cache'
-import VueScrollTo from 'vue-scrollto'
+import { defineComponent, ref, computed } from 'vue';
+import IconSix from '../icons/IconSix.vue';
+import IconSeven from '../icons/IconSeven.vue';
+import IconEight from '../icons/IconEight.vue';
+import IconNine from '../icons/IconNine.vue';
+import IconBase from '../icons/IconBase.vue';
+import IconCoin from '../icons/IconCoin.vue';
+import IconCoinFlip from '../icons/IconCoinFlip.vue';
+import { generateRandomToss } from '../utils/tosses';
+import { cached, cache } from '../store/cache';
+import VueScrollTo from 'vue-scrollto';
+import { symbolize, lineIconByNumber } from '../plugins/utils';
 
 export default defineComponent({
 	name: 'OracleCast',
 	components: {
-		Icon6,
-		Icon7,
-		Icon8,
-		Icon9,
+		IconSix,
+		IconSeven,
+		IconEight,
+		IconNine,
 		IconBase,
 		IconCoin,
 		IconCoinFlip,
 	},
 	setup() {
-		const noCoins = ref(false)
-		const flipper = ref<HTMLElement>()
+		const noCoins = ref(false);
+		const flipper = ref<HTMLElement>();
 
 		const validToss = computed(() => {
 			// ensure that the toss is exactly six 6s, 7s, 8s, & 9s
-			return /^[6-9]{6}$/.test(cached.toss)
-		})
+			return /^[6-9]{6}$/.test(cached.toss);
+		});
 
 		function saveToss() {
-			if (!validToss.value) return
-			cache('toss', cached.toss.split('').reverse().join(''))
-			cache('step', 'response')
+			if (!validToss.value) return;
+			cache('toss', cached.toss.split('').reverse().join(''));
+			cache('step', 'response');
 		}
 
 		function flipFlipper(bit: boolean): void {
 			// console.log('flipper', flipper)
 			if (flipper.value) {
-				flipper.value.style.animationPlayState = bit ? 'running' : 'paused'
-				flipper.value.style.animationDelay = '666ms'
+				flipper.value.style.animationPlayState = bit ? 'running' : 'paused';
+				flipper.value.style.animationDelay = '666ms';
 			}
 		}
 
 		function fakeCoins() {
-			const fakeFlips = generateRandomToss().toString().split('')
-			let i = 0
-			flipFlipper(true)
+			const fakeFlips = generateRandomToss().toString().split('');
+			let i = 0;
+			flipFlipper(true);
 			const typer = setInterval(() => {
-				cached.toss += fakeFlips[i]
-				i++
+				cached.toss += fakeFlips[i];
+				i++;
 				if (i === fakeFlips.length) {
-					flipFlipper(false)
-					clearInterval(typer)
+					flipFlipper(false);
+					clearInterval(typer);
 				}
-			}, 2220)
+			}, 2220);
 		}
 
 		function getLineName(char: string): string {
 			switch (char) {
 				case '6':
-					return 'old yin • firming'
+					return 'old yin • firming';
 				case '7':
-					return 'yang • firm'
+					return 'yang • firm';
 				case '8':
-					return 'yin • open'
+					return 'yin • open';
 				case '9':
-					return 'old yang • opening'
+					return 'old yang • opening';
 				default:
-					return ''
+					return '';
 			}
 		}
 
 		function showCoinsHelp() {
-			cache('help', '4coin')
-			setTimeout(() => VueScrollTo.scrollTo('#help4Coins'), 777)
+			cache('help', '4coin');
+			setTimeout(() => VueScrollTo.scrollTo('#help4Coins'), 777);
 		}
 
 		return {
-			cache,
 			cached,
 			flipper,
 			noCoins,
 			saveToss,
+			symbolize,
 			fakeCoins,
 			getLineName,
 			showCoinsHelp,
-			scrollTo: VueScrollTo.scrollTo,
+			lineIconByNumber,
 			validToss,
-		}
+			scrollTo: VueScrollTo.scrollTo,
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>

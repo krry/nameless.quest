@@ -27,7 +27,7 @@ section.flex.col.string
 				)
 		| &nbsp;offers me.
 	p.text.md
-		| I've heard Charles Eisenstein, Nipun Mehta, and Cynthia Jurs all describe gratitude as the seed or origin of generosity. This resonates with the deep, low tone of basic truth.
+		| Curiosity => Gratitude => Generosity => Bliss
 		| As a passion project, I couldn't put a price tag on Nameless. And as an oracle, its impact can be negligible or incalculable. So it is free. I sincerely hope my efforts yield insight, prosperity, catharsis, or joy for you in some form.
 	p.text.md
 		| Your support means the world to me.
@@ -36,15 +36,15 @@ section.flex.col.string
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
-import AppLink from './AppLink.vue'
-import HanziChar from './HanziChar.vue'
-import IconBase from '../icons/IconBase.vue'
-import IconCarnivalCoin from '../icons/IconCarnivalCoin.vue'
-import Spinnable from './Spinnable.vue'
+import { defineComponent } from 'vue';
+import AppLink from './AppLink.vue';
+import HanziChar from './HanziChar.vue';
+import IconBase from '../icons/IconBase.vue';
+import IconCarnivalCoin from '../icons/IconCarnivalCoin.vue';
+import Spinnable from './Spinnable.vue';
 
 export default defineComponent({
-	name: 'Busking',
+	name: 'BuskingNote',
 	components: {
 		AppLink,
 		HanziChar,
@@ -52,7 +52,7 @@ export default defineComponent({
 		IconBase,
 		IconCarnivalCoin,
 	},
-})
+});
 </script>
 
 <style lang="postcss"></style>

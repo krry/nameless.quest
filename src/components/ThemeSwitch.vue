@@ -1,14 +1,15 @@
 <template lang="pug">
 button.btn.outline.theme-switch(
   :class="'font ' + size"
-	tabindex="0"
   @click.stop="nextTheme"
-  ) {{ $titlize(activeTheme) + ' '}}
+	tabindex="0"
+  ) {{ titlize(activeTheme) + ' '}}
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
-import {activeTheme, nextTheme} from '../store/theme'
+import { defineComponent } from 'vue';
+import { activeTheme, nextTheme } from '../store/theme';
+import { titlize } from '../plugins/utils';
 
 export default defineComponent({
 	name: 'ThemeSwitch',
@@ -22,9 +23,10 @@ export default defineComponent({
 		return {
 			activeTheme,
 			nextTheme,
-		}
+			titlize,
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss">

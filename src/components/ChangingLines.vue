@@ -2,7 +2,7 @@
 .interp(v-if="liney || !cached.toss")
 	.line(
 		v-for="gram in hex.lines"
-		:key="$symbolize(hex.binary)"
+		:key="symbolize(hex.binary)"
 		)
 		LineGram(
 			:content="gram"
@@ -11,10 +11,11 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from 'vue'
-import {Hexagram, defHex} from '../schema'
-import LineGram from './LineGram.vue'
-import {cached} from '../store/cache'
+import { defineComponent, PropType } from 'vue';
+import { Hexagram, defHex } from '../schema';
+import LineGram from './LineGram.vue';
+import { cached } from '../store/cache';
+import { symbolize } from '../plugins/utils';
 
 export default defineComponent({
 	name: 'ChangingLines',
@@ -31,9 +32,10 @@ export default defineComponent({
 	setup() {
 		return {
 			cached,
-		}
+			symbolize,
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>

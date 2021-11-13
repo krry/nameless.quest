@@ -1,43 +1,43 @@
 // types and defaults
 
-export const defTheme = ''
+export const defTheme = '';
 
 export interface Hexaname {
-	chinese: string
-	pinyin: string
-	english: string
+	chinese: string;
+	pinyin: string;
+	english: string;
 }
 
 export interface Gram {
-	position: number
-	meaning: string
-	ruler?: string
+	position: number;
+	meaning: string;
+	ruler?: string;
 }
 
 export interface TrigramPair {
-	above: number
-	below: number
+	above: number;
+	below: number;
 }
 
 export interface Trigram {
-	trigram: string
+	trigram: string;
 	name: {
-		en: string
-		zh: string
-		pn: string
-	}
+		en: string;
+		zh: string;
+		pn: string;
+	};
 }
 
 export interface Hexagram {
-	binary: string
-	hexagram: string
-	kingwen: number
-	names: Hexaname
-	octal: string
-	trigramPair: TrigramPair
-	judgment: string
-	images: string
-	lines: Gram[]
+	binary: string;
+	hexagram: string;
+	kingwen: number;
+	names: Hexaname;
+	octal: string;
+	trigramPair: TrigramPair;
+	judgment: string;
+	images: string;
+	lines: Gram[];
 }
 
 export const defHex: Hexagram = {
@@ -66,30 +66,38 @@ export const defHex: Hexagram = {
 			ruler: 'gobernding',
 		},
 	],
-}
+};
 
 export interface Roll {
-	uid: string
-	query: string
-	toss: string
-	moment: Date
-	id?: string
-	notes?: string
+	uid: string;
+	query: string;
+	toss: string;
+	moment: {
+		seconds: number;
+		nanoseconds: number;
+	};
+	id?: string;
+	notes?: string;
 }
+
+const dummyDate = new Date();
 
 export const defRoll: Roll = {
 	query: '',
 	toss: '',
-	moment: new Date(),
+	moment: {
+		seconds: dummyDate.getTime() / 1000,
+		nanoseconds: dummyDate.getTime(),
+	},
 	uid: '',
 	// notes: '',
-}
+};
 
 export interface Quad {
-	yPos: string
-	xPos: string
-	edge: string
-	middle: string
+	yPos: string;
+	xPos: string;
+	edge: string;
+	middle: string;
 }
 
 export const defQuad: Quad = {
@@ -97,26 +105,26 @@ export const defQuad: Quad = {
 	xPos: '',
 	edge: '',
 	middle: '',
-}
+};
 
 export interface Person {
-	name: string
-	face: string
-	location: Geolocation
+	name: string;
+	face: string;
+	location: Geolocation;
 }
 
 export interface Enquiry {
-	time: Date
-	user: Person
-	query: string
-	roll: Roll
+	time: Date;
+	user: Person;
+	query: string;
+	roll: Roll;
 }
 
 export interface Bounds {
-	top: number
-	right: number
-	bottom: number
-	left: number
+	top: number;
+	right: number;
+	bottom: number;
+	left: number;
 }
 
 export const defBounds: Bounds = {
@@ -124,23 +132,23 @@ export const defBounds: Bounds = {
 	right: 240,
 	bottom: 240,
 	left: 120,
-}
+};
 
 export interface Token {
-	val: string
-	expiration: number
+	val: string;
+	expiration: number;
 }
 
 export const defToken: Token = {
 	val: 'holytokenstringsbatman1234567',
 	expiration: 1610861293901,
-}
+};
 
 export interface User {
-	id: symbol
-	email: string
-	authd: boolean
-	token: Token
+	id: symbol;
+	email: string;
+	authd: boolean;
+	token: Token;
 }
 
 export const defUser: User = {
@@ -148,4 +156,4 @@ export const defUser: User = {
 	email: 'human.name@domain.tld',
 	authd: true,
 	token: defToken,
-}
+};

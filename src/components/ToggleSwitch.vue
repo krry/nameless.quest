@@ -33,7 +33,7 @@ export default {
 		},
 	},
 	emits: ['update:checked'],
-}
+};
 </script>
 <style lang="postcss" scoped>
 .container {
@@ -97,7 +97,7 @@ export default {
 	transition: background-color var(--beat) var(--ease-out-circ);
 }
 
-.switch::before {
+.switch:before {
 	content: '';
 	position: absolute;
 	/* Move a little bit the inner circle to the right */
@@ -120,17 +120,17 @@ export default {
 	background-color: var(--flair);
 }
 
-.input:checked + .switch::before {
+.input:checked + .switch:before {
 	border-color: var(--flair);
 	/* Move the inner circle to the right */
 	transform: translateX(calc(var(--container-width) - var(--switch-size)));
 }
 
-.input:focus + .switch::before {
+.input:focus + .switch:before {
 	border-color: var(--link);
 }
 
-.input:focus:checked + .switch::before {
+.input:focus:checked + .switch:before {
 	border-color: var(--link);
 }
 
@@ -138,7 +138,7 @@ export default {
 	background-color: var(--dust);
 }
 
-.input:disabled + .switch::before {
+.input:disabled + .switch:before {
 	background-color: var(--shade);
 	border-color: transparent;
 }

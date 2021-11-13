@@ -8,7 +8,7 @@
 	HanziChar(
 		:char="trigrams[gua].name.zh"
 		:pinyin="trigrams[gua].name.pn"
-		:translation="$titlize(trigrams[gua].name.en)"
+		:translation="titlize(trigrams[gua].name.en)"
 		place="side"
 		:size="charSize"
 		reveal
@@ -16,11 +16,12 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
-import {cfg, tog} from '../store'
-import HanziChar from '../components/HanziChar.vue'
-import LineGlyph from '../components/LineGlyph.vue'
-import trigramData from '../data/trigrams.json'
+import { defineComponent } from 'vue';
+// import { cfg, tog } from '../store';
+import HanziChar from '../components/HanziChar.vue';
+import LineGlyph from '../components/LineGlyph.vue';
+import trigramData from '../data/trigrams.json';
+import { titlize } from '../plugins/utils';
 
 export default defineComponent({
 	name: 'OneGua',
@@ -44,15 +45,16 @@ export default defineComponent({
 		texty: Boolean,
 	},
 	setup() {
-		const trigrams = trigramData
+		const trigrams = trigramData;
 
 		return {
-			tog,
-			cfg,
+			// tog,
+			// cfg,
+			titlize,
 			trigrams,
-		}
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>

@@ -19,21 +19,21 @@ Page.query
 		) ♽
 </template>
 <script lang="ts">
-import {defineComponent, ref} from 'vue'
-import {cached, uncache} from '../store/cache'
-import {cfg} from '../store'
-import Page from './Page.vue'
-import Spinnable from './Spinnable.vue'
-import OracleInfo from './OracleInfo.vue'
-import OracleCast from './OracleCast.vue'
-import OracleQuery from './OracleQuery.vue'
-import OracleResponse from './OracleResponse.vue'
-import IconBase from '../icons/IconBase.vue'
-import IconMiracle from '../icons/IconMiracle.vue'
-import IconThreeLegs from '../icons/IconThreeLegs.vue'
+import { defineComponent, ref } from 'vue';
+import { cached, uncache } from '../store/cache';
+import { cfg } from '../store';
+import Page from './Page.vue';
+import Spinnable from './Spinnable.vue';
+import OracleInfo from './OracleInfo.vue';
+import OracleCast from './OracleCast.vue';
+import OracleQuery from './OracleQuery.vue';
+import OracleResponse from './OracleResponse.vue';
+import IconBase from '../icons/IconBase.vue';
+import IconMiracle from '../icons/IconMiracle.vue';
+import IconThreeLegs from '../icons/IconThreeLegs.vue';
 
 export default defineComponent({
-	name: 'Oracle',
+	name: 'OraclePage',
 	components: {
 		Page,
 		Spinnable,
@@ -49,28 +49,29 @@ export default defineComponent({
 		fresh: Boolean,
 	},
 	setup(props) {
-		const help = ref()
+		const help = ref();
 
-		function clearBoth(confirmed = false) {
+		function clearBoth(event?: MouseEvent, confirmed = false) {
+			if (event) event.preventDefault();
 			const clearAffirmed =
-				confirmed ?? confirm("Are you sure you want to start over? This will clear today's entry.")
+				confirmed ?? confirm("Are you sure you want to start over? This will clear today's entry.");
 			if (clearAffirmed) {
-				cfg.saved = false
-				uncache('query')
-				uncache('toss')
-				uncache('step')
+				cfg.saved = false;
+				uncache('query');
+				uncache('toss');
+				uncache('step');
 			}
 		}
-		console.log('props.fresh', props)
-		if (props.fresh) clearBoth(true)
+		console.log('props.fresh', props);
+		if (props.fresh) clearBoth(undefined, true);
 
 		return {
 			help,
 			cached,
 			clearBoth,
-		}
+		};
 	},
-})
+});
 </script>
 <style lang="postcss" scoped>
 .page {

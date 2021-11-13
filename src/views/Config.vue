@@ -113,23 +113,23 @@ Page.config.col
 	//- AppLink.btn(to="https://ko-fi.com/kerrbear") Gift our baby some diapers 🐻
 </template>
 <script lang="ts">
-import {defineComponent, reactive, toRefs, watchEffect} from 'vue'
-import {cfg, set} from '../store'
-import Page from '../components/Page.vue'
-import AppLink from '../components/AppLink.vue'
-import ComingSoon from '../components/ComingSoon.vue'
-import IconBase from '../icons/IconBase.vue'
-import Spinnable from '../components/Spinnable.vue'
-import IconCauldron from '../icons/IconCauldron.vue'
-import ToggleSwitch from '../components/ToggleSwitch.vue'
-import ThemeSwitch from '../components/ThemeSwitch.vue'
-import ChangeNode from '../components/ChangeNode.vue'
-import HanziChar from '../components/HanziChar.vue'
-import LineGlyph from '../components/LineGlyph.vue'
-import HexaCard from '../components/HexaCard.vue'
+import { defineComponent, reactive, toRefs, watchEffect } from 'vue';
+import { cfg, set } from '../store';
+import Page from '../components/Page.vue';
+import AppLink from '../components/AppLink.vue';
+import ComingSoon from '../components/ComingSoon.vue';
+import IconBase from '../icons/IconBase.vue';
+import Spinnable from '../components/Spinnable.vue';
+import IconCauldron from '../icons/IconCauldron.vue';
+import ToggleSwitch from '../components/ToggleSwitch.vue';
+import ThemeSwitch from '../components/ThemeSwitch.vue';
+import ChangeNode from '../components/ChangeNode.vue';
+import HanziChar from '../components/HanziChar.vue';
+import LineGlyph from '../components/LineGlyph.vue';
+import HexaCard from '../components/HexaCard.vue';
 
 export default defineComponent({
-	name: 'Config',
+	name: 'ConfigPage',
 	components: {
 		Page,
 		AppLink,
@@ -153,23 +153,23 @@ export default defineComponent({
 			wenny: cfg.wenny,
 			gendy: cfg.gendy,
 			baguy: cfg.baguy,
-		})
+		});
 
 		watchEffect(() => {
-			set('pinny', rx.pinny)
-			set('texty', rx.texty)
-			set('turny', rx.turny)
-			set('navvy', rx.navvy)
-			set('wenny', rx.wenny)
-			set('gendy', rx.gendy)
-			set('baguy', rx.baguy)
-		})
+			set('pinny', rx.pinny);
+			set('texty', rx.texty);
+			set('turny', rx.turny);
+			set('navvy', rx.navvy);
+			set('wenny', rx.wenny);
+			set('gendy', rx.gendy);
+			set('baguy', rx.baguy);
+		});
 
 		return {
 			...toRefs(rx),
-		}
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>

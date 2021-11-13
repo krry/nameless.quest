@@ -304,7 +304,7 @@ hr.dinkus::after {
 	transform: scaleY(-1);
 }
 
-.pip::before {
+.pip:before {
 	content: var(--pip);
 	display: inline-block;
 	transform: scaleX(-1);

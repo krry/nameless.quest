@@ -14,12 +14,12 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from 'vue'
-import {defHex, Hexaname} from '../schema'
-import HanziChar from './HanziChar.vue'
+import { defineComponent, PropType } from 'vue';
+import { defHex, Hexaname } from '../schema';
+import HanziChar from './HanziChar.vue';
 
 export default defineComponent({
-	name: 'Tile',
+	name: 'HexaTile',
 	components: {
 		HanziChar,
 	},
@@ -31,17 +31,17 @@ export default defineComponent({
 	},
 	computed: {
 		arrayedHanzi(): string[] {
-			const hanzi = this.names.chinese
+			const hanzi = this.names.chinese;
 			if (!hanzi) {
-				return []
+				return [];
 			}
-			return hanzi.split('')
+			return hanzi.split('');
 		},
 		pinyin(): string[] {
-			return this.names.pinyin.split(' ')
+			return this.names.pinyin.split(' ');
 		},
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>

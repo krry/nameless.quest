@@ -7,11 +7,11 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
-import {cfg, tog} from '../store'
+import { defineComponent } from 'vue';
+import { cfg, tog } from '../store';
 
 export default defineComponent({
-	name: 'Turnable',
+	name: 'TurnableComponent',
 	props: {
 		ortho: Boolean,
 	},
@@ -19,9 +19,9 @@ export default defineComponent({
 		return {
 			cfg,
 			tog,
-		}
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>

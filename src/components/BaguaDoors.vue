@@ -4,7 +4,7 @@
 		.gua.flex.string(
 			v-if="baguad"
 			v-for="[key, val] in Object.entries(pair)"
-			:key="$symbolize(pair[key])"
+			:key="symbolize(key)"
 			:class="key"
 			)
 			LineGlyph.tripad(
@@ -21,20 +21,21 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from 'vue'
-import HanziChar from '../components/HanziChar.vue'
-import LineGlyph from '../components/LineGlyph.vue'
-import trigramData from '../data/trigrams.json'
+import { defineComponent, PropType } from 'vue';
+import HanziChar from '../components/HanziChar.vue';
+import LineGlyph from '../components/LineGlyph.vue';
+import trigramData from '../data/trigrams.json';
+import { symbolize } from '../plugins/utils';
 
 interface TrigramPair {
-	above: number
-	below: number
+	above: number;
+	below: number;
 }
 
 const defPair: TrigramPair = {
 	above: 0,
 	below: 0,
-}
+};
 
 export default defineComponent({
 	name: 'BaguaDoors',
@@ -52,9 +53,10 @@ export default defineComponent({
 	setup() {
 		return {
 			trigrams: trigramData,
-		}
+			symbolize,
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>

@@ -70,47 +70,48 @@
 					h3.mrg.mrg1.y.font.head.xl The Lines
 					.lines.pad.pad1.y
 						IconBase.line(
-							v-for="digit in hex.binary.slice(2)"
-							:key="$symbolize(digit)"
+							v-for="digit in [...hex.binary.slice(2)]"
+							:key="symbolize(digit)"
 							size="36"
 							width="20"
 							)
 							component(
 								v-if="digit === '0'"
-								:is="`Icon6`")
+								:is="IconSix")
 							component(
 								v-if="digit === '1'"
-								:is="`Icon9`")
+								:is="IconNine")
 					ChangingLines(
 						:hex="hex"
 						:liney="liney")
 </template>
 <script lang="ts">
-import {defineComponent, PropType, ref, reactive, toRefs, onMounted} from 'vue'
-import {defHex, Quad, defQuad, Hexagram} from '../schema'
-import {useSwipeable} from '../composables/swipeable'
-import {cfg, tog} from '../store'
-import OneGua from './OneGua.vue'
-import Icon6 from '../icons/Icon6.vue'
-import Icon7 from '../icons/Icon7.vue'
-import Icon8 from '../icons/Icon8.vue'
-import Icon9 from '../icons/Icon9.vue'
-import IconBase from '../icons/IconBase.vue'
-import HexaFace from './HexaFace.vue'
-import HanziChar from './HanziChar.vue'
-import LineGlyph from './LineGlyph.vue'
-import Turnable from './Turnable.vue'
-import Spinnable from './Spinnable.vue'
-import HexaNames from './HexaNames.vue'
-import ChangingLines from './ChangingLines.vue'
+import { defineComponent, PropType, ref, reactive, toRefs, onMounted } from 'vue';
+import { defHex, Quad, defQuad, Hexagram } from '../schema';
+import { useSwipeable } from '../composables/swipeable';
+import { cfg } from '../store';
+import OneGua from './OneGua.vue';
+import IconSix from '../icons/IconSix.vue';
+import IconSeven from '../icons/IconSeven.vue';
+import IconEight from '../icons/IconEight.vue';
+import IconNine from '../icons/IconNine.vue';
+import IconBase from '../icons/IconBase.vue';
+import HexaFace from './HexaFace.vue';
+import HanziChar from './HanziChar.vue';
+import LineGlyph from './LineGlyph.vue';
+import Turnable from './Turnable.vue';
+import Spinnable from './Spinnable.vue';
+import HexaNames from './HexaNames.vue';
+import ChangingLines from './ChangingLines.vue';
+import { symbolize } from '../plugins/utils';
 
 export default defineComponent({
 	name: 'HexaCard',
 	components: {
-		Icon6,
-		Icon7,
-		Icon8,
-		Icon9,
+		IconSix,
+		IconSeven,
+		IconEight,
+		IconNine,
 		OneGua,
 		IconBase,
 		HexaFace,
@@ -138,26 +139,28 @@ export default defineComponent({
 	},
 	emits: ['close'],
 	setup() {
-		const {handleSwipeStart, handleSwipeEnd} = useSwipeable()
+		const { handleSwipeStart, handleSwipeEnd } = useSwipeable();
 		const rx = reactive({
 			card: ref<HTMLElement>(),
 			interpShown: false,
-		})
+		});
 
 		onMounted(() => {
-			const gestureZone = rx.card
-			if (!gestureZone) return
-			gestureZone.addEventListener('touchstart', handleSwipeStart, false)
-			gestureZone.addEventListener('touchend', handleSwipeEnd, false)
-		})
+			const gestureZone = rx.card;
+			if (!gestureZone) return;
+			gestureZone.addEventListener('touchstart', handleSwipeStart, false);
+			gestureZone.addEventListener('touchend', handleSwipeEnd, false);
+		});
 
 		return {
-			tog,
+			symbolize,
 			cfg,
+			IconNine,
+			IconSix,
 			...toRefs(rx),
-		}
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>

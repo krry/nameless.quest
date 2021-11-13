@@ -6,16 +6,16 @@
 	h2 {{ cached.toss }}
 	.lines.whole.font.alcenter.font
 		IconBase.line(
-			v-for="char in cached.toss"
-			:key="$symbolize(char).toString()"
+			v-for="char in [...cached.toss]"
+			:key="symbolize(char).toString()"
 			height="36"
 			width="20"
 			size="48"
 			)
-			component( :is="`Icon${char}`" )
+			component( :is="lineIconByNumber(char)" )
 	section.col.half.dyn.align-start.mrg.mrg1.x(
 		v-for="(hex, index) in hexs"
-		:key="$symbolize(hex.binary).toString()"
+		:key="symbolize(hex.binary).toString()"
 		)
 		h3
 			| {{ index === 0 ? "𐡷 Being 𐡸" : "𐡸 Becoming 𐡷" }}
@@ -28,7 +28,7 @@
 				h3.font.x2l
 					HanziChar(
 						v-for="(char, i) in hex.names.chinese.split('')"
-						:key="$symbolize(char).toString()"
+						:key="symbolize(char).toString()"
 						:char="char"
 						:pinyin="hex.names.pinyin.split(' ')[i]"
 						size="lg"
@@ -52,87 +52,99 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, computed} from 'vue'
-import {useRouter} from 'vue-router'
-import IconBase from '../icons/IconBase.vue'
-import Icon6 from '../icons/Icon6.vue'
-import Icon7 from '../icons/Icon7.vue'
-import Icon8 from '../icons/Icon8.vue'
-import Icon9 from '../icons/Icon9.vue'
-import LineGlyph from './LineGlyph.vue'
-import HanziChar from './HanziChar.vue'
-import {cfg} from '../store'
-import {cached, uncache} from '../store/cache'
-import {addRoll, cachedRoll} from '../store/rolls'
-import {activeLots, setLots} from '../store/lots'
-import {parseTossToBinary} from '../utils/tosses'
-import {useHexagrams} from '../composables/hexagrams'
+import { defineComponent, computed } from 'vue';
+import { useRouter } from 'vue-router';
+import IconBase from '../icons/IconBase.vue';
+import IconSix from '../icons/IconSix.vue';
+import IconSeven from '../icons/IconSeven.vue';
+import IconEight from '../icons/IconEight.vue';
+import IconNine from '../icons/IconNine.vue';
+import LineGlyph from './LineGlyph.vue';
+import HanziChar from './HanziChar.vue';
+import { cfg } from '../store';
+import { cached, uncache } from '../store/cache';
+import { addRoll, cachedRoll } from '../store/rolls';
+import { activeLots, setLots } from '../store/lots';
+import { parseTossToBinary } from '../utils/tosses';
+import { useHexagrams } from '../composables/hexagrams';
+import { symbolize, lineIconByNumber } from '../plugins/utils';
 
 export default defineComponent({
 	name: 'OracleResponse',
 	components: {
 		IconBase,
-		Icon6,
-		Icon7,
-		Icon8,
-		Icon9,
+		IconSix,
+		IconSeven,
+		IconEight,
+		IconNine,
 		LineGlyph,
 		HanziChar,
 	},
 	setup() {
-		setLots(parseTossToBinary(cached.toss))
-		const router = useRouter()
-		const {getHexagramByBin} = useHexagrams()
-		const hexs = computed(() => activeLots.value.map((l: string) => getHexagramByBin(l)))
+		setLots(parseTossToBinary(cached.toss));
+		const router = useRouter();
+		const { getHexagramByBin } = useHexagrams();
+		const hexs = computed(() => activeLots.value.map((l: string) => getHexagramByBin(l)));
 		// console.log('hexs', hexs.value)
 
-		function clearBoth(confirmed = false) {
+		function clearBoth(event?: MouseEvent, confirmed = false) {
+			if (event) event.preventDefault();
 			const clearAffirmed =
-				confirmed ?? confirm("Are you sure you want to start over? This will clear today's entry.")
+				confirmed ?? confirm("Are you sure you want to start over? This will clear today's entry.");
 			if (clearAffirmed) {
-				cfg.saved = false
-				uncache('query')
-				uncache('toss')
-				uncache('step')
+				cfg.saved = false;
+				uncache('query');
+				uncache('toss');
+				uncache('step');
 			}
 		}
 		if (cached.uid) {
-			cacheRoll()
-			cfg.saved = true
+			cacheRoll();
+			cfg.saved = true;
 		}
+		function lilMoments(moment: Date) {
+			return {
+				seconds: moment.getTime() / 1000,
+				nanoseconds: moment.getTime(),
+			};
+		}
+
 		function cacheRoll() {
+			const now = new Date();
 			if (cached.uid) {
 				addRoll({
-					moment: new Date(),
+					moment: lilMoments(now),
 					query: cached.query,
 					toss: cached.toss,
 					uid: cached.uid,
-				})
-				cachedRoll.value = null
+				});
+				cachedRoll.value = null;
 			} else {
 				cachedRoll.value = {
-					moment: new Date(),
+					moment: lilMoments(now),
 					query: cached.query,
 					toss: cached.toss,
 					uid: '',
-				}
+				};
 			}
 		}
 
 		function saveToJournal() {
-			cacheRoll()
-			router.push('/journal')
+			cacheRoll();
+			router.push('/journal');
 		}
 
 		return {
-			cached,
-			clearBoth,
 			cfg,
 			hexs,
+			cached,
+			clearBoth,
+			symbolize,
 			saveToJournal,
-		}
+			lineIconByNumber,
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>

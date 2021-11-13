@@ -6,19 +6,19 @@ Page.about
 	h1.head.x3l.mrg.mrg-50.y About the Oracle
 	ul(ref="toc").toc.ls.pad.pad1.y.flex.start
 		li.flex.col.mid
-			a.btn.naked.lg(@click.prevent="$cruiseTo(divine)")
+			a.btn.naked.lg(@click.prevent="cruiseTo(divine)")
 				IconBase(viewBox="0 0 1000 1000" size="48")
 					IconOpenBook
 				br
 				| How to Approach the Oracle
 		li.flex.col.mid
-			a.btn.naked.lg(@click.prevent="$cruiseTo(define)")
+			a.btn.naked.lg(@click.prevent="cruiseTo(define)")
 				IconBase(viewBox="0 0 100 125" size="48")
 					IconBookStack
 				br
 				| Resources for Deeper Understanding
 		li.flex.col.mid
-			a.btn.naked.lg(@click.prevent="$cruiseTo(devsign)")
+			a.btn.naked.lg(@click.prevent="cruiseTo(devsign)")
 				IconBase(viewBox="0 0 1000 1250" size="48")
 					IconWizardsHat
 				br
@@ -172,10 +172,10 @@ Page.about
 		p
 			| Examining the hexagrams I also noticed that one can easily transpose them into binary numbers, taking an active or yang line
 			IconBase
-				Icon7
+				IconSeven
 			|  as one, and a receptive or yin line
 			IconBase
-				Icon8
+				IconEight
 			|  as zero. I began to assemble a small database.
 
 		p For each hexagram I figured its corresponding binary number, then shifted it into octal. Then I plotted the hexagrams in an eight-by-eight grid following their octal sequence. This is the orientiation in which you first encounter the tiles here in Nameless.
@@ -230,23 +230,24 @@ Page.about
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from 'vue'
-import Page from '../components/Page.vue'
-import AppLink from '../components/AppLink.vue'
-import Busking from '../components/Busking.vue'
-import HanziChar from '../components/HanziChar.vue'
-import LogoBrand from '../components/LogoBrand.vue'
-import Spinnable from '../components/Spinnable.vue'
-import IconBase from '../icons/IconBase.vue'
-import Icon7 from '../icons/Icon7.vue'
-import Icon8 from '../icons/Icon8.vue'
-import IconBookStack from '../icons/IconBookStack.vue'
-import IconOpenBook from '../icons/IconOpenBook.vue'
-import IconWizardsHat from '../icons/IconWizardsHat.vue'
-import IconCrystalBall from '../icons/IconCrystalBall.vue'
+import { defineComponent, ref } from 'vue';
+import Page from '../components/Page.vue';
+import AppLink from '../components/AppLink.vue';
+import Busking from '../components/Busking.vue';
+import HanziChar from '../components/HanziChar.vue';
+import LogoBrand from '../components/LogoBrand.vue';
+import Spinnable from '../components/Spinnable.vue';
+import IconBase from '../icons/IconBase.vue';
+import IconSeven from '../icons/IconSeven.vue';
+import IconEight from '../icons/IconEight.vue';
+import IconBookStack from '../icons/IconBookStack.vue';
+import IconOpenBook from '../icons/IconOpenBook.vue';
+import IconWizardsHat from '../icons/IconWizardsHat.vue';
+import IconCrystalBall from '../icons/IconCrystalBall.vue';
+import { cruiseTo } from '../plugins/utils';
 
 export default defineComponent({
-	name: 'About',
+	name: 'AboutPage',
 	components: {
 		Page,
 		AppLink,
@@ -254,8 +255,8 @@ export default defineComponent({
 		LogoBrand,
 		Spinnable,
 		HanziChar,
-		Icon7,
-		Icon8,
+		IconSeven,
+		IconEight,
 		IconBase,
 		IconOpenBook,
 		IconBookStack,
@@ -263,19 +264,18 @@ export default defineComponent({
 		IconCrystalBall,
 	},
 	setup() {
-		const divine = ref<HTMLElement>()
-		const devsign = ref<HTMLElement>()
-		const define = ref<HTMLElement>()
-		const title = ref('About the Oracle')
+		const divine = ref<HTMLElement>();
+		const devsign = ref<HTMLElement>();
+		const define = ref<HTMLElement>();
 
 		return {
-			title,
 			divine,
 			devsign,
 			define,
-		}
+			cruiseTo,
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>

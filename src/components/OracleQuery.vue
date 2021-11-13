@@ -58,12 +58,12 @@
 				:class="{invalid: invalidQuery}"
 				@focus="queryFocused = true"
 				)
-			//- transition(name="slide-fade" appear v-if="queryFocused")
+			transition(name="slide-fade" appear v-if="queryFocused")
 				.lbl.font.sm.phat.below.intro.muted(for="query" v-if="cached.query.length < 9")
 					| What does your heart wonder?
-			transition(name="slide-fade" appear v-if="queryFocused")
-				.lbl.font.sm.phat.above.outro.muted(for="query" v-if="cached.query.length < 9")
-					| What does your heart wonder?
+			//- transition(name="slide-fade" appear v-if="queryFocused")
+			//- 	.lbl.font.sm.phat.above.outro.muted(for="query" v-if="cached.query.length < 9")
+			//- 		| What does your heart wonder?
 			transition(name="slide-fade" appear v-if="queryFocused")
 				button.btn.action.right(type="button" @click="askTheOracle")
 					IconBase(size="36" viewBox="0 0 1000 1125")
@@ -80,13 +80,13 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, reactive, toRefs} from 'vue'
-import {cached, cache} from '../store/cache'
-import {cfg} from '../store'
-import Page from './Page.vue'
-import IconBase from '../icons/IconBase.vue'
-import HanziChar from './HanziChar.vue'
-import IconCrystalBall from '../icons/IconCrystalBall.vue'
+import { defineComponent, reactive, toRefs } from 'vue';
+import { cached, cache } from '../store/cache';
+import { cfg } from '../store';
+import Page from './Page.vue';
+import IconBase from '../icons/IconBase.vue';
+import HanziChar from './HanziChar.vue';
+import IconCrystalBall from '../icons/IconCrystalBall.vue';
 
 export default defineComponent({
 	name: 'OracleQuery',
@@ -101,17 +101,17 @@ export default defineComponent({
 			invalidQuery: false,
 			curious: false,
 			queryFocused: false,
-		})
+		});
 
 		function askTheOracle() {
 			if (cached.query.length > 0 && cached.query.substr(-2).includes('?')) {
-				cache('query', cached.query)
-				cache('step', 'cast')
-				rx.queryFocused = true
+				cache('query', cached.query);
+				cache('step', 'cast');
+				rx.queryFocused = true;
 			} else {
-				rx.invalidQuery = true
+				rx.invalidQuery = true;
 				// TODO: focus the query again
-				console.warn('Non-question detected!')
+				console.warn('Non-question detected!');
 			}
 		}
 
@@ -120,9 +120,9 @@ export default defineComponent({
 			cached,
 			askTheOracle,
 			...toRefs(rx),
-		}
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>

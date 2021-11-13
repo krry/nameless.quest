@@ -26,24 +26,24 @@ transition(name="fade")
 				:key="roll.id"
 				)
 				time.moment.mono.thicc.alright(
-					:datetime="roll.moment.toDateString()"
-					) {{ roll.moment.toDateString() }}
+					:datetime="rollMomentToDate(roll)"
+					) {{ rollMomentToDate(roll) }}
 				blockquote.query.mrg0
 					h2 {{ roll.query }}
 					h3.x2l.font {{ roll.toss }}
 					.lines.whole.font.alcenter.mrg.mrgs.y
 						IconBase.line(
-							v-for="char in roll.toss"
-							:key="$symbolize(char).toString()"
+							v-for="char in [...roll.toss]"
+							:key="symbolize(char).toString()"
 							height="36"
 							width="20"
 							size="48"
 							)
-							component( :is="`Icon${char}`" )
+							component( :is="lineIconByNumber(char)" )
 					.flex.wrap.mid.string(v-if="roll.toss")
 						router-link.btn.naked.mrg.mrg1.x.y.skinny.block(
 							v-for="bin in parseTossToBinary(roll.toss)"
-							:key="$symbolize(bin)"
+							:key="symbolize(bin)"
 							:to="'/changes/' + getWenByBin(bin)"
 							) {{ getWenByBin(bin) + '. ' + getEnglishNameByBin(bin) }}
 				.field
@@ -60,92 +60,110 @@ transition(name="fade")
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, watchEffect} from 'vue'
-import contenteditable from 'vue-contenteditable'
-import {auth} from '../firebase'
-import {set} from '../store'
-import {cache, cached} from '../store/cache'
-import {Roll} from '../schema'
-import {activeRolls, getRolls, deleteRoll, updateRoll} from '../store/rolls'
-import {parseTossToBinary} from '../utils/tosses'
-import {useHexagrams} from '../composables/hexagrams'
-import Page from '../components/Page.vue'
-import Login from './Login.vue'
-import IconBase from '../icons/IconBase.vue'
-import IconSpellBook from '../icons/IconSpellBook.vue'
-import Spinnable from '../components/Spinnable.vue'
-import Icon6 from '../icons/Icon6.vue'
-import Icon7 from '../icons/Icon7.vue'
-import Icon8 from '../icons/Icon8.vue'
-import Icon9 from '../icons/Icon9.vue'
-import AppLink from '../components/AppLink.vue'
-import ComingSoon from '../components/ComingSoon.vue'
+import { defineComponent, ref, watchEffect } from 'vue';
+import contenteditable from 'vue-contenteditable';
+import { auth } from '../firebase';
+import { set } from '../store';
+import { cache, cached } from '../store/cache';
+import { Roll } from '../schema';
+import { activeRolls, getRolls, deleteRoll, updateRoll } from '../store/rolls';
+import { parseTossToBinary } from '../utils/tosses';
+import { useHexagrams } from '../composables/hexagrams';
+import Page from '../components/Page.vue';
+import Login from './Login.vue';
+import IconBase from '../icons/IconBase.vue';
+import IconSpellBook from '../icons/IconSpellBook.vue';
+import Spinnable from '../components/Spinnable.vue';
+import IconSix from '../icons/IconSix.vue';
+import IconSeven from '../icons/IconSeven.vue';
+import IconEight from '../icons/IconEight.vue';
+import IconNine from '../icons/IconNine.vue';
+import AppLink from '../components/AppLink.vue';
+import ComingSoon from '../components/ComingSoon.vue';
+import { symbolize, lineIconByNumber } from '../plugins/utils';
 
-const laterDatesFirst = (a, b) => b.moment.seconds - a.moment.seconds
+const laterDatesFirst = (a: Roll, b: Roll): number => {
+	return b.moment.seconds - a.moment.seconds;
+};
+
+function toDateTime(secs = 0): Date {
+	var t = new Date(1970, 0, 1); // Epoch
+	t.setSeconds(secs);
+	return t;
+}
+
+const rollMomentToDate = (roll: Roll): string => {
+	const date = toDateTime(roll.moment?.seconds);
+	return date.toDateString();
+};
 
 export default defineComponent({
-	name: 'Journal',
+	name: 'JournalPage',
 	components: {
 		IconBase,
 		IconSpellBook,
 		contenteditable,
 		Spinnable,
-		Icon6,
-		Icon7,
-		Icon8,
-		Icon9,
+		IconSix,
+		IconSeven,
+		IconEight,
+		IconNine,
 		Page,
 		Login,
 		AppLink,
 		ComingSoon,
 	},
 	setup() {
-		const {getHexagramByOctal, getWenByBin, getEnglishNameByBin} = useHexagrams()
-		const rolls = ref<Roll[]>()
+		const {
+			// getHexagramByOctal,
+			getWenByBin,
+			getEnglishNameByBin,
+		} = useHexagrams();
+		const rolls = ref<Roll[]>();
 
 		// when journal page loads, check if there is a logged in user, which should be true because the router handles this
 		if (!cached.name) {
-			cache('name', 'Your Name')
+			cache('name', 'Your Name');
 		}
 
 		// TODO: when Journal view shows, make sure to run getRolls again
 		watchEffect(() => {
 			if (cached.uid) {
 				// console.log('calling getRolls to update the activeRolls')
-				getRolls()
-				set('journaled', true)
+				getRolls();
+				set('journaled', true);
 			}
-		})
+		});
 
-		watchEffect(() => {
+		watchEffect(
+			() => (rolls.value = [...new Set(activeRolls.value.sort(laterDatesFirst))])
 			// console.log('hydrating with rolls from firebase', activeRolls.value)
 			// rolls.value = activeRolls.value.sort((a: Roll, b: Roll) => {
 			// 	return Number(a.moment) - Number(b.moment)
 			// })
-			rolls.value = [...new Set(activeRolls.value.sort(laterDatesFirst))]
 			// console.log('rolls.value', rolls.value)
-		})
+		);
 
 		function saveName(llamo: string) {
-			cache('name', llamo)
+			cache('name', llamo);
 			auth.currentUser?.updateProfile({
 				displayName: llamo,
-			})
+			});
 			// console.log('auth.currentUser now has name', auth.currentUser, llamo)
 		}
 
 		function clearName(event: Event) {
-			const target = event.target as HTMLInputElement
+			const target = event.target as HTMLInputElement;
 			if (!cached.name || cached.name === 'Your Name') {
-				target.value = ''
+				target.value = '';
 			}
 		}
 
-		function doubleCheckBeforeDeleteRoll(id: string): void {
-			const deleteConfirmed = confirm('Are you sure you want to delete this journal entry?')
-			if (deleteConfirmed) {
-				deleteRoll(id)
-				removeDeletedRoll(id)
+		function doubleCheckBeforeDeleteRoll(id: string | undefined): void {
+			const deleteConfirmed = confirm('Are you sure you want to delete this journal entry?');
+			if (id && deleteConfirmed) {
+				deleteRoll(id);
+				removeDeletedRoll(id);
 			}
 		}
 
@@ -153,9 +171,9 @@ export default defineComponent({
 			// remove the deleted roll from the array of rolls
 			if (rolls.value) {
 				// console.log('deleting id', id)
-				const deletedRollIndex = rolls.value.map(roll => roll.id).indexOf(id)
+				const deletedRollIndex = rolls.value.map(roll => roll.id).indexOf(id);
 				// console.log('deletedRollIndex', deletedRollIndex)
-				rolls.value = rolls.value.splice(deletedRollIndex, 1)
+				rolls.value = rolls.value.splice(deletedRollIndex, 1);
 				// console.log('rolls.value after delete', rolls.value)
 			}
 		}
@@ -164,18 +182,21 @@ export default defineComponent({
 			// then return activeRolls to the template as rolls
 			rolls,
 			cached,
-			getRolls,
+			// getRolls,
 			saveName,
 			clearName,
+			symbolize,
 			updateRoll,
 			doubleCheckBeforeDeleteRoll,
 			getWenByBin,
-			getHexagramByOctal,
+			lineIconByNumber,
+			rollMomentToDate,
 			parseTossToBinary,
+			// getHexagramByOctal,
 			getEnglishNameByBin,
-		}
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>

@@ -36,15 +36,15 @@ Page.login(
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
-import Page from '../components/Page.vue'
-import AppLink from '../components/AppLink.vue'
-import LogoBrand from '../components/LogoBrand.vue'
-import LoginEmail from '../components/LoginEmail.vue'
-import LoginPhone from '../components/LoginPhone.vue'
+import { defineComponent } from 'vue';
+import Page from '../components/Page.vue';
+import AppLink from '../components/AppLink.vue';
+import LogoBrand from '../components/LogoBrand.vue';
+import LoginEmail from '../components/LoginEmail.vue';
+import LoginPhone from '../components/LoginPhone.vue';
 
 export default defineComponent({
-	name: 'Login',
+	name: 'LoginPage',
 	components: {
 		Page,
 		AppLink,
@@ -56,9 +56,9 @@ export default defineComponent({
 		return {
 			method: '',
 			explained: false,
-		}
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>

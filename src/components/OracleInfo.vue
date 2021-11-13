@@ -42,28 +42,28 @@ transition(name="slide-fade" appear mode="out-in")
 		ul.ls
 			li
 				IconBase(size="24" iconColor="var(--good)")
-					Icon7
+					IconSeven
 				span.text.md.tip Open questions resolve readily
 				IconBase(size="24" iconColor="var(--good)")
-					Icon7
+					IconSeven
 			li
 				IconBase(size="24" iconColor="var(--good)")
-					Icon9
+					IconNine
 				span.text.md.tip "How might we …?"
 				IconBase(size="24" iconColor="var(--good)")
-					Icon9
+					IconNine
 			li
 				IconBase(size="24" iconColor="var(--bad)")
-					Icon8
+					IconEight
 				span.text.md.tip Binary judgments stay opaque
 				IconBase(size="24" iconColor="var(--bad)")
-					Icon8
+					IconEight
 			li
 				IconBase(size="24" iconColor="var(--bad)")
-					Icon6
+					IconSix
 				span.text.md.tip "Should I …?"
 				IconBase(size="24" iconColor="var(--bad)")
-					Icon6
+					IconSix
 		Spinnable
 			IconBase.mrg.mrg3.y(viewBox="0 0 1000 1250" size="80" iconColor="var(--flair)")
 				IconCauldron
@@ -170,7 +170,7 @@ transition(name="slide-fade" appear mode="out-in")
 			span.ib
 				Turnable(ortho)
 					IconBase
-						Icon6
+						IconSix
 			span yin ⤐ yang
 			span firm
 			span unchanging
@@ -178,7 +178,7 @@ transition(name="slide-fade" appear mode="out-in")
 			span.ib
 				Turnable(ortho)
 					IconBase
-						Icon7
+						IconSeven
 			span yang
 			span open
 			span unchanging
@@ -186,7 +186,7 @@ transition(name="slide-fade" appear mode="out-in")
 			span.ib
 				Turnable(ortho)
 					IconBase
-						Icon8
+						IconEight
 			span yin
 			span firm
 			span changing
@@ -194,7 +194,7 @@ transition(name="slide-fade" appear mode="out-in")
 			span.ib
 				Turnable(ortho)
 					IconBase
-						Icon9
+						IconNine
 			span yang ⤐ yin
 	aside#help4bCoins.help.font.alcenter.pad.pad3.y.left(v-else-if="cached.help === '4bcoin'")
 		Spinnable
@@ -221,28 +221,28 @@ transition(name="slide-fade" appear mode="out-in")
 			span.ib
 				Turnable(ortho)
 					IconBase
-						Icon6
+						IconSix
 			span firming
 			span 👸 👸 🦚 = 7
 			span yang
 			span.ib
 				Turnable(ortho)
 					IconBase
-						Icon7
+						IconSeven
 			span firm
 			span 👸 🦚 🦚 = 8
 			span yin
 			span.ib
 				Turnable(ortho)
 					IconBase
-						Icon8
+						IconEight
 			span open
 			span 🦚 🦚 🦚 = 9
 			span yang ⤐ yin
 			span.ib
 				Turnable(ortho)
 					IconBase
-						Icon9
+						IconNine
 			span opening
 		ul.ls.text.md.fine.pad.pad1.y
 			li Each round sums to 6, 7, 8, or 9
@@ -267,28 +267,28 @@ transition(name="slide-fade" appear mode="out-in")
 			span.ib
 				Turnable(ortho)
 					IconBase
-						Icon6
+						IconSix
 			span firming
 			span 🦚 🦚 👸 = 7
 			span yang
 			span.ib
 				Turnable(ortho)
 					IconBase
-						Icon7
+						IconSeven
 			span firm
 			span 🦚 👸 👸 = 8
 			span yin
 			span.ib
 				Turnable(ortho)
 					IconBase
-						Icon8
+						IconEight
 			span open
 			span 👸 👸 👸 = 9
 			span yang ⤐ yin
 			span.ib
 				Turnable(ortho)
 					IconBase
-						Icon9
+						IconNine
 			span opening
 		ul.ls.text.md.fine.pad.pad1.y
 			li Each round sums to 6, 7, 8, or 9
@@ -310,58 +310,58 @@ transition(name="slide-fade" appear mode="out-in")
 				span.ib
 					Turnable(ortho)
 						IconBase
-							Icon7
+							IconSeven
 				span 5
 				span 🦚 🦚 🦚
 				span 6
 				span.ib
 					Turnable(ortho)
 						IconBase
-							Icon6
+							IconSix
 				span 4
 				span 👸 👸 👸
 				span 9
 				span.ib
 					Turnable(ortho)
 						IconBase
-							Icon9
+							IconNine
 				span 3
 				span 🦚 👸 👸
 				span 8
 				span.ib
 					Turnable(ortho)
 						IconBase
-							Icon8
+							IconEight
 				span 2
 				span 🦚 🦚 👸
 				span 7
 				span.ib
 					Turnable(ortho)
 						IconBase
-							Icon7
+							IconSeven
 				span 1
 				span 🦚 🦚 🦚
 				span 6
 				span.ib
 					Turnable(ortho)
 						IconBase
-							Icon6
+							IconSix
 			h4.font.md which assembles these hexagrams:
 			.flex.string
 				Turnable
 					.stack.col.mrg-25.mrg.y
 						IconBase
-							Icon7
+							IconSeven
 						IconBase
-							Icon6
+							IconSix
 						IconBase
-							Icon9
+							IconNine
 						IconBase
-							Icon8
+							IconEight
 						IconBase
-							Icon7
+							IconSeven
 						IconBase
-							Icon6
+							IconSix
 				LineGlyph(glyph="䷿" size="x4l")
 				LineGlyph(glyph="䷼" size="x4l")
 			h5.font.md
@@ -394,41 +394,41 @@ LogoBrand.mrg.mrg3.y(direction="vert" size="x3l" noname)
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
-import {cfg} from '../store'
-import VueScrollTo from 'vue-scrollto'
-import {cached, cache} from '../store/cache'
-import IconBase from '../icons/IconBase.vue'
-import LogoBrand from './LogoBrand.vue'
-import AppLink from './AppLink.vue'
-import Icon6 from '../icons/Icon6.vue'
-import Icon7 from '../icons/Icon7.vue'
-import Icon8 from '../icons/Icon8.vue'
-import Icon9 from '../icons/Icon9.vue'
-import HanziChar from './HanziChar.vue'
-import LineGlyph from './LineGlyph.vue'
-import Turnable from './Turnable.vue'
-import Spinnable from './Spinnable.vue'
-import IconScroll from '../icons/IconScroll.vue'
-import IconMiracle from '../icons/IconMiracle.vue'
-import IconCandles from '../icons/IconCandles.vue'
-import IconCauldron from '../icons/IconCauldron.vue'
-import IconOpenBook from '../icons/IconOpenBook.vue'
-import IconSpellBook from '../icons/IconSpellBook.vue'
-import IconLooptyLoop from '../icons/IconLooptyLoop.vue'
-import IconWizardsHat from '../icons/IconWizardsHat.vue'
-import IconCrystalBall from '../icons/IconCrystalBall.vue'
-import IconCarnivalCoin from '../icons/IconCarnivalCoin.vue'
-import IconCrescentMoon from '../icons/IconCrescentMoon.vue'
-import IconPenroseTriangle from '../icons/IconPenroseTriangle.vue'
+import { defineComponent } from 'vue';
+import { cfg } from '../store';
+import VueScrollTo from 'vue-scrollto';
+import { cached, cache } from '../store/cache';
+import IconBase from '../icons/IconBase.vue';
+import LogoBrand from './LogoBrand.vue';
+import AppLink from './AppLink.vue';
+import IconSix from '../icons/IconSix.vue';
+import IconSeven from '../icons/IconSeven.vue';
+import IconEight from '../icons/IconEight.vue';
+import IconNine from '../icons/IconNine.vue';
+import HanziChar from './HanziChar.vue';
+import LineGlyph from './LineGlyph.vue';
+import Turnable from './Turnable.vue';
+import Spinnable from './Spinnable.vue';
+import IconScroll from '../icons/IconScroll.vue';
+import IconMiracle from '../icons/IconMiracle.vue';
+import IconCandles from '../icons/IconCandles.vue';
+import IconCauldron from '../icons/IconCauldron.vue';
+import IconOpenBook from '../icons/IconOpenBook.vue';
+import IconSpellBook from '../icons/IconSpellBook.vue';
+import IconLooptyLoop from '../icons/IconLooptyLoop.vue';
+import IconWizardsHat from '../icons/IconWizardsHat.vue';
+import IconCrystalBall from '../icons/IconCrystalBall.vue';
+import IconCarnivalCoin from '../icons/IconCarnivalCoin.vue';
+import IconCrescentMoon from '../icons/IconCrescentMoon.vue';
+import IconPenroseTriangle from '../icons/IconPenroseTriangle.vue';
 
 export default defineComponent({
 	name: 'OracleInfo',
 	components: {
-		Icon6,
-		Icon7,
-		Icon8,
-		Icon9,
+		IconSix,
+		IconSeven,
+		IconEight,
+		IconNine,
 		AppLink,
 		IconBase,
 		HanziChar,
@@ -451,17 +451,17 @@ export default defineComponent({
 	},
 	setup() {
 		function showAndJumpToHelp(topic: string) {
-			cache('help', topic)
-			VueScrollTo.scrollTo('#helpLine')
+			cache('help', topic);
+			VueScrollTo.scrollTo('#helpLine');
 		}
 		return {
 			cfg,
 			cache,
 			cached,
 			showHelp: showAndJumpToHelp,
-		}
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>

@@ -2,8 +2,8 @@
 .names
   .glyphs
     HanziChar(
-      v-for="(char, index) in names.chinese"
-      :key="$symbolize(char)"
+      v-for="(char, index) in [...names.chinese]"
+      :key="symbolize(char)"
       :char="char"
       :pinyin="pinyin[index]"
       size="x2l"
@@ -17,12 +17,13 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType, reactive, toRefs, computed, inject} from 'vue'
-import {defHex, Hexaname} from '../schema'
-import {cfg} from '../store'
-import HanziChar from './HanziChar.vue'
-import {reorderKey} from './HexaGrid.vue'
-import {setQuadrantKey} from './ChangeNode.vue'
+import { defineComponent, PropType, reactive, toRefs, computed, inject } from 'vue';
+import { defHex, Hexaname } from '../schema';
+import { cfg } from '../store';
+import HanziChar from './HanziChar.vue';
+import { reorderKey } from './HexaGrid.vue';
+import { setQuadrantKey } from './ChangeNode.vue';
+import { symbolize } from '../plugins/utils';
 
 export default defineComponent({
 	name: 'HexaNames',
@@ -43,33 +44,34 @@ export default defineComponent({
 			default: defHex.octal,
 		},
 	},
+
 	emits: ['flip'],
+
 	setup(props) {
-		const setQuadrant = inject(setQuadrantKey)
-		const reorderTiles = inject(reorderKey)
+		const setQuadrant = inject(setQuadrantKey);
+		const reorderTiles = inject(reorderKey);
 		const rx = reactive({
 			pinyin: computed(() => props.names.pinyin.split(' ')),
 			arrayedHanzi: computed((): string[] => {
-				if (!props.names.chinese) {
-					return []
-				}
-				return props.names.chinese.split('')
+				if (!props.names.chinese) return [];
+				return props.names.chinese.split('');
 			}),
-		})
+		});
 
 		function reorder() {
-			if (!reorderTiles || !setQuadrant) throw new Error('fwuck')
-			reorderTiles()
-			setQuadrant()
+			if (!reorderTiles || !setQuadrant) throw new Error('fwuck');
+			reorderTiles();
+			setQuadrant();
 		}
 
 		return {
 			reorder,
 			cfg,
+			symbolize,
 			...toRefs(rx),
-		}
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>

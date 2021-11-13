@@ -96,22 +96,22 @@ nav.flex.col
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
-import {cfg, set} from '../store'
-import {cached} from '../store/cache'
-import AppLink from './AppLink.vue'
-import IconBase from '../icons/IconBase.vue'
-import IconCoin from '../icons/IconCoin.vue'
-import IconScroll from '../icons/IconScroll.vue'
-import IconCandles from '../icons/IconCandles.vue'
-import IconMiracle from '../icons/IconMiracle.vue'
-import IconJournal from '../icons/IconJournal.vue'
-import IconCauldron from '../icons/IconCauldron.vue'
-import IconOpenBook from '../icons/IconOpenBook.vue'
-import IconPeaceSign from '../icons/IconPeaceSign.vue'
-import IconSpellBook from '../icons/IconSpellBook.vue'
-import IconCrystalBall from '../icons/IconCrystalBall.vue'
-import IconConversation from '../icons/IconConversation.vue'
+import { defineComponent } from 'vue';
+import { cfg, set } from '../store';
+import { cached } from '../store/cache';
+import AppLink from './AppLink.vue';
+import IconBase from '../icons/IconBase.vue';
+import IconCoin from '../icons/IconCoin.vue';
+import IconScroll from '../icons/IconScroll.vue';
+import IconCandles from '../icons/IconCandles.vue';
+import IconMiracle from '../icons/IconMiracle.vue';
+import IconJournal from '../icons/IconJournal.vue';
+import IconCauldron from '../icons/IconCauldron.vue';
+import IconOpenBook from '../icons/IconOpenBook.vue';
+import IconPeaceSign from '../icons/IconPeaceSign.vue';
+import IconSpellBook from '../icons/IconSpellBook.vue';
+import IconCrystalBall from '../icons/IconCrystalBall.vue';
+import IconConversation from '../icons/IconConversation.vue';
 
 export default defineComponent({
 	name: 'SiteNav',
@@ -135,17 +135,21 @@ export default defineComponent({
 			cfg,
 			set,
 			cached,
-		}
+		};
 	},
 	computed: {
 		isProd(): boolean {
-			return process.env.NODE_ENV === 'production'
+			return process.env.NODE_ENV === 'production';
 		},
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>
+.site-nav li:before {
+	display: none;
+}
+
 nav {
 	flex: 4 0 auto;
 	text-align: left;

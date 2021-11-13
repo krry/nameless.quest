@@ -24,13 +24,13 @@ transition( name="flag" appear mode="out-in" )
 </template>
 
 <script lang="ts">
-import {defineComponent, computed} from 'vue'
-import {cfg} from '../store'
-import SiteNav from './SiteNav.vue'
-import LogoBrand from './LogoBrand.vue'
-import ThemeSwitch from './ThemeSwitch.vue'
-import Taglinez from './Taglinez.vue'
-import * as drawer from '../utils/drawer'
+import { defineComponent, computed } from 'vue';
+import { cfg } from '../store';
+import SiteNav from './SiteNav.vue';
+import LogoBrand from './LogoBrand.vue';
+import ThemeSwitch from './ThemeSwitch.vue';
+import Taglinez from './Taglinez.vue';
+import * as drawer from '../utils/drawer';
 
 export default defineComponent({
 	name: 'AppDrawer',
@@ -50,16 +50,16 @@ export default defineComponent({
 				cfg.metafied &&
 				cfg.consulted &&
 				cfg.thanked &&
-				cfg.fedback,
-		)
+				cfg.fedback
+		);
 
 		return {
 			cfg,
 			drawer,
 			allGone,
-		}
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss">
@@ -91,6 +91,11 @@ export default defineComponent({
 		padding-top: 2rem;
 		padding-bottom: 2rem;
 	}
+}
+
+.drawer.fs {
+	bottom: unset;
+	height: auto;
 }
 
 .btn.tab {

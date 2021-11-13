@@ -216,31 +216,31 @@ Page.gratitude
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
-import Page from '../components/Page.vue'
-import AppLink from '../components/AppLink.vue'
-import Spinnable from '../components/Spinnable.vue'
-import Busking from '../components/Busking.vue'
-import IconBase from '../icons/IconBase.vue'
-import IconCoin from '../icons/IconCoin.vue'
-import IconScroll from '../icons/IconScroll.vue'
-import IconMiracle from '../icons/IconMiracle.vue'
-import IconCandles from '../icons/IconCandles.vue'
-import IconOpenBook from '../icons/IconOpenBook.vue'
-import IconCauldron from '../icons/IconCauldron.vue'
-import IconCoinFlip from '../icons/IconCoinFlip.vue'
-import IconSpellBook from '../icons/IconSpellBook.vue'
-import IconThreeLegs from '../icons/IconThreeLegs.vue'
-import IconPeaceSign from '../icons/IconPeaceSign.vue'
-import IconWizardsHat from '../icons/IconWizardsHat.vue'
-import IconLooptyLoop from '../icons/IconLooptyLoop.vue'
-import IconCrystalBall from '../icons/IconCrystalBall.vue'
-import IconCarnivalCoin from '../icons/IconCarnivalCoin.vue'
-import IconCrescentMoon from '../icons/IconCrescentMoon.vue'
-import IconPenroseTriangle from '../icons/IconPenroseTriangle.vue'
+import { defineComponent } from 'vue';
+import Page from '../components/Page.vue';
+import AppLink from '../components/AppLink.vue';
+import Spinnable from '../components/Spinnable.vue';
+import Busking from '../components/Busking.vue';
+import IconBase from '../icons/IconBase.vue';
+import IconCoin from '../icons/IconCoin.vue';
+import IconScroll from '../icons/IconScroll.vue';
+import IconMiracle from '../icons/IconMiracle.vue';
+import IconCandles from '../icons/IconCandles.vue';
+import IconOpenBook from '../icons/IconOpenBook.vue';
+import IconCauldron from '../icons/IconCauldron.vue';
+import IconCoinFlip from '../icons/IconCoinFlip.vue';
+import IconSpellBook from '../icons/IconSpellBook.vue';
+import IconThreeLegs from '../icons/IconThreeLegs.vue';
+import IconPeaceSign from '../icons/IconPeaceSign.vue';
+import IconWizardsHat from '../icons/IconWizardsHat.vue';
+import IconLooptyLoop from '../icons/IconLooptyLoop.vue';
+import IconCrystalBall from '../icons/IconCrystalBall.vue';
+import IconCarnivalCoin from '../icons/IconCarnivalCoin.vue';
+import IconCrescentMoon from '../icons/IconCrescentMoon.vue';
+import IconPenroseTriangle from '../icons/IconPenroseTriangle.vue';
 
 export default defineComponent({
-	name: 'Gratitude',
+	name: 'GratitudePage',
 	components: {
 		Page,
 		AppLink,
@@ -267,9 +267,9 @@ export default defineComponent({
 	data() {
 		return {
 			title: 'Thanks and Credits',
-		}
+		};
 	},
-})
+});
 </script>
 
 <style lang="postcss" scoped>
