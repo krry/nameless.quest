@@ -1,11 +1,6 @@
 import { RouteLocationRaw, RouteLocationNormalized } from 'vue-router';
 import { auth } from '../firebase';
-import {
-	UserCredential,
-	onAuthStateChanged,
-	signInWithEmailLink,
-	isSignInWithEmailLink,
-} from 'firebase/auth';
+import { onAuthStateChanged, signInWithEmailLink, isSignInWithEmailLink } from 'firebase/auth';
 import { cfg } from '../store';
 import { addRoll, cachedRoll } from '../store/rolls';
 import { cache, uncache, cached, cacheUser } from '../store/cache';
