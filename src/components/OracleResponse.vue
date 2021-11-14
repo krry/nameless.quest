@@ -67,7 +67,7 @@ import { addRoll, cachedRoll } from '../store/rolls';
 import { activeLots, setLots } from '../store/lots';
 import { parseTossToBinary } from '../utils/tosses';
 import { useHexagrams } from '../composables/hexagrams';
-import { symbolize, lineIconByNumber } from '../plugins/utils';
+import { symbolize, lineIconByNumber } from '../utils';
 import VueScrollTo from 'vue-scrollto';
 
 export default defineComponent({

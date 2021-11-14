@@ -15,7 +15,7 @@ import { defineComponent, PropType } from 'vue';
 import { Hexagram, defHex } from '../schema';
 import LineGram from './LineGram.vue';
 import { cached } from '../store/cache';
-import { symbolize } from '../plugins/utils';
+import { symbolize } from '../utils';
 
 export default defineComponent({
 	name: 'ChangingLines',

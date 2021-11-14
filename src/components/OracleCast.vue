@@ -79,7 +79,7 @@ import IconCoinFlip from '../icons/IconCoinFlip.vue';
 import { generateRandomToss } from '../utils/tosses';
 import { cached, cache } from '../store/cache';
 import VueScrollTo from 'vue-scrollto';
-import { symbolize, lineIconByNumber } from '../plugins/utils';
+import { symbolize, lineIconByNumber } from '../utils';
 
 export default defineComponent({
 	name: 'OracleCast',
@@ -229,7 +229,7 @@ h2 {
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
 	animation-play-state: paused;
-	animation-duration: var(--be4t);
+	animation-duration: var(--4beat);
 }
 
 @keyframes flipper {

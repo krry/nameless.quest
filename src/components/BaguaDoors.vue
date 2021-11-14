@@ -25,7 +25,7 @@ import { defineComponent, PropType } from 'vue';
 import HanziChar from '../components/HanziChar.vue';
 import LineGlyph from '../components/LineGlyph.vue';
 import trigramData from '../data/trigrams.json';
-import { symbolize } from '../plugins/utils';
+import { symbolize } from '../utils';
 
 interface TrigramPair {
 	above: number;

@@ -103,7 +103,7 @@ import Turnable from './Turnable.vue';
 import Spinnable from './Spinnable.vue';
 import HexaNames from './HexaNames.vue';
 import ChangingLines from './ChangingLines.vue';
-import { symbolize } from '../plugins/utils';
+import { symbolize } from '../utils';
 
 export default defineComponent({
 	name: 'HexaCard',

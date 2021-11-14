@@ -21,7 +21,7 @@ import { defineComponent } from 'vue';
 import HanziChar from '../components/HanziChar.vue';
 import LineGlyph from '../components/LineGlyph.vue';
 import trigramData from '../data/trigrams.json';
-import { titlize } from '../plugins/utils';
+import { titlize } from '../utils';
 
 export default defineComponent({
 	name: 'OneGua',

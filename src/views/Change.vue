@@ -142,7 +142,7 @@ import IconSix from '../icons/IconSix.vue';
 import IconSeven from '../icons/IconSeven.vue';
 import IconEight from '../icons/IconEight.vue';
 import IconNine from '../icons/IconNine.vue';
-import { symbolize, titlize, lineIconByNumber } from '../plugins/utils';
+import { symbolize, titlize, lineIconByNumber } from '../utils';
 
 function getPrevHex(id: string): string {
 	if (id === '1') {

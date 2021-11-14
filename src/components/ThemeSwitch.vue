@@ -9,7 +9,7 @@ button.btn.outline.theme-switch(
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { activeTheme, nextTheme } from '../store/theme';
-import { titlize } from '../plugins/utils';
+import { titlize } from '../utils';
 
 export default defineComponent({
 	name: 'ThemeSwitch',

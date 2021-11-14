@@ -84,7 +84,7 @@ import IconSeven from '../icons/IconSeven.vue';
 import IconEight from '../icons/IconEight.vue';
 import IconNine from '../icons/IconNine.vue';
 import IconSpellBook from '../icons/IconSpellBook.vue';
-import { symbolize, lineIconByNumber } from '../plugins/utils';
+import { symbolize, lineIconByNumber } from '../utils';
 
 const laterDatesFirst = (a: Roll, b: Roll): number => {
 	return b.moment.seconds - a.moment.seconds;

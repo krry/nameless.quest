@@ -23,7 +23,7 @@ import { cfg } from '../store';
 import HanziChar from './HanziChar.vue';
 import { reorderKey } from './HexaGrid.vue';
 import { setQuadrantKey } from './ChangeNode.vue';
-import { symbolize } from '../plugins/utils';
+import { symbolize } from '../utils';
 
 export default defineComponent({
 	name: 'HexaNames',
@@ -83,7 +83,7 @@ export default defineComponent({
 	text-align: center;
 	cursor: pointer;
 	position: relative;
-	transition: color var(--bea2) var(--ease-in-out-circ);
+	transition: color var(--2beat) var(--ease-in-out-circ);
 }
 
 .glyphs .char {

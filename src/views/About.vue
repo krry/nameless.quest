@@ -244,7 +244,7 @@ import IconBookStack from '../icons/IconBookStack.vue';
 import IconOpenBook from '../icons/IconOpenBook.vue';
 import IconWizardsHat from '../icons/IconWizardsHat.vue';
 import IconCrystalBall from '../icons/IconCrystalBall.vue';
-import { cruiseTo } from '../plugins/utils';
+import { cruiseTo } from '../utils';
 
 export default defineComponent({
 	name: 'AboutPage',
