@@ -2,21 +2,36 @@
 NIGHT palette
 intergalactic planetary
 */
-$paper-night: hsl(199, 17%, 10%);
-$silk-night: hsla(199, 17%, 7%, 0.82);
-$night-shade: hsla(199, 10%, 2%, 0.75);
-$deep-space: hsl(199, 10%, 2%);
-$dust-night: hsla(199, 20%, 50%, 0.8);
-$pencil-night: hsla(199, 50%, 90%, 0.2);
-$ink-night: hsl(199, 27%, 82%);
-$flair-night: hsl(199, 85%, 61%);
-$good-night: hsl(139, 71%, 61%);
-$bad-night: hsl(19, 71%, 61%);
-$link-night: hsl(321, 71%, 61%);
-$glow-night: hsla(79, 71%, 82%, 0.3);
-$moonglow: 0 0 0.125vw 0.0625vw hsla(177, 77%, 77%, 1), 0 0 0.25vw 0.125vw hsla(77, 77%, 77%, 1),
-	0 0 0.5vw 0.25vw hsla(177, 77%, 77%, 0), 0 0 1vw 0.5vw hsla(77, 77%, 77%, 1),
-	0 0 2vw 1vw hsla(177, 77%, 77%, 1), 0 0 4vw 2vw hsla(77, 77%, 77%, 0), 0 0 8vw 4vw $glow-night;
+$paper-night: hsl(199 17% 10%);
+$silk-night: hsla(199 17% 7% / 82%);
+$night-shade: hsla(199 10% 2% / 75%);
+$deep-space: hsl(199 10% 2%);
+$dust-night: hsla(199 20% 50% / 80%);
+$pencil-night: hsla(199 50% 90% / 20%);
+$ink-night: hsl(199 27% 82%);
+$flair-night: hsl(199 85% 61%);
+$good-night: hsl(139 71% 61%);
+$bad-night: hsl(19 71% 61%);
+$link-night: hsl(321 71% 61%);
+$glow-night: hsla(79 71% 82% / 30%);
+/* prettier-ignore */
+$moonglow:
+	0 0 0.125vw 0.0625vw hsla(177 77% 77% / 100%),
+	0 0 0.25vw 0.125vw hsla(77 77% 77% / 100%),
+	0 0 0.5vw 0.25vw hsla(177 77% 77% / 0%),
+	0 0 1vw 0.5vw hsla(77 77% 77% / 100%),
+	0 0 2vw 1vw hsla(177 77% 77% / 100%),
+	0 0 4vw 2vw hsla(77 77% 77% / 0%),
+	0 0 8vw 4vw $glow-night;
+/* prettier-ignore */
+$inglow:
+	inset 0 0 0.125vw 0.0625vw hsla(177 77% 77% / 100%),
+	inset 0 0 0.25vw 0.125vw hsla(77 77% 77% / 100%),
+	inset 0 0 0.5vw 0.25vw hsla(177 77% 77% / 0%),
+	inset 0 0 1vw 0.5vw hsla(77 77% 77% / 100%);
+/* inset 0 0 2vw 1vw $glow-night; */
+/* inset 0 0 4vw 2vw hsla(77 77% 77% / 0%) */
+/* inset 0 0 8vw 4vw $glow-night; */
 
 [data-theme='night'],
 .theme-night {
@@ -35,5 +50,6 @@ $moonglow: 0 0 0.125vw 0.0625vw hsla(177, 77%, 77%, 1), 0 0 0.25vw 0.125vw hsla(
 	--glow: $glow-night;
 	--shade: $night-shade;
 	--focus-glow: $moonglow;
+	--inglow: $inglow;
 	--border-style: dotted;
 }

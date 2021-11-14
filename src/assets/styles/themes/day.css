@@ -2,28 +2,49 @@
 DAY palette
 rainbow connection
 */
-$paper-day: hsl(199, 12%, 96%);
-$silk-day: hsla(199, 32%, 99%, 0.72);
-$sky-day: hsl(199, 32%, 92%);
-$shade-day: hsla(199, 10%, 40%, 0.39);
-$dust-day: hsla(199, 10%, 50%, 0.67);
-$pencil-day: hsl(199, 50%, 18%, 0.3);
-$ink-day: hsl(199, 12%, 18%);
-$flair-day: hsl(199, 77%, 39%);
-$flair-day: hsl(199, 44%, 33%);
-$good-day: hsl(132, 77%, 39%);
-$good-day: hsl(132, 44%, 33%);
-$bad-day: hsl(12, 77%, 39%);
-$bad-day: hsl(12, 44%, 33%);
-$link-day: hsl(321, 77%, 33%);
-$glow-day: hsla(199, 97%, 82%, 0.8);
-$feather: hsl(327, 77%, 77%);
-$rainglow: 0 0 1vw 0.125vw $feather, 0 0 2vw 0.25vw hsl(277, 77%, 77%),
-	0 0 4vw 0.5vw hsl(227, 77%, 77%), 0 0 8vw 1vw hsl(177, 77%, 77%), 0 0 16vw 2vw hsl(127, 77%, 77%),
-	0 0 32vw 4vw hsl(77, 77%, 77%), 0 0 64vw 8vw hsl(27, 77%, 77%);
-$springlow: 0 0 0.125vw 0.0625vw $feather, 0 0 0.25vw 0.125vw hsl(277, 77%, 77%),
-	0 0 0.5vw 0.25vw hsl(227, 77%, 77%), 0 0 1vw 0.5vw hsl(177, 77%, 77%),
-	0 0 2vw 1vw hsl(127, 77%, 77%), 0 0 4vw 2vw hsl(77, 77%, 77%), 0 0 8vw 4vw hsl(27, 77%, 77%);
+$paper-day: hsl(199 12% 96%);
+$silk-day: hsla(199 32% 99% / 72%);
+$sky-day: hsl(199 32% 92%);
+$shade-day: hsla(199 10% 40% / 39%);
+$dust-day: hsla(199 10% 50% / 67%);
+$pencil-day: hsla(199 50% 18% / 30%);
+$ink-day: hsl(199 12% 18%);
+$flair-day: hsl(199 77% 39%);
+$flair-day: hsl(199 44% 33%);
+$good-day: hsl(132 77% 39%);
+$good-day: hsl(132 44% 33%);
+$bad-day: hsl(12 77% 39%);
+$bad-day: hsl(12 44% 33%);
+$link-day: hsl(321 77% 33%);
+$glow-day: hsla(199 97% 82% / 80%);
+$feather: hsl(327 77% 77%);
+/* prettier-ignore */
+$inglow:
+	inset 0 0 0.125vw 0.0625vw $feather,
+	inset 0 0 0.25vw 0.125vw hsl(277 77% 77%),
+	inset 0 0 0.5vw 0.25vw hsl(227 77% 77%),
+	inset 0 0 1vw 0.5vw hsl(177 77% 77%);
+/* inset 0 0 2vw 1vw hsl(127 77% 77%),
+	inset 0 0 4vw 2vw hsl(77 77% 77%),
+	inset 0 0 8vw 4vw hsl(27 77% 77%); */
+/* prettier-ignore */
+$rainglow:
+	0 0 1vw 0.125vw $feather,
+	0 0 2vw 0.25vw hsl(277 77% 77%),
+	0 0 4vw 0.5vw hsl(227 77% 77%),
+	0 0 8vw 1vw hsl(177 77% 77%),
+	0 0 16vw 2vw hsl(127 77% 77%),
+	0 0 32vw 4vw hsl(77 77% 77%),
+	0 0 64vw 8vw hsl(27 77% 77%);
+/* prettier-ignore */
+$springlow:
+	0 0 0.125vw 0.0625vw $feather,
+	0 0 0.25vw 0.125vw hsl(277 77% 77%),
+	0 0 0.5vw 0.25vw hsl(227 77% 77%),
+	0 0 1vw 0.5vw hsl(177 77% 77%),
+	0 0 2vw 1vw hsl(127 77% 77%),
+	0 0 4vw 2vw hsl(77 77% 77%),
+	0 0 8vw 4vw hsl(27 77% 77%);
 
 [data-theme='day'],
 .theme-day {
@@ -42,5 +63,6 @@ $springlow: 0 0 0.125vw 0.0625vw $feather, 0 0 0.25vw 0.125vw hsl(277, 77%, 77%)
 	--glow: $shade-day;
 	--shade: $glow-day;
 	--focus-glow: $springlow;
+	--inglow: $inglow;
 	--border-style: solid;
 }

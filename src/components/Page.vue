@@ -2,13 +2,16 @@
 main.desk.flex.string(
   :style="{backgroundImage: backdrop}"
   )
-  .page.rel.flex.mid.col
+  .page.rel.flex.mid.col(
+		:class="{inactive: cfg.drawer}"
+	)
     slot
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, watchEffect, onMounted } from 'vue';
 import { activeTheme } from '../store/theme';
+import { cfg } from '../store';
 import { getRandTo } from '../utils';
 import * as drawer from '../utils/drawer';
 
@@ -33,6 +36,7 @@ export default defineComponent({
 		onMounted(() => drawer.close());
 
 		return {
+			cfg,
 			backdrop,
 		};
 	},
@@ -92,6 +96,14 @@ main {
 	padding: 1rem;
 	width: calc(100vw - 4em);
 	max-width: 48rem;
+	box-shadow: var(--focus-glow);
+	border: 1px inset var(--paper);
+	transition: box-shadow var(--beat-1);
+	transition-timing-function: var(--ease-out-quart);
+
+	&.inactive {
+		box-shadow: var(--sha-glow);
+	}
 
 	@media (min-height: 36rem) {
 		padding-top: 2rem;

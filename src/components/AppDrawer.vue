@@ -13,7 +13,7 @@ transition( name="flag" appear mode="out-in" )
 .drawer.fixed.abs-0.fs.flex.begin(
 	@click.stop="drawer.close"
 	@keydown.escape.prevent.exact="drawer.close"
-	:class="{compact: allGone}"
+	:class="{compact: allGone, active: cfg.drawer}"
 	)
 	SiteNav
 	header#header.flex.mid.pad.pad2.b
@@ -75,27 +75,32 @@ export default defineComponent({
 	justify-content: center;
 	flex-flow: column nowrap;
 	align-items: center;
-	padding: 1rem 1rem;
+	padding: 0rem 1rem;
 	z-index: 0;
 	right: auto; /* to counter the abs-0 ute */
 	width: var(--drawer-buffer);
 	background: var(--ground);
-	transition: var(--bea2) var(--ease-in-out-quart);
+	transition: var(--2beat) var(--ease-in-out-quart);
 	overflow-y: auto;
 	overflow-x: hidden;
+	box-shadow: inset var(--shaglow);
+
+	&.active {
+		box-shadow: var(--inglow);
+	}
 
 	@media (min-width: 27rem) {
 		width: var(--drawer-dim);
 	}
 	@media (min-height: 36rem) {
-		padding-top: 2rem;
-		padding-bottom: 2rem;
+		/* padding-top: 2rem; */
+		/* padding-bottom: 2rem; */
 	}
 }
 
 .drawer.fs {
 	bottom: unset;
-	height: auto;
+	/* height: auto; */
 }
 
 .btn.tab {
@@ -125,10 +130,7 @@ export default defineComponent({
 
 header {
 	flex: 0.5 0 auto;
-	margin: 1rem 0;
-	@media (min-height: 36rem) {
-		margin: 2rem 0;
-	}
+	margin-bottom: 1rem;
 }
 
 .btn.surf::after {
@@ -182,7 +184,7 @@ header {
 
 .flag-enter-active,
 .flag-leave-active {
-	transition: all var(--bea2) var(--ease-in-out-quart);
+	transition: all var(--2beat) var(--ease-in-out-quart);
 }
 
 .flag-leave-to,
