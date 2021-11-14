@@ -33,28 +33,28 @@ function applyTheme(theme: string) {
 	removeGroupOfClassesFromEl(doc, 'theme');
 	doc.classList.add(`theme-${theme}`);
 	doc.setAttribute('data-theme', theme);
-	// console.log('applying theme:', theme)
+	console.log('applying theme:', theme);
 	cache('theme', theme);
 	return theme;
 }
 
 export function setTheme(title: string): void {
-	// console.log('setting theme to', title)
+	console.log('setting theme to', title);
 	const titles = THEMES.map(t => t.title);
 	// if the title argument is one of the theme titles,
 	if (titles.indexOf(title) !== -1) {
 		applyTheme(title);
-		// console.log('saves the arg as the active theme:', title)
+		console.log('saves the arg as the active theme:', title);
 		activeTheme.value = title;
 	}
 }
 
 export function nextTheme(): void {
 	// determines index of current active themes
-	// console.log('activeTheme.value', activeTheme.value)
+	console.log('activeTheme.value', activeTheme.value);
 	const currentIndex = THEMES.map(t => t.title).indexOf(activeTheme.value);
-	// console.log('currentIndex', currentIndex)
+	console.log('currentIndex', currentIndex);
 	const nextIndex = currentIndex + 1 >= THEMES.length ? 0 : currentIndex + 1;
-	// console.log('advancing theme to', THEMES[nextIndex].title)
+	console.log('advancing theme to', THEMES[nextIndex].title);
 	setTheme(THEMES[nextIndex].title);
 }
