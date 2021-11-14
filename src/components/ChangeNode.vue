@@ -141,7 +141,7 @@ export default defineComponent({
 	position: relative;
 	text-align: center;
 	transition-property: transform, background-color, border-color, color;
-	transition-duration: var(--b3at);
+	transition-duration: var(--3beat);
 	transition-timing-function: var(--ease-out-circ);
 	background-color: var(--silk);
 	min-width: 9em;

@@ -58,10 +58,13 @@
 	--bevels: 1rem;
 	--bumper: 3em 2em; /* keeps stuff off the interior walls */
 
-	--beat: 555ms; /* default transition duration */
-	--bea2: calc(var(--beat) * 2); /* twice as long as a beat */
-	--b3at: calc(var(--beat) * 3); /* twice as long as a beat */
-	--be4t: calc(var(--beat) * 4); /* twice as long as a beat */
+	--beat: 1s; /* default transition duration */
+	--2beat: calc(var(--beat) * 1.618); /* twice as long as a beat */
+	--3beat: calc(var(--beat) * 2.618); /* thrice as long as a beat */
+	--4beat: calc(var(--beat) * 4.236); /* fourish as long as a beat */
+	--beat-1: calc(var(--beat) * 0.618); /* halfish as long as a beat */
+	--beat-2: calc(var(--beat) * 0.309); /* thirdish as long as a beat */
+	--beat-3: calc(var(--beat) * 0.1618); /* fourthish as long as a beat */
 
 	--shaglow: 0 1px 3px 0.25px var(--dust), 0 0 10vw -2.5vw var(--glow);
 }

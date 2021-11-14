@@ -102,7 +102,7 @@ export default defineComponent({
 .hexagrid {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-	transition: var(--bea2);
+	transition: var(--2beat);
 	border: var(--frame) solid var(--glow);
 	overflow: hidden;
 

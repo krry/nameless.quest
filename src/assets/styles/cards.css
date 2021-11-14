@@ -58,7 +58,7 @@
 	border-radius: var(--bevel);
 	border: 2px solid var(--glow);
 	transition-property: all;
-	transition-duration: var(--bea2);
+	transition-duration: var(--2beat);
 	transition-timing-function: var(--ease-out-circ);
 }
 
@@ -79,7 +79,7 @@
 
 .flip-enter-active,
 .flip-leave-active {
-	transition-duration: var(--b3at);
+	transition-duration: var(--3beat);
 	transition-timing-function: var(--ease-out-circ);
 }
 
