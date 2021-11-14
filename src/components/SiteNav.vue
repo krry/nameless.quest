@@ -87,7 +87,7 @@ nav.flex.col
 				span  I love this
 		li(v-if="cached.uid")
 			a.btn.md.naked.signout(
-				@click.stop="$logout"
+				@click.stop="logout"
 				tabindex="0"
 				)
 				IconBase(viewBox="0 0 100 125" size="28")
@@ -99,6 +99,7 @@ nav.flex.col
 import { defineComponent } from 'vue';
 import { cfg, set } from '../store';
 import { cached } from '../store/cache';
+import { logout } from '../utils/logout';
 import AppLink from './AppLink.vue';
 import IconBase from '../icons/IconBase.vue';
 import IconCoin from '../icons/IconCoin.vue';
@@ -135,6 +136,7 @@ export default defineComponent({
 			cfg,
 			set,
 			cached,
+			logout,
 		};
 	},
 	computed: {
@@ -152,6 +154,10 @@ export default defineComponent({
 
 nav {
 	flex: 4 0 auto;
+	margin-top: 1rem;
+	@media (min-height: 36rem) {
+		margin-top: 2rem;
+	}
 	text-align: left;
 }
 

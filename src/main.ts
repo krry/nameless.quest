@@ -4,10 +4,8 @@ import App from './App.vue';
 import { createHead } from '@vueuse/head';
 import VueScrollTo from 'vue-scrollto';
 
-import logout from './plugins/logout';
 import { AutoFocus } from './directives/autofocus';
 import { AutoResize } from './directives/autoresize';
-
 import './assets/styles/main.css';
 
 const app = createApp(App);
@@ -19,6 +17,5 @@ app.directive('autofocus', AutoFocus);
 // prettier-ignore
 app
 	.use(router)
-	.use(logout)
 	.use(head)
 	.mount('#bollard');
