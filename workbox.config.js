@@ -1,4 +1,5 @@
 module.exports = {
+	cleanupOutdatedCaches: true,
 	globDirectory: 'public/',
 	globPatterns: ['**/*.{svg,jpg,xml,png,ico,json}'],
 	ignoreURLParametersMatching: [/^utm_/, /^fbclid$/, /^source/],

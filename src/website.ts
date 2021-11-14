@@ -12,6 +12,8 @@ export const assets = [icon, favicon, msIcon, appleIcon, maskIcon, androidIcon, 
 export default {
 	root: '/',
 	lang: 'en',
+	ogLanguage: 'en_US',
+	siteLanguage: 'en-US',
 	shortName: 'Nameless',
 	longName: 'Nameless Oracle',
 	title: 'Nameless Quest ✵ Yìjīng Oracle',
