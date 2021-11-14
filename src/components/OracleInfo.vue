@@ -104,7 +104,7 @@ transition(name="slide-fade" appear mode="out-in")
 		ref="helpOracle"
 		)
 		Spinnable
-			IconBase(size="80" viewBox="0 0 100 125" iconColor="var(--flair)")
+			IconBase(size="80" viewBox="0 0 100 100" iconColor="var(--flair)")
 				IconMiracle
 		h2 What is the Oracle?
 		pre.font.md.alleft
