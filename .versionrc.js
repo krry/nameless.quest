@@ -1,5 +1,5 @@
-export default {
-	header: 'Changelog', // the header of the changelog
+module.exports = {
+	header: '# Changelog', // the header of the changelog
 	types: [
 		{ type: 'feat', section: 'Features' },
 		{ type: 'fix', section: 'Bug Fixes' },
