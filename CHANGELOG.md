@@ -1,4 +1,10 @@
 # Changelog
+### [0.5.11](https://github.com/krry/nameless.quest/compare/v0.5.10...v0.5.11) (2021-11-16)
+
+
+### Bug Fixes
+
+* **workbox:** let workbox use its defaults to avoid caching hangs ([3fbe120](https://github.com/krry/nameless.quest/commit/3fbe120867f1f2faafa34c0e789b89a566702e51))
 
 ### [0.5.10](https://github.com/krry/nameless.quest/compare/v0.5.9...v0.5.10) (2021-11-16)
 
