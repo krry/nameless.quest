@@ -1,11 +1,10 @@
 const robots = 'robots.txt';
 const icon = 'icons/icon.svg';
 const favicon = 'icons/favicon.ico';
-const msIcon = 'icons/ms-144x144.png';
-const maskIcon = 'icons/maskable-512x512.png';
-const appleIcon = 'icons/apple-touch-icon.png';
-const androidIcon = 'icons/android-chrome-192x192.png';
-// const appleStartup = 'icons/apple-touch-startup-image-640x1136.png';
+const msIcon = 'icons/144.png';
+const maskIcon = 'icons/512.png';
+const appleIcon = 'icons/180.png';
+const androidIcon = 'icons/192.png';
 
 export const assets = [icon, favicon, msIcon, appleIcon, maskIcon, androidIcon, robots];
 

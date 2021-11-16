@@ -69,7 +69,6 @@ export const appHeadTags = {
 		},
 		{ rel: 'mask-icon', type: 'image/svg', href: root + icon },
 		{ rel: 'apple-touch-icon', sizes: '180x180', href: root + appleIcon },
-		// { rel: 'apple-touch-startup-image', href: root + appleStartup },
 	],
 	script: [
 		{ defer: true, 'data-domain': 'nameless.quest', src: 'https://plausible.io/js/plausible.js' },

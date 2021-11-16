@@ -7,10 +7,11 @@ const iconsDir = path.join(__dirname, 'public/icons');
 function manifestIcons() {
 	const icons = fs.readdirSync(iconsDir).filter(file => file.endsWith('.png'));
 	return icons.map(icon => {
+		const size = icon.split('.')[0].split('@')[0];
 		return {
 			src: `icons/${icon}`,
 			type: 'image/png',
-			sizes: `${icon}x${icon}`,
+			sizes: `${size}x${size}`,
 		};
 	});
 }
