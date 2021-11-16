@@ -15,83 +15,83 @@ Page.gratitude
 			dt
 				AppLink._blank(to="https://unsplash.com/@philipgraves97") Philip Graves
 			dd
-				img.thumb(src="/bg-sm/sea1.jpg")
+				img.thumb(src="/bg/sm/sea1.jpg")
 			dd
-				img.thumb(src="/bg-sm/sea2.jpg")
+				img.thumb(src="/bg/sm/sea2.jpg")
 			dd
-				img.thumb(src="/bg-sm/sea3.jpg")
+				img.thumb(src="/bg/sm/sea3.jpg")
 			dt
 				AppLink._blank(to="https://unsplash.com/@felix_mittermeier") Felix Mittermeier
 			dd
-				img.thumb(src="/bg-sm/night1.jpg")
+				img.thumb(src="/bg/sm/night1.jpg")
 			dd
 				AppLink(to="https://unsplash.com/photos/L4-16dmZ-1c")
-					img.thumb(src="/bg-sm/sea5.jpg")
+					img.thumb(src="/bg/sm/sea5.jpg")
 			dt
 				AppLink._blank(to="https://unsplash.com/@davehoefler") Dave Hoefler
 			dd
 				AppLink(to="https://unsplash.com/photos/4pvfpUkmR6I")
-					img.thumb(src="/bg-sm/day1.jpg")
+					img.thumb(src="/bg/sm/day1.jpg")
 			dt
 				AppLink._blank(to="https://unsplash.com/@jplenio") Johannes Plenio
 			dd
 				AppLink(to="https://unsplash.com/photos/wp7qyfyJBj0")
-					img.thumb(src='/bg-sm/land4.jpg')
+					img.thumb(src='/bg/sm/land4.jpg')
 			dd
 				AppLink(to="https://unsplash.com/photos/V9Zvw_fOGqA")
-					img.thumb(src='/bg-sm/sea4.jpg')
+					img.thumb(src='/bg/sm/sea4.jpg')
 			dd
 				AppLink(to="https://unsplash.com/photos/RwHv7LgeC7s")
-					img.thumb(src='/bg-sm/land5.jpg')
+					img.thumb(src='/bg/sm/land5.jpg')
 			dt
 				AppLink._blank(to="https://unsplash.com/@allain_sidd21") Allain Siddiqui
 			dd
-				img.thumb(src="/bg-sm/land1.jpg")
+				img.thumb(src="/bg/sm/land1.jpg")
 			dt
 				AppLink._blank(to="https://unsplash.com/@mjliao") Michael L
 			dd
-				img.thumb(src="/bg-sm/land2.jpg")
+				img.thumb(src="/bg/sm/land2.jpg")
 			dt
 				AppLink._blank(to="https://unsplash.com/@veeterzy") Veeterzy
 			dd
-				img.thumb(src="/bg-sm/land3.jpg")
+				img.thumb(src="/bg/sm/land3.jpg")
 			dt
 				AppLink._blank(to="https://unsplash.com/@dpascoa") Daniel Páscoa
 			dd
 				AppLink(to="https://unsplash.com/photos/tjiPN3e45WE")
-					img.thumb(src="/bg-sm/day2.jpg")
+					img.thumb(src="/bg/sm/day2.jpg")
 			dt
 				AppLink._blank(to="https://unsplash.com/@dbmartin00") David Brooke Martin
 			dd
-				img.thumb(src="/bg-sm/day3.jpg")
+				img.thumb(src="/bg/sm/day3.jpg")
 			dt
 				AppLink._blank(to="https://unsplash.com/@kaushikpanchal") Kaushik Panchal
 			dd
 				AppLink(to="https://unsplash.com/photos/0juC5JIhPks")
-					img.thumb(src="/bg-sm/day4.jpg")
+					img.thumb(src="/bg/sm/day4.jpg")
 			dt
 				AppLink._blank(to="https://unsplash.com/@sadswim") Ian Dooley
 			dd
 				AppLink(to="https://unsplash.com/photos/DuBNA1QMpPA")
-					img.thumb(src="/bg-sm/day5.jpg")
+					img.thumb(src="/bg/sm/day5.jpg")
 			dt
 				AppLink._blank(to="https://unsplash.com/@jeremythomasphoto") Jeremy Thomas
 			dd
-				img.thumb(src="/bg-sm/night2.jpg")
+				img.thumb(src="/bg/sm/night2.jpg")
 			dt
 				AppLink._blank(to="https://unsplash.com/@luca42") Luca Baggio
 			dd
-				img.thumb(src="/bg-sm/night3.jpg")
+				img.thumb(src="/bg/sm/night3.jpg")
 			dt
 				AppLink._blank(to="https://unsplash.com/@vincentiu") Vincentiu Solomon
 			dd
 				AppLink(to="https://unsplash.com/photos/ln5drpv_ImI")
-					img.thumb(src="/bg-sm/night4.jpg")
+					img.thumb(src="/bg/sm/night4.jpg")
 			dt
 				AppLink._blank(to="https://unsplash.com/@rodi01") Rodrigo Soares
 			dd
 				AppLink(to="https://unsplash.com/photos/SCvlb1FWeuY")
-					img.thumb(src="/bg-sm/night5.jpg")
+					img.thumb(src="/bg/sm/night5.jpg")
 		h3
 			| And thanks to&nbsp;
 			AppLink._blank(to="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText") Unsplash

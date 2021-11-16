@@ -21,6 +21,7 @@ import { useHexagrams } from '../composables/hexagrams';
 import { activeTheme } from '../store/theme';
 import { cfg, tog } from '../store';
 import { getRandTo } from '../utils';
+import { sizeBg } from '../utils/bkgds';
 import { activeLots, setLots, clearLots } from '../store/lots';
 
 // TODO: extract reorderTiles to a tiles composable or util
@@ -36,19 +37,11 @@ export default defineComponent({
 		const theme = activeTheme;
 		const { getHexagrams } = useHexagrams();
 
-		function sizeBg() {
-			const screenWidth = window.innerWidth;
-			const screenHeight = window.innerHeight;
-			const smallerDim = screenWidth < screenHeight ? screenWidth : screenHeight;
-			if (smallerDim > 1080) return 'bg-lg/';
-			if (smallerDim > 576) return 'bg-md/';
-			else return 'bg-sm/';
-		}
-
 		const rx = reactive({
 			hexagrams: computed(() => getHexagrams(cfg.wenny)),
 			backdrop: computed(
-				() => (refreshBg && 'url(/' + sizeBg() + theme.value + getRandTo(5) + '.jpg)') || ''
+				() =>
+					(refreshBg && 'url(/bg/' + sizeBg() + '/' + theme.value + getRandTo(5) + '.jpg)') || ''
 			),
 		});
 

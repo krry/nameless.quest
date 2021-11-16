@@ -13,6 +13,7 @@ import { defineComponent, ref, watchEffect, onMounted } from 'vue';
 import { activeTheme } from '../store/theme';
 import { cfg } from '../store';
 import { getRandTo } from '../utils';
+import { sizeBg } from '../utils/bkgds';
 import * as drawer from '../utils/drawer';
 
 export default defineComponent({
@@ -20,17 +21,8 @@ export default defineComponent({
 	setup() {
 		const backdrop = ref('');
 
-		function sizeBg() {
-			const screenWidth = window.innerWidth;
-			const screenHeight = window.innerHeight;
-			const smallerDim = screenWidth < screenHeight ? screenWidth : screenHeight;
-			if (smallerDim > 1080) return 'bg-lg/';
-			if (smallerDim > 576) return 'bg-md/';
-			else return 'bg-sm/';
-		}
-
 		watchEffect(() => {
-			backdrop.value = 'url(/' + sizeBg() + activeTheme.value + getRandTo(5) + '.jpg)';
+			backdrop.value = 'url(/bg/' + sizeBg() + '/' + activeTheme.value + getRandTo(5) + '.jpg)';
 		});
 
 		onMounted(() => drawer.close());
