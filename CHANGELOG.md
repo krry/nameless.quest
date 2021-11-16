@@ -1,4 +1,10 @@
 # Changelog
+### [0.5.9](https://github.com/krry/nameless.quest/compare/v0.5.7...v0.5.9) (2021-11-16)
+
+
+### Bug Fixes
+
+* **icons:** give icons the proper size in manifest and website consts ([ffa2f32](https://github.com/krry/nameless.quest/commit/ffa2f3212ba28fa1b19f912c50ff6c1b9fef26e3))
 
 ### [0.5.8](https://github.com/krry/nameless.quest/compare/v0.5.7...v0.5.8) (2021-11-16)
 
