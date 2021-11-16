@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 	cleanupOutdatedCaches: true,
 	globDirectory: 'public/',
 	globPatterns: ['**/*.{svg,jpg,xml,png,ico,json}'],

@@ -11,8 +11,9 @@
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
 		"plugins": [{ "name": "@vuedx/typescript-plugin-vue" }],
-		"allowSyntheticDefaultImports": true
+		"allowSyntheticDefaultImports": true,
+		"types": ["vite-plugin-pwa/client"]
 	},
-	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts"],
+	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
 	"ignore": ["node_modules/**/*.*"]
 }
