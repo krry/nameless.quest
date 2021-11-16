@@ -4,7 +4,7 @@ import vue from '@vitejs/plugin-vue';
 import { VitePWA } from 'vite-plugin-pwa';
 import { replaceCodePlugin as replace } from 'vite-plugin-replace';
 import manifestContents from './manifest.config';
-import workboxConfig from './workbox.config';
+// import workboxConfig from './workbox.config';
 import { assets } from './src/website';
 
 // prettier-ignore
@@ -13,7 +13,7 @@ export default defineConfig({
 		VitePWA({
 			includeAssets: assets,
 			manifest: manifestContents,
-			workbox: workboxConfig,
+			// workbox: workboxConfig,
 			registerType: 'autoUpdate',
 		}),
 		vue(),

@@ -18,7 +18,7 @@ export default {
 	title: 'Nameless Quest ✵ Yìjīng Oracle',
 	subtitle: 'A Paean to 易經, I Ching, the Classic of Changes',
 	description:
-		'An interactive, graphic resource for and paean to 易經 (Yìjīng, and often I Ching, or the Classic Book of Changes) wherein you can see the glorious symmetries of the perfect Octals, decode the binary of the hexagrams, pronounce the Pinyin, and peruse scholarly interpretations.',
+		'A digital oracle, based on the Classic Book of Change, the I Ching (or Yìjīng), that will accept your burning questions and offer you perspective on the true nature of the given moment and how it might unfold.Built for any modern browser, and available as a progressive web app to be downloaded and used offline.',
 	categories: 'metaphysical oracle and divination tool',
 	base: '/',
 	image:
