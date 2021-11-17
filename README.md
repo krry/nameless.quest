@@ -11,14 +11,16 @@ but may have forgotten.
 
 ## Dev API
 
-`npm install`: Install deps
-`npm run dev`: Compiles and hot-reloads for development
-`npm run build`: Compiles and minifies for production
-`npm run test`: Run your tests
-`npm run lint`: ESlints, prettier formats, and fixes files
-`npm run deploy`: Deploys a draft to Netlify
-`npm run deprod`: Deploys to prod on Netlify
-`npm run release`: Bumps the version, does a push, makes a tag
+`pnpm install`: Install deps
+`pnpm dev`: Compiles and hot-reloads for development
+`pnpm build`: Compiles and minifies for production
+`pnpm tidy`: ESlints, prettier formats, and fixes files
+`pnpm manifest`: [Re-generates the manifest](./generate-manifest.js))
+`pnpm test`: Run your tests
+`pnpm preview`: Test production locally
+`pnpm deploy`: Deploys a draft to Netlify
+`pnpm release`: Bumps the version, does a push, makes a tag
+`pnpm deprod`: Deploys to prod on Netlify
 
-This Nameless Project is managed in Roam:
-<https://roamresearch.com/#/app/Atmanaut/page/NlObqEwCG>
+This Nameless Project is managed loosely in my Commonplace:
+<https://kerrbear.wtf/intend/nameless>

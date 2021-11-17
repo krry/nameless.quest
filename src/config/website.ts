@@ -1,10 +1,10 @@
 const robots = 'robots.txt';
 const icon = 'icons/icon.svg';
 const favicon = 'icons/favicon.ico';
-const msIcon = 'icons/144.png';
-const maskIcon = 'icons/512.png';
-const appleIcon = 'icons/180.png';
-const androidIcon = 'icons/192.png';
+const msIcon = 'icons/icon-144x144.png';
+const maskIcon = 'icons/icon-512x512.png';
+const appleIcon = 'icons/icon-180x180.png';
+const androidIcon = 'icons/icon-192x192.png';
 
 export const assets = [icon, favicon, msIcon, appleIcon, maskIcon, androidIcon, robots];
 
@@ -23,7 +23,7 @@ export default {
 	base: '/',
 	image:
 		'https://og.easeness.biz/Nameless%20%E2%80%A2%20I%20Ching.png?theme=dark&md=1&fontSize=125px&images=https%3A%2F%2Fatmanaut.sirv.com%2Flogos%2Fbagua-white-mono.svg&widths=450&heights=450',
-	bgColor: '#043422',
+	backgroundColor: '#E4EDF1',
 	themeColor: '#E21D9D',
 	statusBarStyle: 'black-translucent',
 	author: {

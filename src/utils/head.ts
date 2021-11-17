@@ -1,13 +1,14 @@
-import website from '../website';
+import website from '../config/website';
 
 const {
 	title,
 	subtitle,
 	description,
 	themeColor,
-	bgColor,
+	backgroundColor,
 	msIcon,
 	appleIcon,
+	androidIcon,
 	icon,
 	favicon,
 	shortName,
@@ -31,7 +32,7 @@ export const appHeadTags = {
 		{ name: 'application-name', content: shortName },
 		{ name: 'theme-color', content: themeColor },
 		// microsoft
-		{ name: 'msapplication-TileColor', content: bgColor },
+		{ name: 'msapplication-TileColor', content: backgroundColor },
 		{ name: 'msapplication-TileImage', content: root + msIcon },
 		{ name: 'msapplication-config', content: root + msConfig },
 		{ name: 'mobile-web-app-capable', content: 'yes' },
@@ -68,7 +69,9 @@ export const appHeadTags = {
 			href: root + favicon,
 		},
 		{ rel: 'mask-icon', type: 'image/svg', href: root + icon },
+		{ rel: 'icon', sizes: '192x192', href: root + androidIcon },
 		{ rel: 'apple-touch-icon', sizes: '180x180', href: root + appleIcon },
+		{ rel: 'apple-touch-icon-precomposed', sizes: '128x128', href: root + appleIcon },
 	],
 	script: [
 		{ defer: true, 'data-domain': 'nameless.quest', src: 'https://plausible.io/js/plausible.js' },

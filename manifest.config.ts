@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import website from './src/website';
+import website from './src/config/website';
 
 const iconsDir = path.join(__dirname, 'public/icons');
 
@@ -8,15 +8,16 @@ function manifestIcons() {
 	const icons = fs.readdirSync(iconsDir).filter(file => file.endsWith('.png'));
 	return icons.map(icon => {
 		const size = icon.split('.')[0].split('@')[0];
-		return {
+		const iconEntry = {
 			src: `icons/${icon}`,
 			type: 'image/png',
 			sizes: `${size}x${size}`,
 		};
+		return iconEntry;
 	});
 }
 export default {
-	background_color: website.bgColor,
+	background_color: website.backgroundColor,
 	description: website.description,
 	display: 'standalone',
 	icons: manifestIcons(),

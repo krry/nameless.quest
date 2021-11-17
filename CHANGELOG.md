@@ -1,10 +1,10 @@
 # Changelog
-### [0.5.11](https://github.com/krry/nameless.quest/compare/v0.5.10...v0.5.11) (2021-11-16)
 
+### [0.5.11](https://github.com/krry/nameless.quest/compare/v0.5.10...v0.5.11) (2021-11-16)
 
 ### Bug Fixes
 
-* **workbox:** let workbox use its defaults to avoid caching hangs ([3fbe120](https://github.com/krry/nameless.quest/commit/3fbe120867f1f2faafa34c0e789b89a566702e51))
+- **workbox:** let workbox use its defaults to avoid caching hangs ([3fbe120](https://github.com/krry/nameless.quest/commit/3fbe120867f1f2faafa34c0e789b89a566702e51))
 
 ### [0.5.10](https://github.com/krry/nameless.quest/compare/v0.5.9...v0.5.10) (2021-11-16)
 
@@ -12,7 +12,7 @@
 
 ### Bug Fixes
 
-- **icons:** give icons the proper size in manifest and website consts ([ffa2f32](https://github.com/krry/nameless.quest/commit/ffa2f3212ba28fa1b19f912c50ff6c1b9fef26e3))
+- **icons:** give icons the proper size in manifest and website constants ([ffa2f32](https://github.com/krry/nameless.quest/commit/ffa2f3212ba28fa1b19f912c50ff6c1b9fef26e3))
 
 ### [0.5.8](https://github.com/krry/nameless.quest/compare/v0.5.7...v0.5.8) (2021-11-16)
 

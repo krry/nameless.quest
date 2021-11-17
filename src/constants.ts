@@ -1,4 +1,4 @@
-import website from './website';
+import website from './config/website';
 export const SITE_TITLE = website.shortName;
 export const THEMES = [
 	{

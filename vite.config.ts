@@ -3,16 +3,16 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { VitePWA } from 'vite-plugin-pwa';
 import { replaceCodePlugin as replace } from 'vite-plugin-replace';
-import manifestContents from './manifest.config';
+import manifestJson from './src/manifest.json';
 // import workboxConfig from './workbox.config';
-import { assets } from './src/website';
+import { assets } from './src/config/website';
 
 // prettier-ignore
 export default defineConfig({
 	plugins: [
 		VitePWA({
 			includeAssets: assets,
-			manifest: manifestContents,
+			manifest: manifestJson,
 			// workbox: workboxConfig,
 			registerType: 'autoUpdate',
 		}),
