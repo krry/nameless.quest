@@ -106,6 +106,17 @@ Page.config.col
 				tabindex="0"
 				)
 			ChangeNode.example
+		.setting.half
+			ToggleSwitch(
+				label="Spin Dimensions"
+				dis="One"
+				dat="Three"
+				v-model:checked="threedy"
+				tabindex="0"
+				)
+			Spinnable.mrg.mrg2.t
+				IconBase(viewBox="0 0 1000 1250" size="128" iconColor="var(--ink)")
+					IconCauldron
 		.setting.half.flex.col.mid
 			h4.font.md.thicc Switch the Theme
 			.flex
@@ -153,6 +164,7 @@ export default defineComponent({
 			wenny: cfg.wenny,
 			gendy: cfg.gendy,
 			baguy: cfg.baguy,
+			threedy: cfg.threedy,
 		});
 
 		watchEffect(() => {
@@ -163,6 +175,7 @@ export default defineComponent({
 			set('wenny', rx.wenny);
 			set('gendy', rx.gendy);
 			set('baguy', rx.baguy);
+			set('threedy', rx.threedy);
 		});
 
 		return {

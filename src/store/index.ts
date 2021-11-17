@@ -11,6 +11,7 @@ export const cfg: { [key: string]: boolean } = reactive({
 	beeny: lsd('beeny'), // seen the intro pane
 	baguy: lsd('baguy'), // bagua doors shut
 	drawer: lsd('drawer'), // site nav visible
+	threedy: lsd('threedy'), // spinnables in 3d
 	loading: lsd('loading'), // loading something
 	perused: lsd('perused'), // visited changes
 	metafied: lsd('metafied'), // visited about

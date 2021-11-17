@@ -1,7 +1,7 @@
 <template lang="pug">
 .spinnable(
   ref="el"
-	:class="isSpinning ? 'spinning' : ''"
+	:class="{spinning: isSpinning, paused: !isSpinning, threedy: cfg.threedy}"
   @click.stop="isSpinning = !isSpinning"
   )
   slot
@@ -10,6 +10,7 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted, watchEffect } from 'vue';
 import { useSpinnable } from '../composables/spinnable';
+import { cfg } from '../store';
 
 export default defineComponent({
 	name: 'SpinnableComponent',
@@ -41,6 +42,7 @@ export default defineComponent({
 		});
 		return {
 			el,
+			cfg,
 			isSpinning,
 		};
 	},
@@ -51,11 +53,17 @@ export default defineComponent({
 /* animations */
 @keyframes spin {
 	0% {
-		transform: rotateZ(0deg) rotateX(0deg) rotateY(0deg);
+		transform: rotate(0deg);
 	}
 
-	50% {
-		/* transform: rotateZ(180deg) scale(1.618); */
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes spin3d {
+	0% {
+		transform: rotateZ(0deg) rotateX(0deg) rotateY(0deg);
 	}
 
 	100% {
@@ -64,11 +72,25 @@ export default defineComponent({
 }
 
 .spinnable {
+	--spin-speed: var(--4beat);
 	animation-name: spin;
-	animation-duration: var(--4beat);
+	animation-duration: var(--spin-speed);
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
 	animation-play-state: paused;
+	&.threedy {
+		transform-style: preserve-3d;
+		transform-origin: center;
+		animation-name: spin3d;
+		animation-duration: calc(var(--spin-speed) * 3);
+	}
+	&.paused {
+		animation-play-state: paused;
+		transform: rotate(0deg);
+		&.threedy {
+			transform: rotateZ(0deg) rotateX(0deg) rotateY(0deg);
+		}
+	}
 	display: inline-block;
 	padding: 1em;
 	&.spinning {

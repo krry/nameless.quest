@@ -47,18 +47,17 @@ export const useSpinnable = (element: HTMLElement, running = false, zip = 2): Sp
 		// test for event type
 		const me = isMouseEvent(ev);
 		const te = isTouchEvent(ev);
-
+		let spinSpeed = '309ms';
 		// get position of mouse or finger
 		// calculate distance between these points every interval
 		if (me) {
-			element.style.animationDuration = `${measureDistance(me.clientX, me.clientY) / zip}ms`;
+			spinSpeed = `${measureDistance(me.clientX, me.clientY) / zip}ms`;
 			// console.log('element.style.animationDuration', element.style.animationDuration)
 		} else if (te) {
-			element.style.animationDuration = `${
-				measureDistance(te.touches[0].clientX, te.touches[0].clientY) / zip
-			}ms`;
+			spinSpeed = `${measureDistance(te.touches[0].clientX, te.touches[0].clientY) / zip}ms`;
 			// console.log('element.style.animationDuration', element.style.animationDuration)
 		}
+		element.style.setProperty('--spin-speed', spinSpeed);
 	}
 
 	// see if there's a mouse in the house
