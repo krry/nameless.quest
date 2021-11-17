@@ -7,7 +7,8 @@ transition-group(
   )
   ChangeNode(
     v-for="[identifier, change] in hexagrams.entries()"
-    :key="identifier"
+		:id="identifier"
+    :key="change.binary"
     :hex="change"
     :hexId="change.binary"
     )

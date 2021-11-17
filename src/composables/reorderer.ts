@@ -4,11 +4,11 @@ import { setQuadrant } from './quadrants';
 
 export const useReorderer = (el?: HTMLElement): ((event?: MouseEvent) => void) => {
 	function reorderTiles(event?: MouseEvent): void {
-		event && console.log('event', event);
 		const lots = activeLots.value;
+		event && console.log('event', event);
 		clearLots();
-		// refreshBg++;
 		tog('wenny');
+
 		if (lots) {
 			setTimeout(() => {
 				setLots(lots);

@@ -41,7 +41,6 @@ export default defineComponent({
 	setup() {
 		const baguad = ref(false);
 		const reorder = useReorderer();
-		// console.log('reorder func', reorder);
 		watchEffect(() => (baguad.value = cfg.baguy));
 
 		return {

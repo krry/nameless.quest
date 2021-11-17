@@ -1,26 +1,26 @@
 <template lang="pug">
 article.change-node(
-  :class="{active: isActive || isBeing || isBecoming}"
-  @keydown.esc="clearLots()"
-  )
-  transition(name="deal" mode="out-in" appear)
-    HexaCard(
-      ref="card"
-      v-if="isActive"
-      :hex="hex"
-      :mark="mark"
-      :liney="liney"
-      :quad="setQuadrant(tile.$el)"
-      @close="removeLot(hexId)"
-    )
-  HexaFrame(:hex="hex")
-  HexaTile.tile(
-    ref="tile"
-    :tabindex="wenny ? hex.kingwen + 9 : hex.octal + 9"
-    :names="hex.names"
-    @click.stop="swapLot(hexId)"
-    @keyup.enter="saveLot(hexId)"
-    )
+	:class="{active: isActive || isBeing || isBecoming}"
+	@keydown.esc="clearLots()"
+	)
+	transition(name="deal" mode="out-in" appear)
+		HexaCard(
+			ref="card"
+			v-if="isActive"
+			:hex="hex"
+			:mark="mark"
+			:liney="liney"
+			:quad="setQuadrant(tile.$el)"
+			@close="removeLot(hexId)"
+		)
+	HexaFrame(:hex="hex")
+	HexaTile.tile(
+		ref="tile"
+		:tabindex="wenny ? hex.kingwen + 9 : hex.octal + 9"
+		:names="hex.names"
+		@click.stop="swapLot(hexId)"
+		@keyup.enter="saveLot(hexId)"
+		)
 </template>
 
 <script lang="ts">
@@ -61,6 +61,10 @@ export default defineComponent({
 		hexId: {
 			type: String,
 			default: '0b000000',
+		},
+		id: {
+			type: Symbol,
+			default: Symbol('change-node'),
 		},
 	},
 	setup(props) {
@@ -126,6 +130,7 @@ export default defineComponent({
 	transition-property: all, transform;
 	transition-duration: var(--beat-2), var(--2beat);
 	transition-timing-function: var(--ease-out-cubic), var(--ease-in-out-cubic);
+	transition: all 2s;
 	background-color: var(--silk);
 	min-width: 9em;
 	max-width: 12em;

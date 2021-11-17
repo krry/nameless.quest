@@ -55,16 +55,10 @@
 					@click="saveToss"
 					) Let's 卦 Gua
 				.fake-coins(v-else)
-					transition(name="flip" mode="out-in")
-						button.btn.outline(
-							v-if="!noCoins"
-							@click="noCoins = true"
-							) Can't find any coins?
-						button.btn.outline.over.flipper(
-							v-else
-							ref="flipper"
-							@click="fakeCoins"
-							) 🤸 Flip Coins Virtually 🪙
+					button.btn.outline.over.flipper(
+						ref="flipper"
+						@click="fakeCoins"
+						) 🤸 Flip Coins Virtually 🪙
 </template>
 
 <script lang="ts">
@@ -111,7 +105,7 @@ export default defineComponent({
 			// console.log('flipper', flipper)
 			if (flipper.value) {
 				flipper.value.style.animationPlayState = bit ? 'running' : 'paused';
-				flipper.value.style.animationDelay = '666ms';
+				flipper.value.style.animationDelay = '618ms';
 			}
 		}
 
@@ -126,7 +120,7 @@ export default defineComponent({
 					flipFlipper(false);
 					clearInterval(typer);
 				}
-			}, 2220);
+			}, 1618);
 		}
 
 		function getLineName(char: string): string {
@@ -229,9 +223,9 @@ h2 {
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
 	animation-play-state: paused;
-	animation-duration: var(--4beat);
+	animation-duration: var(--2beat);
 	line-height: 1;
-	padding: 1em;
+	/* padding: 1em; */
 }
 
 @keyframes flipper {

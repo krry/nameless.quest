@@ -184,7 +184,7 @@ header {
 
 .flag-enter-active,
 .flag-leave-active {
-	transition: all var(--2beat) var(--ease-in-out-quart);
+	transition: all var(--beat) var(--ease-in-out-quart);
 }
 
 .flag-leave-to,
