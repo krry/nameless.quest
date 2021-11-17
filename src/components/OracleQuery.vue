@@ -5,11 +5,11 @@
 	)
 		| Welcome to the Oracle
 		transition.under(name="popup")
-			aside.exposition.abs.r.l.pad.pad2.y.x.font.sm.bevel(
+			aside.exposition.abs.r.l.pad.pads.y.x.font.sm.bevel(
 				v-if="curious"
 			)
 				.close.abs.t.r(@click.stop="curious = false") ⓧ
-				h2
+				h3
 					span.big The Yìjīng
 					br
 					small aka
@@ -28,9 +28,11 @@
 							reveal
 							)
 					br
-					| is perhaps the longest
+					| reaches back through known time
 					br
-					| continuous wisdom tradition of humanity.
+					| to retrieve our rememberance of now
+					br
+					| from the Source we share.
 				p
 					| Each day we may approach the Yìjīng
 					br
@@ -186,9 +188,10 @@ export default defineComponent({
 .exposition {
 	background: var(--paper);
 	border: 0px solid var(--glow);
-	box-shadow: var(--focus-glow);
+	box-shadow: var(--inglow);
 	overflow-y: auto;
 	z-index: 15;
+	margin: 1rem auto;
 }
 
 .big {
