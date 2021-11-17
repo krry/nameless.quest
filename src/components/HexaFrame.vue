@@ -21,12 +21,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref, inject, watchEffect } from 'vue';
+import { defineComponent, PropType, ref, watchEffect } from 'vue';
 import { defHex, Hexagram } from '../schema';
 import { cfg } from '../store';
 import BaguaDoors from './BaguaDoors.vue';
-import { reorderKey } from './HexaGrid.vue';
-import { setQuadrantKey } from './ChangeNode.vue';
+import { useReorderer } from '../composables/reorderer';
 
 export default defineComponent({
 	name: 'HexaFrame',
@@ -41,15 +40,8 @@ export default defineComponent({
 	},
 	setup() {
 		const baguad = ref(false);
-		const reorderTiles = inject(reorderKey);
-		const setQuadrant = inject(setQuadrantKey);
-
-		function reorder() {
-			if (!reorderTiles || !setQuadrant) throw new Error("can't reorder tiles atm 🤨");
-			reorderTiles();
-			setQuadrant();
-		}
-
+		const reorder = useReorderer();
+		// console.log('reorder func', reorder);
 		watchEffect(() => (baguad.value = cfg.baguy));
 
 		return {

@@ -7,25 +7,22 @@ transition-group(
   )
   ChangeNode(
     v-for="[identifier, change] in hexagrams.entries()"
-    :key="change.binary"
+    :key="identifier"
     :hex="change"
     :hexId="change.binary"
     )
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, computed, toRefs, provide, InjectionKey } from 'vue';
+import { defineComponent, reactive, computed, toRefs } from 'vue';
 
 import ChangeNode from './ChangeNode.vue';
 import { useHexagrams } from '../composables/hexagrams';
 import { activeTheme } from '../store/theme';
-import { cfg, tog } from '../store';
+import { cfg } from '../store';
 import { getRandTo } from '../utils';
 import { sizeBg } from '../utils/bkgds';
-import { activeLots, setLots, clearLots } from '../store/lots';
-
-// TODO: extract reorderTiles to a tiles composable or util
-export const reorderKey = Symbol('reorder') as InjectionKey<() => void>;
+import { clearLots } from '../store/lots';
 
 export default defineComponent({
 	name: 'HexaGrid',
@@ -44,20 +41,6 @@ export default defineComponent({
 					(refreshBg && 'url(/bg/' + sizeBg() + '/' + theme.value + getRandTo(5) + '.jpg)') || ''
 			),
 		});
-
-		function reorderTiles() {
-			const lots = activeLots.value;
-			clearLots();
-			refreshBg++;
-			tog('wenny');
-			if (lots) {
-				setTimeout(() => {
-					return setLots(lots);
-				}, 1000);
-			}
-		}
-
-		provide(reorderKey, reorderTiles);
 
 		return {
 			clearLots,
@@ -95,12 +78,17 @@ export default defineComponent({
 .hexagrid {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-	transition: var(--2beat);
+	transition: var(--beat);
 	border: var(--frame) solid var(--glow);
-	overflow: hidden;
+	overflow-y: clip;
+	justify-items: center;
 
 	@media (min-width: 36rem) and (min-height: 36rem) {
 		border: var(--bevel) solid var(--shade);
+	}
+
+	@media (min-width: 48rem) and (min-height: 48rem) {
+		width: 100vw;
 	}
 }
 </style>

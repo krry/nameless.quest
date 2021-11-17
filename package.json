@@ -28,6 +28,7 @@
 		"pre-release": "standard-version",
 		"release": "npm run pre-release && netlify deploy --prod",
 		"serve": "vite preview --port 2021",
+		"ship": "git add . && npm run commit && npm run pre-release",
 		"tidy": "npm run format && npm run lint"
 	},
 	"config": {

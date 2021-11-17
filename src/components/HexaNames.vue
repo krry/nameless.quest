@@ -17,13 +17,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, reactive, toRefs, computed, inject } from 'vue';
+import { defineComponent, PropType, reactive, toRefs, computed } from 'vue';
 import { defHex, Hexaname } from '../schema';
 import { cfg } from '../store';
 import HanziChar from './HanziChar.vue';
-import { reorderKey } from './HexaGrid.vue';
-import { setQuadrantKey } from './ChangeNode.vue';
 import { symbolize } from '../utils';
+import { useReorderer } from '../composables/reorderer';
 
 export default defineComponent({
 	name: 'HexaNames',
@@ -48,8 +47,8 @@ export default defineComponent({
 	emits: ['flip'],
 
 	setup(props) {
-		const setQuadrant = inject(setQuadrantKey);
-		const reorderTiles = inject(reorderKey);
+		const reorder = useReorderer();
+
 		const rx = reactive({
 			pinyin: computed(() => props.names.pinyin.split(' ')),
 			arrayedHanzi: computed((): string[] => {
@@ -57,12 +56,6 @@ export default defineComponent({
 				return props.names.chinese.split('');
 			}),
 		});
-
-		function reorder() {
-			if (!reorderTiles || !setQuadrant) throw new Error('fwuck');
-			reorderTiles();
-			setQuadrant();
-		}
 
 		return {
 			reorder,

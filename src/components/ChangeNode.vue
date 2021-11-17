@@ -10,7 +10,7 @@ article.change-node(
       :hex="hex"
       :mark="mark"
       :liney="liney"
-      :quad="setQuadrant"
+      :quad="setQuadrant(tile.$el)"
       @close="removeLot(hexId)"
     )
   HexaFrame(:hex="hex")
@@ -31,15 +31,13 @@ import {
 	reactive,
 	toRef,
 	toRefs,
-	provide,
 	watchEffect,
-	InjectionKey,
 	onMounted,
 	computed,
 } from 'vue';
 
-import { defHex, Hexagram, defQuad, Quad } from '../schema';
-import { determineQuadrant } from '../utils/cards';
+import { defHex, Hexagram, Quad } from '../schema';
+import { setQuadrant } from '../composables/quadrants';
 import { cfg } from '../store';
 import { cached } from '../store/cache';
 import { parseTossToBinary } from '../utils/tosses';
@@ -47,9 +45,6 @@ import { activeLots, saveLot, removeLot, clearLots } from '../store/lots';
 import HexaCard from './HexaCard.vue';
 import HexaTile from './HexaTile.vue';
 import HexaFrame from './HexaFrame.vue';
-
-// TODO: extract setQuadrant to a tiles composable or util
-export const setQuadrantKey = Symbol('quadrant') as InjectionKey<() => Quad>;
 
 export default defineComponent({
 	name: 'ChangeNode',
@@ -62,7 +57,6 @@ export default defineComponent({
 		hex: {
 			type: Object as PropType<Hexagram>,
 			default: defHex,
-			required: true,
 		},
 		hexId: {
 			type: String,
@@ -88,15 +82,6 @@ export default defineComponent({
 			isActive: computed(() => activeLots.value?.indexOf(hex.value.binary) === 0),
 		});
 
-		function setQuadrant(e: Event): Quad {
-			if (!rx.tile) return defQuad;
-			let el = rx.tile.$el || e.target;
-			if (!el) return defQuad;
-			const bounds = el.getBoundingClientRect();
-			// console.log("setting quadrant by tile bounds", bounds);
-			return determineQuadrant(bounds);
-		}
-
 		function swapLot(id: string): void {
 			clearLots();
 			saveLot(id);
@@ -116,8 +101,6 @@ export default defineComponent({
 				}
 			});
 		});
-
-		provide(setQuadrantKey, setQuadrant);
 
 		return {
 			swapLot,
@@ -140,12 +123,20 @@ export default defineComponent({
 	padding: 0.61em;
 	position: relative;
 	text-align: center;
-	transition-property: transform, background-color, border-color, color;
-	transition-duration: var(--3beat);
-	transition-timing-function: var(--ease-out-circ);
+	transition-property: all, transform;
+	transition-duration: var(--beat-2), var(--2beat);
+	transition-timing-function: var(--ease-out-cubic), var(--ease-in-out-cubic);
 	background-color: var(--silk);
 	min-width: 9em;
+	max-width: 12em;
 	min-height: 6.67em;
+	max-height: 9em;
+	@media (min-height: 48em) {
+		height: calc((100vh / 8) - (2 * var(--bevel)));
+	}
+	@media (min-width: 48em) {
+		width: calc((100vw / 8) - (2 * var(--bevel)));
+	}
 
 	&:hover {
 		transition-duration: 100ms;

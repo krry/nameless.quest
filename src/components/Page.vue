@@ -112,16 +112,14 @@ main {
 	}
 
 	@media (min-width: 48rem) {
-		width: auto;
 		padding-left: 2rem;
 		padding-right: 2rem;
-		max-width: 72ch;
+		max-width: min(64ch, 92vw);
 	}
 
 	@media (min-width: 64rem) {
 		padding-left: 3rem;
 		padding-right: 3rem;
-		max-width: 80ch;
 	}
 }
 
