@@ -1,4 +1,16 @@
 # Changelog
+### [0.5.12](https://github.com/krry/nameless.quest/compare/v0.5.11...v0.5.12) (2021-11-17)
+
+
+### Features
+
+* **manifest:** generate manifest with new maskable icons and new logo ([11cebe5](https://github.com/krry/nameless.quest/commit/11cebe576159b2f12573e99cb9b2af10a7e024ee))
+* **spinnables:** add a config for spinnables to be three-D or one-D ([4f84992](https://github.com/krry/nameless.quest/commit/4f84992597a37911e2d6700e6ebeab90197609cb))
+
+
+### Bug Fixes
+
+* **exposition:** refresh the layout of the oracle exposition card ([9833255](https://github.com/krry/nameless.quest/commit/98332556b9784d3fd94d331a0591772d6f7ee714))
 
 ### [0.5.11](https://github.com/krry/nameless.quest/compare/v0.5.10...v0.5.11) (2021-11-16)
 
