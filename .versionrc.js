@@ -12,4 +12,7 @@ module.exports = {
 	],
 	userUrlFormat: '{{host}}/{{user}}',
 	releaseCommitMessageFormat: 'chore(release): {{currentTag}}',
+	bumpFiles: ['package.json', 'src/manifest.json'],
+	sign: true,
+	noVerify: true,
 };
