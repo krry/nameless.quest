@@ -1,4 +1,16 @@
 # Changelog
+### [0.5.18](https://github.com/krry/nameless.quest/compare/v0.5.17...v0.5.18) (2021-11-17)
+
+
+### Features
+
+* **composables:** reorder and setQuadrant are now composables rather than provide/injects ([db11f65](https://github.com/krry/nameless.quest/commit/db11f657153ec310758e39e505475ec7be25840b))
+
+
+### Bug Fixes
+
+* **app:** cleanup and subtle brush strokes around the app ([72c8126](https://github.com/krry/nameless.quest/commit/72c8126c2246888098d85ea956e39a6ee827973f))
+* **cards:** fix position of dealt cards, responsive card layouts ([2bb4984](https://github.com/krry/nameless.quest/commit/2bb49846682be7752948e88894ad73fa4ba10783))
 
 ### [0.5.17](https://github.com/krry/nameless.quest/compare/v0.5.16...v0.5.17) (2021-11-17)
 
