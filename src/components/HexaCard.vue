@@ -1,7 +1,7 @@
 <template lang="pug">
 .sleeve(
 	tabindex="0"
-	:class="quad.yPos, quad.xPos, quad.edge, quad.middle"
+	:class="[quad.yPos, quad.xPos, quad.edge, quad.middle]"
 	)
 	.card(ref="card")
 		transition(name="flip")
@@ -24,12 +24,12 @@
 					.images.left
 						pre.image.text.sm.fine {{ hex.images }}
 					.cross.horiz.flex
-						.flex.col.mid.less
+						.flex.col.mid.less.mrg.r.l.mrg1
 							LineGlyph( :glyph="hex.hexagram" size="x6l" )
 							.binary.font.sm(v-show="cfg.turny") {{ hex.binary.slice(2) }}
 							.decimal.font.sm(v-show="cfg.turny") {{ parseInt(hex.binary.slice(2), 2) + ' of 64' }}
 							.kingwen.font.sm(v-show="!cfg.turny")
-								span KingWen {{ }}
+								span Wen \#{{ }}
 								span {{ hex.kingwen }}
 							.octal.font.sm(v-show="!cfg.turny")
 								span Octal {{ }}
@@ -189,12 +189,21 @@ export default defineComponent({
 
 .sleeve {
 	position: fixed;
-	top: 10%;
-	right: 5%;
-	left: 5%;
+	right: 0;
+	left: 0;
 	overflow: visible;
 	text-align: left;
 	z-index: 20;
+}
+
+.sleeve.bottom {
+	bottom: 40%;
+	top: 0;
+}
+
+.sleeve.top {
+	bottom: 0;
+	top: 40%;
 }
 
 .card {
@@ -205,29 +214,29 @@ export default defineComponent({
 
 .sleeve,
 .card {
-	width: 92vw;
-	height: 22rem;
-	max-width: 27rem;
-	max-height: 36rem;
+	/* phones */
 	margin: auto;
+	max-width: 92vw;
+	max-height: 50vh;
 
-	@media (min-width: 36rem) {
-		width: 27rem;
+	@media (min-width: 36rem) and (min-height: 36rem) {
+		/* tablets */
+		width: 40ch;
+		height: 60ch;
+		max-height: 56vh;
+		max-width: 36vw;
+		min-width: 40ch;
 	}
 
-	@media (min-height: 36rem) {
-		height: 32rem;
-		max-height: 75vh;
+	@media (min-width: 48rem) and (min-height: 48rem) {
+		/* desktops */
+		/* height: 40rem; */
 	}
-
-	@media (min-width: 48rem) and (min-height: 36rem) {
+	@media (min-width: 64rem) and (min-height: 48rem) {
+		/* large desktops */
 		font-size: 1.125em;
-		width: 32rem;
-		height: 40rem;
-	}
-
-	@media (min-height: 48rem) and (min-width: 36rem) {
-		height: 36rem;
+		max-height: 62vh;
+		/* width: 32rem; */
 	}
 }
 
@@ -262,17 +271,35 @@ hr.divider {
 	}
 }
 
+.images.left {
+	max-width: 82.4%;
+}
+
 pre.judgment,
 pre.image {
+	text-align: left;
+	flex-basis: auto;
+	hyphens: auto;
+	--font-mono: 0;
+	--font-casual: 0.5;
 	line-height: var(--leading);
+	flex: 1 0 auto;
 }
 
 @media (orientation: landscape) and (max-height: 35.92rem) {
 	.sleeve {
-		left: 40%;
-		right: 5%;
 		top: 0;
-		bottom: 5%;
+		bottom: 0;
+	}
+
+	.sleeve.left {
+		left: 40%;
+		right: 0;
+	}
+
+	.sleeve.right {
+		left: 0;
+		right: 40%;
 	}
 
 	.sleeve,
@@ -282,7 +309,7 @@ pre.image {
 	}
 }
 
-@media (min-width: 36rem) and (min-height: 36rem) {
+@media (min-width: 48rem) and (min-height: 48rem) {
 	.sleeve {
 		position: absolute;
 		margin: auto;
