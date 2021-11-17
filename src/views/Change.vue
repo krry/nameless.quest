@@ -8,7 +8,7 @@ Page.font.center#change(
 	)
 	router-link.page-nav.btn.naked.prev.clickable.abs.t.l(:to="prev") 𐡷 {{ prev }}
 	transition.under(name="slide-fade" appear)
-		.hint.vapor.abs.t.r.l.alcenter.font.sm(v-if="!cfg.navvy") ⬅️ Did you try 😁 arrow keys? ➡️
+		.hint.vapor.abs.t.r.l.alcenter.font.sm(v-if="!cfg.navvy") ⬅️ Try the arrow keys ➡️
 	router-link.page-nav.btn.naked.next.clickable.abs.t.r(:to="next") {{ next }} 𐡸
 	.mark(v-if="lots[0]")
 		.btn.naked.md.ib.skinny.static(v-if="lots[0] === hex.binary") Being
@@ -84,6 +84,7 @@ Page.font.center#change(
 				:glyph="hex.hexagram"
 				size="x6l")
 		pre.image.text.md(v-html="adoptOrphans(hex.images)")
+	hr.dinkus.fleuron.x3l
 	.flex.mid.col.string
 		h2.btn.naked.xl.clickable(@click="tog('liney')") {{ cfg.liney ? 'All Lines' : 'Changing Lines'}}
 		section(
@@ -104,7 +105,7 @@ Page.font.center#change(
 					component(:is="lineIconByNumber(getChangingLine(line.position)?.is)")
 			h5.text.md.em(v-if="line.ruler") The {{ titlize(line.ruler) }} Ruler
 			pre.text.md.line {{line.meaning}}
-	hr.dinkus.fleur.x3l
+	hr.dinkus.fleuroff.x3l
 	h3
 		| All Changes
 		br
@@ -380,6 +381,10 @@ dl + dl:before {
 
 .numbers .datum {
 	margin: 0 2.5vw;
+}
+
+.datum dt {
+	font-size: 82.4%;
 }
 
 .trigram .col {

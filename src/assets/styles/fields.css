@@ -35,7 +35,7 @@
 	& input[type='email'],
 	& input[type='text'],
 	& input[type='tel'] {
-		padding: 0.618em 1.236em;
+		padding: 0.309em;
 	}
 
 	& input[type='email'],

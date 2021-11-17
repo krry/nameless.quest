@@ -114,6 +114,9 @@ export default defineComponent({
 .translation {
 	bottom: -70%;
 	margin-bottom: 0;
+	text-overflow: ellipsis;
+	word-break: normal;
+	font-size: calc(var(--unit) * 0.6);
 }
 
 .char.over {
@@ -220,7 +223,11 @@ export default defineComponent({
 	&.side,
 	&.side.slide-fade-enter-to,
 	&.side.slide-fade-leave-from {
-		transform: translateX(calc(var(--unit) * 1.75)) translateY(-50%);
+		transform: translateX(calc(var(--unit) * 2.618)) translateY(-40%);
+	}
+	&.side.slide-fade-enter-from,
+	&.side.slide-fade-leave-to {
+		transform: translateX(calc(var(--unit) * 0)) translateY(-40%);
 	}
 }
 .char.md:not(.ib) .pinyin.side {

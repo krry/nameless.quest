@@ -50,7 +50,7 @@
 					viewBox="0 0 512 640")
 					IconCoin
 			transition(name="slide-fade" mode="out-in" appear)
-				button.btn.over.go(
+				button.btn.over.lg.go(
 					v-if="validToss"
 					@click="saveToss"
 					) Let's 卦 Gua
@@ -230,6 +230,8 @@ h2 {
 	animation-timing-function: linear;
 	animation-play-state: paused;
 	animation-duration: var(--4beat);
+	line-height: 1;
+	padding: 1em;
 }
 
 @keyframes flipper {

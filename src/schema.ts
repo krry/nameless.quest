@@ -57,7 +57,7 @@ export const defHex: Hexagram = {
 	judgment:
 		'Gewöhnlich glaubt der Mensch, wenn er gut gezogen, Wird selbst ein weiser Mann gewogen. Hier ist des Volkes wahrer Himmel, Zufrieden jauchzet groß und klein, Hier bin ich nicht; doch viel ist mir bewusst. Es irrt der Mensch, wenn er sie beim Kragen hätte.',
 	images:
-		' Ich bin von je der Ordnung Freund gewesen. Ich bin Ein Teil von jener Kraft, Die stets das Gute schafft. Ich bin von je der Ordnung Freund gewesen.',
+		'Ich bin von je der Ordnung Freund gewesen. Ich bin Ein Teil von jener Kraft, Die stets das Gute schafft. Ich bin von je der Ordnung Freund gewesen.',
 	lines: [
 		{
 			position: 5,

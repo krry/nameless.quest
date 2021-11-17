@@ -9,9 +9,10 @@
 		IconBase(
 			size="32"
 			viewBox="0 0 1000 1100"
+			iconName='More'
 			)
-			IconScroll
-		| More
+			IconScroll(
+			)
 	slot(name="top")
 	hr.divider.abs-0
 	slot(name="bottom")

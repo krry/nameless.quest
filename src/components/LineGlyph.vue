@@ -54,4 +54,8 @@ export default defineComponent({
 .trigram.font {
 	margin: unset;
 }
+
+.gua .trigram.font {
+	margin-top: -0.1618em;
+}
 </style>

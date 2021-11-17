@@ -63,11 +63,8 @@
 				@focus="queryFocused = true"
 				)
 			transition(name="slide-fade" appear v-if="queryFocused")
-				.lbl.font.sm.phat.below.intro.muted(for="query" v-if="cached.query.length < 9")
+				.lbl.font.sm.phat.left.intro.muted(for="query")
 					| What does your heart wonder?
-			//- transition(name="slide-fade" appear v-if="queryFocused")
-			//- 	.lbl.font.sm.phat.above.outro.muted(for="query" v-if="cached.query.length < 9")
-			//- 		| What does your heart wonder?
 			transition(name="slide-fade" appear v-if="queryFocused")
 				button.btn.action.right(type="button" @click="askTheOracle")
 					IconBase(size="36" viewBox="0 0 1000 1125")

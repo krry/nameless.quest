@@ -192,6 +192,10 @@ hr.dinkus::after {
 	margin: 0 !important;
 }
 
+.mrg-auto {
+	--mrg: auto;
+}
+
 .pad0 {
 	padding: 0;
 }

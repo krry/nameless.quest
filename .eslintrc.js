@@ -8,7 +8,6 @@ module.exports = {
 		'plugin:vue/vue3-recommended',
 		'prettier',
 		'plugin:@typescript-eslint/recommended',
-		'plugin:@typescript-eslint/eslint-recommended',
 		'@vue/typescript',
 	],
 	parser: 'vue-eslint-parser',

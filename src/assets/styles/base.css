@@ -19,6 +19,8 @@ html {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	scroll-behavior: smooth;
+	word-break: normal;
+	-webkit-tap-highlight-color: var(--glow);
 }
 
 body {

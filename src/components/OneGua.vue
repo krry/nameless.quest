@@ -72,4 +72,8 @@ export default defineComponent({
 	transform-origin: center center;
 	transition: transform var(--beat) var(--ease-out-circ);
 }
+
+.gua .glyph.trigram {
+	margin-top: -0.236em;
+}
 </style>

@@ -105,7 +105,7 @@ Page.config.col
 				v-model:checked="baguy"
 				tabindex="0"
 				)
-			ChangeNode.example
+			ChangeNode.example.mrg.mrg-auto.x
 		.setting.half
 			ToggleSwitch(
 				label="Spin Dimensions"
@@ -115,8 +115,8 @@ Page.config.col
 				tabindex="0"
 				)
 			Spinnable.mrg.mrg2.t
-				IconBase(viewBox="0 0 1000 1250" size="128" iconColor="var(--ink)")
-					IconCauldron
+				IconBase(viewBox="-1163 1657.697 56.693 56.693" size="128" iconColor="var(--ink)")
+					IconOctocat
 		.setting.half.flex.col.mid
 			h4.font.md.thicc Switch the Theme
 			.flex
@@ -131,6 +131,7 @@ import AppLink from '../components/AppLink.vue';
 import ComingSoon from '../components/ComingSoon.vue';
 import IconBase from '../icons/IconBase.vue';
 import Spinnable from '../components/Spinnable.vue';
+import IconOctocat from '../icons/IconOctocat.vue';
 import IconCauldron from '../icons/IconCauldron.vue';
 import ToggleSwitch from '../components/ToggleSwitch.vue';
 import ThemeSwitch from '../components/ThemeSwitch.vue';
@@ -148,6 +149,7 @@ export default defineComponent({
 		ToggleSwitch,
 		IconBase,
 		Spinnable,
+		IconOctocat,
 		IconCauldron,
 		ThemeSwitch,
 		ChangeNode,

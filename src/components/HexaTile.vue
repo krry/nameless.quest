@@ -3,7 +3,7 @@
   :title="names.pinyin"
   )
   HanziChar(
-    v-for="(char, index) in names.chinese"
+    v-for="(char, index) in [...names.chinese]"
     :key="index"
     :char="char"
     :pinyin="pinyin[index]"

@@ -11,7 +11,7 @@ svg.icon(
   title(
     :id="iconName"
     lang="en"
-  ) {{ iconName }} icon
+  ) {{ iconName }}
   g(:fill="iconColor")
     slot
 </template>
