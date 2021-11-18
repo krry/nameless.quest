@@ -1,4 +1,5 @@
 # Changelog
+### [0.6.5](https://github.com/krry/nameless.quest/compare/v0.6.4...v0.6.5) (2021-11-18)
 
 ### [0.6.4](https://github.com/krry/nameless.quest/compare/v0.6.3...v0.6.4) (2021-11-18)
 
