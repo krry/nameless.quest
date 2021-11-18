@@ -26,13 +26,13 @@ section.flex.col.string
 				reveal
 				)
 		| &nbsp;offers me.
+	h3 Curiosity ↔️ Gratitude ↔️ Generosity ↔️ Bliss
 	p.text.md
-		| Curiosity => Gratitude => Generosity => Bliss
 		| As a passion project, I couldn't put a price tag on Nameless. And as an oracle, its impact can be negligible or incalculable. So it is free. I sincerely hope my efforts yield insight, prosperity, catharsis, or joy for you in some form.
 	p.text.md
 		| Your support means the world to me.
 	AppLink.btn.lg.outline(to="https://ko-fi.com/kerrbear")
-		span 🏺 We are living in the gift 💗
+		span 🏺 I have gifts to share 💗
 </template>
 
 <script lang="ts">

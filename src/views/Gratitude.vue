@@ -4,10 +4,9 @@ Page.gratitude
 		IconBase(viewBox="0 0 1000 1250" size="128" iconColor="var(--ink)")
 			IconCandles
 	h1.head.x3l Gratitude
-	h3.font.lg
-		| Bottomless thanks to all those
-		br
-		| who have made Nameless possible
+	Busking
+	p.text.lg
+		| To all those who make this possible…
 	section
 		h3.head.xxl Thanks
 		h4.font.lg to these wonderful photographers…
@@ -212,7 +211,6 @@ Page.gratitude
 		.flex
 			h4.mrg.mrg1.x.y.half.font.lg To Elysa and Zephyr
 			h4.mrg.mrg1.x.y.text.md.alleft.half Your smiles and wiggles make my dreams come true every day.
-	Busking
 </template>
 
 <script lang="ts">
