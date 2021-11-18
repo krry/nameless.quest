@@ -255,11 +255,16 @@ export default defineComponent({
 	padding: 0 0 calc(var(--unit) * 1.75);
 }
 
-.char.sm .pinyin {
+.char.sm .pinyin,
+.char.sm.ib .pinyin {
 	&.side,
 	&.side.slide-fade-enter-to,
 	&.side.slide-fade-leave-from {
-		transform: translateX(calc(var(--unit) * 1.375)) translateY(-50%);
+		transform: translateX(calc(var(--unit) * 0.2618)) translateY(0%);
+	}
+	&.side.slide-fade-enter-from,
+	&.side.slide-fade-leave-to {
+		transform: translateX(calc(var(--unit) * -0.2618)) translateY(0%);
 	}
 }
 .char.sm:not(.ib) .pinyin.side {

@@ -22,7 +22,6 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import HanziChar from '../components/HanziChar.vue';
 import LineGlyph from '../components/LineGlyph.vue';
 import trigramData from '../data/trigrams.json';
 import { symbolize } from '../utils';
@@ -40,7 +39,6 @@ const defPair: TrigramPair = {
 export default defineComponent({
 	name: 'BaguaDoors',
 	components: {
-		HanziChar,
 		LineGlyph,
 	},
 	props: {

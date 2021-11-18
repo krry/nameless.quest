@@ -104,7 +104,6 @@ import IconEight from '../icons/IconEight.vue';
 import IconNine from '../icons/IconNine.vue';
 import IconBase from '../icons/IconBase.vue';
 import HexaFace from './HexaFace.vue';
-import HanziChar from './HanziChar.vue';
 import LineGlyph from './LineGlyph.vue';
 import Turnable from './Turnable.vue';
 import Spinnable from './Spinnable.vue';
@@ -122,7 +121,6 @@ export default defineComponent({
 		OneGua,
 		IconBase,
 		HexaFace,
-		HanziChar,
 		LineGlyph,
 		Turnable,
 		Spinnable,

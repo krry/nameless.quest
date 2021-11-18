@@ -1,5 +1,5 @@
 <template lang="pug">
-transition( name="flag" appear mode="out-in" )
+transition(name="flag" appear mode="out-in")
 	button.btn.naked.tab.surf.fixed.b.l.ride(
 		v-if="cfg.drawer"
 		@click.stop="drawer.close"
