@@ -1,9 +1,9 @@
-import packageJson from './package.json';
+import { version } from './package.json';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { VitePWA } from 'vite-plugin-pwa';
 import { replaceCodePlugin as replace } from 'vite-plugin-replace';
-import manifestJson from './src/manifest.json';
+import manifestConfig from './manifest.config';
 // import workboxConfig from './workbox.config';
 import { assets } from './src/config/website';
 
@@ -12,7 +12,7 @@ export default defineConfig({
 	plugins: [
 		VitePWA({
 			includeAssets: assets,
-			manifest: manifestJson,
+			manifest: manifestConfig,
 			// workbox: workboxConfig,
 			registerType: 'autoUpdate',
 		}),
@@ -25,7 +25,7 @@ export default defineConfig({
 				},
 				{
 					from: '__VERSION__',
-					to: packageJson.version,
+					to: version,
 				},
 			],
 		}),

@@ -1,21 +1,21 @@
-import fs from 'fs';
-import path from 'path';
+import { version } from './package.json';
 import website from './src/config/website';
 
-const iconsDir = path.join(__dirname, 'public/icons');
+const iconFiles = [website.icon192Path.substr(1), website.icon512Path.substr(1)];
 
 function manifestIcons() {
-	const icons = fs.readdirSync(iconsDir).filter(file => file.endsWith('.png'));
-	return icons.map(icon => {
-		const size = icon.split('.')[0].split('@')[0];
+	return iconFiles.map(file => {
+		const size = file.split('x')[1].split('.')[0];
 		const iconEntry = {
-			src: `icons/${icon}`,
-			type: 'image/png',
+			src: `${file}?v=${version}`,
 			sizes: `${size}x${size}`,
+			type: 'image/png',
+			purpose: 'maskable',
 		};
 		return iconEntry;
 	});
 }
+
 export default {
 	background_color: website.backgroundColor,
 	description: website.description,
@@ -25,6 +25,6 @@ export default {
 	name: website.longName,
 	scope: './',
 	short_name: website.shortName,
-	start_url: './?source=pwa',
+	start_url: 'https://nameless.quest/?source=pwa',
 	theme_color: website.themeColor,
 };
