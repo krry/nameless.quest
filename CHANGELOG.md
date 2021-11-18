@@ -1,4 +1,10 @@
 # Changelog
+### [0.6.3](https://github.com/krry/nameless.quest/compare/v0.6.2...v0.6.3) (2021-11-18)
+
+
+### Bug Fixes
+
+* **pinyin:** give pinyin translations the proper translate dimensions ([e74f54d](https://github.com/krry/nameless.quest/commit/e74f54d8aef806c69863174d4d1d33209447ba86))
 
 ### [0.6.2](https://github.com/krry/nameless.quest/compare/v0.6.1...v0.6.2) (2021-11-18)
 
