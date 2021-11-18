@@ -123,7 +123,15 @@ Page.font.center#change(
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, toRefs, reactive, watchEffect, onMounted, computed } from 'vue';
+import {
+	defineComponent,
+	ref,
+	toRefs,
+	reactive,
+	watchEffect,
+	onMounted,
+	computed,
+} from 'vue';
 import { cfg, set, tog } from '../store';
 import { cached } from '../store/cache';
 import VueScrollTo from 'vue-scrollto';
@@ -205,7 +213,8 @@ export default defineComponent({
 		function lineIsChanging(lineNo: number) {
 			const lineCode = cached.toss.split('')[lineNo - 1];
 			const tossedThisLot = lots.value && lots.value[0] === rx.hex.binary;
-			const activeLines = tossedThisLot && (lineCode === '6' || lineCode === '9');
+			const activeLines =
+				tossedThisLot && (lineCode === '6' || lineCode === '9');
 			return activeLines || !cached.toss || cfg.liney;
 		}
 

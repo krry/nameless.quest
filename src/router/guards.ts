@@ -1,6 +1,10 @@
 import { RouteLocationRaw, RouteLocationNormalized } from 'vue-router';
 import { auth } from '../firebase';
-import { onAuthStateChanged, signInWithEmailLink, isSignInWithEmailLink } from 'firebase/auth';
+import {
+	onAuthStateChanged,
+	signInWithEmailLink,
+	isSignInWithEmailLink,
+} from 'firebase/auth';
 import { cfg } from '../store';
 import { addRoll, cachedRoll } from '../store/rolls';
 import { cache, uncache, cached, cacheUser } from '../store/cache';
@@ -34,7 +38,11 @@ export async function beforeEach(/*to: RouteLocationNormalized*/): Promise<
 
 		if (cached.email) {
 			// console.log('email cached', cached.email);
-			const signInResult = await signInWithEmailLink(auth, cached.email, window.location.href);
+			const signInResult = await signInWithEmailLink(
+				auth,
+				cached.email,
+				window.location.href
+			);
 			// console.log('signInResult', signInResult);
 			if (signInResult.user) {
 				// console.log('valid firebase user', signInResult.user);
@@ -72,7 +80,9 @@ export function oracleGuard(): RouteLocationRaw {
 	else return { name: 'query' };
 }
 
-export function changeGuard(to: RouteLocationNormalized): RouteLocationRaw | boolean {
+export function changeGuard(
+	to: RouteLocationNormalized
+): RouteLocationRaw | boolean {
 	const id =
 		typeof to.params.id === 'string'
 			? parseInt(to.params.id, 10)

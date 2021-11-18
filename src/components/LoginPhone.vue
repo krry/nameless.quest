@@ -51,7 +51,11 @@ form.flex.space.spread.wrap(@submit.prevent="acceptingCode ? acceptConfirmationC
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs, onMounted } from 'vue';
-import { signInWithPhoneNumber, ConfirmationResult, RecaptchaVerifier } from 'firebase/auth';
+import {
+	signInWithPhoneNumber,
+	ConfirmationResult,
+	RecaptchaVerifier,
+} from 'firebase/auth';
 import { auth } from '../firebase';
 import { useRouter } from 'vue-router';
 import { cache, uncache } from '../store/cache';
@@ -64,8 +68,11 @@ let recaptchaResponse: Response;
 function prevalidatePhoneNumber(phone: string) {
 	const numberized = phone.replace(/[^0-9]/g, '');
 	const countrified =
-		numberized.length <= 10 && numberized.substr(0, 1) !== '1' ? '1' + numberized : numberized;
-	const validPhone = countrified.substr(0, 1) === '+' ? countrified : '+' + countrified;
+		numberized.length <= 10 && numberized.substr(0, 1) !== '1'
+			? '1' + numberized
+			: numberized;
+	const validPhone =
+		countrified.substr(0, 1) === '+' ? countrified : '+' + countrified;
 	console.log('validPhone', validPhone);
 	return validPhone;
 }

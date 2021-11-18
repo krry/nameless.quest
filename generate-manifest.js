@@ -14,7 +14,14 @@ const __dirname = path.resolve();
 const srcDirectory = path.join(__dirname, 'src/');
 const iconsDirectory = path.join(__dirname, 'public/icons');
 const manifestFile = path.join(__dirname, 'src/manifest.json');
-const { backgroundColor, iconFilePath, shortName, longName, description, themeColor } = website;
+const {
+	backgroundColor,
+	iconFilePath,
+	shortName,
+	longName,
+	description,
+	themeColor,
+} = website;
 
 const iconSizes = [32, 192, 512];
 

@@ -9,7 +9,9 @@ function checkThemePrefs() {
 	const savedTheme = cached.theme;
 	// console.log('theme saved was', savedTheme)
 	if (window.matchMedia('(prefers-color-scheme)').media !== 'not all') {
-		mediaPref = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : defTheme;
+		mediaPref = window.matchMedia('(prefers-color-scheme: dark)').matches
+			? 'night'
+			: defTheme;
 	}
 	if (tiempo) dayOrNight = tiempo < 7 ?? tiempo > 19 ? 'night' : '';
 	return savedTheme || mediaPref || dayOrNight || THEMES[1].title;

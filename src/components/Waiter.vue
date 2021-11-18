@@ -78,7 +78,8 @@ export default defineComponent({
 
 .ozhorse {
 	animation: ozhorse infinite 10s;
-	text-shadow: 0 1px var(--shade), 1px 0 var(--shade), -1px 0 var(--shade), 0 -1px var(--shade);
+	text-shadow: 0 1px var(--shade), 1px 0 var(--shade), -1px 0 var(--shade),
+		0 -1px var(--shade);
 
 	&.second {
 		animation-delay: -3.33s;

@@ -86,7 +86,14 @@
 						:liney="liney")
 </template>
 <script lang="ts">
-import { defineComponent, PropType, ref, reactive, toRefs, onMounted } from 'vue';
+import {
+	defineComponent,
+	PropType,
+	ref,
+	reactive,
+	toRefs,
+	onMounted,
+} from 'vue';
 import { defHex, Quad, defQuad, Hexagram } from '../schema';
 import { useSwipeable } from '../composables/swipeable';
 import { cfg } from '../store';

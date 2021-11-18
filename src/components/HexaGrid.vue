@@ -39,7 +39,14 @@ export default defineComponent({
 			hexagrams: computed(() => getHexagrams(cfg.wenny)),
 			backdrop: computed(
 				() =>
-					(refreshBg && 'url(/bg/' + sizeBg() + '/' + theme.value + getRandTo(5) + '.jpg)') || ''
+					(refreshBg &&
+						'url(/bg/' +
+							sizeBg() +
+							'/' +
+							theme.value +
+							getRandTo(5) +
+							'.jpg)') ||
+					''
 			),
 		});
 

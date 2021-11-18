@@ -27,7 +27,9 @@ interface DragParams {
 	style: ComputedRef<DragStyle | undefined>;
 }
 
-export const draggable = (element: HTMLElement | undefined): DragParams | undefined => {
+export const draggable = (
+	element: HTMLElement | undefined
+): DragParams | undefined => {
 	if (!element) return;
 
 	const position = reactive({
@@ -49,7 +51,9 @@ export const draggable = (element: HTMLElement | undefined): DragParams | undefi
 				top: `${position.y} px`,
 				width: `${position.width} px`,
 				height: `${position.height} px`,
-				'box-shadow': position.isDragging ? '3px 6px 1rem rgba(0, 0, 0, 0.15)' : '',
+				'box-shadow': position.isDragging
+					? '3px 6px 1rem rgba(0, 0, 0, 0.15)'
+					: '',
 				transform: position.isDragging ? 'translate(-3px, -6px)' : '',
 				cursor: position.isDragging ? 'grab' : 'pointer',
 			};

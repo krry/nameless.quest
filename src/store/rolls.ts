@@ -1,6 +1,14 @@
 import { ref } from 'vue';
 import { cfg } from '../store';
-import { doc, getDoc, getDocs, addDoc, updateDoc, deleteDoc, collection } from 'firebase/firestore';
+import {
+	doc,
+	getDoc,
+	getDocs,
+	addDoc,
+	updateDoc,
+	deleteDoc,
+	collection,
+} from 'firebase/firestore';
 import { Roll } from '../schema';
 import { cached } from './cache';
 import { db } from '../firebase';
@@ -15,7 +23,9 @@ const userRollsPath = ref(cached.uid ? 'users/' + cached.uid + '/rolls' : '');
 export async function addRoll(roll: Roll): Promise<void> {
 	console.log('roll to save', roll);
 	// TODO: first check the collection for a roll with the same query and toss
-	const queryIndex = activeRolls.value.map(roll => roll.query).indexOf(roll.query);
+	const queryIndex = activeRolls.value
+		.map(roll => roll.query)
+		.indexOf(roll.query);
 	const tossIndex = activeRolls.value.map(roll => roll.toss).indexOf(roll.toss);
 	if ((queryIndex !== -1 || tossIndex !== -1) && queryIndex === tossIndex) {
 		return;

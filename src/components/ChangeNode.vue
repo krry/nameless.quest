@@ -83,7 +83,9 @@ export default defineComponent({
 			wenny: cfg.wenny,
 			isBeing: computed(() => rolledLots?.indexOf(hex.value.binary) === 0),
 			isBecoming: computed(() => rolledLots?.indexOf(hex.value.binary) === 1),
-			isActive: computed(() => activeLots.value?.indexOf(hex.value.binary) === 0),
+			isActive: computed(
+				() => activeLots.value?.indexOf(hex.value.binary) === 0
+			),
 		});
 
 		function swapLot(id: string): void {
@@ -182,35 +184,43 @@ export default defineComponent({
 	}
 
 	.change-node:nth-of-type(8n) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(180deg) rotateZ(-180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(180deg)
+			rotateZ(-180deg);
 	}
 
 	.change-node:nth-of-type(8n-1) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(-180deg) rotateZ(180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(-180deg)
+			rotateZ(180deg);
 	}
 
 	.change-node:nth-of-type(8n-2) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(-180deg) rotateZ(-180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(-180deg)
+			rotateZ(-180deg);
 	}
 
 	.change-node:nth-of-type(8n-3) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(-180deg) rotateZ(180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(-180deg)
+			rotateZ(180deg);
 	}
 
 	.change-node:nth-of-type(8n-4) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(180deg) rotateZ(-180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(180deg)
+			rotateZ(-180deg);
 	}
 
 	.change-node:nth-of-type(8n-5) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(-180deg) rotateZ(-180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(-180deg)
+			rotateZ(-180deg);
 	}
 
 	.change-node:nth-of-type(8n-6) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(180deg) rotateZ(180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateX(180deg)
+			rotateZ(180deg);
 	}
 
 	.change-node:nth-of-type(8n-7) .deal-enter-from {
-		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(180deg) rotateZ(180deg);
+		transform: translate3d(-50%, 0%, 0) scale(0.25) rotateY(180deg)
+			rotateZ(180deg);
 	}
 }
 </style>

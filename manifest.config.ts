@@ -1,7 +1,10 @@
 import { version } from './package.json';
 import website from './src/config/website';
 
-const iconFiles = [website.icon192Path.substr(1), website.icon512Path.substr(1)];
+const iconFiles = [
+	website.icon192Path.substr(1),
+	website.icon512Path.substr(1),
+];
 
 function manifestIcons() {
 	return iconFiles.map(file => {

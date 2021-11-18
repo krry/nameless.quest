@@ -42,7 +42,8 @@ export default {
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	setup(props) {
 		// `props` contains `to` and any other prop that can be passed to <router-link>
-		const { href, navigate, isActive /*, route, isExactActive*/ } = useLink(props);
+		const { href, navigate, isActive /*, route, isExactActive*/ } =
+			useLink(props);
 
 		const isExternalLink = computed(
 			() => typeof props.to === 'string' && props.to.startsWith('http')

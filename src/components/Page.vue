@@ -22,7 +22,13 @@ export default defineComponent({
 		const backdrop = ref('');
 
 		watchEffect(() => {
-			backdrop.value = 'url(/bg/' + sizeBg() + '/' + activeTheme.value + getRandTo(5) + '.jpg)';
+			backdrop.value =
+				'url(/bg/' +
+				sizeBg() +
+				'/' +
+				activeTheme.value +
+				getRandTo(5) +
+				'.jpg)';
 		});
 
 		onMounted(() => drawer.close());

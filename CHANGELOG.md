@@ -1,10 +1,10 @@
 # Changelog
-### [0.6.4](https://github.com/krry/nameless.quest/compare/v0.6.3...v0.6.4) (2021-11-18)
 
+### [0.6.4](https://github.com/krry/nameless.quest/compare/v0.6.3...v0.6.4) (2021-11-18)
 
 ### Bug Fixes
 
-* **icons:** fix paths of chrome and android icons in manifest ([af50e30](https://github.com/krry/nameless.quest/commit/af50e30cfe7d7e402cab51a7b08255da1af695f6))
+- **icons:** fix paths of chrome and android icons in manifest ([af50e30](https://github.com/krry/nameless.quest/commit/af50e30cfe7d7e402cab51a7b08255da1af695f6))
 
 ### [0.6.3](https://github.com/krry/nameless.quest/compare/v0.6.2...v0.6.3) (2021-11-18)
 

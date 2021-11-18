@@ -58,7 +58,9 @@ export default defineComponent({
 		function clearBoth(event?: MouseEvent, confirmed = false) {
 			const clearAffirmed =
 				confirmed ||
-				confirm('Are you sure you want to start over? This will clear the latest entry.');
+				confirm(
+					'Are you sure you want to start over? This will clear the latest entry.'
+				);
 
 			if (clearAffirmed) {
 				cfg.saved = false;
