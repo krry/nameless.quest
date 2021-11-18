@@ -176,7 +176,7 @@ img,
 iframe,
 figure,
 video {
-	max-width: 100vw;
+	max-width: 100%;
 }
 
 strong {
