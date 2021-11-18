@@ -60,8 +60,8 @@ export const appHeadTags = {
 		{ rel: 'shortcut icon', href: faviconPath, sizes: 'any' },
 		{ rel: 'icon', type: 'image/png', sizes: '16x16', href: icon16Path },
 		{ rel: 'icon', type: 'image/png', sizes: '32x32', href: icon32Path },
-		{ rel: 'apple-touch-icon', href: appleIconPath }, // 180×180
-		{ rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#e21d9d' },
+		{ rel: 'apple-touch-icon', type: 'image/png', sizes: '180x180', href: appleIconPath }, // 180×180
+		{ rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#e21d9d', type: 'image/svg+xml' },
 	],
 	script: [
 		{ defer: true, 'data-domain': 'nameless.quest', src: 'https://plausible.io/js/plausible.js' },
