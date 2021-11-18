@@ -1,29 +1,24 @@
 import { version } from './package.json';
 import website from './src/config/website';
 
-const iconFiles = [
-	website.icon192Path.substr(1),
-	website.icon512Path.substr(1),
-];
-
-function manifestIcons() {
-	return iconFiles.map(file => {
-		const size = file.split('x')[1].split('.')[0];
-		const iconEntry = {
-			src: `${file}?v=${version}`,
-			sizes: `${size}x${size}`,
-			type: 'image/png',
-			purpose: 'maskable',
-		};
-		return iconEntry;
-	});
-}
-
 export default {
 	background_color: website.backgroundColor,
 	description: website.description,
 	display: 'standalone',
-	icons: manifestIcons(),
+	icons: [
+		{
+			src: `android-chrome-192x192.png?v=${version}`,
+			sizes: '192x192',
+			type: 'image/png',
+			purpose: 'maskable',
+		},
+		{
+			src: `android-chrome-512x512.png?v=${version}`,
+			sizes: '512x512',
+			type: 'image/png',
+			purpose: 'any',
+		},
+	],
 	lang: website.lang,
 	name: website.longName,
 	scope: './',

@@ -1,20 +1,12 @@
-const robotsTxt = 'robots.txt';
-const iconSvgPath = '/icon.svg';
-const faviconPath = '/favicon.ico'; // 32
-const icon16Path = '/favicon-16x16.png';
-const icon32Path = '/favicon-32x32.png';
-const icon192Path = '/android-chrome-192x192.png';
-const icon512Path = '/android-chrome-512x512.png';
-const appleIconPath = '/apple-touch-icon.png';
-
-export const assets = [
-	iconSvgPath,
-	faviconPath,
-	icon192Path,
-	icon512Path,
-	appleIconPath,
-	robotsTxt,
-];
+export const assets = {
+	robotsTxt: 'robots.txt',
+	iconSvgPath: 'icon.svg',
+	faviconPath: 'favicon.ico',
+	icon16Path: 'favicon-16x16.png',
+	icon32Path: 'favicon-32x32.png',
+	appleIconPath: 'apple-touch-icon.png',
+	safariSvgPath: 'safari-pinned-tab.svg',
+};
 
 export default {
 	root: '/',
@@ -41,13 +33,4 @@ export default {
 		email: 'kerry@easeness.biz',
 	},
 	manifest: 'manifest.webmanifest',
-	msConfig: 'browserconfig.xml',
-	robotsTxt,
-	iconSvgPath,
-	faviconPath,
-	icon16Path,
-	icon32Path,
-	icon192Path,
-	icon512Path,
-	appleIconPath,
 };

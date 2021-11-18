@@ -1,4 +1,13 @@
-import website from '../config/website';
+import website, { assets } from '../config/website';
+
+const {
+	iconSvgPath,
+	faviconPath,
+	icon16Path,
+	icon32Path,
+	appleIconPath,
+	safariSvgPath,
+} = assets;
 
 const {
 	title,
@@ -6,11 +15,6 @@ const {
 	description,
 	themeColor,
 	backgroundColor,
-	iconSvgPath,
-	faviconPath,
-	icon16Path,
-	icon32Path,
-	appleIconPath,
 	shortName,
 	longName,
 	categories,
@@ -56,19 +60,19 @@ export const appHeadTags = {
 	],
 	link: [
 		{ rel: 'author', href: 'https://kerrbe.ar', undo: false },
-		{ rel: 'icon', href: iconSvgPath, type: 'image/svg+xml' },
-		{ rel: 'shortcut icon', href: faviconPath, sizes: 'any' },
-		{ rel: 'icon', type: 'image/png', sizes: '16x16', href: icon16Path },
-		{ rel: 'icon', type: 'image/png', sizes: '32x32', href: icon32Path },
+		{ rel: 'icon', href: `/${iconSvgPath}`, type: 'image/svg+xml' },
+		{ rel: 'shortcut icon', href: `/${faviconPath}`, sizes: 'any' },
+		{ rel: 'icon', type: 'image/png', sizes: '16x16', href: `/${icon16Path}` },
+		{ rel: 'icon', type: 'image/png', sizes: '32x32', href: `/${icon32Path}` },
 		{
 			rel: 'apple-touch-icon',
 			type: 'image/png',
 			sizes: '180x180',
-			href: appleIconPath,
+			href: `/${appleIconPath}`,
 		}, // 180×180
 		{
 			rel: 'mask-icon',
-			href: '/safari-pinned-tab.svg',
+			href: `/${safariSvgPath}`,
 			color: '#e21d9d',
 			type: 'image/svg+xml',
 		},
