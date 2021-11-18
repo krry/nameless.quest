@@ -1,4 +1,16 @@
 # Changelog
+### [0.6.6](https://github.com/krry/nameless.quest/compare/v0.6.5...v0.6.6) (2021-11-18)
+
+
+### Features
+
+* **pages:** elevate busking ([68b9a5d](https://github.com/krry/nameless.quest/commit/68b9a5de7db4506c054b837a49e7d19ffe9a9db9))
+
+
+### Bug Fixes
+
+* **layout:** fix hangover of iframe on help page ([707ccc4](https://github.com/krry/nameless.quest/commit/707ccc41d8ab8f6befb7630283a28fc70d8c6791))
+* **pinyin:** fix small translation positions ([95a2765](https://github.com/krry/nameless.quest/commit/95a27656c0ec4d890b26286a52e391551a3b98f2))
 
 ### [0.6.5](https://github.com/krry/nameless.quest/compare/v0.6.4...v0.6.5) (2021-11-18)
 
