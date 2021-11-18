@@ -69,7 +69,7 @@
 
 .slide-fade-enter-active,
 .slide-fade-leave-active {
-	transform: translateZ(0);
+	transform: translate3d(0, 0, 0);
 	transition-property: transform, opacity;
 	transition-duration: var(--beat);
 }
@@ -85,7 +85,7 @@
 .slide-fade-enter-from,
 .slide-fade-leave-to {
 	opacity: 0;
-	transform: translateZ(0);
+	transform: translate3d(0, 0, 0);
 }
 
 .slide-fade-enter-from.over,

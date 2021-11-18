@@ -97,6 +97,9 @@ Page.config.col
 				v-model:checked="gendy"
 				tabindex="0"
 				)
+			h5.alleft.font.mrg.t.mrg1.ib
+				span(v-if="gendy") Thus the superior man encourages people to approach him by his readiness to receive them.
+				span(v-else) Thus the superior one encourages people to approach them by their readiness to receive them.
 		.setting.half
 			ToggleSwitch(
 				label="Bagua Doors"

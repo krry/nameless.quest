@@ -78,6 +78,7 @@ p {
 pre {
 	white-space: break-spaces;
 	font-family: inherit;
+	/* margin: 0; */
 }
 
 a {

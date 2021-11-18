@@ -217,7 +217,28 @@ export default defineComponent({
 .pinyin.side.slide-fade-enter-to,
 .pinyin.side.slide-fade-leave-from {
 	transform: translateX(calc(var(--unit) * 2.25)) translateY(-50%);
-	/* padding: 0 0 calc(var(--unit) * 0.25); */
+}
+.char.xl .pinyin {
+	&.side,
+	&.side.slide-fade-enter-to,
+	&.side.slide-fade-leave-from {
+		transform: translateX(calc(var(--unit) * 3.5)) translateY(-50%);
+	}
+	&.side.slide-fade-enter-from,
+	&.side.slide-fade-leave-to {
+		transform: translateX(calc(var(--unit) * 0)) translateY(-50%);
+	}
+}
+.char.lg .pinyin {
+	&.side,
+	&.side.slide-fade-enter-to,
+	&.side.slide-fade-leave-from {
+		transform: translateX(calc(var(--unit) * 3.75)) translateY(-50%);
+	}
+	&.side.slide-fade-enter-from,
+	&.side.slide-fade-leave-to {
+		transform: translateX(calc(var(--unit) * 0)) translateY(-50%);
+	}
 }
 .char.md .pinyin {
 	&.side,

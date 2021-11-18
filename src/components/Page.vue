@@ -120,6 +120,7 @@ main {
 	@media (min-width: 64rem) {
 		padding-left: 3rem;
 		padding-right: 3rem;
+		max-width: min(72ch, 92vw);
 	}
 }
 
@@ -142,7 +143,7 @@ main {
 
 .page p {
 	line-height: var(--pleading);
-	margin: 0.5em;
+	margin: 1em 0;
 }
 
 .callout {
