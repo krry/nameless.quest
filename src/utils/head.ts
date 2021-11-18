@@ -6,11 +6,11 @@ const {
 	description,
 	themeColor,
 	backgroundColor,
-	msIcon,
-	appleIcon,
-	androidIcon,
-	icon,
-	favicon,
+	iconSvgPath,
+	faviconPath,
+	icon16Path,
+	icon32Path,
+	appleIconPath,
 	shortName,
 	longName,
 	categories,
@@ -18,8 +18,6 @@ const {
 	base,
 	author,
 	statusBarStyle,
-	msConfig,
-	root,
 } = website;
 
 export const appHeadTags = {
@@ -31,14 +29,12 @@ export const appHeadTags = {
 		{ name: 'description', content: description },
 		{ name: 'application-name', content: shortName },
 		{ name: 'theme-color', content: themeColor },
-		// microsoft
-		{ name: 'msapplication-TileColor', content: backgroundColor },
-		{ name: 'msapplication-TileImage', content: root + msIcon },
-		{ name: 'msapplication-config', content: root + msConfig },
+		{ name: 'background-color', content: backgroundColor },
+		{ name: 'msapplication-TileColor', content: '#00aba9' },
 		{ name: 'mobile-web-app-capable', content: 'yes' },
 		// apple
 		{ name: 'apple-mobile-web-app-capable', content: 'yes' },
-		{ name: 'apple-mobile-web-app-title', content: shortName },
+		{ name: 'apple-mobile-web-app-title', content: longName },
 		{ name: 'apple-mobile-web-app-status-bar-style', content: statusBarStyle },
 		// google
 		{ itemprop: 'name', content: title },
@@ -60,18 +56,12 @@ export const appHeadTags = {
 	],
 	link: [
 		{ rel: 'author', href: 'https://kerrbe.ar', undo: false },
-		{ rel: 'icon', type: 'image/svg+xml', href: root + icon },
-		{ rel: 'shortcut icon', type: 'image/x-icon', href: root + favicon },
-		{
-			rel: 'alternate icon',
-			type: 'image/png',
-			sizes: '16x16',
-			href: root + favicon,
-		},
-		{ rel: 'mask-icon', type: 'image/svg', href: root + icon },
-		{ rel: 'icon', sizes: '192x192', href: root + androidIcon },
-		{ rel: 'apple-touch-icon', sizes: '180x180', href: root + appleIcon },
-		{ rel: 'apple-touch-icon-precomposed', sizes: '128x128', href: root + appleIcon },
+		{ rel: 'icon', href: iconSvgPath, type: 'image/svg+xml' },
+		{ rel: 'shortcut icon', href: faviconPath, sizes: 'any' },
+		{ rel: 'icon', type: 'image/png', sizes: '16x16', href: icon16Path },
+		{ rel: 'icon', type: 'image/png', sizes: '32x32', href: icon32Path },
+		{ rel: 'apple-touch-icon', href: appleIconPath }, // 180×180
+		{ rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#e21d9d' },
 	],
 	script: [
 		{ defer: true, 'data-domain': 'nameless.quest', src: 'https://plausible.io/js/plausible.js' },

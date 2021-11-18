@@ -11,22 +11,17 @@ import sharp from 'sharp';
 import website from './src/config/website.js'; // N.B., node requires file extension for esm import
 
 const __dirname = path.resolve();
-const staticDirectory = path.join(__dirname, 'public');
+const srcDirectory = path.join(__dirname, 'src/');
 const iconsDirectory = path.join(__dirname, 'public/icons');
 const manifestFile = path.join(__dirname, 'src/manifest.json');
-const { backgroundColor, icon, shortName, longName, description, themeColor } = website;
+const { backgroundColor, iconFilePath, shortName, longName, description, themeColor } = website;
 
-const androidIconSizes = [36, 48, 72, 96, 144, 192, 512];
-const msIconSizes = [24, 48, 50, 88, 300];
-const iOSIconSizes = [120, /*144,*/ 152, 167, 180, 1024];
-// const msBannerSizes = [
-// 	[620, 300],
-// 	[1240, 600],
-// ];
-const DEFAULT_SIZES = androidIconSizes.concat(msIconSizes, iOSIconSizes).sort((a, b) => a - b);
+const iconSizes = [32, 192, 512];
+
+const DEFAULT_SIZES = iconSizes;
 console.log('SIZES', DEFAULT_SIZES);
 
-const iconImage = sharp(staticDirectory + '/' + icon);
+const iconImage = sharp(srcDirectory + '/' + iconFilePath);
 
 const resizeIcon = async ({ size, path }) => {
 	iconImage.resize(Number(size)).toFile(path, err => {

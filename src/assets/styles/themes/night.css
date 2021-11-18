@@ -2,10 +2,10 @@
 NIGHT palette
 intergalactic planetary
 */
-$paper-night: hsl(199 17% 10%);
+$paper-night: #151b1e;
 $silk-night: hsla(199 17% 7% / 82%);
 $night-shade: hsla(199 10% 2% / 75%);
-$deep-space: hsl(199 10% 2%);
+$deep-space: #050506;
 $dust-night: hsla(199 20% 50% / 80%);
 $pencil-night: hsla(199 50% 90% / 20%);
 $ink-night: hsl(199 27% 82%);
