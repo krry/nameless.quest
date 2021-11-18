@@ -2,9 +2,7 @@ import { tog } from '../store';
 import { activeLots, setLots, clearLots } from '../store/lots';
 import { setQuadrant } from './quadrants';
 
-export const useReorderer = (
-	el?: HTMLElement
-): ((event?: MouseEvent) => void) => {
+export const useReorderer = (el?: HTMLElement): ((event?: MouseEvent) => void) => {
 	function reorderTiles(event?: MouseEvent): void {
 		const lots = activeLots.value;
 		event && console.log('event', event);

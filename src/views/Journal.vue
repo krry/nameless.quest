@@ -145,8 +145,7 @@ export default defineComponent({
 		});
 
 		watchEffect(
-			() =>
-				(rolls.value = [...new Set(activeRolls.value.sort(laterDatesFirst))])
+			() => (rolls.value = [...new Set(activeRolls.value.sort(laterDatesFirst))])
 			// console.log('hydrating with rolls from firebase', activeRolls.value)
 			// rolls.value = activeRolls.value.sort((a: Roll, b: Roll) => {
 			// 	return Number(a.moment) - Number(b.moment)
@@ -172,9 +171,7 @@ export default defineComponent({
 		}
 
 		function doubleCheckBeforeDeleteRoll(id: string | undefined): void {
-			const deleteConfirmed = confirm(
-				'Are you sure you want to delete this journal entry?'
-			);
+			const deleteConfirmed = confirm('Are you sure you want to delete this journal entry?');
 			if (id && deleteConfirmed) {
 				deleteRoll(id);
 				removeDeletedRoll(id);

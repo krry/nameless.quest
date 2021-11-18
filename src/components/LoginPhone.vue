@@ -13,7 +13,7 @@ form.flex.space.spread.wrap(@submit.prevent="acceptingCode ? acceptConfirmationC
 					v-model="phone"
 					autocomplete="tel"
 					name="mobile phone number"
-					placeholder="First the country code"
+					placeholder="+1 618 033 9887"
 					pattern="[0-9]{10,14}"
 					maxlength="14"
 					)
@@ -27,7 +27,7 @@ form.flex.space.spread.wrap(@submit.prevent="acceptingCode ? acceptConfirmationC
 					label.between(v-else-if="msg.confirm.error")
 						| Oops, we need to send you a fresh code. Please try again.
 					label.between(v-else for="email_login")
-						| 💬 We'll text you a secure code 📲
+						| 💬 We'll text you a&nbsp;secure&nbsp;code&nbsp;📲
 			.field(v-else)
 				input#phone_code(
 					v-autofocus
@@ -51,11 +51,7 @@ form.flex.space.spread.wrap(@submit.prevent="acceptingCode ? acceptConfirmationC
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs, onMounted } from 'vue';
-import {
-	signInWithPhoneNumber,
-	ConfirmationResult,
-	RecaptchaVerifier,
-} from 'firebase/auth';
+import { signInWithPhoneNumber, ConfirmationResult, RecaptchaVerifier } from 'firebase/auth';
 import { auth } from '../firebase';
 import { useRouter } from 'vue-router';
 import { cache, uncache } from '../store/cache';
@@ -68,11 +64,8 @@ let recaptchaResponse: Response;
 function prevalidatePhoneNumber(phone: string) {
 	const numberized = phone.replace(/[^0-9]/g, '');
 	const countrified =
-		numberized.length <= 10 && numberized.substr(0, 1) !== '1'
-			? '1' + numberized
-			: numberized;
-	const validPhone =
-		countrified.substr(0, 1) === '+' ? countrified : '+' + countrified;
+		numberized.length <= 10 && numberized.substr(0, 1) !== '1' ? '1' + numberized : numberized;
+	const validPhone = countrified.substr(0, 1) === '+' ? countrified : '+' + countrified;
 	console.log('validPhone', validPhone);
 	return validPhone;
 }

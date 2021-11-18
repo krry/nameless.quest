@@ -120,18 +120,14 @@ Page.font.center#change(
 			:class="{static: h[1].kingwen === hex.kingwen}, {outline: h[1].kingwen.toString() === getWenByBin(lots[0])}, {outline: h[1].kingwen.toString() === getWenByBin(lots[1])}"
 			:to="'/changes/'+h[1].kingwen"
 			) {{ (cfg.wenny ? h[1].kingwen : h[1].octal.slice(1)) + " " + h[1].hexagram }}
+
+	hr.dinkus.fleuron.xl
+
+	LogoBrand.mrg.mrg2.y(size="x2l" direction="vert" noname)
 </template>
 
 <script lang="ts">
-import {
-	defineComponent,
-	ref,
-	toRefs,
-	reactive,
-	watchEffect,
-	onMounted,
-	computed,
-} from 'vue';
+import { defineComponent, ref, toRefs, reactive, watchEffect, onMounted, computed } from 'vue';
 import { cfg, set, tog } from '../store';
 import { cached } from '../store/cache';
 import VueScrollTo from 'vue-scrollto';
@@ -213,8 +209,7 @@ export default defineComponent({
 		function lineIsChanging(lineNo: number) {
 			const lineCode = cached.toss.split('')[lineNo - 1];
 			const tossedThisLot = lots.value && lots.value[0] === rx.hex.binary;
-			const activeLines =
-				tossedThisLot && (lineCode === '6' || lineCode === '9');
+			const activeLines = tossedThisLot && (lineCode === '6' || lineCode === '9');
 			return activeLines || !cached.toss || cfg.liney;
 		}
 

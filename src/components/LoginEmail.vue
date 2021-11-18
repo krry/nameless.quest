@@ -20,7 +20,7 @@ form.flex.space.spread.wrap(@submit.prevent="emailLinkSend")
 					br
 					| You can close this window.
 				label.left.between(for="email_login" v-else)
-					| 🪄 We'll send you a magic link 🔗
+					| 🪄 We'll send you a&nbsp;magic&nbsp;link&nbsp;🔗
 			button.btn.lg.outline#email_butt(
 				type="submit"
 				v-if="!emailSuccessMsg"
@@ -95,7 +95,7 @@ label.between {
 }
 
 .email-input {
-	width: 18rem;
+	width: 16em;
 }
 
 .field input[type='email']:valid.sent {

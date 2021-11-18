@@ -85,17 +85,13 @@ export default defineComponent({
 		setLots(parseTossToBinary(cached.toss));
 		const router = useRouter();
 		const { getHexagramByBin } = useHexagrams();
-		const hexs = computed(() =>
-			activeLots.value.map((l: string) => getHexagramByBin(l))
-		);
+		const hexs = computed(() => activeLots.value.map((l: string) => getHexagramByBin(l)));
 		// console.log('hexs', hexs.value)
 
 		function clearBoth(event?: MouseEvent, confirmed = false) {
 			const clearAffirmed =
 				confirmed ||
-				confirm(
-					'Are you sure you want to start over? This will clear the current entry.'
-				);
+				confirm('Are you sure you want to start over? This will clear the current entry.');
 
 			if (clearAffirmed) {
 				cfg.saved = false;

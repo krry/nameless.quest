@@ -22,9 +22,7 @@ export const determineQuadrant = (bounds: Bounds): Quad => {
 
 	const middle =
 		// in the middle third of the vertical window space
-		bounds.top > fullHeight * 0.25 && bounds.bottom < fullHeight * 0.75
-			? 'middle'
-			: '';
+		bounds.top > fullHeight * 0.25 && bounds.bottom < fullHeight * 0.75 ? 'middle' : '';
 
 	const quadrant = {
 		yPos: yHalf,

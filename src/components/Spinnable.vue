@@ -78,6 +78,7 @@ export default defineComponent({
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
 	animation-play-state: paused;
+	border: 1x solid transparent;
 	&.threedy {
 		transform-style: preserve-3d;
 		transform-origin: center;
@@ -95,7 +96,7 @@ export default defineComponent({
 	padding: 1em;
 	&.spinning {
 		box-shadow: 0 0 1rem var(--glow), inset 0 0 1rem var(--glow);
-		border: 1px solid var(--paper);
+		border-color: var(--paper);
 		width: auto;
 		border-radius: 50%;
 	}

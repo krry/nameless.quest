@@ -134,8 +134,13 @@ h2.tagline {
 	text-decoration: none;
 }
 
-.brand.horiz h1:first-child {
-	margin-top: 0;
+.brand.horiz {
+	.spinnable {
+		padding: 0;
+	}
+	h1:first-child {
+		margin-top: 0;
+	}
 }
 
 .brand a:focus,

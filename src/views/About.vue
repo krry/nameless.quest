@@ -223,10 +223,11 @@ Page.about
 			| what feels good,
 			| each step toward love.
 
+	Busking
+
 	hr.dinkus.fleuron.xxl
 
 	LogoBrand.mrg.mrg3.y(size="x4l" direction="vert" noname)
-	Busking
 </template>
 
 <script lang="ts">

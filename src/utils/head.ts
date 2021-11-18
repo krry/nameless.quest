@@ -1,13 +1,6 @@
 import website, { assets } from '../config/website';
 
-const {
-	iconSvgPath,
-	faviconPath,
-	icon16Path,
-	icon32Path,
-	appleIconPath,
-	safariSvgPath,
-} = assets;
+const { iconSvgPath, faviconPath, icon16Path, icon32Path, appleIconPath, safariSvgPath } = assets;
 
 const {
 	title,

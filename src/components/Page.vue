@@ -22,13 +22,7 @@ export default defineComponent({
 		const backdrop = ref('');
 
 		watchEffect(() => {
-			backdrop.value =
-				'url(/bg/' +
-				sizeBg() +
-				'/' +
-				activeTheme.value +
-				getRandTo(5) +
-				'.jpg)';
+			backdrop.value = 'url(/bg/' + sizeBg() + '/' + activeTheme.value + getRandTo(5) + '.jpg)';
 		});
 
 		onMounted(() => drawer.close());
@@ -67,21 +61,26 @@ main {
 }
 
 .desk {
-	border-left: var(--frame) solid var(--glow);
 	width: 100vw;
 	max-width: 100vw;
+	--matting: 0.5rem;
+	padding-left: var(--matting);
+	padding-right: var(--matting);
 
 	@media (min-width: 27rem) {
-		padding-left: 2rem;
-		padding-right: 2rem;
+		--matting: 1rem;
 	}
 
 	@media (min-width: 36rem) and (min-height: 36rem) {
-		padding: 3rem;
+		--matting: 2rem;
 	}
 
 	@media (min-width: 48rem) and (min-height: 48rem) {
-		padding: 4rem;
+		--matting: 3rem;
+	}
+
+	@media (min-width: 64rem) and (min-height: 48rem) {
+		--matting: 4rem;
 	}
 }
 
@@ -94,10 +93,10 @@ main {
 	padding: 1rem;
 	width: calc(100vw - 4em);
 	max-width: 48rem;
-	box-shadow: var(--focus-glow);
-	border: 1px inset var(--paper);
+	box-shadow: var(--inglow);
 	transition: box-shadow var(--beat-1);
 	transition-timing-function: var(--ease-out-quart);
+	border-radius: var(--bevels);
 
 	&.inactive {
 		box-shadow: var(--sha-glow);
@@ -113,8 +112,10 @@ main {
 		padding-bottom: 3rem;
 	}
 
-	@media (min-width: 36rem) {
-		border-radius: var(--bevels);
+	@media (min-width: 36rem) and (min-height: 36rem) {
+		box-shadow: var(--focus-glow);
+		border: 1px inset var(--paper);
+		border-radius: var(--bevels) var(--bevels) 33vw 33vw;
 	}
 
 	@media (min-width: 48rem) {
@@ -127,6 +128,16 @@ main {
 		padding-left: 3rem;
 		padding-right: 3rem;
 		max-width: min(72ch, 92vw);
+	}
+}
+
+@media (min-width: 36rem) and (min-height: 36rem) {
+	.login .page {
+		border-radius: 100%;
+		section {
+			border-radius: var(--bevels);
+			padding: 2em 4em;
+		}
 	}
 }
 

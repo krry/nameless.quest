@@ -4,33 +4,18 @@
 		running
 		zip="1"
 		).spinning
-		//- IconBase.ozhorse(
-		//- 	size="144"
-		//- 	viewBox="0 0 1000 1250"
-		//- 	)
-		//- 	IconCauldron
-		//- IconBase.ozhorse(
-		//- 	size="144"
-		//- 	viewBox="0 0 100 125"
-		//- 	)
-		//- 	IconMiracle
-		//- IconBase.ozhorse(
-		//- 	size="144"
-		//- 	viewBox="0 0 1000 1250"
-		//- 	)
-		//- 	IconWizardsHat
 		IconBase.ozhorse(
-			size="144"
+			size="128"
 			viewBox="0 0 39028.39 45618.424999999996"
 			)
 			IconInfinitySign
 		IconBase.ozhorse.second(
-			size="144"
+			size="128"
 			viewBox="0 0 39028.39 45618.424999999996"
 			)
 			IconInfinitySign
 		IconBase.ozhorse.third(
-			size="144"
+			size="128"
 			viewBox="0 0 39028.39 45618.424999999996"
 			)
 			IconInfinitySign
@@ -68,7 +53,6 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .spinnable.spinning {
-	animation-duration: var(--beat);
 	pointer-events: none;
 	cursor: progress;
 	width: 100%;
@@ -78,8 +62,7 @@ export default defineComponent({
 
 .ozhorse {
 	animation: ozhorse infinite 10s;
-	text-shadow: 0 1px var(--shade), 1px 0 var(--shade), -1px 0 var(--shade),
-		0 -1px var(--shade);
+	text-shadow: 0 1px var(--shade), 1px 0 var(--shade), -1px 0 var(--shade), 0 -1px var(--shade);
 
 	&.second {
 		animation-delay: -3.33s;

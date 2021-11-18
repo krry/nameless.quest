@@ -6,11 +6,7 @@ interface SpinParams {
 	setSpinning: (state: boolean) => void;
 }
 
-export const useSpinnable = (
-	element: HTMLElement,
-	running = false,
-	zip = 2
-): SpinParams => {
+export const useSpinnable = (element: HTMLElement, running = false, zip = 2): SpinParams => {
 	const moveEvent = ref('');
 	const spinning = ref(running);
 	// console.log('making element spinnable', element)
@@ -58,9 +54,7 @@ export const useSpinnable = (
 			spinSpeed = `${measureDistance(me.clientX, me.clientY) / zip}ms`;
 			// console.log('element.style.animationDuration', element.style.animationDuration)
 		} else if (te) {
-			spinSpeed = `${
-				measureDistance(te.touches[0].clientX, te.touches[0].clientY) / zip
-			}ms`;
+			spinSpeed = `${measureDistance(te.touches[0].clientX, te.touches[0].clientY) / zip}ms`;
 			// console.log('element.style.animationDuration', element.style.animationDuration)
 		}
 		element.style.setProperty('--spin-speed', spinSpeed);
