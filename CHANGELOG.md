@@ -1,10 +1,16 @@
 # Changelog
-### [0.6.1](https://github.com/krry/nameless.quest/compare/v0.5.20...v0.6.1) (2021-11-17)
+### [0.6.2](https://github.com/krry/nameless.quest/compare/v0.6.1...v0.6.2) (2021-11-18)
 
+
+### Features
+
+* **icons:** apply the latest on icons and favicons to this site ([b2bd2b8](https://github.com/krry/nameless.quest/commit/b2bd2b85361cd40222c94fed0f907b0dc5099e90))
+
+### [0.6.1](https://github.com/krry/nameless.quest/compare/v0.5.20...v0.6.1) (2021-11-17)
 
 ### Bug Fixes
 
-* **motion:** fix the reorder animation, add zip to the motions ([7ea2955](https://github.com/krry/nameless.quest/commit/7ea29556436b37dc373608233d7bf64ebcae50cd))
+- **motion:** fix the reorder animation, add zip to the motions ([7ea2955](https://github.com/krry/nameless.quest/commit/7ea29556436b37dc373608233d7bf64ebcae50cd))
 
 ### [0.5.20](https://github.com/krry/nameless.quest/compare/v0.5.19...v0.5.20) (2021-11-17)
 
