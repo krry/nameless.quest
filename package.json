@@ -19,7 +19,6 @@
 		"format": "prettier --write --plugin-search-dir=. .",
 		"https-preview": "npm run build:local && serve dist",
 		"lint": "eslint src --ext vue,ts",
-		"manifest": "node generate-manifest.js",
 		"pre-commit": "npm run format",
 		"pre-deploy": "npm run tidy && npm run build:local",
 		"prepare": "husky install",

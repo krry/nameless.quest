@@ -88,8 +88,8 @@ main {
 	font-size: 125%;
 	flex: 1 0 auto;
 	overflow-y: auto;
-	margin: auto;
 	background-color: var(--silk);
+	margin: 1rem;
 	padding: 1rem;
 	width: calc(100vw - 4em);
 	max-width: 48rem;
@@ -105,17 +105,21 @@ main {
 	@media (min-height: 36rem) {
 		padding-top: 2rem;
 		padding-bottom: 2rem;
+		margin-top: 2rem;
+		margin-bottom: 2rem;
 	}
 
 	@media (min-height: 48rem) {
 		padding-top: 3rem;
 		padding-bottom: 3rem;
+		margin-top: 3rem;
+		margin-bottom: 3rem;
 	}
 
 	@media (min-width: 36rem) and (min-height: 36rem) {
 		box-shadow: var(--focus-glow);
 		border: 1px inset var(--paper);
-		border-radius: var(--bevels) var(--bevels) 33vw 33vw;
+		border-radius: var(--bevel) var(--bevel) 33vw 33vw;
 	}
 
 	@media (min-width: 48rem) {

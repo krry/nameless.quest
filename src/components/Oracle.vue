@@ -20,6 +20,7 @@ Page.query
 		@click="clearBoth"
 		) ♽
 </template>
+
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { cached, uncache } from '../store/cache';
