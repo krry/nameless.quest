@@ -119,7 +119,7 @@ main {
 	@media (min-width: 36rem) and (min-height: 36rem) {
 		box-shadow: var(--focus-glow);
 		border: 1px inset var(--paper);
-		border-radius: var(--bevel) var(--bevel) 33vw 33vw;
+		border-radius: var(--bevels) var(--bevels) 33vw 33vw;
 	}
 
 	@media (min-width: 48rem) {

@@ -1,7 +1,7 @@
 <template lang="pug">
 transition(name="fade")
-	Waiter(v-if="cfg.loading")
-Page.font.center#change(
+	waiter(v-if="cfg.loading")
+page-layout.font.center#change(
 	ref="desk"
 	@keydown.left.prevent.exact="navTo(prev)"
 	@keydown.right.prevent.exact="navTo(next)"
@@ -28,10 +28,10 @@ Page.font.center#change(
 			:to="{name: 'oracle'}") ⇠
 		.btn.naked.md.ib.skinny.static(v-if="lots[1] === hex.binary") Becoming
 	h1.font.x2l.flex.mid.mrg0
-		Spinnable
-			LineGlyph(:glyph="hex.hexagram" noturn inline size="x8l")
+		spinnable
+			line-glyph(:glyph="hex.hexagram" noturn inline size="x8l")
 		.flex.col.mid
-			HanziChar(
+			hanzi-char(
 				v-for="(char, index) in [...hex.names.chinese]"
 				:key="symbolize(char)"
 				:char="char"
@@ -68,7 +68,7 @@ Page.font.center#change(
 						dt {{ titlize(tri.name.en) }}
 						dt {{ index === 0 ? "Above" : "Below" }}
 					.flex.col.mid.less
-						HanziChar(
+						hanzi-char(
 							:char="tri.name.zh"
 							:pinyin="tri.name.pn"
 							size="lg"
@@ -76,11 +76,11 @@ Page.font.center#change(
 							reveal
 							)
 					.flex.col.mid.less
-						LineGlyph.second(
+						line-glyph.second(
 							trigram
 							:glyph="tri.trigram"
 							size="x5l")
-			LineGlyph.datum.middle.dyn.alcenter.font(
+			line-glyph.datum.middle.dyn.alcenter.font(
 				:glyph="hex.hexagram"
 				size="x6l")
 		pre.image.text.md(v-html="adoptOrphans(hex.images)")
@@ -92,16 +92,16 @@ Page.font.center#change(
 			:key="symbolize(line.position)"
 			v-show="lineIsChanging(line.position)"
 			)
-			Turnable(ortho)
-				IconBase(size="60" iconColor="var(--flair)")
+			turnable(ortho)
+				icon-base(size="60" iconColor="var(--flair)")
 					component(:is="lineIconByNumber(getChangingLine(line.position)?.icon)")
 			h4.font.lg Line {{line.position + ': ' + getChangingLine(line.position)?.desc }}
 			.flex.mid
 				.icon.font.x3l
-				IconBase(size="36")
+				icon-base(size="36")
 					component(:is="lineIconByNumber(getChangingLine(line.position)?.was)")
 				.icon.font.x3l ⇢
-				IconBase(size="36")
+				icon-base(size="36")
 					component(:is="lineIconByNumber(getChangingLine(line.position)?.is)")
 			h5.text.md.em(v-if="line.ruler") The {{ titlize(line.ruler) }} Ruler
 			pre.text.md.line {{line.meaning}}
@@ -113,7 +113,7 @@ Page.font.center#change(
 			| by
 			a.btn.naked.md.skinny(@click="tog('wenny')") {{ cfg.wenny ? "King Wen Sequence" : "Octal Index"}}
 	.grid8
-		AppLink.btn.naked(
+		app-link.btn.naked(
 			v-for="h in getHexagrams(cfg.wenny)"
 			:key="symbolize(h[1].kingwen)"
 			@click="scrollTo('#change')"
@@ -123,7 +123,7 @@ Page.font.center#change(
 
 	hr.dinkus.fleuron.xl
 
-	LogoBrand.mrg.mrg2.y(size="x2l" direction="vert" noname)
+	logo-brand.mrg.mrg2.y(size="x2l" direction="vert" noname)
 </template>
 
 <script lang="ts">
@@ -134,7 +134,7 @@ import VueScrollTo from 'vue-scrollto';
 import { parseTossToBinary } from '../utils/tosses';
 import { useHexagrams } from '../composables/hexagrams';
 import { useTrigrams } from '../composables/trigrams';
-import Page from '../components/Page.vue';
+import PageLayout from '../components/Page.vue';
 import Waiter from '../components/Waiter.vue';
 import AppLink from '../components/AppLink.vue';
 import HanziChar from '../components/HanziChar.vue';
@@ -168,7 +168,7 @@ function getNextHex(id: string): string {
 export default defineComponent({
 	name: 'ChangePage',
 	components: {
-		Page,
+		PageLayout,
 		AppLink,
 		Waiter,
 		LineGram,
@@ -377,6 +377,13 @@ dl + dl:before {
 	padding: 0.125em 0.5em;
 	margin: 0.5rem;
 	text-decoration: none;
+	top: 2rem;
+	&.l {
+		left: 6rem;
+	}
+	&.r {
+		right: 6rem;
+	}
 }
 
 .hint {
