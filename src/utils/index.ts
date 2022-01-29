@@ -47,3 +47,12 @@ export const lineIconByNumber = (char?: string): string | undefined => {
 			return;
 	}
 };
+
+export function hideLogsInProd(): void {
+	if (process.env.NODE_ENV === 'production') {
+		console.log = () => false;
+		console.info = () => false;
+		console.warn = () => false;
+		console.error = () => false;
+	}
+}

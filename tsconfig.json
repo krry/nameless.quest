@@ -12,7 +12,7 @@
 		"resolveJsonModule": true,
 		"plugins": [{ "name": "@vuedx/typescript-plugin-vue" }],
 		"allowSyntheticDefaultImports": true,
-		"types": ["vite-plugin-pwa/client"]
+		"types": ["vite-plugin-pwa/client", "node"]
 	},
 	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
 	"ignore": ["node_modules/**/*.*"]

@@ -3,10 +3,12 @@ import router from './router';
 import App from './App.vue';
 import { createHead } from '@vueuse/head';
 import VueScrollTo from 'vue-scrollto';
-
+import { hideLogsInProd } from './utils';
 import { AutoFocus } from './directives/autofocus';
 import { AutoResize } from './directives/autoresize';
 import './assets/styles/main.css';
+
+hideLogsInProd();
 
 const app = createApp(App);
 const head = createHead();
