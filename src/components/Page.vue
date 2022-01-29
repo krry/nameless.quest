@@ -17,7 +17,7 @@ import { sizeBg } from '../utils/bkgds';
 import * as drawer from '../utils/drawer';
 
 export default defineComponent({
-	name: 'HexaGrid',
+	name: 'PageLayout',
 	setup() {
 		const backdrop = ref('');
 
