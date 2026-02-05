@@ -206,7 +206,7 @@ Page.about
 
 	hr.dinkus.fleuroff.xxl
 
-	p.poem.mrg.mrgs.y
+	.poem.mrg.mrgs.y
 		pre.alleft.thicc.text.x2l.dust
 			| May the Oracle restore
 			| power to our intention,

@@ -1,5 +1,5 @@
 <template lang="pug">
-FeedbackFish(projectId="b186633d70b54b")
+//- FeedbackFish(projectId="b186633d70b54b")
 AppDrawer
 #app.app.rel
 	router-view
@@ -70,6 +70,8 @@ export default defineComponent({
 .app {
 	z-index: 1;
 	pointer-events: none;
-	scroll-snap-type: x mandatory;
+	display: flex;
+	flex-direction: row;
+	scroll-snap-align: start;
 }
 </style>

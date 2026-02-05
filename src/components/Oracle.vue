@@ -13,12 +13,6 @@ Page.query
 		IconBase.mrg.mrgs.y(size="72" viewBox="0 0 100 100" iconColor="var(--glow)")
 			IconThreeLegs
 	OracleInfo(ref="help")
-	button.btn.back.naked.abs.t.l(
-		type="button"
-		v-if="cached.toss"
-		title="Start Over"
-		@click="clearBoth"
-		) ♽
 </template>
 
 <script lang="ts">

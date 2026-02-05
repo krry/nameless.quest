@@ -1,18 +1,20 @@
 <template lang="pug">
 #oracle_response.response.flex.wrap.mid(v-if="hexs")
-	blockquote
+	blockquote.mrg.mrg1.b
 		h2 {{cached.query.trim()}}
-	h1.whole The Oracle Responds
-	h2 {{ cached.toss }}
-	.lines.whole.font.alcenter.font
-		IconBase.line(
-			v-for="char in [...cached.toss]"
-			:key="symbolize(char).toString()"
-			height="36"
-			width="20"
-			size="48"
-			)
-			component( :is="lineIconByNumber(char)" )
+	.flex.around.mid.wrap.whole
+		.font.sm.alcenter.mrg.mrg-50.b Yì says…
+		.lines.whole.font.alcenter.font
+			IconBase.line(
+				v-for="char in [...cached.toss]"
+				:key="symbolize(char).toString()"
+				height="36"
+				width="20"
+				size="48"
+				)
+				component( :is="lineIconByNumber(char)" )
+		.font.sm.alcenter.mrg.mrg-50.t
+			| {{ cached.toss }}
 	section.col.half.dyn.align-start.mrg.mrg1.x(
 		v-for="(hex, index) in hexs"
 		:key="symbolize(hex.binary).toString()"
@@ -52,23 +54,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, onMounted } from 'vue';
+import { computed, defineComponent, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import VueScrollTo from 'vue-scrollto';
+import { useHexagrams } from '../composables/hexagrams';
 import IconBase from '../icons/IconBase.vue';
-import IconSix from '../icons/IconSix.vue';
-import IconSeven from '../icons/IconSeven.vue';
 import IconEight from '../icons/IconEight.vue';
 import IconNine from '../icons/IconNine.vue';
-import LineGlyph from './LineGlyph.vue';
-import HanziChar from './HanziChar.vue';
+import IconSeven from '../icons/IconSeven.vue';
+import IconSix from '../icons/IconSix.vue';
 import { cfg } from '../store';
 import { cached, uncache } from '../store/cache';
-import { addRoll, cachedRoll } from '../store/rolls';
 import { activeLots, setLots } from '../store/lots';
+import { addRoll, cachedRoll } from '../store/rolls';
+import { lineIconByNumber, symbolize } from '../utils';
 import { parseTossToBinary } from '../utils/tosses';
-import { useHexagrams } from '../composables/hexagrams';
-import { symbolize, lineIconByNumber } from '../utils';
-import VueScrollTo from 'vue-scrollto';
+import HanziChar from './HanziChar.vue';
+import LineGlyph from './LineGlyph.vue';
 
 export default defineComponent({
 	name: 'OracleResponse',

@@ -6,10 +6,10 @@ page-layout.font.center#change(
 	@keydown.left.prevent.exact="navTo(prev)"
 	@keydown.right.prevent.exact="navTo(next)"
 	)
-	router-link.page-nav.btn.naked.prev.clickable.abs.t.l(:to="prev") 𐡷 {{ prev }}
+	router-link.page-nav.btn.naked.prev.clickable.abs.t.l(:to="prev") ⇜ {{ prev }}
 	transition.under(name="slide-fade" appear)
 		.hint.vapor.abs.t.r.l.alcenter.font.sm(v-if="!cfg.navvy") ⬅️ Try the arrow keys ➡️
-	router-link.page-nav.btn.naked.next.clickable.abs.t.r(:to="next") {{ next }} 𐡸
+	router-link.page-nav.btn.naked.next.clickable.abs.t.r(:to="next") {{ next }} ⇝
 	.mark(v-if="lots[0]")
 		.btn.naked.md.ib.skinny.static(v-if="lots[0] === hex.binary") Being
 		router-link.font.md(
@@ -377,12 +377,18 @@ dl + dl:before {
 	padding: 0.125em 0.5em;
 	margin: 0.5rem;
 	text-decoration: none;
-	top: 2rem;
+	top: 1rem;
 	&.l {
-		left: 6rem;
+		left: 2rem;
+		@media (min-width: 36rem) {
+			left: 8rem;
+		}
 	}
 	&.r {
-		right: 6rem;
+		right: 2rem;
+		@media (min-width: 36rem) {
+			right: 8rem;
+		}
 	}
 }
 

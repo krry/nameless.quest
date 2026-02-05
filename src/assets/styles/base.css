@@ -19,6 +19,7 @@ html {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	scroll-behavior: smooth;
+	scroll-snap-type: x mandatory;
 	word-break: normal;
 	-webkit-tap-highlight-color: var(--glow);
 }
@@ -31,6 +32,7 @@ body {
 	background-color: var(--paper);
 	display: flex;
 	flex-wrap: nowrap;
+	min-width: calc(100vw + var(--drawer-dim));
 }
 
 .bollard {
@@ -205,4 +207,36 @@ hr {
 	border-radius: var(--bev);
 	width: 61%;
 	margin: 2rem auto;
+}
+
+details summary {
+	list-style: none;
+	cursor: pointer;
+	outline: none;
+	&:hover {
+		color: var(--flair);
+	}
+}
+
+
+details > summary::-webkit-details-marker {
+	display: none;
+}
+
+/* Custom chevron */
+details summary::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+/* Rotate chevron when open */
+details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+/* Optional: spacing for content */
+details > *:not(summary) {
+  margin-top: 0.5rem;
 }

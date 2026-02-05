@@ -1,394 +1,395 @@
 <template lang="pug">
-h2 Help and FAQs
-.flex.pad.pads.y.wrap.mid
-	button.btn.md.mrg.mrg1.x.outline(
-		@click="showHelp('yijing')"
-		:class="{active: cached.help === 'yijing'}"
-		) What is the Yijing?
-	button.btn.md.mrg.mrg1.x.outline(
-		@click="showHelp('oracle')"
-		:class="{active: cached.help === 'oracle'}"
-		) What is the Oracle?
-	button.btn.md.mrg.mrg1.x.outline(
-		@click="showHelp('query')"
-		:class="{active: cached.help === 'query'}"
-		) What do I ask?
-	button.btn.md.mrg.mrg1.x.outline#method4(
-		@click="showHelp('4coin')"
-		:class="{active: cached.help === '4coin'}"
-		) The recommended 4-coin method
-	button.btn.md.mrg.mrg1.x.outline#method3(
-		@click="showHelp('3coin')"
-		:class="{active: cached.help === '3coin'}"
-		) The traditional 3-coin method
-	button.btn.md.mrg.mrg1.x.outline#method4b(
-		@click="showHelp('4bcoin')"
-		:class="{active: cached.help === '4bcoin'}"
-		) The faithful 4-coin method
-	button.btn.md.mrg.mrg1.x.outline(
-		@click="showHelp('yarrow')"
-		:class="{active: cached.help === 'yarrow'}"
-		) How to use yarrow stalks?
-#helpLine
-transition(name="slide-fade" appear mode="out-in")
-	aside#helpQuery.help.font.alcenter.pad.pads.y.below(
-		v-if="cached.help === 'query'"
-		ref="helpQuery"
-		)
-		Spinnable
-			IconBase(size="100" viewBox="0 0 1000 1250" iconColor="var(--flair)")
-				IconCrystalBall
-		h2 How to Query the Oracle
-		ul.ls
-			li
-				IconBase(size="24" iconColor="var(--good)")
-					IconSeven
-				span.text.md.tip Open questions resolve readily
-				IconBase(size="24" iconColor="var(--good)")
-					IconSeven
-			li
-				IconBase(size="24" iconColor="var(--good)")
-					IconNine
-				span.text.md.tip "How might we …?"
-				IconBase(size="24" iconColor="var(--good)")
-					IconNine
-			li
-				IconBase(size="24" iconColor="var(--bad)")
-					IconEight
-				span.text.md.tip Binary judgments stay opaque
-				IconBase(size="24" iconColor="var(--bad)")
-					IconEight
-			li
-				IconBase(size="24" iconColor="var(--bad)")
-					IconSix
-				span.text.md.tip "Should I …?"
-				IconBase(size="24" iconColor="var(--bad)")
-					IconSix
-		Spinnable
-			IconBase.mrg.mrg3.y(viewBox="0 0 1000 1250" size="80" iconColor="var(--flair)")
-				IconCauldron
-		h3
-			AppLink(to="https://www.onlineclarity.co.uk/learn/beginners/3-how-to-cast-a-reading/your-question/") Hilary Barrett's Suggestions
-		ul.ls
-			li
-				span.text.md.tip What do I need to understand about...?
-			li
-				span.text.md.tip What best to do about...?
-			li
-				span.text.md.tip How can I...?
-			li
-				span.text.md.tip What if I...?
-		Spinnable
-			IconBase.mrg.mrg3.y(size="100" viewBox="0 0 1000 1250" iconColor="var(--flair)")
-				IconScroll
-	aside#helpYarrow.help.font.alcenter.pad.pads.x.y.right(
-		v-else-if="cached.help === 'yarrow'"
-		ref="helpYarrow"
-		)
-		Spinnable
-			IconBase(size="80" viewBox="0 0 1000 1250" iconColor="var(--flair)")
-				IconWizardsHat
-		h2 How to Divine with Yarrow Stalks
-		iframe(
-			width="560"
-			height="315"
-			src="https://www.youtube.com/embed/LIBi8T2KI8E" frameborder="0"
-			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+details
+	summary.text.xl.thicc.flair.alcenter Help and FAQs
+	.flex.pad.pads.y.wrap.mid
+		button.btn.md.mrg.mrg1.x.outline(
+			@click="showHelp('yijing')"
+			:class="{active: cached.help === 'yijing'}"
+			) What is the Yijing?
+		button.btn.md.mrg.mrg1.x.outline(
+			@click="showHelp('oracle')"
+			:class="{active: cached.help === 'oracle'}"
+			) What is the Oracle?
+		button.btn.md.mrg.mrg1.x.outline(
+			@click="showHelp('query')"
+			:class="{active: cached.help === 'query'}"
+			) What do I ask?
+		button.btn.md.mrg.mrg1.x.outline#method4(
+			@click="showHelp('4coin')"
+			:class="{active: cached.help === '4coin'}"
+			) The recommended 4-coin method
+		button.btn.md.mrg.mrg1.x.outline#method3(
+			@click="showHelp('3coin')"
+			:class="{active: cached.help === '3coin'}"
+			) The traditional 3-coin method
+		button.btn.md.mrg.mrg1.x.outline#method4b(
+			@click="showHelp('4bcoin')"
+			:class="{active: cached.help === '4bcoin'}"
+			) The faithful 4-coin method
+		button.btn.md.mrg.mrg1.x.outline(
+			@click="showHelp('yarrow')"
+			:class="{active: cached.help === 'yarrow'}"
+			) How to use yarrow stalks?
+	#helpLine
+	transition(name="slide-fade" appear mode="out-in")
+		aside#helpQuery.help.font.alcenter.pad.pads.y.below(
+			v-if="cached.help === 'query'"
+			ref="helpQuery"
 			)
-		br
-		Spinnable
-			IconBase.mrg.mrgs.y(size="80" viewBox="0 0 1000 1250" iconColor="var(--flair)")
-				IconCandles
-	aside#helpOracle.help.font.alcenter.pad.pads.x.y.left(
-		v-else-if="cached.help === 'oracle'"
-		ref="helpOracle"
-		)
-		Spinnable
-			IconBase(size="80" viewBox="0 0 100 100" iconColor="var(--flair)")
-				IconMiracle
-		h2 What is the Oracle?
-		pre.font.md.alleft
-			| Who answers a question
-			| by dipping deeper into the well
-			| of being residing inside you?
-			| Whose eye can see all but itself?
-			| Which one is three:
-			| knower, known, and knowing?
-			| Who contains multitudes
-			| beyond time, without name or face?
-			| Who remembers all that is,
-			| all that has been and will be?
-		Spinnable
-			IconBase(size="80" viewBox="0 0 100 125" iconColor="var(--flair)").invert.y
-				IconLooptyLoop
-	aside#helpYijing.help.font.alcenter.pad.pads.x.y.right(v-else-if="cached.help === 'yijing'")
-		Spinnable
-			IconBase(size="80" viewBox="0 0 1000 1250" iconColor="var(--flair)")
-				IconSpellBook
-		h2 What is the Yìjīng?
-		pre.font.md.alleft
-			| An ancient wisdom tradition
-			| tracing back beyond the
-			HanziChar(
-				char="周"
-				pinyin="Zhōu"
-				size="sm"
-				place="side"
-				reveal
-				inline
+			Spinnable
+				IconBase(size="100" viewBox="0 0 1000 1250" iconColor="var(--flair)")
+					IconCrystalBall
+			h2 How to Query the Oracle
+			ul.ls
+				li
+					IconBase(size="24" iconColor="var(--good)")
+						IconSeven
+					span.text.md.tip Open questions resolve readily
+					IconBase(size="24" iconColor="var(--good)")
+						IconSeven
+				li
+					IconBase(size="24" iconColor="var(--good)")
+						IconNine
+					span.text.md.tip "How might we …?"
+					IconBase(size="24" iconColor="var(--good)")
+						IconNine
+				li
+					IconBase(size="24" iconColor="var(--bad)")
+						IconEight
+					span.text.md.tip Binary judgments stay opaque
+					IconBase(size="24" iconColor="var(--bad)")
+						IconEight
+				li
+					IconBase(size="24" iconColor="var(--bad)")
+						IconSix
+					span.text.md.tip "Should I …?"
+					IconBase(size="24" iconColor="var(--bad)")
+						IconSix
+			Spinnable
+				IconBase.mrg.mrg3.y(viewBox="0 0 1000 1250" size="80" iconColor="var(--flair)")
+					IconCauldron
+			h3
+				AppLink(to="https://www.onlineclarity.co.uk/learn/beginners/3-how-to-cast-a-reading/your-question/") Hilary Barrett's Suggestions
+			ul.ls
+				li
+					span.text.md.tip What do I need to understand about...?
+				li
+					span.text.md.tip What best to do about...?
+				li
+					span.text.md.tip How can I...?
+				li
+					span.text.md.tip What if I...?
+			Spinnable
+				IconBase.mrg.mrg3.y(size="100" viewBox="0 0 1000 1250" iconColor="var(--flair)")
+					IconScroll
+		aside#helpYarrow.help.font.alcenter.pad.pads.x.y.right(
+			v-else-if="cached.help === 'yarrow'"
+			ref="helpYarrow"
 			)
+			Spinnable
+				IconBase(size="80" viewBox="0 0 1000 1250" iconColor="var(--flair)")
+					IconWizardsHat
+			h2 How to Divine with Yarrow Stalks
+			iframe(
+				width="560"
+				height="315"
+				src="https://www.youtube.com/embed/LIBi8T2KI8E" frameborder="0"
+				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+				)
 			br
-			| we give pause and shed face,
-			| finding space for the burning question,
-			| allowing what is to be, truth to blossom,
-			| we divine the flavor of the moment
-			| to understand who, where, why we are.
-		Spinnable
-			IconBase(size="80" viewBox="0 0 1000 1250" iconColor="var(--flair)")
-				IconOpenBook
-	aside#help4Coins.help.font.alcenter.pad.pad3.y.left(v-else-if="cached.help === '4coin'")
-		Spinnable
-			IconBase(size="80" viewBox="0 0 512 640" iconColor="var(--flair)")
-				IconCarnivalCoin
-		h2 The Easy 4-coin Method
-		dl.ls.text.md.fine.pad.pad1.y.alleft
-			dt We toss six rounds of four coins.
-			dt Step 1
-			dd Toss 1 coin.
-			dd Heads means firm, tails means open.
-			dd Leave the coin where you tossed it.
-			dt Step 2
-			dd Toss 3 more coins next to the first one.
-			dd If you see exactly 3 heads among all 4 coins,
-			dd then the line is changing;
-			dd otherwise it is unchanging.
-			dt Enter the corresponding 6s, 7s, 8s, and 9s above.
-		.coin-legend-4.grid.font.sm.thicc.pad.pad1.y
-			span open
-			span changing
-			span 6
-			span.ib
-				Turnable(ortho)
-					IconBase
-						IconSix
-			span yin ⤐ yang
-			span firm
-			span unchanging
-			span 7
-			span.ib
-				Turnable(ortho)
-					IconBase
-						IconSeven
-			span yang
-			span open
-			span unchanging
-			span 8
-			span.ib
-				Turnable(ortho)
-					IconBase
-						IconEight
-			span yin
-			span firm
-			span changing
-			span 9
-			span.ib
-				Turnable(ortho)
-					IconBase
-						IconNine
-			span yang ⤐ yin
-	aside#help4bCoins.help.font.alcenter.pad.pad3.y.left(v-else-if="cached.help === '4bcoin'")
-		Spinnable
-			IconBase(size="80" viewBox="0 0 512 640" iconColor="var(--flair)")
-				IconCarnivalCoin
-		h2
-			| The Faithful 4-coin Method
-			sup
-				AppLink(to="http://www.russellcottrell.com/VirtualYarrowStalks/downloads/4coinmethod.pdf" download)
-		dl.ls.text.md.fine.pad.pad1.y.alleft
-			dt We toss six rounds of four coins.
-			dt Step 1
-			dd Toss two coins.
-			dd If both are heads, write 2; otherwise 3.
-			dt Step 2
-			dd Toss two coins.
-			dd Each head is worth 2, each tail 3.
-			dt Step 3
-			dd Add up the results, to find a number between 6 and 9.
-			dd Enter the number above for each round.
-		.coin-legend.grid.font.sm.thicc.pad.pad1.y
-			span 👸 👸 👸 = 6
-			span yin ⤐ yang
-			span.ib
-				Turnable(ortho)
-					IconBase
-						IconSix
-			span firming
-			span 👸 👸 🦚 = 7
-			span yang
-			span.ib
-				Turnable(ortho)
-					IconBase
-						IconSeven
-			span firm
-			span 👸 🦚 🦚 = 8
-			span yin
-			span.ib
-				Turnable(ortho)
-					IconBase
-						IconEight
-			span open
-			span 🦚 🦚 🦚 = 9
-			span yang ⤐ yin
-			span.ib
-				Turnable(ortho)
-					IconBase
-						IconNine
-			span opening
-		ul.ls.text.md.fine.pad.pad1.y
-			li Each round sums to 6, 7, 8, or 9
-			li determining a line in the hexagram
-			li
-				| starting with the
-				span {{ cfg.turny ? 'right' : 'bottom' }}
-				|  line.
-	aside#help3Coins.help.font.alcenter.pad.pad3.y.left(v-else-if="cached.help === '3coin'")
-		Spinnable
-			IconBase(size="80" viewBox="0 0 512 640" iconColor="var(--flair)")
-				IconCarnivalCoin
-		h2 The Traditional 3-coin Method
-		ul.ls.text.md.fine.pad.pad1.y
-			li We toss six rounds of three coins.
-			br
-			li A head 👸 counts as 3
-			li A tail 🦚 counts as 2
-		.coin-legend.grid.font.sm.thicc.mrg.mrg1.y
-			span 🦚 🦚 🦚 = 6
-			span yin ⤐ yang
-			span.ib
-				Turnable(ortho)
-					IconBase
-						IconSix
-			span firming
-			span 🦚 🦚 👸 = 7
-			span yang
-			span.ib
-				Turnable(ortho)
-					IconBase
-						IconSeven
-			span firm
-			span 🦚 👸 👸 = 8
-			span yin
-			span.ib
-				Turnable(ortho)
-					IconBase
-						IconEight
-			span open
-			span 👸 👸 👸 = 9
-			span yang ⤐ yin
-			span.ib
-				Turnable(ortho)
-					IconBase
-						IconNine
-			span opening
-		ul.ls.text.md.fine.pad.pad1.y
-			li Each round sums to 6, 7, 8, or 9
-			li determining a line in the hexagram
-			li
-				| starting with the
-				span {{ cfg.turny ? 'right' : 'bottom' }}
-				|  line.
-		section
-			h3.font.lg Let's walk through an example…
-			.example-toss.grid.font.sm.thicc.pad.pad1.y
-				span.head.thicc Round
-				span.head.thicc Toss
-				span.head.thicc Sum
-				span.head.thicc Line
-				span 6
-				span 🦚 🦚 👸
-				span 7
-				span.ib
-					Turnable(ortho)
-						IconBase
-							IconSeven
-				span 5
-				span 🦚 🦚 🦚
+			Spinnable
+				IconBase.mrg.mrgs.y(size="80" viewBox="0 0 1000 1250" iconColor="var(--flair)")
+					IconCandles
+		aside#helpOracle.help.font.alcenter.pad.pads.x.y.left(
+			v-else-if="cached.help === 'oracle'"
+			ref="helpOracle"
+			)
+			Spinnable
+				IconBase(size="80" viewBox="0 0 100 100" iconColor="var(--flair)")
+					IconMiracle
+			h2 What is the Oracle?
+			pre.font.md.alleft
+				| Who answers a question
+				| by dipping deeper into the well
+				| of being residing inside you?
+				| Whose eye can see all but itself?
+				| Which one is three:
+				| knower, known, and knowing?
+				| Who contains multitudes
+				| beyond time, without name or face?
+				| Who remembers all that is,
+				| all that has been and will be?
+			Spinnable
+				IconBase(size="80" viewBox="0 0 100 125" iconColor="var(--flair)").invert.y
+					IconLooptyLoop
+		aside#helpYijing.help.font.alcenter.pad.pads.x.y.right(v-else-if="cached.help === 'yijing'")
+			Spinnable
+				IconBase(size="80" viewBox="0 0 1000 1250" iconColor="var(--flair)")
+					IconSpellBook
+			h2 What is the Yìjīng?
+			pre.font.md.alleft
+				| An ancient wisdom tradition
+				| tracing back beyond the
+				HanziChar(
+					char="周"
+					pinyin="Zhōu"
+					size="sm"
+					place="side"
+					reveal
+					inline
+				)
+				br
+				| we give pause and shed face,
+				| finding space for the burning question,
+				| allowing what is to be, truth to blossom,
+				| we divine the flavor of the moment
+				| to understand who, where, why we are.
+			Spinnable
+				IconBase(size="80" viewBox="0 0 1000 1250" iconColor="var(--flair)")
+					IconOpenBook
+		aside#help4Coins.help.font.alcenter.pad.pad3.y.left(v-else-if="cached.help === '4coin'")
+			Spinnable
+				IconBase(size="80" viewBox="0 0 512 640" iconColor="var(--flair)")
+					IconCarnivalCoin
+			h2 The Easy 4-coin Method
+			dl.ls.text.md.fine.pad.pad1.y.alleft
+				dt We toss six rounds of four coins.
+				dt Step 1
+				dd Toss 1 coin.
+				dd Heads means firm, tails means open.
+				dd Leave the coin where you tossed it.
+				dt Step 2
+				dd Toss 3 more coins next to the first one.
+				dd If you see exactly 3 heads among all 4 coins,
+				dd then the line is changing;
+				dd otherwise it is unchanging.
+				dt Enter the corresponding 6s, 7s, 8s, and 9s above.
+			.coin-legend-4.grid.font.sm.thicc.pad.pad1.y
+				span open
+				span changing
 				span 6
 				span.ib
 					Turnable(ortho)
 						IconBase
 							IconSix
-				span 4
-				span 👸 👸 👸
-				span 9
+				span yin ⤐ yang
+				span firm
+				span unchanging
+				span 7
 				span.ib
 					Turnable(ortho)
 						IconBase
-							IconNine
-				span 3
-				span 🦚 👸 👸
+							IconSeven
+				span yang
+				span open
+				span unchanging
 				span 8
 				span.ib
 					Turnable(ortho)
 						IconBase
 							IconEight
-				span 2
-				span 🦚 🦚 👸
-				span 7
+				span yin
+				span firm
+				span changing
+				span 9
 				span.ib
 					Turnable(ortho)
-						IconBase
-							IconSeven
-				span 1
-				span 🦚 🦚 🦚
-				span 6
-				span.ib
-					Turnable(ortho)
-						IconBase
-							IconSix
-			h4.font.md which assembles these hexagrams:
-			.flex.string
-				Turnable
-					.stack.col.mrg-25.mrg.y
-						IconBase
-							IconSeven
-						IconBase
-							IconSix
 						IconBase
 							IconNine
-						IconBase
-							IconEight
-						IconBase
-							IconSeven
+				span yang ⤐ yin
+		aside#help4bCoins.help.font.alcenter.pad.pad3.y.left(v-else-if="cached.help === '4bcoin'")
+			Spinnable
+				IconBase(size="80" viewBox="0 0 512 640" iconColor="var(--flair)")
+					IconCarnivalCoin
+			h2
+				| The Faithful 4-coin Method
+				sup
+					AppLink(to="http://www.russellcottrell.com/VirtualYarrowStalks/downloads/4coinmethod.pdf" download)
+			dl.ls.text.md.fine.pad.pad1.y.alleft
+				dt We toss six rounds of four coins.
+				dt Step 1
+				dd Toss two coins.
+				dd If both are heads, write 2; otherwise 3.
+				dt Step 2
+				dd Toss two coins.
+				dd Each head is worth 2, each tail 3.
+				dt Step 3
+				dd Add up the results, to find a number between 6 and 9.
+				dd Enter the number above for each round.
+			.coin-legend.grid.font.sm.thicc.pad.pad1.y
+				span 👸 👸 👸 = 6
+				span yin ⤐ yang
+				span.ib
+					Turnable(ortho)
 						IconBase
 							IconSix
-				LineGlyph(glyph="䷿" size="x4l")
-				LineGlyph(glyph="䷼" size="x4l")
-			h5.font.md
-				| Remember, the first line is on the
-				span {{ cfg.turny ? 'right' : 'bottom' }}
-				| .
-		Spinnable.mrg.mrgs.y.x.ib
-			IconBase(
-				size="96"
-				viewBox="0 0 1000 1250"
-				iconColor="var(--ink)"
-				)
-				IconSpellBook
-		Spinnable.mrg.mrgs.y.x.ib
-			IconBase(
-				size="96"
-				viewBox="0 -12 100 125"
-				iconColor="var(--flair)"
-				)
-				IconPenroseTriangle
-		Spinnable.mrg.mrgs.y.x.ib
-			IconBase(
-				size="96"
-				viewBox="0 0 1000 1250"
-				iconColor="var(--link)"
-				)
-				IconOpenBook
+				span firming
+				span 👸 👸 🦚 = 7
+				span yang
+				span.ib
+					Turnable(ortho)
+						IconBase
+							IconSeven
+				span firm
+				span 👸 🦚 🦚 = 8
+				span yin
+				span.ib
+					Turnable(ortho)
+						IconBase
+							IconEight
+				span open
+				span 🦚 🦚 🦚 = 9
+				span yang ⤐ yin
+				span.ib
+					Turnable(ortho)
+						IconBase
+							IconNine
+				span opening
+			ul.ls.text.md.fine.pad.pad1.y
+				li Each round sums to 6, 7, 8, or 9
+				li determining a line in the hexagram
+				li
+					| starting with the
+					span {{ cfg.turny ? 'right' : 'bottom' }}
+					|  line.
+		aside#help3Coins.help.font.alcenter.pad.pad3.y.left(v-else-if="cached.help === '3coin'")
+			Spinnable
+				IconBase(size="80" viewBox="0 0 512 640" iconColor="var(--flair)")
+					IconCarnivalCoin
+			h2 The Traditional 3-coin Method
+			ul.ls.text.md.fine.pad.pad1.y
+				li We toss six rounds of three coins.
+				br
+				li A head 👸 counts as 3
+				li A tail 🦚 counts as 2
+			.coin-legend.grid.font.sm.thicc.mrg.mrg1.y
+				span 🦚 🦚 🦚 = 6
+				span yin ⤐ yang
+				span.ib
+					Turnable(ortho)
+						IconBase
+							IconSix
+				span firming
+				span 🦚 🦚 👸 = 7
+				span yang
+				span.ib
+					Turnable(ortho)
+						IconBase
+							IconSeven
+				span firm
+				span 🦚 👸 👸 = 8
+				span yin
+				span.ib
+					Turnable(ortho)
+						IconBase
+							IconEight
+				span open
+				span 👸 👸 👸 = 9
+				span yang ⤐ yin
+				span.ib
+					Turnable(ortho)
+						IconBase
+							IconNine
+				span opening
+			ul.ls.text.md.fine.pad.pad1.y
+				li Each round sums to 6, 7, 8, or 9
+				li determining a line in the hexagram
+				li
+					| starting with the
+					span {{ cfg.turny ? 'right' : 'bottom' }}
+					|  line.
+			section
+				h3.font.lg Let's walk through an example…
+				.example-toss.grid.font.sm.thicc.pad.pad1.y
+					span.head.thicc Round
+					span.head.thicc Toss
+					span.head.thicc Sum
+					span.head.thicc Line
+					span 6
+					span 🦚 🦚 👸
+					span 7
+					span.ib
+						Turnable(ortho)
+							IconBase
+								IconSeven
+					span 5
+					span 🦚 🦚 🦚
+					span 6
+					span.ib
+						Turnable(ortho)
+							IconBase
+								IconSix
+					span 4
+					span 👸 👸 👸
+					span 9
+					span.ib
+						Turnable(ortho)
+							IconBase
+								IconNine
+					span 3
+					span 🦚 👸 👸
+					span 8
+					span.ib
+						Turnable(ortho)
+							IconBase
+								IconEight
+					span 2
+					span 🦚 🦚 👸
+					span 7
+					span.ib
+						Turnable(ortho)
+							IconBase
+								IconSeven
+					span 1
+					span 🦚 🦚 🦚
+					span 6
+					span.ib
+						Turnable(ortho)
+							IconBase
+								IconSix
+				h4.font.md which assembles these hexagrams:
+				.flex.string
+					Turnable
+						.stack.col.mrg-25.mrg.y
+							IconBase
+								IconSeven
+							IconBase
+								IconSix
+							IconBase
+								IconNine
+							IconBase
+								IconEight
+							IconBase
+								IconSeven
+							IconBase
+								IconSix
+					LineGlyph(glyph="䷿" size="x4l")
+					LineGlyph(glyph="䷼" size="x4l")
+				h5.font.md
+					| Remember, the first line is on the
+					span {{ cfg.turny ? 'right' : 'bottom' }}
+					| .
+			Spinnable.mrg.mrgs.y.x.ib
+				IconBase(
+					size="96"
+					viewBox="0 0 1000 1250"
+					iconColor="var(--ink)"
+					)
+					IconSpellBook
+			Spinnable.mrg.mrgs.y.x.ib
+				IconBase(
+					size="96"
+					viewBox="0 -12 100 125"
+					iconColor="var(--flair)"
+					)
+					IconPenroseTriangle
+			Spinnable.mrg.mrgs.y.x.ib
+				IconBase(
+					size="96"
+					viewBox="0 0 1000 1250"
+					iconColor="var(--link)"
+					)
+					IconOpenBook
 hr.dinkus.fleur.x3l
 LogoBrand.mrg.mrg3.y(direction="vert" size="x3l" noname)
 </template>
