@@ -1,4 +1,39 @@
 # Changelog
+### [0.6.9](https://github.com/krry/nameless.quest/compare/v0.6.3...v0.6.9) (2026-02-05)
+
+
+### Features
+
+* **pages:** elevate busking ([68b9a5d](https://github.com/krry/nameless.quest/commit/68b9a5de7db4506c054b837a49e7d19ffe9a9db9))
+
+
+### Bug Fixes
+
+* **icons:** fix paths of chrome and android icons in manifest ([af50e30](https://github.com/krry/nameless.quest/commit/af50e30cfe7d7e402cab51a7b08255da1af695f6))
+* **layout:** fix hangover of iframe on help page ([707ccc4](https://github.com/krry/nameless.quest/commit/707ccc41d8ab8f6befb7630283a28fc70d8c6791))
+* **margin:** restore top and bottom margins to pages ([4a7b6fd](https://github.com/krry/nameless.quest/commit/4a7b6fdd71f4ccbbc677e49d50067aeeb54a8fcc))
+* **pinyin:** fix small translation positions ([95a2765](https://github.com/krry/nameless.quest/commit/95a27656c0ec4d890b26286a52e391551a3b98f2))
+* scroll snap, arrow overlap, result view ([1f4b474](https://github.com/krry/nameless.quest/commit/1f4b47467c70aebfe61b99ae9762ef8a03e9f2c6))
+* **theme:** stop endless while loop when applying theme ([b6947eb](https://github.com/krry/nameless.quest/commit/b6947eb2a0bc9c949626bd8a33d131d6610306ff))
+* **ui:** round page corners and move page nav into view ([e7b819b](https://github.com/krry/nameless.quest/commit/e7b819bd207ba7a8fcd2e769fbdea83815058f53))
+
+### [0.6.8](https://github.com/krry/nameless.quest/compare/v0.6.3...v0.6.8) (2026-02-05)
+
+
+### Features
+
+* **pages:** elevate busking ([68b9a5d](https://github.com/krry/nameless.quest/commit/68b9a5de7db4506c054b837a49e7d19ffe9a9db9))
+
+
+### Bug Fixes
+
+* **icons:** fix paths of chrome and android icons in manifest ([af50e30](https://github.com/krry/nameless.quest/commit/af50e30cfe7d7e402cab51a7b08255da1af695f6))
+* **layout:** fix hangover of iframe on help page ([707ccc4](https://github.com/krry/nameless.quest/commit/707ccc41d8ab8f6befb7630283a28fc70d8c6791))
+* **margin:** restore top and bottom margins to pages ([4a7b6fd](https://github.com/krry/nameless.quest/commit/4a7b6fdd71f4ccbbc677e49d50067aeeb54a8fcc))
+* **pinyin:** fix small translation positions ([95a2765](https://github.com/krry/nameless.quest/commit/95a27656c0ec4d890b26286a52e391551a3b98f2))
+* scroll snap, arrow overlap, result view ([1f4b474](https://github.com/krry/nameless.quest/commit/1f4b47467c70aebfe61b99ae9762ef8a03e9f2c6))
+* **theme:** stop endless while loop when applying theme ([b6947eb](https://github.com/krry/nameless.quest/commit/b6947eb2a0bc9c949626bd8a33d131d6610306ff))
+* **ui:** round page corners and move page nav into view ([e7b819b](https://github.com/krry/nameless.quest/commit/e7b819bd207ba7a8fcd2e769fbdea83815058f53))
 
 ### [0.6.7](https://github.com/krry/nameless.quest/compare/v0.6.6...v0.6.7) (2021-11-18)
 
