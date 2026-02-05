@@ -1,6 +1,8 @@
 <template lang="pug">
 .left
-	h2 Divining the Answer…
+	h2
+		button.btn.naked.back(@click="goBack") ←
+		span  Divining the Answer…
 	section.cast
 		.dyn.holding(v-if="cached.query")
 			blockquote#query
@@ -143,6 +145,11 @@ export default defineComponent({
 			setTimeout(() => VueScrollTo.scrollTo('#help4Coins'), 777);
 		}
 
+		function goBack() {
+			cache('step', 'query');
+			cache('toss', '');
+		}
+
 		return {
 			cached,
 			flipper,
@@ -154,6 +161,7 @@ export default defineComponent({
 			showCoinsHelp,
 			lineIconByNumber,
 			validToss,
+			goBack,
 			scrollTo: VueScrollTo.scrollTo,
 		};
 	},
@@ -161,6 +169,12 @@ export default defineComponent({
 </script>
 
 <style lang="postcss" scoped>
+.back {
+	margin-right: 0.5rem;
+	font-size: 1.2em;
+	padding: 0.25rem;
+}
+
 .brand,
 .holding,
 .tossing {

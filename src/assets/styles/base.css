@@ -16,12 +16,20 @@ html {
 	min-height: 100vh;
 	font-family: var(--font);
 	background-color: var(--ground);
-	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	-webkit-tap-highlight-color: var(--glow);
+	word-break: normal;
 	scroll-behavior: smooth;
 	scroll-snap-type: x mandatory;
-	word-break: normal;
-	-webkit-tap-highlight-color: var(--glow);
+	scroll-snap-stop: normal;
+	scroll-snap-align: start;
+}
+
+@media (hover: none) and (pointer: coarse) {
+	html {
+		scroll-snap-type: x proximity;
+	}
 }
 
 body {
@@ -32,6 +40,7 @@ body {
 	background-color: var(--paper);
 	display: flex;
 	flex-wrap: nowrap;
+	overflow-x: auto;
 	min-width: calc(100vw + var(--drawer-dim));
 }
 
@@ -218,25 +227,24 @@ details summary {
 	}
 }
 
-
 details > summary::-webkit-details-marker {
 	display: none;
 }
 
 /* Custom chevron */
 details summary::before {
-  content: "▸";
-  display: inline-block;
-  margin-right: 0.5rem;
-  transition: transform 0.2s ease;
+	content: '▸';
+	display: inline-block;
+	margin-right: 0.5rem;
+	transition: transform 0.2s ease;
 }
 
 /* Rotate chevron when open */
 details[open] summary::before {
-  transform: rotate(90deg);
+	transform: rotate(90deg);
 }
 
 /* Optional: spacing for content */
 details > *:not(summary) {
-  margin-top: 0.5rem;
+	margin-top: 0.5rem;
 }

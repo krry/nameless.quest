@@ -1,9 +1,9 @@
 <template lang="pug">
-//- FeedbackFish(projectId="b186633d70b54b")
+FeedbackFish(projectId="b186633d70b54b") 
 AppDrawer
 #app.app.rel
 	router-view
-//- ReloadPrompt
+ReloadPrompt
 </template>
 
 <script lang="ts">
