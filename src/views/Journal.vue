@@ -136,9 +136,7 @@ export default defineComponent({
 			set('journaled', true);
 		});
 
-		watchEffect(
-			() => (rolls.value = [...new Set(activeRolls.value.sort(laterDatesFirst))])
-		);
+		watchEffect(() => (rolls.value = [...new Set(activeRolls.value.sort(laterDatesFirst))]));
 
 		function handleNameSubmitted(name: string) {
 			console.log('Name submitted:', name);

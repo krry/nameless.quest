@@ -67,7 +67,7 @@ import { cfg } from '../store';
 import { cached, uncache } from '../store/cache';
 import { activeLots, setLots } from '../store/lots';
 import { addRoll, cachedRoll } from '../store/rolls';
-import { userProfile, hasUserProfile } from '../store/userProfile';
+import { hasUserProfile } from '../store/userProfile';
 import { lineIconByNumber, symbolize } from '../utils';
 import { parseTossToBinary } from '../utils/tosses';
 import HanziChar from './HanziChar.vue';

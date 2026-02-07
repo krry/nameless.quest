@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, PropType } from 'vue';
+import { defineComponent, ref, onMounted } from 'vue';
 import { setUserName } from '../store/userProfile';
 
 export default defineComponent({

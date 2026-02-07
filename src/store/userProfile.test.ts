@@ -1,10 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import {
-	userProfile,
-	setUserName,
-	hasUserProfile,
-	resetUserProfile,
-} from './userProfile';
+import { userProfile, setUserName, hasUserProfile, resetUserProfile } from './userProfile';
 
 describe('UserProfile Store', () => {
 	beforeEach(() => {

@@ -1,7 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { ref } from 'vue';
-import { addRoll, getRolls, updateRoll, deleteRoll, activeRolls, cachedRoll } from './rolls';
-import { userProfile, setUserName, resetUserProfile } from './userProfile';
+import { addRoll, getRolls, updateRoll, deleteRoll, activeRolls } from './rolls';
+import { setUserName, resetUserProfile } from './userProfile';
 import { Roll } from '../schema';
 
 // Mock cfg
