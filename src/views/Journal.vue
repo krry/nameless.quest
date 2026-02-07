@@ -61,7 +61,7 @@ import { defineComponent, ref, watchEffect } from 'vue';
 import { Roll } from '../schema';
 import { cfg, set } from '../store';
 import { activeRolls, getRolls, deleteRoll, updateRoll } from '../store/rolls';
-import { userProfile, hasUserProfile } from '../store/userProfile';
+import { userProfile, hasUserProfile, setUserName } from '../store/userProfile';
 import { parseTossToBinary } from '../utils/tosses';
 import { useHexagrams } from '../composables/hexagrams';
 import Page from '../components/Page.vue';
@@ -70,6 +70,7 @@ import Waiter from '../components/Waiter.vue';
 import AppLink from '../components/AppLink.vue';
 import Spinnable from '../components/Spinnable.vue';
 import ComingSoon from '../components/ComingSoon.vue';
+import Contenteditable from 'vue-contenteditable';
 import IconBase from '../icons/IconBase.vue';
 import IconSix from '../icons/IconSix.vue';
 import IconSeven from '../icons/IconSeven.vue';
@@ -104,6 +105,7 @@ export default defineComponent({
 		Waiter,
 		AppLink,
 		ComingSoon,
+		Contenteditable,
 	},
 	props: {
 		loading: {
@@ -138,6 +140,12 @@ export default defineComponent({
 			// Modal closed, name is already saved via the store
 		}
 
+		function saveName(name: string) {
+			if (name && name.trim()) {
+				setUserName(name);
+			}
+		}
+
 		function doubleCheckBeforeDeleteRoll(id: string | undefined): void {
 			const deleteConfirmed = confirm('Are you sure you want to delete this journal entry?');
 			if (id && deleteConfirmed) {
@@ -163,6 +171,7 @@ export default defineComponent({
 			doubleCheckBeforeDeleteRoll,
 			handleNameSubmitted,
 			handleModalClosed,
+			saveName,
 			getWenByBin,
 			lineIconByNumber,
 			rollMomentToDate,
