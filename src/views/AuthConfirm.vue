@@ -31,9 +31,14 @@ export default defineComponent({
 		const rx = reactive({
 			state: 'verifying' as 'verifying' | 'success' | 'error',
 			errorMsg: '',
+			isVerifying: false,
 		});
 
 		async function verifyMagicLink() {
+			// Guard: prevent multiple verification attempts
+			if (rx.isVerifying) return;
+
+			rx.isVerifying = true;
 			try {
 				// Get the token_hash and type from URL params
 				const token_hash = route.query.token_hash as string;
@@ -74,6 +79,7 @@ export default defineComponent({
 					rx.state = 'error';
 					rx.errorMsg =
 						error.message || 'Failed to verify your magic link. Please try signing in again.';
+					rx.isVerifying = false;
 					// Redirect to login after 3 seconds
 					setTimeout(() => {
 						router.replace({ name: 'login' });
@@ -98,6 +104,7 @@ export default defineComponent({
 				console.error('Auth confirmation error:', error.message);
 				rx.state = 'error';
 				rx.errorMsg = error.message || 'Something went wrong. Please try signing in again.';
+				rx.isVerifying = false;
 
 				// Redirect to login after 3 seconds
 				setTimeout(() => {

@@ -24,6 +24,7 @@ form.flex.space.spread.wrap(@submit.prevent="emailLinkSend")
 			button.btn.lg.outline#email_butt(
 				type="submit"
 				v-if="!emailSuccessMsg"
+				:disabled="loading"
 				@click.prevent="emailLinkSend"
 				) Sign in via Email
 </template>
@@ -42,9 +43,14 @@ export default defineComponent({
 			email: '',
 			emailSuccessMsg: false,
 			awaiting: false,
+			loading: false,
 		});
 
 		async function emailLinkSend() {
+			// Guard: prevent multiple submissions
+			if (rx.loading) return;
+
+			rx.loading = true;
 			rx.awaiting = true;
 			const { error } = await supabase.auth.signInWithOtp({
 				email: rx.email,
@@ -55,11 +61,13 @@ export default defineComponent({
 			});
 
 			if (error) {
+				rx.loading = false;
 				rx.awaiting = false;
 				console.error("couldn't send magic link", error.message);
 				uncache('email');
 			} else {
 				// The link was successfully sent. Inform the user.
+				rx.loading = false;
 				rx.awaiting = false;
 				rx.emailSuccessMsg = true;
 				// Save the email locally so you don't need to ask the user for it again
