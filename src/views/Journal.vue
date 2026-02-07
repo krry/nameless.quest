@@ -182,9 +182,7 @@ export default defineComponent({
 			// remove the deleted roll from the array of rolls
 			if (rolls.value) {
 				// console.log('deleting id', id)
-				const deletedRollIndex = rolls.value.map(roll => roll.id).indexOf(id);
-				// console.log('deletedRollIndex', deletedRollIndex)
-				rolls.value = rolls.value.splice(deletedRollIndex, 1);
+				rolls.value = rolls.value.filter(roll => roll.id !== id);
 				// console.log('rolls.value after delete', rolls.value)
 			}
 		}
