@@ -53,12 +53,19 @@ export default defineComponent({
 					throw new Error('Email not found in session. Please try signing in again.');
 				}
 
-				// Verify the OTP token with Supabase
-				const { data, error } = await supabase.auth.verifyOtp({
+				// DEBUG: Log all params before verification
+				console.log('DEBUG AuthConfirm:', { token_hash, email: userEmail, type });
+
+				// Prepare the verification request
+				const verifyRequest = {
 					email: userEmail,
 					token: token_hash,
 					type: 'email',
-				});
+				};
+				console.log('Calling verifyOtp with:', verifyRequest);
+
+				// Verify the OTP token with Supabase
+				const { data, error } = await supabase.auth.verifyOtp(verifyRequest);
 
 				if (error) {
 					console.error('Auth verification failed:', error);
