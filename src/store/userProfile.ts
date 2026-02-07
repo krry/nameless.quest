@@ -11,6 +11,10 @@ export interface UserProfile {
 	createdAt: string; // ISO timestamp
 }
 
+function generateUID(): string {
+	return 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+}
+
 // Initialize user profile from localStorage or create new one
 function initializeUserProfile(): UserProfile {
 	const stored = localStorage.getItem('userProfile');
@@ -28,12 +32,8 @@ function initializeUserProfile(): UserProfile {
 		name: '',
 		createdAt: new Date().toISOString(),
 	};
-	saveUserProfile(newProfile);
+	localStorage.setItem('userProfile', JSON.stringify(newProfile));
 	return newProfile;
-}
-
-function generateUID(): string {
-	return 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
 }
 
 function saveUserProfile(profile: UserProfile): void {

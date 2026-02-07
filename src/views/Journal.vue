@@ -68,11 +68,12 @@ import { defineComponent, ref, watchEffect } from 'vue';
 import contenteditable from 'vue-contenteditable';
 import { Roll } from '../schema';
 import { cfg, set } from '../store';
-import { cache, cached } from '../store/cache';
 import { activeRolls, getRolls, deleteRoll, updateRoll } from '../store/rolls';
+import { userProfile, hasUserProfile } from '../store/userProfile';
 import { parseTossToBinary } from '../utils/tosses';
 import { useHexagrams } from '../composables/hexagrams';
 import Page from '../components/Page.vue';
+import NamePromptModal from '../components/NamePromptModal.vue';
 import Waiter from '../components/Waiter.vue';
 import AppLink from '../components/AppLink.vue';
 import Spinnable from '../components/Spinnable.vue';
@@ -102,6 +103,7 @@ export default defineComponent({
 		IconBase,
 		IconSpellBook,
 		contenteditable,
+		NamePromptModal,
 		Spinnable,
 		IconSix,
 		IconSeven,
@@ -125,35 +127,37 @@ export default defineComponent({
 			getEnglishNameByBin,
 		} = useHexagrams();
 		const rolls = ref<Roll[]>();
+		const showNamePrompt = ref(!hasUserProfile());
 
-		// when journal page loads, check if there is a logged in user, which should be true because the router handles this
-		if (!cached.name) {
-			cache('name', 'Your Name');
-		}
-
-		// TODO: when Journal view shows, make sure to run getRolls again
+		// Load rolls when journal page shows
 		watchEffect(() => {
-			console.log('cached.uid', cached.uid);
+			console.log('userProfile:', userProfile);
 			getRolls();
 			set('journaled', true);
 		});
 
 		watchEffect(
 			() => (rolls.value = [...new Set(activeRolls.value.sort(laterDatesFirst))])
-			// console.log('hydrating with rolls from firebase', activeRolls.value)
-			// rolls.value = activeRolls.value.sort((a: Roll, b: Roll) => {
-			// 	return Number(a.moment) - Number(b.moment)
-			// })
-			// console.log('rolls.value', rolls.value)
 		);
 
-		async function saveName(llamo: string) {
-			cache('name', llamo);
+		function handleNameSubmitted(name: string) {
+			console.log('Name submitted:', name);
+			showNamePrompt.value = false;
+		}
+
+		function handleModalClosed() {
+			// Modal is persistent until name is provided
+			// Don't close without a name submission
+		}
+
+		function saveName(llamo: string) {
+			// Name is already saved in userProfile via the store
+			console.log('Saved name:', llamo);
 		}
 
 		function clearName(event: Event) {
 			const target = event.target as HTMLInputElement;
-			if (!cached.name || cached.name === 'Your Name') {
+			if (!userProfile.name) {
 				target.value = '';
 			}
 		}
@@ -169,21 +173,22 @@ export default defineComponent({
 		function removeDeletedRoll(id: string): void {
 			// remove the deleted roll from the array of rolls
 			if (rolls.value) {
-				// console.log('deleting id', id)
 				rolls.value = rolls.value.filter(roll => roll.id !== id);
-				// console.log('rolls.value after delete', rolls.value)
 			}
 		}
 
 		return {
 			cfg,
 			rolls,
-			cached,
+			userProfile,
+			showNamePrompt,
 			saveName,
 			clearName,
 			symbolize,
 			updateRoll,
 			doubleCheckBeforeDeleteRoll,
+			handleNameSubmitted,
+			handleModalClosed,
 			getWenByBin,
 			lineIconByNumber,
 			rollMomentToDate,

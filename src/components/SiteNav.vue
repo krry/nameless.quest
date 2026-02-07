@@ -85,7 +85,7 @@ nav.flex.col
 				IconBase(size="36" viewBox="0 0 512 640")
 					IconCoin
 				span  I love this
-		li(v-if="cached.uid")
+		li(v-if="hasUserProfile")
 			a.btn.md.naked.signout(
 				@click.stop="logout"
 				tabindex="0"
@@ -99,6 +99,7 @@ nav.flex.col
 import { defineComponent } from 'vue';
 import { cfg, set } from '../store';
 import { cached } from '../store/cache';
+import { hasUserProfile } from '../store/userProfile';
 import { logout } from '../utils/logout';
 import AppLink from './AppLink.vue';
 import IconBase from '../icons/IconBase.vue';
@@ -137,6 +138,7 @@ export default defineComponent({
 			set,
 			cached,
 			logout,
+			hasUserProfile,
 		};
 	},
 	computed: {

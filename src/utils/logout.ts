@@ -1,23 +1,15 @@
-import { supabase } from '../firebase';
 import router from '../router';
-import { uncache } from '../store/cache';
+import { resetUserProfile } from '../store/userProfile';
 import { activeRolls } from '../store/rolls';
 
 export const logout = async (): Promise<void> => {
 	try {
-		const { error } = await supabase.auth.signOut();
-		if (error) {
-			console.error("couldn't log out", error);
-		} else {
-			console.log('logging out');
-		}
-		uncache('uid');
-		uncache('email');
-		uncache('name');
+		console.log('logging out');
+		resetUserProfile();
 		activeRolls.value = [];
-		await router.push('/');
+		await router.push('/journal');
 	} catch (error) {
 		console.error('logout error:', error);
-		await router.push('/login');
+		await router.push('/journal');
 	}
 };

@@ -67,6 +67,7 @@ import { cfg } from '../store';
 import { cached, uncache } from '../store/cache';
 import { activeLots, setLots } from '../store/lots';
 import { addRoll, cachedRoll } from '../store/rolls';
+import { userProfile, hasUserProfile } from '../store/userProfile';
 import { lineIconByNumber, symbolize } from '../utils';
 import { parseTossToBinary } from '../utils/tosses';
 import HanziChar from './HanziChar.vue';
@@ -103,34 +104,27 @@ export default defineComponent({
 			}
 		}
 
-		if (cached.uid) {
+		if (hasUserProfile()) {
 			cacheRoll();
 			cfg.saved = true;
 		}
 
-		function lilMoments(moment: Date) {
-			return {
-				seconds: moment.getTime() / 1000,
-				nanoseconds: moment.getTime(),
-			};
-		}
-
 		function cacheRoll() {
 			const now = new Date();
-			if (cached.uid) {
+			if (hasUserProfile()) {
 				addRoll({
-					moment: lilMoments(now),
+					moment: now.toISOString(),
 					query: cached.query,
 					toss: cached.toss,
-					uid: cached.uid,
 				});
 				cachedRoll.value = null;
 			} else {
 				cachedRoll.value = {
-					moment: lilMoments(now),
+					id: '',
+					user_id: '',
+					moment: now.toISOString(),
 					query: cached.query,
 					toss: cached.toss,
-					uid: '',
 				};
 			}
 		}
@@ -141,7 +135,7 @@ export default defineComponent({
 		}
 
 		onMounted(() => {
-			if (cached.uid) {
+			if (hasUserProfile()) {
 				cfg.saved = true;
 			}
 			VueScrollTo.scrollTo('#oracle_response', 500);
