@@ -13,6 +13,7 @@ transition(name="fade")
 				v-model="userProfile.name"
 				:noNL="true"
 				@blur="saveName(userProfile.name)"
+				style="display: inline; min-width: 4rem; outline: 1px solid currentColor; padding: 0.25rem 0.5rem;"
 			) {{ userProfile.name }}
 		h2 Conversations with the Oracle
 		.section(v-if="rolls && rolls.length < 10")
