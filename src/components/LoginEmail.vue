@@ -49,7 +49,7 @@ export default defineComponent({
 			const { error } = await supabase.auth.signInWithOtp({
 				email: rx.email,
 				options: {
-					emailRedirectTo: window.location.origin + '/journal',
+					emailRedirectTo: window.location.origin + '/auth/confirm',
 					shouldCreateUser: true,
 				},
 			});

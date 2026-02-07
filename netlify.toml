@@ -6,3 +6,6 @@
   for = "/manifest.webmanifest"
   [headers.values]
     Content-Type = "application/manifest+json"
+[build.environment]
+  VITE_SUPABASE_URL="https://tmohonqqgoywfdkegyfl.supabase.co"
+  VITE_SUPABASE_ANON_KEY="sb_publishable_XW-bBGLUtoYOqU2KjOdRFw_xArXO94P"

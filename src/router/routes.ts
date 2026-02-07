@@ -6,6 +6,7 @@ import About from '../views/About.vue';
 import Config from '../views/Config.vue';
 import Journal from '../views/Journal.vue';
 import Login from '../views/Login.vue';
+import AuthConfirm from '../views/AuthConfirm.vue';
 import Gratitude from '../views/Gratitude.vue';
 import Change from '../views/Change.vue';
 import NotFound from '../views/NotFound.vue';
@@ -44,6 +45,11 @@ const routes = [
 		path: '/login',
 		name: 'login',
 		component: Login,
+	},
+	{
+		path: '/auth/confirm',
+		name: 'auth-confirm',
+		component: AuthConfirm,
 	},
 	{
 		path: '/gratitude',
