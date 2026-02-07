@@ -29,7 +29,7 @@ export default defineConfig({
 		}),
 	],
 	optimizeDeps: {
-		include: ['firebase/app', 'firebase/auth', 'firebase/firestore'],
+		include: ['@supabase/supabase-js'],
 		exclude: ['path'],
 	},
 	build: {
