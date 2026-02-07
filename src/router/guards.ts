@@ -43,11 +43,27 @@ export async function beforeEach(/*to: RouteLocationNormalized*/): Promise<
 				// addRoll(cachedRoll.value);
 				// }
 				await getRolls();
-				return {
-					name: 'journal',
-					query: {},
-					replace: true,
-				};
+
+				// Wait for Firebase auth state to settle before routing to journal
+				return new Promise(resolve => {
+					const unsubscribe = onAuthStateChanged(auth, user => {
+						unsubscribe(); // Clean up listener after first check
+						if (user) {
+							resolve({
+								name: 'journal',
+								query: {},
+								replace: true,
+							});
+						} else {
+							console.warn('Auth state unresolved; routing to login');
+							resolve({
+								name: 'login',
+								query: {},
+								replace: true,
+							});
+						}
+					});
+				});
 			} else {
 				console.error(signInResult);
 				return;
