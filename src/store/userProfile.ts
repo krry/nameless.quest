@@ -29,7 +29,7 @@ function initializeUserProfile(): UserProfile {
 	// Create new profile for first-time user
 	const newProfile: UserProfile = {
 		uid: generateUID(),
-		name: '',
+		name: 'You',
 		createdAt: new Date().toISOString(),
 	};
 	localStorage.setItem('userProfile', JSON.stringify(newProfile));
@@ -55,7 +55,7 @@ export function hasUserProfile(): boolean {
 export function resetUserProfile(): void {
 	const newProfile: UserProfile = {
 		uid: generateUID(),
-		name: '',
+		name: 'You',
 		createdAt: new Date().toISOString(),
 	};
 	saveUserProfile(newProfile);
