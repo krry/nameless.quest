@@ -13,14 +13,8 @@ transition(name="fade")
 				IconSpellBook
 		h1.head.xxl
 			| The Journal of{{' '}}
-			contenteditable(
-				tag="span"
-				v-model="userProfile.name"
-				:noNL="true"
-				class="username"
-				@blur="saveName(userProfile.name)"
-				@focus="clearName"
-				) {{ userProfile.name }}
+			span.username {{ userProfile.name }}
+			button.btn.sm.outline(@click="showNamePrompt = true") Edit Name
 		h2 Conversations with the Oracle
 		.section(v-if="rolls && rolls.length < 10")
 			router-link.btn.lg.outline(:to="{name: 'oracle', params: {reset: 'true'}}") Start a new entry
@@ -65,7 +59,6 @@ transition(name="fade")
 
 <script lang="ts">
 import { defineComponent, ref, watchEffect } from 'vue';
-import contenteditable from 'vue-contenteditable';
 import { Roll } from '../schema';
 import { cfg, set } from '../store';
 import { activeRolls, getRolls, deleteRoll, updateRoll } from '../store/rolls';
@@ -102,7 +95,6 @@ export default defineComponent({
 	components: {
 		IconBase,
 		IconSpellBook,
-		contenteditable,
 		NamePromptModal,
 		Spinnable,
 		IconSix,
@@ -144,20 +136,7 @@ export default defineComponent({
 		}
 
 		function handleModalClosed() {
-			// Modal is persistent until name is provided
-			// Don't close without a name submission
-		}
-
-		function saveName(llamo: string) {
-			// Name is already saved in userProfile via the store
-			console.log('Saved name:', llamo);
-		}
-
-		function clearName(event: Event) {
-			const target = event.target as HTMLInputElement;
-			if (!userProfile.name) {
-				target.value = '';
-			}
+			// Modal closed, name is already saved via the store
 		}
 
 		function doubleCheckBeforeDeleteRoll(id: string | undefined): void {
@@ -180,8 +159,6 @@ export default defineComponent({
 			rolls,
 			userProfile,
 			showNamePrompt,
-			saveName,
-			clearName,
 			symbolize,
 			updateRoll,
 			doubleCheckBeforeDeleteRoll,
