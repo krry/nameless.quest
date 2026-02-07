@@ -1,9 +1,4 @@
 <template lang="pug">
-NamePromptModal(
-	:isVisible="showNamePrompt"
-	@name-submitted="handleNameSubmitted"
-	@modal-closed="handleModalClosed"
-)
 transition(name="fade")
 	Waiter(v-if="cfg.loading")
 transition(name="fade")
@@ -13,8 +8,12 @@ transition(name="fade")
 				IconSpellBook
 		h1.head.xxl
 			| The Journal of 
-			span.username {{ userProfile.name }}
-			button.btn.sm.outline.ml(@click="showNamePrompt = true") Edit
+			contenteditable.username(
+				tag="span"
+				v-model="userProfile.name"
+				:noNL="true"
+				@blur="saveName(userProfile.name)"
+			) {{ userProfile.name }}
 		h2 Conversations with the Oracle
 		.section(v-if="rolls && rolls.length < 10")
 			router-link.btn.lg.outline(:to="{name: 'oracle', params: {reset: 'true'}}") Start a new entry
