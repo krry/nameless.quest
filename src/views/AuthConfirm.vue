@@ -69,10 +69,10 @@ export default defineComponent({
 					token: token_hash,
 					type: 'email',
 				};
-				console.log('Calling verifyOtp with:', verifyRequest);
+				console.log('Calling signInWithOtp (magic link exchange) with:', verifyRequest);
 
 				// Verify the OTP token with Supabase
-				const { data, error } = await supabase.auth.verifyOtp(verifyRequest);
+				const { data, error } = await supabase.auth.signInWithOtp(verifyRequest);
 
 				if (error) {
 					console.error('Auth verification failed:', error);
