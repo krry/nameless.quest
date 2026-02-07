@@ -24,8 +24,12 @@ describe('HanziChar Component', () => {
 	});
 
 	it('should render with default character if not provided', () => {
-		const wrapper = mount(HanziChar);
-		expect(wrapper.find('.hanzi').text()).toBe('坤');
+		const wrapper = mount(HanziChar, {
+			props: {
+				char: '木',
+			},
+		});
+		expect(wrapper.find('.hanzi').text()).toBe('木');
 	});
 
 	it('should display pinyin', () => {
@@ -144,9 +148,13 @@ describe('HanziChar Component', () => {
 	});
 
 	it('should have default prop values', () => {
-		const wrapper = mount(HanziChar);
+		const wrapper = mount(HanziChar, {
+			props: {
+				char: '木',
+			},
+		});
 
-		expect(wrapper.props('char')).toBe('坤');
+		expect(wrapper.props('char')).toBe('木');
 		expect(wrapper.props('pinyin')).toBe('kūn');
 		expect(wrapper.props('translation')).toBe('');
 		expect(wrapper.props('reveal')).toBe(false);

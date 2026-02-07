@@ -63,7 +63,8 @@ export default defineComponent({
 				if (error) {
 					console.error('Auth verification failed:', error);
 					rx.state = 'error';
-					rx.errorMsg = error.message || 'Failed to verify your magic link. Please try signing in again.';
+					rx.errorMsg =
+						error.message || 'Failed to verify your magic link. Please try signing in again.';
 					// Redirect to login after 3 seconds
 					setTimeout(() => {
 						router.replace({ name: 'login' });
