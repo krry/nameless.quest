@@ -12,9 +12,9 @@ transition(name="fade")
 			IconBase(viewBox="0 0 1000 1250" size="128" iconColor="var(--ink)")
 				IconSpellBook
 		h1.head.xxl
-			| The Journal of{{' '}}
+			| The Journal of 
 			span.username {{ userProfile.name }}
-			button.btn.sm.outline(@click="showNamePrompt = true") Edit Name
+			button.btn.sm.outline.ml(@click="showNamePrompt = true") Edit
 		h2 Conversations with the Oracle
 		.section(v-if="rolls && rolls.length < 10")
 			router-link.btn.lg.outline(:to="{name: 'oracle', params: {reset: 'true'}}") Start a new entry

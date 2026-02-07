@@ -1,10 +1,28 @@
-<template>
-	.modal-overlay(v-if="isVisible" @click.self="handleBackdropClick") .modal-content.rel
-	.close.abs.t.r(@click="close") ⓧ h1.head.xl What is your name? p.subtitle Welcome to the Journal.
-	Let's start by learning who you are. .form-group input.input.lg( v-model="inputName" type="text"
-	placeholder="Your name..." @keyup.enter="handleSubmit" ref="inputRef" ) .button-group.flex.row.mid
-	button.btn.lg.outline(@click="close") Cancel button.btn.lg(@click="handleSubmit"
-	:disabled="!inputName.trim()") Continue
+<template lang="pug">
+    .modal-overlay(
+        v-if="isVisible"
+        @click.self="handleBackdropClick"
+    )
+        .modal-content.rel
+            .close.abs.t.r(@click="close") ⓧ
+            h1.head.xl What is your name?
+            p.subtitle
+                | Welcome to the Journal.
+                | Let's start by learning who you are.
+            .form-group
+                input.input.lg(
+                    v-model="inputName"
+                    type="text"
+                    placeholder="Your name..."
+                    ref="inputRef"
+                    @keyup.enter.exact="handleSubmit"
+                ) 
+            .button-group.flex.row.mid
+                button.btn.lg.outline(@click="close") Cancel
+                button.btn.lg(
+                    @click="handleSubmit"
+                    :disabled="!inputName.trim()"
+                ) Continue
 </template>
 
 <script lang="ts">
