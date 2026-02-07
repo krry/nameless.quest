@@ -1,6 +1,6 @@
 import { reactive } from 'vue';
 import { set } from '.';
-import { User } from 'firebase/auth';
+import { User } from '@supabase/supabase-js';
 
 /** a simple reactive store
  * drawing on a concept I forked

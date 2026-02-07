@@ -30,8 +30,7 @@ form.flex.space.spread.wrap(@submit.prevent="emailLinkSend")
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue';
-import { auth } from '../firebase';
-import { sendSignInLinkToEmail } from 'firebase/auth';
+import { supabase } from '../firebase';
 import { cache, uncache } from '../store/cache';
 import Waiter from './Waiter.vue';
 
@@ -46,28 +45,26 @@ export default defineComponent({
 		});
 
 		async function emailLinkSend() {
-			const actionCodeSettings = {
-				url: window.location.origin + '/journal', // where to send user back to
-				handleCodeInApp: true, // must be true?
-			};
 			rx.awaiting = true;
-			// console.log('actionCode url', actionCodeSettings.url)
-			await sendSignInLinkToEmail(auth, rx.email, actionCodeSettings)
-				.then(() => {
-					// The link was successfully sent. Inform the user.
-					rx.awaiting = false;
-					rx.emailSuccessMsg = true;
-					// Save the email locally so you don't need to ask the user for it again if they open the link on the same device
-					cache('email', rx.email);
-				})
-				.catch(error => {
-					const errorCode = error.code;
-					const errorMessage = error.message;
-					rx.awaiting = false;
-					console.error("couldn't send sign in link", errorCode, errorMessage);
-					uncache('email');
-					// rx.email = '';
-				});
+			const { error } = await supabase.auth.signInWithOtp({
+				email: rx.email,
+				options: {
+					emailRedirectTo: window.location.origin + '/journal',
+					shouldCreateUser: true,
+				},
+			});
+
+			if (error) {
+				rx.awaiting = false;
+				console.error("couldn't send magic link", error.message);
+				uncache('email');
+			} else {
+				// The link was successfully sent. Inform the user.
+				rx.awaiting = false;
+				rx.emailSuccessMsg = true;
+				// Save the email locally so you don't need to ask the user for it again
+				cache('email', rx.email);
+			}
 		}
 
 		return {

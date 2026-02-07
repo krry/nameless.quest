@@ -1,7 +1,5 @@
 {
-  "permissions": {
-    "allow": [
-      "WebFetch(domain:docs.openclaw.ai)"
-    ]
-  }
+	"permissions": {
+		"allow": ["WebFetch(domain:docs.openclaw.ai)"]
+	}
 }

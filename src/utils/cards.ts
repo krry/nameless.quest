@@ -10,16 +10,16 @@ import { Bounds, Quad } from '../schema';
 export const determineQuadrant = (bounds: Bounds): Quad => {
 	const fullWidth = window.innerWidth;
 	const fullHeight = window.innerHeight;
-	
+
 	// Estimate card width based on viewport
 	let estimatedCardWidth = fullWidth * 0.92; // phones: 92vw
 	if (fullWidth >= 768) {
 		estimatedCardWidth = Math.min(40 * 16, fullWidth * 0.8); // tablets/desktop: 40rem or 80vw
 	}
-	
+
 	// Determine x position, but respect viewport bounds
 	let xHalf = fullWidth / 2 > bounds.left ? 'left' : 'right';
-	
+
 	// Check if card would overflow past the right edge of viewport
 	if (xHalf === 'right') {
 		const cardRightEdge = bounds.right + estimatedCardWidth / 2;
@@ -27,7 +27,7 @@ export const determineQuadrant = (bounds: Bounds): Quad => {
 			xHalf = 'left'; // Force to left if it would go off-screen
 		}
 	}
-	
+
 	const yHalf = fullHeight / 2 > bounds.top ? 'top' : 'bottom';
 	let edge = '';
 	if (bounds.left < 240 || fullWidth - bounds.right < 240) {

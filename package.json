@@ -44,7 +44,7 @@
 	},
 	"dependencies": {
 		"@feedback-fish/vue": "^1.0.1",
-		"firebase": "9",
+		"@supabase/supabase-js": "^2.41.0",
 		"postcss-extend-rule": "^3.0.0",
 		"postcss-nested": "^5.0.6",
 		"sharp": "^0.29.3",

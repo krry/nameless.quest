@@ -50,16 +50,11 @@ form.flex.space.spread.wrap(@submit.prevent="acceptingCode ? acceptConfirmationC
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs, onMounted } from 'vue';
-import { signInWithPhoneNumber, ConfirmationResult, RecaptchaVerifier } from 'firebase/auth';
-import { auth } from '../firebase';
+import { defineComponent, reactive, toRefs } from 'vue';
+import { supabase } from '../firebase';
 import { useRouter } from 'vue-router';
-import { cache, uncache } from '../store/cache';
+import { cache, uncache, cacheUser } from '../store/cache';
 import Waiter from './Waiter.vue';
-
-let confirmResult: ConfirmationResult;
-let recaptchaVerifier: RecaptchaVerifier;
-let recaptchaResponse: Response;
 
 function prevalidatePhoneNumber(phone: string) {
 	const numberized = phone.replace(/[^0-9]/g, '');
@@ -91,85 +86,63 @@ export default defineComponent({
 			awaiting: false,
 		});
 
-		async function signInWithPhone(response?: Response) {
-			console.log('response', response);
-			// reCAPTCHA solved, allow signInWithPhoneNumber
+		async function signInWithPhone() {
 			const validatedPhone = prevalidatePhoneNumber(rx.phone);
-			// show spinner and ghost the input and button
 			rx.awaiting = true;
-			await signInWithPhoneNumber(auth, validatedPhone, recaptchaVerifier)
-				.then(confirmationResult => {
-					rx.awaiting = false;
-					// hide spinner and unghost
-					rx.acceptingCode = true;
-					rx.msg.phone.success = true;
-					cache('phone', validatedPhone);
-					confirmResult = confirmationResult;
-					return response;
-				})
-				.catch(error => {
-					rx.awaiting = false;
-					console.error("didn't send SMS", error);
-					rx.msg.phone.error = true;
-					recaptchaVerifier.clear();
-					// recover from SMS fail by resetting recaptcha
-					recaptchaVerifier.render().then(widgetId => {
-						console.log('widgetId', widgetId);
-					});
-					uncache('phone');
-					rx.phone = '';
-				});
+			const { error } = await supabase.auth.signInWithOtp({
+				phone: validatedPhone,
+				options: {
+					shouldCreateUser: true,
+				},
+			});
+
+			if (error) {
+				rx.awaiting = false;
+				console.error("didn't send SMS", error.message);
+				rx.msg.phone.error = true;
+				uncache('phone');
+				rx.phone = '';
+			} else {
+				rx.awaiting = false;
+				rx.acceptingCode = true;
+				rx.msg.phone.success = true;
+				cache('phone', validatedPhone);
+			}
 		}
 
 		async function acceptConfirmationCode() {
 			if (rx.acceptingCode) {
+				const validatedPhone = prevalidatePhoneNumber(rx.phone);
 				rx.awaiting = true;
-				await confirmResult
-					.confirm(rx.confCode)
-					.then(result => {
-						rx.awaiting = false;
-						const user = result.user;
-						console.log('user is ', user?.uid, 'with phone', user?.phoneNumber);
-						cache('uid', user?.uid);
-						cache('phone', user?.phoneNumber);
-						router.push('/journal');
-					})
-					.catch(error => {
-						rx.awaiting = false;
-						console.error('invalid confirmation code', error);
-						rx.msg.confirm.error = true;
-						rx.confCode = '';
-						rx.acceptingCode = false;
-					});
-			} else throw new Error('not ready to accept a confirmation code');
+				const { data, error } = await supabase.auth.verifyOtp({
+					phone: validatedPhone,
+					token: rx.confCode,
+					type: 'sms',
+				});
+
+				if (error) {
+					rx.awaiting = false;
+					console.error('invalid confirmation code', error.message);
+					rx.msg.confirm.error = true;
+					rx.confCode = '';
+					rx.acceptingCode = false;
+				} else if (data.user) {
+					rx.awaiting = false;
+					console.log('user is logged in:', data.user.id);
+					cacheUser(data.user);
+					router.push('/journal');
+				}
+			} else {
+				throw new Error('not ready to accept a confirmation code');
+			}
 		}
 
 		function signInOrConfirm() {
 			if (rx.acceptingCode) acceptConfirmationCode();
 			else {
-				signInWithPhone(recaptchaResponse);
+				signInWithPhone();
 			}
 		}
-
-		onMounted(() => {
-			recaptchaVerifier = new RecaptchaVerifier(
-				'phone_butt',
-				{
-					size: 'invisible',
-					callback: (response: Response) => {
-						console.log('recaptcha callback called with response', response);
-						recaptchaResponse = response;
-						signInWithPhone(response);
-					},
-					'expired-callback': () => {
-						console.log('recaptcha callback expired');
-						recaptchaVerifier.clear();
-						recaptchaVerifier.render();
-					},
-				},
-				auth
-			);
-		});
 
 		return {
 			signInWithPhone,

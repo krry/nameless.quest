@@ -69,28 +69,23 @@ export const defHex: Hexagram = {
 };
 
 export interface Roll {
-	uid: string;
+	id: string; // UUID (primary key)
+	user_id: string; // UUID (references auth.users)
 	query: string;
 	toss: string;
-	moment: {
-		seconds: number;
-		nanoseconds: number;
-	};
-	id?: string;
 	notes?: string;
+	moment: string; // ISO 8601 timestamp
+	created_at?: string; // ISO 8601 timestamp
+	updated_at?: string; // ISO 8601 timestamp
 }
 
-const dummyDate = new Date();
-
 export const defRoll: Roll = {
+	id: '',
+	user_id: '',
 	query: '',
 	toss: '',
-	moment: {
-		seconds: dummyDate.getTime() / 1000,
-		nanoseconds: dummyDate.getTime(),
-	},
-	uid: '',
-	// notes: '',
+	moment: new Date().toISOString(),
+	notes: '',
 };
 
 export interface Quad {

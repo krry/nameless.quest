@@ -1,21 +1,24 @@
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
+import { createClient } from '@supabase/supabase-js';
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-	apiKey: 'AIzaSyAYmeuIr6aDKO7QQi9kTrfbEy6XGZfuCPY',
-	authDomain: 'nameless-magic.firebaseapp.com',
-	databaseURL: 'https://nameless-magic-default-rtdb.firebaseio.com',
-	projectId: 'nameless-magic',
-	storageBucket: 'nameless-magic.appspot.com',
-	messagingSenderId: '386380781673',
-	appId: '1:386380781673:web:265412564c620104f4aaf8',
-};
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-const firebaseApp = initializeApp(firebaseConfig);
-const db = getFirestore(firebaseApp);
-const auth = getAuth(firebaseApp);
-auth.useDeviceLanguage();
+if (!supabaseUrl || !supabaseAnonKey) {
+	throw new Error('Missing Supabase environment variables');
+}
 
-export { db, auth, firebaseApp };
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+// Export a function to get the current user
+export async function getAuthUser() {
+	const {
+		data: { user },
+	} = await supabase.auth.getUser();
+	return user;
+}
+
+// Export a function to sign out
+export async function signOut() {
+	const { error } = await supabase.auth.signOut();
+	return error;
+}
