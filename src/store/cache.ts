@@ -14,7 +14,6 @@ export const cached: { [key: string]: string } = reactive({
 	step: lsd('step'),
 	help: lsd('help'),
 	email: lsd('email'),
-	phone: lsd('phone'),
 	theme: lsd('theme'),
 	query: lsd('query'),
 	token: lsd('token'),
@@ -43,7 +42,6 @@ export function cacheUser(user: User): void {
 	// console.info('caching user', user)
 	if (user.uid) cache('uid', user.uid);
 	if (user.email) cache('email', user.email);
-	if (user.phoneNumber) cache('phone', user.phoneNumber);
 	if (user.displayName) cache('name', user.displayName);
 	if (user.emailVerified) set('emailVerified', user.emailVerified);
 }

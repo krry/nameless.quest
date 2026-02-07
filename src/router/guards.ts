@@ -1,84 +1,55 @@
 import { RouteLocationRaw, RouteLocationNormalized } from 'vue-router';
-import { auth } from '../firebase';
-import { onAuthStateChanged, signInWithEmailLink, isSignInWithEmailLink } from 'firebase/auth';
+import { supabase, getAuthUser } from '../firebase';
 import { cfg } from '../store';
 import { addRoll, cachedRoll } from '../store/rolls';
-import { cache, uncache, cached, cacheUser } from '../store/cache';
+import { uncache, cached, cacheUser } from '../store/cache';
 import { getRolls } from '../store/rolls';
 import * as drawer from '../utils/drawer';
 
-onAuthStateChanged(auth, user => {
-	if (user) {
-		console.info('user detected', user.uid);
-		cache('uid', user.uid);
-		// activeUser.value = user.uid
+// Set up auth state listener for Supabase
+supabase.auth.onAuthStateChange(async (event, session) => {
+	if (event === 'SIGNED_IN' && session?.user) {
+		console.info('user detected', session.user.id);
+		cacheUser(session.user);
 		if (!cachedRoll.value) return;
-		cachedRoll.value.uid = user.uid;
+		// Note: Supabase handles user_id in the Roll interface, so we don't set it here
 		addRoll(cachedRoll.value);
 		cachedRoll.value = null;
-	} else {
-		// console.warn('👋 welcome, guest');
+	} else if (event === 'SIGNED_OUT') {
 		uncache('uid');
+		uncache('email');
+		uncache('name');
 	}
 });
 
 export async function beforeEach(/*to: RouteLocationNormalized*/): Promise<
 	RouteLocationRaw | undefined
 > {
-	// console.log('beforeEach', to);
+	// Check if user is already authenticated
 	if (cached.uid) {
-		// console.log('uid cached', cached.uid);
 		return;
-	} else if (isSignInWithEmailLink(auth, window.location.href)) {
-		// console.log('is a sign in link');
+	}
 
-		if (cached.email) {
-			// console.log('email cached', cached.email);
-			const signInResult = await signInWithEmailLink(auth, cached.email, window.location.href);
-			// console.log('signInResult', signInResult);
-			if (signInResult.user) {
-				// console.log('valid firebase user', signInResult.user);
-				cacheUser(signInResult.user);
-				// if (cachedRoll.value) {
-				// addRoll(cachedRoll.value);
-				// }
-				await getRolls();
+	// Check if we have a valid session (user is authenticated)
+	const user = await getAuthUser();
+	if (user) {
+		console.log('User already authenticated:', user.id);
+		cacheUser(user);
+		await getRolls();
+		return {
+			name: 'journal',
+			query: {},
+			replace: true,
+		};
+	}
 
-				// Wait for Firebase auth state to settle before routing to journal
-				return new Promise(resolve => {
-					const unsubscribe = onAuthStateChanged(auth, user => {
-						unsubscribe(); // Clean up listener after first check
-						if (user) {
-							resolve({
-								name: 'journal',
-								query: {},
-								replace: true,
-							});
-						} else {
-							console.warn('Auth state unresolved; routing to login');
-							resolve({
-								name: 'login',
-								query: {},
-								replace: true,
-							});
-						}
-					});
-				});
-			} else {
-				console.error(signInResult);
-				return;
-			}
-		} else {
-			// console.error('no cached email');
-			// console.log('proceeding to login');
-			return {
-				name: 'login',
-				query: {},
-				replace: true,
-			};
-		}
-	} else {
-		console.log('not a sign in link, and no uid');
+	// Check if we're returning from a magic link (email auth)
+	// Supabase handles this automatically in the auth state change listener
+	// and will set the session, so the above getAuthUser() check will catch it
+
+	// If no user and no valid session, redirect to login
+	if (!cached.uid) {
+		console.log('No authenticated user, redirecting to login');
 	}
 }
 

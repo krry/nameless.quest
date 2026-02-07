@@ -6,24 +6,8 @@ Page.login(
     LogoBrand(direction="horiz" size="large")
   h1
     | Sign in
-  .radios.flex.wrap.mid.spread
-    label with
-    input#checkEmail(
-      type="radio"
-      v-model="method"
-      value="email"
-      )
-    label(for="checkEmail") Email
-    label or
-    input#checkPhone(
-      type="radio"
-      v-model="method"
-      value="phone"
-      )
-    label(for="checkPhone") Phone
   transition(name="slide-fade" mode="out-in" appear)
-    LoginEmail.left(v-if="method === 'email'")
-    LoginPhone.right(v-else-if="method === 'phone'")
+    LoginEmail.left
   transition(name="slide-fade" mode="out-in" appear)
     h3.font.alcenter.right(v-if="explained")
       | Frankly!{' '}
@@ -41,7 +25,6 @@ import Page from '../components/Page.vue';
 import AppLink from '../components/AppLink.vue';
 import LogoBrand from '../components/LogoBrand.vue';
 import LoginEmail from '../components/LoginEmail.vue';
-import LoginPhone from '../components/LoginPhone.vue';
 
 export default defineComponent({
 	name: 'LoginPage',
@@ -50,11 +33,9 @@ export default defineComponent({
 		AppLink,
 		LogoBrand,
 		LoginEmail,
-		LoginPhone,
 	},
 	data() {
 		return {
-			method: '',
 			explained: false,
 		};
 	},
@@ -66,7 +47,6 @@ export default defineComponent({
 	margin: 1rem 0 0;
 }
 
-.radios,
 .login h3 {
 	margin: 0.5rem 0;
 }

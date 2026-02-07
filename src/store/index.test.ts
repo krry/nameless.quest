@@ -141,7 +141,6 @@ describe('Store Config', () => {
 				'thanked',
 				'fedback',
 				'emailVerified',
-				'phoneVerified',
 			];
 
 			expectedProps.forEach(prop => {

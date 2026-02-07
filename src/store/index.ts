@@ -21,7 +21,6 @@ export const cfg: { [key: string]: boolean } = reactive({
 	thanked: lsd('thanked'), // visited gratitude
 	fedback: lsd('fedback'), // visited feedback
 	emailVerified: lsd('emailVerified'),
-	phoneVerified: lsd('phoneVerified'),
 });
 
 export function set(nym: string, val: boolean): void {

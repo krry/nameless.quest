@@ -6,7 +6,7 @@ import VueScrollTo from 'vue-scrollto';
 import { AutoFocus } from './directives/autofocus';
 import { AutoResize } from './directives/autoresize';
 import { supabase } from './firebase';
-import { cached, cacheUser, uncache } from './store/cache';
+import { cacheUser, uncache } from './store/cache';
 import { activeRolls } from './store/rolls';
 import './assets/styles/main.css';
 
@@ -25,7 +25,6 @@ supabase.auth.onAuthStateChange(async (event, session) => {
 	} else if (event === 'SIGNED_OUT') {
 		uncache('uid');
 		uncache('email');
-		uncache('phone');
 		uncache('name');
 		activeRolls.value = [];
 	}

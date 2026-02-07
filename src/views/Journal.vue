@@ -64,8 +64,7 @@ transition(name="fade")
 <script lang="ts">
 import { defineComponent, ref, watchEffect } from 'vue';
 import contenteditable from 'vue-contenteditable';
-import { updateProfile } from 'firebase/auth';
-import { auth } from '../firebase';
+import { supabase } from '../firebase';
 import { Roll } from '../schema';
 import { cfg, set } from '../store';
 import { cache, cached } from '../store/cache';
@@ -87,17 +86,13 @@ import IconSpellBook from '../icons/IconSpellBook.vue';
 import { symbolize, lineIconByNumber } from '../utils';
 
 const laterDatesFirst = (a: Roll, b: Roll): number => {
-	return b.moment.seconds - a.moment.seconds;
+	const dateA = new Date(a.moment).getTime();
+	const dateB = new Date(b.moment).getTime();
+	return dateB - dateA;
 };
 
-function toDateTime(secs = 0): Date {
-	var t = new Date(1970, 0, 1); // Epoch
-	t.setSeconds(secs);
-	return t;
-}
-
 const rollMomentToDate = (roll: Roll): string => {
-	const date = toDateTime(roll.moment?.seconds);
+	const date = new Date(roll.moment);
 	return date.toDateString();
 };
 
@@ -153,14 +148,16 @@ export default defineComponent({
 			// console.log('rolls.value', rolls.value)
 		);
 
-		function saveName(llamo: string) {
+		async function saveName(llamo: string) {
 			cache('name', llamo);
-			const user = auth.currentUser;
-			user &&
-				updateProfile(user, {
-					displayName: llamo,
-				});
-			// console.log('auth.currentUser now has name', auth.currentUser, llamo)
+			const { data, error } = await supabase.auth.updateUser({
+				data: { display_name: llamo },
+			});
+			if (error) {
+				console.error('Error updating user profile:', error);
+			} else {
+				console.log('User profile updated:', data);
+			}
 		}
 
 		function clearName(event: Event) {
