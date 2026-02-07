@@ -1,11 +1,13 @@
 <template lang="pug">
+NamePromptModal(
+	:isVisible="showNamePrompt"
+	@name-submitted="handleNameSubmitted"
+	@modal-closed="handleModalClosed"
+)
 transition(name="fade")
 	Waiter(v-if="cfg.loading")
 transition(name="fade")
-	Login(
-		v-if="!cached.uid"
-	)
-	Page.journal(v-else)
+	Page.journal
 		Spinnable.mrg.mrg2.t
 			IconBase(viewBox="0 0 1000 1250" size="128" iconColor="var(--ink)")
 				IconSpellBook
@@ -13,12 +15,12 @@ transition(name="fade")
 			| The Journal of{{' '}}
 			contenteditable(
 				tag="span"
-				v-model="cached.name"
+				v-model="userProfile.name"
 				:noNL="true"
 				class="username"
-				@blur="saveName(cached.name)"
+				@blur="saveName(userProfile.name)"
 				@focus="clearName"
-				) {{ cached.name }}
+				) {{ userProfile.name }}
 		h2 Conversations with the Oracle
 		.section(v-if="rolls && rolls.length < 10")
 			router-link.btn.lg.outline(:to="{name: 'oracle', params: {reset: 'true'}}") Start a new entry
@@ -64,7 +66,6 @@ transition(name="fade")
 <script lang="ts">
 import { defineComponent, ref, watchEffect } from 'vue';
 import contenteditable from 'vue-contenteditable';
-import { supabase } from '../firebase';
 import { Roll } from '../schema';
 import { cfg, set } from '../store';
 import { cache, cached } from '../store/cache';
@@ -72,7 +73,6 @@ import { activeRolls, getRolls, deleteRoll, updateRoll } from '../store/rolls';
 import { parseTossToBinary } from '../utils/tosses';
 import { useHexagrams } from '../composables/hexagrams';
 import Page from '../components/Page.vue';
-import Login from './Login.vue';
 import Waiter from '../components/Waiter.vue';
 import AppLink from '../components/AppLink.vue';
 import Spinnable from '../components/Spinnable.vue';
@@ -108,7 +108,6 @@ export default defineComponent({
 		IconEight,
 		IconNine,
 		Page,
-		Login,
 		Waiter,
 		AppLink,
 		ComingSoon,
@@ -150,14 +149,6 @@ export default defineComponent({
 
 		async function saveName(llamo: string) {
 			cache('name', llamo);
-			const { data, error } = await supabase.auth.updateUser({
-				data: { display_name: llamo },
-			});
-			if (error) {
-				console.error('Error updating user profile:', error);
-			} else {
-				console.log('User profile updated:', data);
-			}
 		}
 
 		function clearName(event: Event) {

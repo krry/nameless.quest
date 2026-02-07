@@ -1,56 +1,12 @@
 import { RouteLocationRaw, RouteLocationNormalized } from 'vue-router';
-import { supabase, getAuthUser } from '../firebase';
 import { cfg } from '../store';
-import { addRoll, cachedRoll } from '../store/rolls';
-import { uncache, cached, cacheUser } from '../store/cache';
-import { getRolls } from '../store/rolls';
 import * as drawer from '../utils/drawer';
-
-// Set up auth state listener for Supabase
-supabase.auth.onAuthStateChange(async (event, session) => {
-	if (event === 'SIGNED_IN' && session?.user) {
-		console.info('user detected', session.user.id);
-		cacheUser(session.user);
-		if (!cachedRoll.value) return;
-		// Note: Supabase handles user_id in the Roll interface, so we don't set it here
-		addRoll(cachedRoll.value);
-		cachedRoll.value = null;
-	} else if (event === 'SIGNED_OUT') {
-		uncache('uid');
-		uncache('email');
-		uncache('name');
-	}
-});
 
 export async function beforeEach(/*to: RouteLocationNormalized*/): Promise<
 	RouteLocationRaw | undefined
 > {
-	// Check if user is already authenticated
-	if (cached.uid) {
-		return;
-	}
-
-	// Check if we have a valid session (user is authenticated)
-	const user = await getAuthUser();
-	if (user) {
-		console.log('User already authenticated:', user.id);
-		cacheUser(user);
-		await getRolls();
-		return {
-			name: 'journal',
-			query: {},
-			replace: true,
-		};
-	}
-
-	// Check if we're returning from a magic link (email auth)
-	// Supabase handles this automatically in the auth state change listener
-	// and will set the session, so the above getAuthUser() check will catch it
-
-	// If no user and no valid session, redirect to login
-	if (!cached.uid) {
-		console.log('No authenticated user, redirecting to login');
-	}
+	// No auth checks — users land straight on the app
+	return;
 }
 
 export function oracleGuard(): RouteLocationRaw {

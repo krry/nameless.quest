@@ -1,43 +1,67 @@
 import { ref } from 'vue';
 import { cfg } from '../store';
-import { supabase, getAuthUser } from '../firebase';
+import { userProfile } from './userProfile';
 import { Roll } from '../schema';
 
 export const cachedRoll = ref<Roll | null>();
 export const activeRolls = ref<Roll[]>([]);
 
+// Storage key for rolls
+const getRollsStorageKey = (): string => {
+	return `nameless_rolls_${userProfile.uid}`;
+};
+
+// Helper to load rolls from localStorage
+function loadRollsFromStorage(): Roll[] {
+	const key = getRollsStorageKey();
+	const stored = localStorage.getItem(key);
+	if (stored) {
+		try {
+			return JSON.parse(stored);
+		} catch (e) {
+			console.error('Failed to parse rolls from storage', e);
+			return [];
+		}
+	}
+	return [];
+}
+
+// Helper to save rolls to localStorage
+function saveRollsToStorage(rolls: Roll[]): void {
+	const key = getRollsStorageKey();
+	localStorage.setItem(key, JSON.stringify(rolls));
+}
+
 // CREATE
 export async function addRoll(roll: Omit<Roll, 'id' | 'user_id' | 'created_at'>): Promise<void> {
 	console.log('roll to save', roll);
 
+	if (!userProfile.uid) {
+		console.error('No user profile initialized');
+		return;
+	}
+
 	// Avoid duplicates
-	const queryIndex = activeRolls.value.map(r => r.query).indexOf(roll.query);
-	const tossIndex = activeRolls.value.map(r => r.toss).indexOf(roll.toss);
+	const rolls = loadRollsFromStorage();
+	const queryIndex = rolls.map(r => r.query).indexOf(roll.query);
+	const tossIndex = rolls.map(r => r.toss).indexOf(roll.toss);
 	if (queryIndex !== -1 && queryIndex === tossIndex) {
 		console.log('Duplicate roll detected, skipping');
 		return;
 	}
 
-	const user = await getAuthUser();
-	if (!user) {
-		console.error('No authenticated user');
-		return;
-	}
-
 	cfg.loading = true;
-	const { data, error } = await supabase
-		.from('rolls')
-		.insert({
-			...roll,
-			user_id: user.id,
-		})
-		.select();
+	const newRoll: Roll = {
+		...roll,
+		id: generateRollID(),
+		user_id: userProfile.uid,
+		created_at: new Date().toISOString(),
+	};
 
-	if (error) {
-		console.error('Error adding roll:', error);
-	} else {
-		console.log('added roll', data);
-	}
+	rolls.push(newRoll);
+	saveRollsToStorage(rolls);
+	activeRolls.value = rolls;
+	console.log('added roll', newRoll);
 	cfg.loading = false;
 }
 
@@ -45,25 +69,19 @@ export async function addRoll(roll: Omit<Roll, 'id' | 'user_id' | 'created_at'>)
 export async function getRolls(): Promise<void> {
 	console.log('getting rolls');
 
-	const user = await getAuthUser();
-	if (!user) {
-		console.error('No authenticated user');
+	if (!userProfile.uid) {
+		console.error('No user profile initialized');
 		return;
 	}
 
 	cfg.loading = true;
-	const { data, error } = await supabase
-		.from('rolls')
-		.select('*')
-		.eq('user_id', user.id)
-		.order('created_at', { ascending: false });
-
-	if (error) {
-		console.error('Error fetching rolls:', error);
-	} else {
-		console.log('got rolls', data);
-		activeRolls.value = (data || []) as Roll[];
-	}
+	const rolls = loadRollsFromStorage();
+	activeRolls.value = rolls.sort((a, b) => {
+		const dateA = new Date(a.created_at || 0).getTime();
+		const dateB = new Date(b.created_at || 0).getTime();
+		return dateB - dateA;
+	});
+	console.log('got rolls', activeRolls.value);
 	cfg.loading = false;
 }
 
@@ -74,43 +92,47 @@ export async function updateRoll(roll: Roll): Promise<void> {
 		return;
 	}
 
-	const user = await getAuthUser();
-	if (!user) {
-		console.error('No authenticated user');
+	if (!userProfile.uid) {
+		console.error('No user profile initialized');
 		return;
 	}
 
 	cfg.loading = true;
-	const { error } = await supabase
-		.from('rolls')
-		.update({ notes: roll.notes })
-		.eq('id', roll.id)
-		.eq('user_id', user.id);
+	const rolls = loadRollsFromStorage();
+	const index = rolls.findIndex(r => r.id === roll.id);
 
-	if (error) {
-		console.error('Error updating roll:', error);
-	} else {
+	if (index !== -1) {
+		rolls[index] = {
+			...rolls[index],
+			notes: roll.notes,
+			updated_at: new Date().toISOString(),
+		};
+		saveRollsToStorage(rolls);
+		activeRolls.value = rolls;
 		console.log('updated roll', roll.id);
+	} else {
+		console.error('Roll not found', roll.id);
 	}
 	cfg.loading = false;
 }
 
 // DELETE
 export async function deleteRoll(docId: string): Promise<void> {
-	const user = await getAuthUser();
-	if (!user) {
-		console.error('No authenticated user');
+	if (!userProfile.uid) {
+		console.error('No user profile initialized');
 		return;
 	}
 
 	cfg.loading = true;
-	const { error } = await supabase.from('rolls').delete().eq('id', docId).eq('user_id', user.id);
-
-	if (error) {
-		console.error('Error deleting roll:', error);
-	} else {
-		console.log('deleted roll', docId);
-		await getRolls(); // Refresh
-	}
+	const rolls = loadRollsFromStorage();
+	const filtered = rolls.filter(r => r.id !== docId);
+	saveRollsToStorage(filtered);
+	activeRolls.value = filtered;
+	console.log('deleted roll', docId);
 	cfg.loading = false;
+}
+
+// Helper to generate a unique roll ID
+function generateRollID(): string {
+	return 'roll_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
 }
