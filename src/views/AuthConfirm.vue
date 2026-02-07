@@ -54,7 +54,9 @@ export default defineComponent({
 				}
 
 				// DEBUG: Log all params before verification
-				console.log('DEBUG AuthConfirm:', { token_hash, email: userEmail, type });
+				console.log(`DEBUG AuthConfirm - token_hash: ${token_hash}`);
+				console.log(`DEBUG AuthConfirm - email: ${userEmail}`);
+				console.log(`DEBUG AuthConfirm - type: email`);
 
 				// Prepare the verification request
 				const verifyRequest = {
