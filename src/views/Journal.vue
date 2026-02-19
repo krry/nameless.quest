@@ -3,6 +3,11 @@ transition(name="fade")
 	Waiter(v-if="cfg.loading")
 transition(name="fade")
 	Page.journal
+		NamePromptModal(
+			:isVisible="showNamePrompt"
+			@name-submitted="handleNameSubmitted"
+			@modal-closed="showNamePrompt = false"
+		)
 		Spinnable.mrg.mrg2.t
 			IconBase(viewBox="0 0 1000 1250" size="128" iconColor="var(--ink)")
 				IconSpellBook
@@ -13,8 +18,7 @@ transition(name="fade")
 				v-model="userProfile.name"
 				:noNL="true"
 				@blur="saveName(userProfile.name)"
-				style="display: inline; min-width: 4rem; outline: 1px solid currentColor; padding: 0.25rem 0.5rem;"
-			) {{ userProfile.name }}
+			) {{ userProfile.name !== "" ? userProfile.name : "Who" }}
 		h2 Conversations with the Oracle
 		.section(v-if="rolls && rolls.length < 10")
 			router-link.btn.lg.outline(:to="{name: 'oracle', params: {reset: 'true'}}") Start a new entry
@@ -188,10 +192,31 @@ export default defineComponent({
 	background-color: var(--silk);
 }
 
+h1.head, .username {
+    line-height: var(--leading);
+    margin-bottom: 1rem;
+}
+
 .username {
 	--font-mono: 0.5;
 	--font-casual: 0.75;
 	--font-weight: 367;
-	margin-left: 0.25ch;
+	position: relative;
+	display: inline;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-width: 4rem;
+	margin-left: 0.25em;
+	padding: 0.0618em 0.309em;
+	border: 2px solid var(--glow);
+	color: var(--ink);
+	background: var(--paper);
+	font-size: 1em;
+	font-family: var(--text);
+	border-radius: var(--bevel);
+	transition-property: outline, border-color, background-color, color;
+	transition-duration: var(--beat);
+	transition-timing-function: var(--ease-out-circ);
 }
 </style>

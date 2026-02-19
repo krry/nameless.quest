@@ -29,7 +29,7 @@ function initializeUserProfile(): UserProfile {
 	// Create new profile for first-time user
 	const newProfile: UserProfile = {
 		uid: generateUID(),
-		name: 'You',
+		name: 'Who',
 		createdAt: new Date().toISOString(),
 	};
 	localStorage.setItem('userProfile', JSON.stringify(newProfile));
@@ -55,8 +55,29 @@ export function hasUserProfile(): boolean {
 export function resetUserProfile(): void {
 	const newProfile: UserProfile = {
 		uid: generateUID(),
-		name: 'You',
+		name: 'Who',
 		createdAt: new Date().toISOString(),
 	};
 	saveUserProfile(newProfile);
+}
+
+/**
+ * Login with a secret phrase (deterministic UID)
+ * Allows restoring profile across devices without a backend
+ */
+export async function loginWithSecret(name: string, secret: string): Promise<void> {
+	// Simple hash of the secret to generate UID
+	const encoder = new TextEncoder();
+	const data = encoder.encode(secret.trim());
+	const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+	const hashArray = Array.from(new Uint8Array(hashBuffer));
+	const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+	
+	const deterministicProfile: UserProfile = {
+		uid: 'user_' + hashHex.substring(0, 16), // Use first 16 chars of hash
+		name: name.trim() || 'Who',
+		createdAt: userProfile.createdAt || new Date().toISOString(),
+	};
+	
+	saveUserProfile(deterministicProfile);
 }

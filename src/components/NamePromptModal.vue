@@ -16,7 +16,14 @@
                     placeholder="Your name..."
                     ref="inputRef"
                     @keyup.enter.exact="handleSubmit"
-                ) 
+                )
+            .form-group
+                input.input.lg(
+                    v-model="inputSecret"
+                    type="password"
+                    placeholder="Secret Phrase (Optional - for restoring backup)"
+                    @keyup.enter.exact="handleSubmit"
+                )
             .button-group.flex.row.mid
                 button.btn.lg.outline(@click="close") Cancel
                 button.btn.lg(
@@ -27,7 +34,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue';
-import { setUserName } from '../store/userProfile';
+import { setUserName, loginWithSecret } from '../store/userProfile';
 
 export default defineComponent({
 	name: 'NamePromptModal',
@@ -43,6 +50,7 @@ export default defineComponent({
 	},
 	setup(props, { emit }) {
 		const inputName = ref('');
+		const inputSecret = ref('');
 		const inputRef = ref<HTMLInputElement | null>(null);
 
 		onMounted(() => {
@@ -52,12 +60,19 @@ export default defineComponent({
 			}
 		});
 
-		const handleSubmit = () => {
+		const handleSubmit = async () => {
 			const name = inputName.value.trim();
+			const secret = inputSecret.value.trim();
+			
 			if (name) {
-				setUserName(name);
+				if (secret) {
+					await loginWithSecret(name, secret);
+				} else {
+					setUserName(name);
+				}
 				emit('name-submitted', name);
 				inputName.value = '';
+				inputSecret.value = '';
 			}
 		};
 
@@ -71,6 +86,7 @@ export default defineComponent({
 
 		return {
 			inputName,
+			inputSecret,
 			inputRef,
 			handleSubmit,
 			close,

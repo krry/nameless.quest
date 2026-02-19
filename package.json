@@ -15,7 +15,7 @@
 		"clean:sw": "rimraf public/sw* public/workbox-*",
 		"commit": "cz",
 		"deploy": "npm run pre-deploy && netlify deploy",
-		"dev": "vite --port 2022",
+		"dev": "vite --port 2022 --open",
 		"format": "prettier --write --plugin-search-dir=. .",
 		"https-preview": "npm run build:local && serve dist",
 		"lint": "eslint src --ext vue,ts",
